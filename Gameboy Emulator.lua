@@ -54,7 +54,7 @@ function bShiftLeft (number, shift)
 	return number / math.pow(2, shift)
 end
 
-function shiftleft (number, shift)
+function shiftLeft (number, shift)
 	return toInt(bShiftLeft(number, shift))
 end
 
@@ -435,8 +435,8 @@ function INC_16 (nn, cycles)
 	dirtySum = registers[n] + registers[n + 1] + 1
 	bDirtySum = toBits(dirtySum, 16)
 
-	registers[n] = bitwiseAnd(bShiftRight(dirtySum, 8), toBits(0xFF))
-	registers[n + 1] = bitwiseAnd(bBitwiseOr(dirtySum, toBits(0xFF)), toBits(0xFF))
+	registers[n] = bitwiseAnd(bShiftRight(dirtySum, 8), toBits(0xFF, 8))
+	registers[n + 1] = bitwiseAnd(bBitwiseOr(dirtySum, toBits(0xFF, 8)), toBits(0xFF, 8))
 end
 
 -- Decrement register nn.
@@ -446,8 +446,8 @@ function DEC_16 (nn, cycles)
 	dirtySum = registers[n] + registers[n + 1] - 1
 	bDirtySum = toBits(dirtySum, 16)
 
-	registers[n] = bitwiseAnd(bShiftRight(dirtySum, 8), toBits(0xFF))
-	registers[n + 1] = bitwiseAnd(bBitwiseOr(dirtySum, toBits(0xFF)), toBits(0xFF))
+	registers[n] = bitwiseAnd(bShiftRight(dirtySum, 8), toBits(0xFF, 8))
+	registers[n + 1] = bitwiseAnd(bBitwiseOr(dirtySum, toBits(0xFF, 8)), toBits(0xFF, 8))
 end
 
 -- Miscellaneous
@@ -532,7 +532,14 @@ end
 -- Rotate A left. Old bit 7 to Carry flag.
 -- cycles = how many cycles it takes to execute
 function RLCA (cycles)
+	registers[1] = shiftLeft(registers[1], 1)
 
+	fZero = (registers[1] == 0)
+	fSubtract = false
+	fHalfCarry = false
+	fCarry = shiftRight(registers[1], 7)
+
+	registers[1] = bitwiseAnd(registers[1], toBits(0xFF, 8))
 end
 
 -- Rotate A left through Carry flag.
@@ -544,7 +551,14 @@ end
 -- Rotate A right. Old bit 0 to Carry flag.
 -- cycles = how many cycles it takes to execute
 function RRCA (cycles)
+	registers[1] = shiftRight(registers[1], 1)
 
+	fZero = (registers[1] == 0)
+	fSubtract = false
+	fHalfCarry = false
+	fCarry = bitwiseOr(registers[1], toBits(0x80, 8))
+
+	registers[1] = bitwiseAnd(registers[1], toBits(0xFF, 8))
 end
 
 -- Rotate A right through Carry flag.
