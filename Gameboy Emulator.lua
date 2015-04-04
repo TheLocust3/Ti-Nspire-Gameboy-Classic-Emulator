@@ -477,7 +477,7 @@ end
 -- cycles = how many cycles it takes to execute
 function CPL (cycles)
 	-- I believe that a complement is the same as an inversion
-	registers[1] = bitwiseNegate(toBits(registers[1], 8)
+	registers[1] = bitwiseNegate(toBits(registers[1], 8))
 end
 
 -- Complement carry flag. If C flag is set, then reset it. If C flag is reset, then set it.
