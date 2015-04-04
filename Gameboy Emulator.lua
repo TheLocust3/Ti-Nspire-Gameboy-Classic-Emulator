@@ -453,10 +453,18 @@ end
 -- Miscellaneous
 
 -- Swap upper & lower nibles of n.
--- n = A,B,C,D,E,H,L,(HL)
+-- n = A,B,C,D,E,H,L
 -- cycles = how many cycles it takes to execute
-function SWAP (nn, cycles)
+function SWAP (n, cycles)
+	registers[n] = shiftLeft(bitwiseOr(toBits(registers[n], 8), toBits(0xFF, 8)), 4) + shiftRight(registers[n], 4)
+end
 
+-- Swap upper & lower nibles of n.
+-- n = (HL)
+-- cycles = how many cycles it takes to execute
+function SWAP_HL (cycles)
+	registers[7] = registers[8] 
+	registers[8] = registers[7]
 end
 
 -- Decimal adjust register A. This instruction adjusts register A so that the correct representation of Binary Coded Decimal (BCD) is obtained.
@@ -468,19 +476,25 @@ end
 -- Complement A register. (Flip all bits.)
 -- cycles = how many cycles it takes to execute
 function CPL (cycles)
-
+	-- I believe that a complement is the same as an inversion
+	registers[1] = bitwiseNegate(toBits(registers[1], 8)
 end
 
 -- Complement carry flag. If C flag is set, then reset it. If C flag is reset, then set it.
 -- cycles = how many cycles it takes to execute
 function CCL (cycles)
+	if fCarry == true then
+		fCarry = false
+	else
+		fCarry = true
+	end
 
 end
 
 -- Set Carry flag.
 -- cycles = how many cycles it takes to execute
 function SCF (cycles)
-
+	fCarry = true
 end
 
 -- No operation.
