@@ -556,7 +556,7 @@ function RRCA (cycles)
 	fZero = (registers[1] == 0)
 	fSubtract = false
 	fHalfCarry = false
-	fCarry = bitwiseOr(registers[1], toBits(0x80, 8))
+	fCarry = shiftRight(bitwiseOr(registers[1], toBits(0x80, 8)), 7)
 
 	registers[1] = bitwiseAnd(registers[1], toBits(0xFF, 8))
 end
@@ -575,9 +575,23 @@ function RLC (n, cycles)
 end
 
 -- Rotate n left through Carry flag.
--- n = A,B,C,D,E,H,L,(HL)
+-- n = A,B,C,D,E,H,L
 -- cycles = how many cycles it takes to execute
 function RL (n, cycles)
+	registers[n] = shiftLeft(registers[n], 1)
+
+	fZero = (registers[n] == 0)
+	fSubtract = false
+	fHalfCarry = false
+	fCarry = shiftRight(registers[n], 7)
+
+	registers[n] = bitwiseAnd(registers[n], toBits(0xFF, 8))
+end
+
+-- Rotate n left through Carry flag.
+-- n = (HL)
+-- cycles = how many cycles it takes to execute
+function RL_HL (cycles)
 
 end
 
@@ -585,7 +599,14 @@ end
 -- n = A,B,C,D,E,H,L,(HL)
 -- cycles = how many cycles it takes to execute
 function RRC (n, cycles)
+	registers[n] = shiftRight(registers[n], 1)
 
+	fZero = (registers[n] == 0)
+	fSubtract = false
+	fHalfCarry = false
+	fCarry = bitwiseOr(registers[n], toBits(0x01, 8))
+
+	registers[n] = bitwiseAnd(registers[n], toBits(0xFF, 8))
 end
 
 -- Rotate n right through Carry flag.
