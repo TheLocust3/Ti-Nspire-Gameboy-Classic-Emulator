@@ -1,4 +1,4 @@
-function runFunction (cmd)
+function runFunction (op)
 
 end
 
