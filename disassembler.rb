@@ -732,6 +732,24 @@ while pc < rom.length
 	when 0xdc
 		puts "CALL C, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
+	when 0xc9
+		puts "RET"
+		pc += 1
+	when 0xc0
+		puts "RET NZ"
+		pc += 1
+	when 0xc8
+		puts "RET Z"
+		pc += 1
+	when 0xd0
+		puts "RET NC"
+		pc += 1
+	when 0xd8
+		puts "RET C"
+		pc += 1
+	when 0xd9
+		puts "RETI"
+		pc += 1
 	# Opcodes with the prefix CB should be the last opcode
 	when 0xcb
 		case rom[pc + 1]
