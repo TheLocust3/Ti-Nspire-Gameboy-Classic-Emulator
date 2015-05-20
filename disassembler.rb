@@ -668,6 +668,18 @@ while pc < rom.length
 	when 0xfb
 		puts "EI"
 		pc += 1
+	when 0x07
+		puts "RLCA"
+		pc += 1
+	when 0x17
+		puts "RLA"
+		pc += 1
+	when 0x0f
+		puts "RRCA"
+		pc += 1
+	when 0x1f
+		puts "RRA"
+		pc += 1
 	# Opcodes with the prefix CB should be the last opcode
 	when 0xcb
 		if rom[pc + 1] == 0x37
@@ -686,6 +698,118 @@ while pc < rom.length
 			puts "SWAP L"
 		elsif rom[pc + 1] == 0x36
 			puts "SWAP (HL)"
+		elsif rom[pc + 1] == 0x07
+			puts "RLC A"
+		elsif rom[pc + 1] == 0x00
+			puts "RLC B"
+		elsif rom[pc + 1] == 0x01
+			puts "RLC C"
+		elsif rom[pc + 1] == 0x02
+			puts "RLC D"
+		elsif rom[pc + 1] == 0x03
+			puts "RLC E"
+		elsif rom[pc + 1] == 0x04
+			puts "RLC H"
+		elsif rom[pc + 1] == 0x05
+			puts "RLC L"
+		elsif rom[pc + 1] == 0x06
+			puts "RLC (HL)"
+		elsif rom[pc + 1] == 0x17
+			puts "RL A"
+		elsif rom[pc + 1] == 0x10
+			puts "RL B"
+		elsif rom[pc + 1] == 0x11
+			puts "RL C"
+		elsif rom[pc + 1] == 0x12
+			puts "RL D"
+		elsif rom[pc + 1] == 0x13
+			puts "RL E"
+		elsif rom[pc + 1] == 0x14
+			puts "RL H"
+		elsif rom[pc + 1] == 0x15
+			puts "RL L"
+		elsif rom[pc + 1] == 0x16
+			puts "RL (HL)"
+		elsif rom[pc + 1] == 0x0f
+			puts "RRC A"
+		elsif rom[pc + 1] == 0x08
+			puts "RRC B"
+		elsif rom[pc + 1] == 0x09
+			puts "RRC C"
+		elsif rom[pc + 1] == 0x0a
+			puts "RRC D"
+		elsif rom[pc + 1] == 0x0b
+			puts "RRC E"
+		elsif rom[pc + 1] == 0x0c
+			puts "RRC H"
+		elsif rom[pc + 1] == 0x0d
+			puts "RRC L"
+		elsif rom[pc + 1] == 0x0e
+			puts "RRC (HL)"
+		elsif rom[pc + 1] == 0x1f
+			puts "RR A"
+		elsif rom[pc + 1] == 0x18
+			puts "RR B"
+		elsif rom[pc + 1] == 0x19
+			puts "RR C"
+		elsif rom[pc + 1] == 0x1a
+			puts "RR D"
+		elsif rom[pc + 1] == 0x1b
+			puts "RR E"
+		elsif rom[pc + 1] == 0x1c
+			puts "RR H"
+		elsif rom[pc + 1] == 0x1d
+			puts "RR L"
+		elsif rom[pc + 1] == 0x1e
+			puts "RR (HL)"
+		elsif rom[pc + 1] == 0x27
+			puts "SLA A"
+		elsif rom[pc + 1] == 0x20
+			puts "SLA B"
+		elsif rom[pc + 1] == 0x21
+			puts "SLA C"
+		elsif rom[pc + 1] == 0x22
+			puts "SLA D"
+		elsif rom[pc + 1] == 0x23
+			puts "SLA E"
+		elsif rom[pc + 1] == 0x24
+			puts "SLA H"
+		elsif rom[pc + 1] == 0x25
+			puts "SLA L"
+		elsif rom[pc + 1] == 0x26
+			puts "SLA (HL)"
+		elsif rom[pc + 1] == 0x2f
+			puts "SRA A"
+		elsif rom[pc + 1] == 0x28
+			puts "SRA B"
+		elsif rom[pc + 1] == 0x29
+			puts "SRA C"
+		elsif rom[pc + 1] == 0x2a
+			puts "SRA D"
+		elsif rom[pc + 1] == 0x2b
+			puts "SRA E"
+		elsif rom[pc + 1] == 0x2c
+			puts "SRA H"
+		elsif rom[pc + 1] == 0x2d
+			puts "SRA L"
+		elsif rom[pc + 1] == 0x2e
+			puts "SRA (HL)"
+		elsif rom[pc + 1] == 0x3f
+			puts "SRL A"
+		elsif rom[pc + 1] == 0x38
+			puts "SRL B"
+		elsif rom[pc + 1] == 0x39
+			puts "SRL C"
+		elsif rom[pc + 1] == 0x3a
+			puts "SRL D"
+		elsif rom[pc + 1] == 0x3b
+			puts "SRL E"
+		elsif rom[pc + 1] == 0x3c
+			puts "SRL H"
+		elsif rom[pc + 1] == 0x3d
+			puts "SRL L"
+		elsif rom[pc + 1] == 0x3e
+			puts "SRL (HL)"
 		else
 			puts toHex(rom[pc + 1]) + " is not an opcode with the prefix CB!"
 		end
