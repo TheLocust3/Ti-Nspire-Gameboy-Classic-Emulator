@@ -680,6 +680,39 @@ while pc < rom.length
 	when 0x1f
 		puts "RRA"
 		pc += 1
+	when 0xc3
+		puts "JP " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		pc += 2
+	when 0xc2
+		puts "JP NZ, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		pc += 2
+	when 0xca
+		puts "JP Z" + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		pc += 2
+	when 0xd2
+		puts "JP  NC" + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		pc += 2
+	when 0xda
+		puts "JP  C" + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		pc += 2
+	when 0xe9
+		puts "JP (HL)"
+		pc += 1
+	when 0x18
+		puts "JR " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x20
+		puts "JR NZ, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x28
+		puts "JR Z, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x30
+		puts "JR NC, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x38
+		puts "JR C, " + toHex(rom[pc + 1])
+		pc += 2
 	# Opcodes with the prefix CB should be the last opcode
 	when 0xcb
 		case rom[pc + 1]
