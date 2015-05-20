@@ -341,6 +341,270 @@ while pc < rom.length
 	when 0xe1
 		puts "POP HL"
 		pc += 1
+	when 0x87
+		puts "ADD A, A"
+		pc += 1
+	when 0x80
+		puts "ADD A, B"
+		pc += 1
+	when 0x81
+		puts "ADD A, C"
+		pc += 1
+	when 0x82
+		puts "ADD A, D"
+		pc += 1
+	when 0x83
+		puts "ADD A, E"
+		pc += 1
+	when 0x84
+		puts "ADD A, H"
+		pc += 1
+	when 0x85
+		puts "ADD A, L"
+		pc += 1
+	when 0x86
+		puts "ADD A, (HL)"
+		pc += 1
+	when 0xc6
+		puts "ADD A, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x8f
+		puts "ADC A, A"
+		pc += 1
+	when 0x88
+		puts "ADC A, B"
+		pc += 1
+	when 0x89
+		puts "ADC A, C"
+		pc += 1
+	when 0x8a
+		puts "ADC A, D"
+		pc += 1
+	when 0x8b
+		puts "ADC A, E"
+		pc += 1
+	when 0x8c
+		puts "ADC A, H"
+		pc += 1
+	when 0x8d
+		puts "ADC A, L"
+		pc += 1
+	when 0x8e
+		puts "ADC A, (HL)"
+		pc += 1
+	when 0xce
+		puts "ADC A, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x97
+		puts "SUB A, A"
+		pc += 1
+	when 0x90
+		puts "SUB A, B"
+		pc += 1
+	when 0x91
+		puts "SUB A, C"
+		pc += 1
+	when 0x92
+		puts "SUB A, D"
+		pc += 1
+	when 0x93
+		puts "SUB A, E"
+		pc += 1
+	when 0x94
+		puts "SUB A, H"
+		pc += 1
+	when 0x95
+		puts "SUB A, L"
+		pc += 1
+	when 0x96
+		puts "SUB A, (HL)"
+		pc += 1
+	when 0xd6
+		puts "SUB A, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x9f
+		puts "SBC A, A"
+		pc += 1
+	when 0x98
+		puts "SBC A, B"
+		pc += 1
+	when 0x99
+		puts "SBC A, C"
+		pc += 1
+	when 0x9a
+		puts "SBC A, D"
+		pc += 1
+	when 0x9b
+		puts "SBC A, E"
+		pc += 1
+	when 0x9c
+		puts "SBC A, H"
+		pc += 1
+	when 0x9d
+		puts "SBC A, L"
+		pc += 1
+	when 0x9e
+		puts "SBC A, (HL)"
+		pc += 1
+	when 0xde
+		puts "SBC A, " + toHex(rom[pc + 1])
+		pc += 2
+	when 0xa7
+		puts "AND A"
+		pc += 1
+	when 0xa0
+		puts "AND B"
+		pc += 1
+	when 0xa1
+		puts "AND C"
+		pc += 1
+	when 0xa2
+		puts "AND D"
+		pc += 1
+	when 0xa3
+		puts "AND E"
+		pc += 1
+	when 0xa4
+		puts "AND H"
+		pc += 1
+	when 0xa5
+		puts "AND L"
+		pc += 1
+	when 0xa6
+		puts "AND (HL)"
+		pc += 1
+	when 0xe6
+		puts "AND " + toHex(rom[pc + 1])
+		pc += 2
+	when 0xb7
+		puts "OR A"
+		pc += 1
+	when 0xb0
+		puts "OR B"
+		pc += 1
+	when 0xb1
+		puts "OR C"
+		pc += 1
+	when 0xb2
+		puts "OR D"
+		pc += 1
+	when 0xb3
+		puts "OR E"
+		pc += 1
+	when 0xb4
+		puts "OR H"
+		pc += 1
+	when 0xb5
+		puts "OR L"
+		pc += 1
+	when 0xb6
+		puts "OR (HL)"
+		pc += 1
+	when 0xf6
+		puts "OR " + toHex(rom[pc + 1])
+		pc += 2
+	when 0xaf
+		puts "XOR A"
+		pc += 1
+	when 0xa8
+		puts "XOR B"
+		pc += 1
+	when 0xa9
+		puts "XOR C"
+		pc += 1
+	when 0xaa
+		puts "XOR D"
+		pc += 1
+	when 0xab
+		puts "XOR E"
+		pc += 1
+	when 0xac
+		puts "XOR H"
+		pc += 1
+	when 0xad
+		puts "XOR L"
+		pc += 1
+	when 0xea
+		puts "XOR (HL)"
+		pc += 1
+	when 0xee
+		puts "XOR " + toHex(rom[pc + 1])
+		pc += 2
+	when 0xbf
+		puts "CP A"
+		pc += 1
+	when 0xb8
+		puts "CP B"
+		pc += 1
+	when 0xb9
+		puts "CP C"
+		pc += 1
+	when 0xba
+		puts "CP D"
+		pc += 1
+	when 0xbb
+		puts "CP E"
+		pc += 1
+	when 0xbc
+		puts "CP H"
+		pc += 1
+	when 0xbd
+		puts "CP L"
+		pc += 1
+	when 0xbe
+		puts "CP (HL)"
+		pc += 1
+	when 0xfe
+		puts "CP " + toHex(rom[pc + 1])
+		pc += 2
+	when 0x3c
+		puts "INC A"
+		pc += 1
+	when 0x04
+		puts "INC B"
+		pc += 1
+	when 0x0c
+		puts "INC C"
+		pc += 1
+	when 0x14
+		puts "INC D"
+		pc += 1
+	when 0x1c
+		puts "INC E"
+		pc += 1
+	when 0x24
+		puts "INC H"
+		pc += 1
+	when 0x2c
+		puts "INC L"
+		pc += 1
+	when 0x34
+		puts "INC (HL)"
+		pc += 1
+	when 0x3d
+		puts "DEC A"
+		pc += 1
+	when 0x05
+		puts "DEC B"
+		pc += 1
+	when 0x0d
+		puts "DEC C"
+		pc += 1
+	when 0x15
+		puts "DEC D"
+		pc += 1
+	when 0x1d
+		puts "DEC E"
+		pc += 1
+	when 0x25
+		puts "DEC H"
+		pc += 1
+	when 0x2d
+		puts "DEC L"
+		pc += 1
+	when 0x35
+		puts "DEC (HL)"
+		pc += 1
 	else
 		puts toHex(rom[pc])
 		pc += 1
