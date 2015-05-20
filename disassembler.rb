@@ -605,6 +605,45 @@ while pc < rom.length
 	when 0x35
 		puts "DEC (HL)"
 		pc += 1
+	when 0x09
+		puts "ADD HL, BC"
+		pc += 1
+	when 0x19
+		puts "ADD HL, DE"
+		pc += 1
+	when 0x29
+		puts "ADD HL, HL"
+		pc += 1
+	when 0x39
+		puts "ADD HL, SP"
+		pc += 1
+	when 0xe8
+		puts "ADD SP, " + toHex(pc + 1)
+		pc += 2
+	when 0x03
+		puts "INC BC"
+		pc += 1
+	when 0x13
+		puts "INC DE"
+		pc += 1
+	when 0x23
+		puts "INC HL"
+		pc += 1
+	when 0x33
+		puts "INC P"
+		pc += 1
+	when 0x0b
+		puts "DEC BC"
+		pc += 1
+	when 0x1b
+		puts "DEC DE"
+		pc += 1
+	when 0x2b
+		puts "DEC HL"
+		pc += 1
+	when 0x3b
+		puts "DEC SP"
+		pc += 1
 	else
 		puts toHex(rom[pc])
 		pc += 1
