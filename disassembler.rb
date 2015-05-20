@@ -14,9 +14,6 @@ while pc < rom.length
 	print toHex(pc) + ": "
 
 	case rom[pc]
-	when 0x00
-		puts "NOP"
-		pc += 1
 	when 0x06
 		puts "LD B, " + toHex(rom[pc + 1])
 		pc += 2
@@ -644,8 +641,58 @@ while pc < rom.length
 	when 0x3b
 		puts "DEC SP"
 		pc += 1
+	when 0x27
+		puts "DAA"
+		pc += 1
+	when 0x2f
+		puts "CPL"
+		pc += 1
+	when 0x3f
+		puts "CCF"
+		pc += 1
+	when 0x37
+		puts "SCF"
+		pc += 1
+	when 0x00
+		puts "NOP"
+		pc += 1
+	when 0x76
+		puts "HALT"
+		pc += 1
+	when 0x10
+		puts "STOP"
+		pc += 1
+	when 0xf3
+		puts "DI"
+		pc += 1
+	when 0xfb
+		puts "EI"
+		pc += 1
+	# Opcodes with the prefix CB should be the last opcode
+	when 0xcb
+		if rom[pc + 1] == 0x37
+			puts "SWAP A"
+		elsif rom[pc + 1] == 0x30
+			puts "SWAP B"
+		elsif rom[pc + 1] == 0x31
+			puts "SWAP C"
+		elsif rom[pc + 1] == 0x32
+			puts "SWAP D"
+		elsif rom[pc + 1] == 0x33
+			puts "SWAP E"
+		elsif rom[pc + 1] == 0x34
+			puts "SWAP H"
+		elsif rom[pc + 1] == 0x35
+			puts "SWAP L"
+		elsif rom[pc + 1] == 0x36
+			puts "SWAP (HL)"
+		else
+			puts toHex(rom[pc + 1]) + " is not an opcode with the prefix CB!"
+		end
+
+		pc += 2
 	else
-		puts toHex(rom[pc])
+		puts toHex(rom[pc]) + " is not handled"
 		pc += 1
 	end
 end
