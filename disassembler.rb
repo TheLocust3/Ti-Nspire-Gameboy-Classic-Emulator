@@ -774,6 +774,9 @@ while pc < rom.length
 	when 0xd9
 		puts "RETI"
 		pc += 1
+	when 0xfc
+		puts "0xfc in an undocumented opcode and should not be used!"
+		pc += 1
 	# Opcodes with the prefix CB should be the last opcode
 	when 0xcb
 		case rom[pc + 1]
