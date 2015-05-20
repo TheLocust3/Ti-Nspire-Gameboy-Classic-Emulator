@@ -2,8 +2,12 @@ rom = [0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x0
 
 pc = 0x100
 
+def u_toHex (num)
+	return num.to_s(16)
+end
+
 def toHex (num)
-	return "0x" + num.to_s(16)
+	return "0x" + u_toHex(num)
 end
 
 while pc < rom.length
@@ -234,7 +238,7 @@ while pc < rom.length
 		puts "LD A, (HL)"
 		pc += 1
 	when 0xfa
-		puts "LD A, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		puts "LD A, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
 	when 0x3e
 		puts "LD A, " + toHex(rom[pc + 1])
@@ -267,7 +271,7 @@ while pc < rom.length
 		puts "LD (HL), A"
 		pc += 1
 	when 0xea
-		puts "LD (" + toHex(rom[pc + 1]) + "" + rom[pc + 2].to_s + "), A"
+		puts "LD (" + toHex(rom[pc + 1]) + "" + u_toHex(pc + 2) + "), A"
 		pc += 3
 	when 0xf2
 		puts "LD A, (C)"
@@ -294,16 +298,16 @@ while pc < rom.length
 		puts "LDH A, ($FF00 + " + toHex(rom[pc + 1]) + ")"
 		pc += 2
 	when 0x01
-		puts "LD BC, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		puts "LD BC, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
 	when 0x11
-		puts "LD DE, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		puts "LD DE, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
 	when 0x21
-		puts "LD HL, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		puts "LD HL, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
 	when 0x31
-		puts "LD SP, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
+		puts "LD SP, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
 	when 0xf9
 		puts "LD SP, HL"
@@ -312,7 +316,7 @@ while pc < rom.length
 		puts "LDHL SP, " + toHex(rom[pc + 1]) + " or LD HL, SP + " + toHex(rom[pc + 1])
 		pc += 2
 	when 0x08
-		puts "LD " + toHex(rom[pc + 1]) + rom[pc + 2].to_s + ", SP"
+		puts "LD " + toHex(rom[pc + 1]) + u_toHex(pc + 2) + ", SP"
 		pc += 3
 	when 0xf5
 		puts "PUSH AF"
@@ -681,20 +685,20 @@ while pc < rom.length
 		puts "RRA"
 		pc += 1
 	when 0xc3
-		puts "JP " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
-		pc += 2
+		puts "JP " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
 	when 0xc2
-		puts "JP NZ, " + toHex(rom[pc + 1]) + rom[pc + 2].to_s
-		pc += 2
+		puts "JP NZ, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
 	when 0xca
-		puts "JP Z" + toHex(rom[pc + 1]) + rom[pc + 2].to_s
-		pc += 2
+		puts "JP Z" + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
 	when 0xd2
-		puts "JP  NC" + toHex(rom[pc + 1]) + rom[pc + 2].to_s
-		pc += 2
+		puts "JP  NC" + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
 	when 0xda
-		puts "JP  C" + toHex(rom[pc + 1]) + rom[pc + 2].to_s
-		pc += 2
+		puts "JP  C" + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
 	when 0xe9
 		puts "JP (HL)"
 		pc += 1
@@ -713,6 +717,21 @@ while pc < rom.length
 	when 0x38
 		puts "JR C, " + toHex(rom[pc + 1])
 		pc += 2
+	when 0xcd
+		puts "CALL " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
+	when 0xc4
+		puts "CALL NZ, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
+	when 0xcc
+		puts "CALL Z, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
+	when 0xd4
+		puts "CALL NC, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
+	when 0xdc
+		puts "CALL C, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
+		pc += 3
 	# Opcodes with the prefix CB should be the last opcode
 	when 0xcb
 		case rom[pc + 1]
