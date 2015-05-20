@@ -732,6 +732,30 @@ while pc < rom.length
 	when 0xdc
 		puts "CALL C, " + toHex(rom[pc + 1]) + u_toHex(pc + 2)
 		pc += 3
+	when 0xc7
+		puts "RST 00H"
+		pc += 1
+	when 0xcf
+		puts "RST 08H"
+		pc += 1
+	when 0xd7
+		puts "RST 10H"
+		pc += 1
+	when 0xdf
+		puts "RST 18H"
+		pc += 1
+	when 0xe7
+		puts "RST 20H"
+		pc += 1
+	when 0xef
+		puts "RST 28H"
+		pc += 1
+	when 0xf7
+		puts "RST 30H"
+		pc += 1
+	when 0xff
+		puts "RST 38H"
+		pc += 1
 	when 0xc9
 		puts "RET"
 		pc += 1
