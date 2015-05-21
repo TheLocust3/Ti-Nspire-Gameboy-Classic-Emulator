@@ -1680,7 +1680,84 @@ function CALL_C_nn (nn)
 
 end
 
-
 -- Restarts
 
+function rst (n)
+
+end
+
+-- 0xc7
+function RST_00H ()
+
+end
+
+-- 0xcf
+function RST_08H ()
+
+end
+
+-- 0xd7
+function RST_10H ()
+
+end
+
+-- 0xdf
+function RST_18H ()
+
+end
+
+-- 0xe7
+function RST_20H ()
+
+end
+
+-- 0xef
+function RST_28H ()
+
+end
+
+-- 0xf7
+function RST_30H ()
+
+end
+
+-- 0xff
+function RST_38H ()
+
+end
+
 -- Returns
+
+function ret (cc)
+
+end
+
+-- 0xc9
+function RET ()
+
+end
+
+-- 0xc0
+function RET_NZ ()
+
+end
+
+-- 0xc8
+function RET_Z ()
+
+end
+
+-- 0xd0
+function RET_NC ()
+
+end
+
+-- 0xd8
+function RET_C ()
+
+end
+
+-- 0xd9
+function RETI ()
+
+end
