@@ -1,5 +1,5 @@
 program = ""
-files = ["rom.lua", "header.lua", "bitwise.lua", "dispatcher.lua"]
+files = ["rom.lua", "header.lua", "bitwise.lua", "dispatcher.lua", "helperFunctions.lua", "opcodes.lua"]
 
 for i in files
 	f = File.open(i, "r")
