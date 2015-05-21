@@ -1455,8 +1455,140 @@ function SRL_HL ()
 
 end
 
-
 -- Bit Operations
+
+function bit (b, r)
+
+end
+
+-- 0xcb 0x47
+function BIT_b_A (b)
+
+end
+
+-- 0xcb 0x40
+function BIT_b_B (b)
+
+end
+
+-- 0xcb 0x41
+function BIT_b_C (b)
+
+end
+
+-- 0xcb 0x42
+function BIT_b_D (b)
+
+end
+
+-- 0xcb 0x43
+function BIT_b_E (b)
+
+end
+
+-- 0xcb 0x44
+function BIT_b_H (b)
+
+end
+
+-- 0xcb 0x45
+function BIT_b_L (b)
+
+end
+
+-- 0xcb 0x46
+function BIT_b_HL (b)
+
+end
+
+function set (b, r)
+
+end
+
+-- 0xcb 0xc7
+function SET_b_A (b)
+
+end
+
+-- 0xcb 0xc0
+function SET_b_B (b)
+
+end
+
+-- 0xcb 0xc1
+function SET_b_C (b)
+
+end
+
+-- 0xcb 0xc2
+function SET_b_D (b)
+
+end
+
+-- 0xcb 0xc3
+function SET_b_E (b)
+
+end
+
+-- 0xcb 0xc4
+function SET_b_H (b)
+
+end
+
+-- 0xcb 0xc5
+function SET_b_L (b)
+
+end
+
+-- 0xcb 0xc6
+function SET_b_HL (b)
+
+end
+
+function res (b, r)
+
+end
+
+-- 0xcb 0x87
+function RES_b_A (b)
+
+end
+
+-- 0xcb 0x80
+function RES_b_B (b)
+
+end
+
+-- 0xcb 0x81
+function RES_b_C (b)
+
+end
+
+-- 0xcb 0x82
+function RES_b_D (b)
+
+end
+
+-- 0xcb 0x83
+function RES_b_E (b)
+
+end
+
+-- 0xcb 0x84
+function RES_b_H (b)
+
+end
+
+-- 0xcb 0x85
+function RES_b_L (b)
+
+end
+
+-- 0xcb 0x86
+function RES_b_HL (b)
+
+end
+
 
 -- Jumps
 
