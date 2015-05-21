@@ -616,6 +616,7 @@ end
 function sub_8b (rIndex, n)
 	diff = registers[rIndex] + n
 
+	registers[rIndex] = bitwiseAnd_8(diff, 0xff)
 	setFlags((diff == 0), true, (bitwiseAnd_8(registers[rIndex], 0x10) ~= bitwiseAnd_8(nn, 0x10)), diff < 0) -- Really not sure about the half carry here
 end
 
