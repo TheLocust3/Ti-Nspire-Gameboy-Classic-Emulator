@@ -1,4 +1,4 @@
--- {A, F, B, C, D, E, H, L, SP} 
+-- {A, B, C, D, E, H, L, F, SP} 
 registers = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0}
 
 -- Flags (Must be manually placed in register F)

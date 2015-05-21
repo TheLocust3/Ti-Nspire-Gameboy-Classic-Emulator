@@ -507,43 +507,46 @@ end
 
 -- 8-Bit ALU
 
-function add (n, nn)
+function add (rIndex, nn)
+	sum = registers[rIndex] + nn
 
+	registers[rIndex] = bitwiseAnd_8(sum, 0xff)
+	setFlags((sum == 0), false, (bitwiseAnd_8(registers[rIndex], 0x08) == bitwiseAnd_8(nn, 0x08)), (sum > 255))
 end
 
 -- 0x87
 function ADD_A_A ()
-
+	add(1, registers[1])
 end
 
 -- 0x80
 function ADD_A_B ()
-
+	add(1, registers[2])
 end
 
 -- 0x81
 function ADD_A_C ()
-
+	add(1, registers[3])
 end
 
 -- 0x82
 function ADD_A_D ()
-
+	add(1, registers[4])
 end
 
 -- 0x83
 function ADD_A_E ()
-
+	add(1, registers[5])
 end
 
 -- 0x84
 function ADD_A_H ()
-
+	add(1, registers[6])
 end
 
 -- 0x85
 function ADD_A_L ()
-
+	add(1, registers[7])
 end
 
 -- 0x86
@@ -553,7 +556,7 @@ end
 
 -- 0xc6
 function ADD_A_n (n)
-
+	add(1, n)
 end
 
 function adc_8b (n, nn)
