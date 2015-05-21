@@ -8,4 +8,4 @@ fHalfCarry = false
 fCarry = false
 
 -- Program Counter
-pc = 0x0
+pc = 0x100 -- Start of rom should be 0x100

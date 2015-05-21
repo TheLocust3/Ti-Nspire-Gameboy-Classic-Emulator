@@ -147,3 +147,12 @@ end
 function bitwiseNegate_8 (bits1)
     return bitwiseAnd(toBits(bits1, 8))
 end
+
+
+function u_toHex (num)
+    return tonumber(num, 16)
+end
+
+function toHex (num)
+    return "0x" + u_toHex(num)
+end
