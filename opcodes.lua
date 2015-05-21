@@ -559,13 +559,13 @@ function ADD_A_n (n)
 	add_8b(1, n)
 end
 
-function adc_8b (n, nn)
+function adc_8b (rIndex, nn)
 	carry = 0
 	if fCarry == true then
 		carry = carry + 1
 	end
 
-	add_8b(n, nn + carry)
+	add_8b(rIndex, nn + carry)
 end
 
 -- 0x8f
@@ -613,43 +613,45 @@ function ADC_A_n (n)
 	adc_8b(1, n)
 end
 
-function sub_8b (nn, n)
+function sub_8b (rIndex, n)
+	diff = registers[rIndex] + n
 
+	setFlags((diff == 0), true, (bitwiseAnd_8(registers[rIndex], 0x10) ~= bitwiseAnd_8(nn, 0x10)), diff < 0) -- Really not sure about the half carry here
 end
 
 -- 0x97
 function SUB_A ()
-
+	sub_8b(1, registers[1])
 end
 
 -- 0x90
 function SUB_B ()
-
+	sub_8b(1, registers[2])
 end
 
 -- 0x91
 function SUB_C ()
-
+	sub_8b(1, registers[3])
 end
 
 -- 0x92
 function SUB_D ()
-
+	sub_8b(1, registers[4])
 end
 
 -- 0x93
 function SUB_E ()
-
+	sub_8b(1, registers[5])
 end
 
 -- 0x94
 function SUB_H ()
-
+	sub_8b(1, registers[6])
 end
 
 -- 0x95
 function SUB_L ()
-
+	sub_8b(1, registers[7])
 end
 
 -- 0x96
@@ -659,46 +661,51 @@ end
 
 -- 0xd6
 function SUB_n (n)
-
+	sub_8b(1, n)
 end
 
-function subc (nn, n)
+function subc_8b (rIndex, n)
+	carry = 0
+	if fCarry == true then
+		carry = 1
+	end
 
+	sub_8b(rIndex, n + carry)
 end
 
 -- 0x9f
 function SBC_A_A ()
-
+	subc_8b(1, registers[1])
 end
 
 -- 0x98
 function SBC_A_B ()
-
+	subc_8b(1, registers[2])
 end
 
 -- 0x99
 function SBC_A_C ()
-
+	subc_8b(1, registers[3])
 end
 
 -- 0x9a
 function SBC_A_D ()
-
+	subc_8b(1, registers[4])
 end
 
 -- 0x9b
 function SBC_A_E ()
-
+	subc_8b(1, registers[5])
 end
 
 -- 0x9c
 function SBC_A_H ()
-
+	subc_8b(1, registers[6])
 end
 
 -- 0x9d
 function SBC_A_L ()
-
+	subc_8b(1, registers[7])
 end
 
 -- 0x9e
@@ -708,6 +715,10 @@ end
 
 -- 0xde
 function SBC_A_n (n)
+	subc_8b(1, n)
+end
+
+function and_8b (rIndex)
 
 end
 
