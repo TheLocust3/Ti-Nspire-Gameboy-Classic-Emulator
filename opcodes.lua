@@ -1036,6 +1036,95 @@ end
 
 -- Miscellaneous
 
+function swap (n)
+
+end
+
+-- 0xCB 0x37
+function SWAP_A ()
+
+end
+
+-- 0xCB 0x30
+function SWAP_B ()
+
+end
+
+-- 0xCB 0x31
+function SWAP_C ()
+
+end
+
+-- 0xCB 0x32
+function SWAP_D ()
+
+end
+
+-- 0xCB 0x33
+function SWAP_E ()
+
+end
+
+-- 0xCB 0x34
+function SWAP_H ()
+
+end
+
+-- 0xCB 0x35
+function SWAP_L ()
+
+end
+
+-- 0xCB 0x30
+function SWAP_HL ()
+
+end
+
+-- 0x27
+function DAA ()
+
+end
+
+-- 0x2f
+function CPL ()
+
+end
+
+-- 0x3f
+function CCF ()
+
+end
+
+-- 0x37
+function SCF ()
+
+end
+
+-- 0x00
+function NOP ()
+
+end
+
+-- 0x76
+function HALT ()
+
+end
+
+-- 0x10
+function STOP ()
+
+end
+
+-- 0xf3
+function DI ()
+
+end
+
+-- 0xfb
+function EI ()
+
+end
+
 -- Rotates & Shifts
 
 -- Bit Operations
