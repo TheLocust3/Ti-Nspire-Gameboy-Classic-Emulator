@@ -16,3 +16,5 @@ end
 out = File.open("full.lua", 'w')
 out.puts(program)
 out.close
+
+puts "Files have been combined into full.lua"
