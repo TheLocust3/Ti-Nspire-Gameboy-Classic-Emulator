@@ -435,6 +435,76 @@ function LD_16b (n, nn)
 
 end
 
+-- 0x01
+function LD_BC_nn (nn)
+
+end
+
+-- 0x11
+function LD_DE_nn (nn)
+
+end
+
+-- 0x21
+function LD_HL_nn (nn)
+
+end
+
+-- 0xf9
+function LD_SP_HL ()
+
+end
+
+-- 0xf8
+function LDHL_SP_n (n)
+
+end
+
+-- 0x08
+function LD_nn_SP (nn)
+
+end
+
+-- 0xf5
+function PUSH_AF ()
+
+end
+
+-- 0xc5
+function PUSH_BC ()
+
+end
+
+-- 0xd5
+function PUSH_DE ()
+
+end
+
+-- 0xe5
+function PUSH_HL ()
+
+end
+
+-- 0xf1
+function POP_AF ()
+
+end
+
+-- 0xc1
+function POP_BC ()
+
+end
+
+-- 0xd1
+function POP_DE ()
+
+end
+
+-- 0xe1
+function POP_HL ()
+
+end
+
 -- 8-Bit ALU
 
 -- 16-Bit Arithmetic
