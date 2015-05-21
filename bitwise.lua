@@ -150,7 +150,7 @@ end
 
 
 function u_toHex (num)
-    return tonumber(num, 16)
+    return tonumber(num, 16) -- Expecting to see that this doesn't work
 end
 
 function toHex (num)

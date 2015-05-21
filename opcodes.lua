@@ -560,6 +560,410 @@ function adc_8b (n, nn)
 
 end
 
+-- 0x8f
+function ADC_A_A ()
+
+end
+
+-- 0x88
+function ADC_A_B ()
+
+end
+
+-- 0x89
+function ADC_A_C ()
+
+end
+
+-- 0x8a
+function ADC_A_D ()
+
+end
+
+-- 0x8b
+function ADC_A_E ()
+
+end
+
+-- 0x8c
+function ADC_A_H ()
+
+end
+
+-- 0x8d
+function ADC_A_L ()
+
+end
+
+-- 0x8e
+function ADC_A_HL ()
+
+end
+
+-- 0xce
+function ADC_A_n (n)
+
+end
+
+function sub_8b (nn, n)
+
+end
+
+-- 0x97
+function SUB_A ()
+
+end
+
+-- 0x90
+function SUB_B ()
+
+end
+
+-- 0x91
+function SUB_C ()
+
+end
+
+-- 0x92
+function SUB_D ()
+
+end
+
+-- 0x93
+function SUB_E ()
+
+end
+
+-- 0x94
+function SUB_H ()
+
+end
+
+-- 0x95
+function SUB_L ()
+
+end
+
+-- 0x96
+function SUB_HL ()
+
+end
+
+-- 0xd6
+function SUB_n (n)
+
+end
+
+function subc (nn, n)
+
+end
+
+-- 0x9f
+function SBC_A_A ()
+
+end
+
+-- 0x98
+function SBC_A_B ()
+
+end
+
+-- 0x99
+function SBC_A_C ()
+
+end
+
+-- 0x9a
+function SBC_A_D ()
+
+end
+
+-- 0x9b
+function SBC_A_E ()
+
+end
+
+-- 0x9c
+function SBC_A_H ()
+
+end
+
+-- 0x9d
+function SBC_A_L ()
+
+end
+
+-- 0x9e
+function SBC_A_HL ()
+
+end
+
+-- 0xde
+function SBC_A_n (n)
+
+end
+
+-- 0xa7
+function AND_A ()
+
+end
+
+-- 0xa0
+function AND_B ()
+
+end
+
+-- 0xa1
+function AND_C ()
+
+end
+
+-- 0xa2
+function AND_D ()
+
+end
+
+-- 0xa3
+function AND_E ()
+
+end
+
+-- 0xa4
+function AND_H ()
+
+end
+
+-- 0xa5
+function AND_L ()
+
+end
+
+-- 0xa6
+function AND_HL ()
+
+end
+
+-- 0xe6
+function AND_n (n)
+
+end
+
+-- 0xb7
+function OR_A ()
+
+end
+
+-- 0xb0
+function OR_B ()
+
+end
+
+-- 0xb1
+function OR_C ()
+
+end
+
+-- 0xb2
+function OR_D ()
+
+end
+
+-- 0xb3
+function OR_E ()
+
+end
+
+-- 0xb4
+function OR_H ()
+
+end
+
+-- 0xb5
+function OR_L ()
+
+end
+
+-- 0xb6
+function OR_HL ()
+
+end
+
+-- 0xf6
+function OR_n (n)
+
+end
+
+-- 0xaf
+function XOR_A ()
+
+end
+
+-- 0xa8
+function XOR_B ()
+
+end
+
+-- 0xa9
+function XOR_C ()
+
+end
+
+-- 0xaa
+function XOR_D ()
+
+end
+
+-- 0xab
+function XOR_E ()
+
+end
+
+-- 0xac
+function XOR_H ()
+
+end
+
+-- 0xad
+function XOR_L ()
+
+end
+
+-- 0xae
+function XOR_HL ()
+
+end
+
+-- 0xee
+function XOR_A (n)
+
+end
+
+-- 0xbf
+function CP_A ()
+
+end
+
+-- 0xb8
+function CP_B ()
+
+end
+
+-- 0xb9
+function CP_C ()
+
+end
+
+-- 0xba
+function CP_D ()
+
+end
+
+-- 0xbb
+function CP_E ()
+
+end
+
+-- 0xbc
+function CP_H ()
+
+end
+
+-- 0xbd
+function CP_L ()
+
+end
+
+-- 0xbe
+function CP_HL ()
+
+end
+
+-- 0xfe
+function CP_n (n)
+
+end
+
+-- 0x3c
+function INC_A ()
+
+end
+
+-- 0x04
+function INC_B ()
+
+end
+
+-- 0x0c
+function INC_C ()
+
+end
+
+-- 0x14
+function INC_D ()
+
+end
+
+-- 0x1c
+function INC_E ()
+
+end
+
+-- 0x24
+function INC_H ()
+
+end
+
+-- 0x2c
+function INC_L ()
+
+end
+
+-- 0x34
+function INC_HL ()
+
+end
+
+-- 0x3d
+function DEC_A ()
+
+end
+
+-- 0x05
+function DEC_B ()
+
+end
+
+-- 0x0d
+function DEC_C ()
+
+end
+
+-- 0x15
+function DEC_D ()
+
+end
+
+-- 0x1d
+function DEC_E ()
+
+end
+
+-- 0x25
+function DEC_H ()
+
+end
+
+-- 0x2d
+function DEC_L ()
+
+end
+
+-- 0x35
+function DEC_HL ()
+
+end
+
+
 -- 16-Bit Arithmetic
 
 -- Miscellaneous
