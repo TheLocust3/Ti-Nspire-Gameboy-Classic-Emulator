@@ -965,6 +965,75 @@ end
 
 -- 16-Bit Arithmetic
 
+function add_16b (nn, n)
+
+end
+
+-- 0x09
+function ADD_HL_BC ()
+
+end
+
+-- 0x19
+function ADD_HL_DE ()
+
+end
+
+-- 0x29
+function ADD_HL_HL ()
+
+end
+
+-- 0x39
+function ADD_HL_SP ()
+
+end
+
+-- 0xe8
+function ADD_SP_n (n)
+
+end
+
+-- 0x03
+function INC_BC ()
+
+end
+
+-- 0x13
+function INC_DE ()
+
+end
+
+-- 0x23
+function INC_HL ()
+
+end
+
+-- 0x33
+function INC_SP ()
+
+end
+
+-- 0x0b
+function DEC_BC ()
+
+end
+
+-- 0x1b
+function DEC_DE ()
+
+end
+
+-- 0x2b
+function DEC_HL ()
+
+end
+
+-- 0x3b
+function DEC_SP ()
+
+end
+
 -- Miscellaneous
 
 -- Rotates & Shifts
