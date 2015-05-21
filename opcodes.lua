@@ -1589,10 +1589,97 @@ function RES_b_HL (b)
 
 end
 
-
 -- Jumps
 
+function jp (cc, nn)
+
+end
+
+-- 0xc2
+function JP_NZ_nn (nn)
+
+end
+
+-- 0xca
+function JP_Z_nn (nn)
+
+end
+
+-- 0xd2
+function JP_NC_nn (nn)
+
+end
+
+-- 0xda
+function JP_C_nn (nn)
+
+end
+
+-- 0xe9
+function JP_HL (nn)
+
+end
+
+function jr (cc, n)
+
+end
+
+-- 0x18
+function JR_n (n)
+
+end
+
+-- 0x20
+function JR_NZ_nn (n)
+
+end
+
+-- 0x28
+function JR_Z_nn (n)
+
+end
+
+-- 0x30
+function JR_NC_nn (nn)
+
+end
+
+-- 0x38
+function JR_C_nn (n)
+
+end
+
 -- Calls
+
+function call (cc, nn)
+
+end
+
+-- 0xcd
+function CALL_nn (nn)
+
+end
+
+-- 0xc4
+function CALL_NZ_nn (nn)
+
+end
+
+-- 0xcc
+function CALL_Z_nn (nn)
+
+end
+
+-- 0xd4
+function CALL_NC_nn (nn)
+
+end
+
+-- 0xdc
+function CALL_C_nn (nn)
+
+end
+
 
 -- Restarts
 
