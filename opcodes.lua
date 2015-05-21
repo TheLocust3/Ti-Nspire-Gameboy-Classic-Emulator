@@ -1127,6 +1127,335 @@ end
 
 -- Rotates & Shifts
 
+-- 0x07
+function RLCA ()
+
+end
+
+-- 0x17
+function RLA ()
+
+end
+
+-- 0x0f
+function RRCA ()
+
+end
+
+-- 0x1f
+function RRA ()
+
+end
+
+function rlc (n)
+
+end
+
+-- 0xcb 0x07
+function RLC_A ()
+
+end
+
+-- 0xcb 0x00
+function RLC_B ()
+
+end
+
+-- 0xcb 0x01
+function RLC_C ()
+
+end
+
+-- 0xcb 0x02
+function RLC_D ()
+
+end
+
+-- 0xcb 0x03
+function RLC_E ()
+
+end
+
+-- 0xcb 0x04
+function RLC_H ()
+
+end
+
+-- 0xcb 0x05
+function RLC_L ()
+
+end
+
+-- 0xcb 0x06
+function RLC_HL ()
+
+end
+
+function rl (n)
+
+end
+
+-- 0xcb 0x17
+function RL_A ()
+
+end
+
+-- 0xcb 0x10
+function RL_B ()
+
+end
+
+-- 0xcb 0x11
+function RL_C ()
+
+end
+
+-- 0xcb 0x12
+function RL_D ()
+
+end
+
+-- 0xcb 0x13
+function RL_E ()
+
+end
+
+-- 0xcb 0x14
+function RL_H ()
+
+end
+
+-- 0xcb 0x15
+function RL_L ()
+
+end
+
+-- 0xcb 0x16
+function RL_HL ()
+
+end
+
+function rrc (n)
+
+end
+
+-- 0xcb 0x0f
+function RRC_A ()
+
+end
+
+-- 0xcb 0x08
+function RRC_B ()
+
+end
+
+-- 0xcb 0x09
+function RRC_C ()
+
+end
+
+-- 0xcb 0x0a
+function RRC_D ()
+
+end
+
+-- 0xcb 0x0b
+function RRC_E ()
+
+end
+
+-- 0xcb 0x0c
+function RRC_H ()
+
+end
+
+-- 0xcb 0x0d
+function RRC_L ()
+
+end
+
+-- 0xcb 0x0e
+function RRC_HL ()
+
+end
+
+function rr (n)
+
+end
+
+-- 0xcb 0x1f
+function RR_A ()
+
+end
+
+-- 0xcb 0x18
+function RR_B ()
+
+end
+
+-- 0xcb 0x19
+function RR_C ()
+
+end
+
+-- 0xcb 0x1a
+function RR_D ()
+
+end
+
+-- 0xcb 0x1b
+function RR_E ()
+
+end
+
+-- 0xcb 0x1c
+function RR_H ()
+
+end
+
+-- 0xcb 0x1d
+function RR_L ()
+
+end
+
+-- 0xcb 0x1e
+function RR_HL ()
+
+end
+
+function sla (n)
+
+end
+
+-- 0xcb 0x27
+function SLA_A ()
+
+end
+
+-- 0xcb 0x20
+function SLA_B ()
+
+end
+
+-- 0xcb 0x21
+function SLA_C ()
+
+end
+
+-- 0xcb 0x22
+function SLA_D ()
+
+end
+
+-- 0xcb 0x23
+function SLA_E ()
+
+end
+
+-- 0xcb 0x24
+function SLA_H ()
+
+end
+
+-- 0xcb 0x25
+function SLA_L ()
+
+end
+
+-- 0xcb 0x26
+function SLA_HL ()
+
+end
+
+function sra (n)
+
+end
+
+-- 0xcb 0x2f
+function SRA_A ()
+
+end
+
+-- 0xcb 0x28
+function SRA_B ()
+
+end
+
+-- 0xcb 0x29
+function SRA_C ()
+
+end
+
+-- 0xcb 0x2a
+function SRA_D ()
+
+end
+
+-- 0xcb 0x2b
+function SRA_E ()
+
+end
+
+-- 0xcb 0x2c
+function SRA_H ()
+
+end
+
+-- 0xcb 0x2d
+function SRA_L ()
+
+end
+
+-- 0xcb 0x2e
+function SRA_HL ()
+
+end
+
+function srl (n)
+
+end
+
+-- 0xcb 0x3f
+function SRL_A ()
+
+end
+
+-- 0xcb 0x38
+function SRL_B ()
+
+end
+
+-- 0xcb 0x39
+function SRL_C ()
+
+end
+
+-- 0xcb 0x3a
+function SRL_D ()
+
+end
+
+-- 0xcb 0x3b
+function SRL_E ()
+
+end
+
+-- 0xcb 0x3c
+function SRL_H ()
+
+end
+
+-- 0xcb 0x3d
+function SRL_L ()
+
+end
+
+-- 0xcb 0x3e
+function SRL_HL ()
+
+end
+
+
 -- Bit Operations
 
 -- Jumps
