@@ -1,6 +1,6 @@
 -- 8-Bit Loads
 
-function LD_8b (n, nn)
+function ld_8b (n, nn)
 
 end
 
@@ -431,7 +431,7 @@ end
 
 -- 16-Bit Loads
 
-function LD_16b (n, nn)
+function ld_16b (n, nn)
 
 end
 
@@ -506,6 +506,59 @@ function POP_HL ()
 end
 
 -- 8-Bit ALU
+
+function add (n, nn)
+
+end
+
+-- 0x87
+function ADD_A_A ()
+
+end
+
+-- 0x80
+function ADD_A_B ()
+
+end
+
+-- 0x81
+function ADD_A_C ()
+
+end
+
+-- 0x82
+function ADD_A_D ()
+
+end
+
+-- 0x83
+function ADD_A_E ()
+
+end
+
+-- 0x84
+function ADD_A_H ()
+
+end
+
+-- 0x85
+function ADD_A_L ()
+
+end
+
+-- 0x86
+function ADD_A_HL ()
+
+end
+
+-- 0xc6
+function ADD_A_n (n)
+
+end
+
+function adc_8b (n, nn)
+
+end
 
 -- 16-Bit Arithmetic
 
