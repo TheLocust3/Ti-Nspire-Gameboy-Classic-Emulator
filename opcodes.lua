@@ -507,7 +507,7 @@ end
 
 -- 8-Bit ALU
 
-function add (rIndex, nn)
+function add_8b (rIndex, nn)
 	sum = registers[rIndex] + nn
 
 	registers[rIndex] = bitwiseAnd_8(sum, 0xff)
@@ -516,37 +516,37 @@ end
 
 -- 0x87
 function ADD_A_A ()
-	add(1, registers[1])
+	add_8b(1, registers[1])
 end
 
 -- 0x80
 function ADD_A_B ()
-	add(1, registers[2])
+	add_8b(1, registers[2])
 end
 
 -- 0x81
 function ADD_A_C ()
-	add(1, registers[3])
+	add_8b(1, registers[3])
 end
 
 -- 0x82
 function ADD_A_D ()
-	add(1, registers[4])
+	add_8b(1, registers[4])
 end
 
 -- 0x83
 function ADD_A_E ()
-	add(1, registers[5])
+	add_8b(1, registers[5])
 end
 
 -- 0x84
 function ADD_A_H ()
-	add(1, registers[6])
+	add_8b(1, registers[6])
 end
 
 -- 0x85
 function ADD_A_L ()
-	add(1, registers[7])
+	add_8b(1, registers[7])
 end
 
 -- 0x86
@@ -556,46 +556,51 @@ end
 
 -- 0xc6
 function ADD_A_n (n)
-	add(1, n)
+	add_8b(1, n)
 end
 
 function adc_8b (n, nn)
+	carry = 0
+	if fCarry == true then
+		carry = carry + 1
+	end
 
+	add_8b(n, nn + carry)
 end
 
 -- 0x8f
 function ADC_A_A ()
-
+	adc_8b(1, registers[1])
 end
 
 -- 0x88
 function ADC_A_B ()
-
+	adc_8b(1, registers[2])
 end
 
 -- 0x89
 function ADC_A_C ()
-
+	adc_8b(1, registers[3])
 end
 
 -- 0x8a
 function ADC_A_D ()
-
+	adc_8b(1, registers[4])
 end
 
 -- 0x8b
 function ADC_A_E ()
-
+	adc_8b(1, registers[5])
 end
 
 -- 0x8c
 function ADC_A_H ()
-
+	adc_8b(1, registers[6])
 end
 
 -- 0x8d
 function ADC_A_L ()
-
+	adc_8b(1, registers[7])
 end
 
 -- 0x8e
@@ -605,7 +610,7 @@ end
 
 -- 0xce
 function ADC_A_n (n)
-
+	adc_8b(1, n)
 end
 
 function sub_8b (nn, n)
