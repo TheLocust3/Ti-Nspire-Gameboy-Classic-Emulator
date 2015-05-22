@@ -511,7 +511,7 @@ function add_8b (rIndex, nn)
 	sum = registers[rIndex] + nn
 
 	registers[rIndex] = bitwiseAnd_8(sum, 0xff)
-	setFlags((sum == 0), false, (bitwiseAnd_8(registers[rIndex], 0x08) == bitwiseAnd_8(nn, 0x08)), (sum > 255))
+	setFlags((sum == 0), false, halfCarry_add(registers[rIndex], nn), (sum > 255))
 end
 
 -- 0x87
@@ -617,7 +617,7 @@ function sub_8b (rIndex, n)
 	diff = registers[rIndex] + n
 
 	registers[rIndex] = bitwiseAnd_8(diff, 0xff)
-	setFlags((diff == 0), true, (bitwiseAnd_8(registers[rIndex], 0x10) ~= bitwiseAnd_8(nn, 0x10) and bitwiseAnd_8(registers[rIndex], 0x10) == 0), diff < 0) -- Really not sure about the half carry here
+	setFlags((diff == 0), true, halfCarry_sub(registers[rIndex], nn), diff < 0) -- Really not sure about the half carry here
 end
 
 -- 0x97
@@ -665,7 +665,7 @@ function SUB_n (n)
 	sub_8b(1, n)
 end
 
-function subc_8b (rIndex, n)
+function sbc_8b (rIndex, n)
 	carry = 0
 	if fCarry == true then
 		carry = 1
@@ -676,37 +676,37 @@ end
 
 -- 0x9f
 function SBC_A_A ()
-	subc_8b(1, registers[1])
+	sbc_8b(1, registers[1])
 end
 
 -- 0x98
 function SBC_A_B ()
-	subc_8b(1, registers[2])
+	sbc_8b(1, registers[2])
 end
 
 -- 0x99
 function SBC_A_C ()
-	subc_8b(1, registers[3])
+	sbc_8b(1, registers[3])
 end
 
 -- 0x9a
 function SBC_A_D ()
-	subc_8b(1, registers[4])
+	sbc_8b(1, registers[4])
 end
 
 -- 0x9b
 function SBC_A_E ()
-	subc_8b(1, registers[5])
+	sbc_8b(1, registers[5])
 end
 
 -- 0x9c
 function SBC_A_H ()
-	subc_8b(1, registers[6])
+	sbc_8b(1, registers[6])
 end
 
 -- 0x9d
 function SBC_A_L ()
-	subc_8b(1, registers[7])
+	sbc_8b(1, registers[7])
 end
 
 -- 0x9e
@@ -716,7 +716,7 @@ end
 
 -- 0xde
 function SBC_A_n (n)
-	subc_8b(1, n)
+	sbc_8b(1, n)
 end
 
 function and_8b (n)
@@ -869,7 +869,7 @@ end
 function cp (n)
 	compare = registers[1] - n
 
-	setFlags((compare == 0), true, (bitwiseAnd_8(registers[1], 0x10) ~= bitwiseAnd_8(n, 0x10) and bitwiseAnd_8(registers[1], 0x10) == 0), (registers[1] < n))
+	setFlags((compare == 0), true, halfCarry_sub(registers[1], n), (registers[1] < n))
 end
 
 -- 0xbf
@@ -917,43 +917,51 @@ function CP_n (n)
 	cp(n)
 end
 
-function inc_8b (rIndex)
+function inc_8b (rIndex, n)
+	sum = n + 1
 
+	if rIndex ~= nil then
+		registers[rIndex] = bitwiseAnd_8(sum, 0xff)
+
+		setFlags((sum == 0), false, halfCarry_add(registers[rIndex], 1), nil)
+	else
+
+	end
 end
 
 -- 0x3c
 function INC_A ()
-
+	inc_8b(1, nil)
 end
 
 -- 0x04
 function INC_B ()
-
+	inc_8b(2, nil)
 end
 
 -- 0x0c
 function INC_C ()
-
+	inc_8b(3, nil)
 end
 
 -- 0x14
 function INC_D ()
-
+	inc_8b(4, nil)
 end
 
 -- 0x1c
 function INC_E ()
-
+	inc_8b(5, nil)
 end
 
 -- 0x24
 function INC_H ()
-
+	inc_8b(6, nil)
 end
 
 -- 0x2c
 function INC_L ()
-
+	inc_8b(7, nil)
 end
 
 -- 0x34
@@ -961,39 +969,50 @@ function INC_HL ()
 
 end
 
+function dec_8b (rIndex, n)
+	diff = registers[rIndex] - 1
+
+	if rIndex ~= nil then
+		registers[rIndex] = bitwiseAnd_8(diff, 0xff)
+		setFlags((diff == 0), true, halfCarry_sub(registers[rIndex], 1), nil)
+	else
+
+	end
+end
+
 -- 0x3d
 function DEC_A ()
-
+	dec_8b(1, nil)
 end
 
 -- 0x05
 function DEC_B ()
-
+	dec_8b(2, nil)
 end
 
 -- 0x0d
 function DEC_C ()
-
+	dec_8b(3, nil)
 end
 
 -- 0x15
 function DEC_D ()
-
+	dec_8b(4, nil)
 end
 
 -- 0x1d
 function DEC_E ()
-
+	dec_8b(5, nil)
 end
 
 -- 0x25
 function DEC_H ()
-
+	dec_8b(6, nil)
 end
 
 -- 0x2d
 function DEC_L ()
-
+	dec_8b(7, nil)
 end
 
 -- 0x35
