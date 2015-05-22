@@ -719,43 +719,43 @@ function SBC_A_n (n)
 	subc_8b(1, n)
 end
 
-function and_8b (rIndex)
-
+function and_8b (n)
+	registers[1] = bitwiseAnd_8(registers[1], n)
 end
 
 -- 0xa7
 function AND_A ()
-
+	and_8b(registers[1])
 end
 
 -- 0xa0
 function AND_B ()
-
+	and_8b(registers[2])
 end
 
 -- 0xa1
 function AND_C ()
-
+	and_8b(registers[3])
 end
 
 -- 0xa2
 function AND_D ()
-
+	and_8b(registers[4])
 end
 
 -- 0xa3
 function AND_E ()
-
+	and_8b(registers[5])
 end
 
 -- 0xa4
 function AND_H ()
-
+	and_8b(registers[6])
 end
 
 -- 0xa5
 function AND_L ()
-
+	and_8b(registers[7])
 end
 
 -- 0xa6
@@ -765,6 +765,10 @@ end
 
 -- 0xe6
 function AND_n (n)
+	and_8b(n)
+end
+
+function or_8b (n)
 
 end
 
