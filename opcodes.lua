@@ -769,42 +769,42 @@ function AND_n (n)
 end
 
 function or_8b (n)
-
+	registers[1] = bitwiseOr_8(registers[1], n)
 end
 
 -- 0xb7
 function OR_A ()
-
+	or_8b(registers[1])
 end
 
 -- 0xb0
 function OR_B ()
-
+	or_8b(registers[2])
 end
 
 -- 0xb1
 function OR_C ()
-
+	or_8b(registers[3])
 end
 
 -- 0xb2
 function OR_D ()
-
+	or_8b(registers[4])
 end
 
 -- 0xb3
 function OR_E ()
-
+	or_8b(registers[5])
 end
 
 -- 0xb4
 function OR_H ()
-
+	or_8b(registers[6])
 end
 
 -- 0xb5
 function OR_L ()
-
+	or_8b(registers[7])
 end
 
 -- 0xb6
@@ -814,42 +814,46 @@ end
 
 -- 0xf6
 function OR_n (n)
+	or_8b(n)
+end
 
+function xor_8b (n)
+	registers[1] = bitwiseOr_8(registers[1], n)
 end
 
 -- 0xaf
 function XOR_A ()
-
+	xor_8b(registers[1])
 end
 
 -- 0xa8
 function XOR_B ()
-
+	xor_8b(registers[2])
 end
 
 -- 0xa9
 function XOR_C ()
-
+	xor_8b(registers[3])
 end
 
 -- 0xaa
 function XOR_D ()
-
+	xor_8b(registers[4])
 end
 
 -- 0xab
 function XOR_E ()
-
+	xor_8b(registers[5])
 end
 
 -- 0xac
 function XOR_H ()
-
+	xor_8b(registers[6])
 end
 
 -- 0xad
 function XOR_L ()
-
+	xor_8b(registers[7])
 end
 
 -- 0xae
@@ -858,7 +862,11 @@ function XOR_HL ()
 end
 
 -- 0xee
-function XOR_A (n)
+function XOR_n (n)
+	xor_8b(n)
+end
+
+function cp (rIndex)
 
 end
 
