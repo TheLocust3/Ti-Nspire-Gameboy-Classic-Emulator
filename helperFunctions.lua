@@ -16,7 +16,7 @@ function setFlags (z, s, c, hc)
 	end
 end
 
-function halfCarry_add (a, b)
+function halfCarry_add_8 (a, b)
 	if bitwiseAnd_8(bitwiseAnd(a, 0xf) + bitwiseAnd(b, 0xf), 0x10) then
 		return true
 	else
@@ -24,7 +24,7 @@ function halfCarry_add (a, b)
 	end
 end
 
-function halfCarry_sub (a, b)
+function halfCarry_sub_8 (a, b)
 	if bitwiseAnd_8(bitwiseAnd(a, 0xf) - bitwiseAnd(b, 0xf), 0x08) then
 		return true
 	else

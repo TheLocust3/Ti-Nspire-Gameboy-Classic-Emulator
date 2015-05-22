@@ -511,7 +511,7 @@ function add_8b (rIndex, nn)
 	sum = registers[rIndex] + nn
 
 	registers[rIndex] = bitwiseAnd_8(sum, 0xff)
-	setFlags((sum == 0), false, halfCarry_add(registers[rIndex], nn), (sum > 255))
+	setFlags((sum == 0), false, halfCarry_add_8(registers[rIndex], nn), (sum > 255))
 end
 
 -- 0x87
@@ -617,7 +617,7 @@ function sub_8b (rIndex, n)
 	diff = registers[rIndex] + n
 
 	registers[rIndex] = bitwiseAnd_8(diff, 0xff)
-	setFlags((diff == 0), true, halfCarry_sub(registers[rIndex], nn), diff < 0) -- Really not sure about the half carry here
+	setFlags((diff == 0), true, halfCarry_sub_8(registers[rIndex], nn), diff < 0) -- Really not sure about the half carry here
 end
 
 -- 0x97
@@ -869,7 +869,7 @@ end
 function cp (n)
 	compare = registers[1] - n
 
-	setFlags((compare == 0), true, halfCarry_sub(registers[1], n), (registers[1] < n))
+	setFlags((compare == 0), true, halfCarry_sub_8(registers[1], n), (registers[1] < n))
 end
 
 -- 0xbf
@@ -923,7 +923,7 @@ function inc_8b (rIndex, n)
 	if rIndex ~= nil then
 		registers[rIndex] = bitwiseAnd_8(sum, 0xff)
 
-		setFlags((sum == 0), false, halfCarry_add(registers[rIndex], 1), nil)
+		setFlags((sum == 0), false, halfCarry_add_8(registers[rIndex], 1), nil)
 	else
 
 	end
@@ -974,7 +974,7 @@ function dec_8b (rIndex, n)
 
 	if rIndex ~= nil then
 		registers[rIndex] = bitwiseAnd_8(diff, 0xff)
-		setFlags((diff == 0), true, halfCarry_sub(registers[rIndex], 1), nil)
+		setFlags((diff == 0), true, halfCarry_sub_8(registers[rIndex], 1), nil)
 	else
 
 	end
@@ -1022,8 +1022,11 @@ end
 
 -- 16-Bit Arithmetic
 
-function add_16b (nn, n)
+function add_16b (rIndex, n)
+	sum = registers[rIndex] + nn
 
+	registers[rIndex] = bitwiseAnd_8(sum, 0xff)
+	setFlags((sum == 0), false, halfCarry_add_8(registers[rIndex], n), (sum > 255))
 end
 
 -- 0x09
