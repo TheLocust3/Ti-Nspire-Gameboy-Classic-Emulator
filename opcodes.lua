@@ -1023,7 +1023,11 @@ end
 -- 16-Bit Arithmetic
 
 function add_16b (rIndex1, rIndex2, n)
-	sum = to16b(registers[rIndex], registers[rIndex2]) + n
+	if rIndex2 ~= nil then
+		sum = to16b(registers[rIndex], registers[rIndex2]) + n
+	else
+		sum = registers[8] + n
+	end
 
 	store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
 	setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
@@ -1051,7 +1055,7 @@ end
 
 -- 0xe8
 function ADD_SP_n (n)
-
+	add_16b(8, nil, n)
 end
 
 -- 0x03
