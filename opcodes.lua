@@ -866,43 +866,45 @@ function XOR_n (n)
 	xor_8b(n)
 end
 
-function cp (rIndex)
+function cp (n)
+	compare = registers[1] - n
 
+	setFlags((compare == 0), true, (bitwiseAnd_8(registers[1], 0x10) ~= bitwiseAnd_8(n, 0x10) and bitwiseAnd_8(registers[1], 0x10) == 0), (registers[1] < n))
 end
 
 -- 0xbf
 function CP_A ()
-
+	cp(registers[1])
 end
 
 -- 0xb8
 function CP_B ()
-
+	cp(registers[2])
 end
 
 -- 0xb9
 function CP_C ()
-
+	cp(registers[3])
 end
 
 -- 0xba
 function CP_D ()
-
+	cp(registers[4])
 end
 
 -- 0xbb
 function CP_E ()
-
+	cp(registers[5])
 end
 
 -- 0xbc
 function CP_H ()
-
+	cp(registers[6])
 end
 
 -- 0xbd
 function CP_L ()
-
+	cp(registers[7])
 end
 
 -- 0xbe
@@ -912,6 +914,10 @@ end
 
 -- 0xfe
 function CP_n (n)
+	cp(n)
+end
+
+function inc_8b (rIndex)
 
 end
 
