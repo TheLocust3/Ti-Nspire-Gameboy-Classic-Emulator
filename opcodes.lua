@@ -1025,11 +1025,14 @@ end
 function add_16b (rIndex1, rIndex2, n)
 	if rIndex2 ~= nil then
 		sum = to16b(registers[rIndex], registers[rIndex2]) + n
+
+		store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
 	else
 		sum = registers[8] + n
+
+		registers[rIndex1] = bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16))
 	end
 
-	store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
 	setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
 end
 
@@ -1058,44 +1061,68 @@ function ADD_SP_n (n)
 	add_16b(8, nil, n)
 end
 
+function inc_16b (rIndex1, rIndex2)
+	if rIndex2 ~= nil then
+		sum = to16b(registers[rIndex1], registers[rIndex2]) + 1
+
+		store16b(rIndex1, rIndex2, bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16)))
+	else
+		sum = registers[rIndex1] + 1
+
+		registers[8] = bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16))
+	end
+end
+
 -- 0x03
 function INC_BC ()
-
+	inc_16b(2, 3)
 end
 
 -- 0x13
 function INC_DE ()
-
+	inc_16b(4, 5)
 end
 
 -- 0x23
 function INC_HL ()
-
+	inc_16b(6, 7)
 end
 
 -- 0x33
 function INC_SP ()
+	inc_16b(8, nil)
+end
 
+function dec_16b (rIndex1, rIndex2)
+	if rIndex2 ~= nil then
+		sum = to16b(registers[rIndex1], registers[rIndex2]) - 1
+
+		store16b(rIndex1, rIndex2, bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16)))
+	else
+		sum = registers[rIndex1] - 1
+
+		registers[8] = bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16))
+	end
 end
 
 -- 0x0b
 function DEC_BC ()
-
+	dec_16b(2, 3)
 end
 
 -- 0x1b
 function DEC_DE ()
-
+	dec_16b(4, 5)
 end
 
 -- 0x2b
 function DEC_HL ()
-
+	dec_16b(6, 7)
 end
 
 -- 0x3b
 function DEC_SP ()
-
+	dec_16b(8, nil)
 end
 
 -- Miscellaneous
