@@ -16,8 +16,25 @@ function setFlags (z, s, hc, c)
 	end
 end
 
+function store16b (rIndex1, rIndex2, num)
+	registers[rIndex1] = shiftRight(num, 8)
+	registers[rIndex2] = bitwiseAnd(toBits(num, 16), 0x00ff)
+end
+
+function to16b (high, low)
+	return shiftLeft(hight, 8) + low
+end
+
 function halfCarry_add_8 (a, b)
-	if bitwiseAnd_8(bitwiseAnd(a, 0xf) + bitwiseAnd(b, 0xf), 0x10) then
+	if bitwiseAnd_8(bitwiseAnd_8(a, 0xf) + bitwiseAnd_8(b, 0xf), 0xf0) > 0 then
+		return true
+	else
+		return false
+	end
+end
+
+function halfCarry_add_16 (a, b)
+	if bitwiseAnd(toBits(bitwiseAnd(a, 0xfff) + bitwiseAnd(b, 0xfff), 16), toBits(0xfff0, 16)) > 0 then
 		return true
 	else
 		return false
@@ -25,7 +42,7 @@ function halfCarry_add_8 (a, b)
 end
 
 function halfCarry_sub_8 (a, b)
-	if bitwiseAnd_8(bitwiseAnd(a, 0xf) - bitwiseAnd(b, 0xf), 0x08) then
+	if bitwiseAnd_8(bitwiseAnd_8(a, 0xf) - bitwiseAnd_8(b, 0xf), 0x08) ~= a then
 		return true
 	else
 		return false

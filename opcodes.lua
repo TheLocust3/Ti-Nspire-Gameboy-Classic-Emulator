@@ -1022,28 +1022,31 @@ end
 
 -- 16-Bit Arithmetic
 
-function add_16b (rIndex, n)
+function add_16b (rIndex1, rIndex2, n)
+	sum = to16b(registers[rIndex], registers[rIndex2]) + n
 
+	store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
+	setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
 end
 
 -- 0x09
 function ADD_HL_BC ()
-
+	add_16b(6, 7, to16b(registers[2], registers[3]))
 end
 
 -- 0x19
 function ADD_HL_DE ()
-
+	add_16b(6, 7, to16b(registers[4], registers[5]))
 end
 
 -- 0x29
 function ADD_HL_HL ()
-
+	add_16b(6, 7, to16b(registers[6], registers[7]))
 end
 
 -- 0x39
 function ADD_HL_SP ()
-
+	add_16b(6, 7, registers[8])
 end
 
 -- 0xe8
