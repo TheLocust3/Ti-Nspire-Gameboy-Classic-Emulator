@@ -1,4 +1,4 @@
-function setFlags (z, s, c, hc)
+function setFlags (z, s, hc, c)
 	if z ~= nil then
 		fZero = z
 	end
@@ -6,13 +6,13 @@ function setFlags (z, s, c, hc)
 	if s ~= nil then
 		fSubtract = s
 	end
-	
-	if c ~= nil then
-		fCarry = c
-	end
 
 	if hc ~= nil then
 		fHalfCarry = hc
+	end
+
+	if c ~= nil then
+		fCarry = c
 	end
 end
 

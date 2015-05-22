@@ -617,7 +617,7 @@ function sub_8b (rIndex, n)
 	diff = registers[rIndex] + n
 
 	registers[rIndex] = bitwiseAnd_8(diff, 0xff)
-	setFlags((diff == 0), true, halfCarry_sub_8(registers[rIndex], nn), diff < 0) -- Really not sure about the half carry here
+	setFlags((diff == 0), true, halfCarry_sub_8(registers[rIndex], nn), diff < 0)
 end
 
 -- 0x97
@@ -1096,43 +1096,46 @@ end
 
 -- Miscellaneous
 
-function swap (n)
+function swap (rIndex)
+	byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8(registers[rIndex], 0xf), 4))
 
+	registers[rIndex] = byte
+	setFlags((byte == 0), false, false, false)
 end
 
 -- 0xCB 0x37
 function SWAP_A ()
-
+	swap(1)
 end
 
 -- 0xCB 0x30
 function SWAP_B ()
-
+	swap(2)
 end
 
 -- 0xCB 0x31
 function SWAP_C ()
-
+	swap(3)
 end
 
 -- 0xCB 0x32
 function SWAP_D ()
-
+	swap(4)
 end
 
 -- 0xCB 0x33
 function SWAP_E ()
-
+	swap(5)
 end
 
 -- 0xCB 0x34
 function SWAP_H ()
-
+	swap(6)
 end
 
 -- 0xCB 0x35
 function SWAP_L ()
-
+	swap(7)
 end
 
 -- 0xCB 0x30
@@ -1147,17 +1150,21 @@ end
 
 -- 0x2f
 function CPL ()
-
+	registers[1] = bitwiseNegate_8(registers[1])
 end
 
 -- 0x3f
 function CCF ()
-
+	if fCarry == true then
+		setFlags(nil, nil, nil, false)
+	else
+		setFlags(nil, nil, nil, true)
+	end
 end
 
 -- 0x37
 function SCF ()
-
+	setFlags(nil, nil, nil, true)
 end
 
 -- 0x00
