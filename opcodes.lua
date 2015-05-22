@@ -1023,10 +1023,7 @@ end
 -- 16-Bit Arithmetic
 
 function add_16b (rIndex, n)
-	sum = registers[rIndex] + nn
 
-	registers[rIndex] = bitwiseAnd_8(sum, 0xff)
-	setFlags((sum == 0), false, halfCarry_add_8(registers[rIndex], n), (sum > 255))
 end
 
 -- 0x09
