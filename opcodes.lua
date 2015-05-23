@@ -1579,43 +1579,43 @@ end
 
 -- Bit Operations
 
-function bit (b, r)
-
+function bit (b, rIndex)
+	setFlags((toBits(registers[rIndex], 8)[b + 1] == 0), false, true, nil)
 end
 
 -- 0xcb 0x47
 function BIT_b_A (b)
-
+	bit(b, 1)
 end
 
 -- 0xcb 0x40
 function BIT_b_B (b)
-
+	bit(b, 2)
 end
 
 -- 0xcb 0x41
 function BIT_b_C (b)
-
+	bit(b, 3)
 end
 
 -- 0xcb 0x42
 function BIT_b_D (b)
-
+	bit(b, 4)
 end
 
 -- 0xcb 0x43
 function BIT_b_E (b)
-
+	bit(b, 5)
 end
 
 -- 0xcb 0x44
 function BIT_b_H (b)
-
+	bit(b, 6)
 end
 
 -- 0xcb 0x45
 function BIT_b_L (b)
-
+	bit(b, 7)
 end
 
 -- 0xcb 0x46
@@ -1623,43 +1623,46 @@ function BIT_b_HL (b)
 
 end
 
-function set (b, r)
+function set (b, rIndex)
+	bits = toBits(registers[rIndex], 8)
+	bits[b + 1] = 1
 
+	registers[rIndex] = toInt(bits)
 end
 
 -- 0xcb 0xc7
 function SET_b_A (b)
-
+	set(b, 1)
 end
 
 -- 0xcb 0xc0
 function SET_b_B (b)
-
+	set(b, 2)
 end
 
 -- 0xcb 0xc1
 function SET_b_C (b)
-
+	set(b, 3)
 end
 
 -- 0xcb 0xc2
 function SET_b_D (b)
-
+	set(b, 4)
 end
 
 -- 0xcb 0xc3
 function SET_b_E (b)
-
+	set(b, 5)
 end
 
 -- 0xcb 0xc4
 function SET_b_H (b)
-
+	set(b, 6)
 end
 
 -- 0xcb 0xc5
 function SET_b_L (b)
-
+	set(b, 7)
 end
 
 -- 0xcb 0xc6
@@ -1668,42 +1671,45 @@ function SET_b_HL (b)
 end
 
 function res (b, r)
+	bits = toBits(registers[rIndex], 8)
+	bits[b + 1] = 0
 
+	registers[rIndex] = toInt(bits)
 end
 
 -- 0xcb 0x87
 function RES_b_A (b)
-
+	res(b, 1)
 end
 
 -- 0xcb 0x80
 function RES_b_B (b)
-
+	res(b, 2)
 end
 
 -- 0xcb 0x81
 function RES_b_C (b)
-
+	res(b, 3)
 end
 
 -- 0xcb 0x82
 function RES_b_D (b)
-
+	res(b, 4)
 end
 
 -- 0xcb 0x83
 function RES_b_E (b)
-
+	res(b, 5)
 end
 
 -- 0xcb 0x84
 function RES_b_H (b)
-
+	res(b, 6)
 end
 
 -- 0xcb 0x85
 function RES_b_L (b)
-
+	res(b, 7)
 end
 
 -- 0xcb 0x86
