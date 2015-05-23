@@ -1,3 +1,10 @@
+require 'fileutils'
+
+dirname = File.dirname("release")
+unless File.directory?("release")
+  FileUtils.mkdir_p("release")
+end
+
 program = ""
 files = ["rom.lua", "header.lua", "bitwise.lua", "dispatcher.lua", "helperFunctions.lua", "opcodes.lua"]
 
@@ -25,7 +32,7 @@ for i in files
 	program += "\n\n"
 end
 
-out = File.open("full.lua", 'w')
+out = File.open("release/full.lua", 'w')
 out.puts(program)
 out.close
 
