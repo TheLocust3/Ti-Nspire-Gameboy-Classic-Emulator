@@ -1227,12 +1227,18 @@ end
 
 -- 0x07
 function RLCA ()
+	shift = shiftLeft(registers[1], 1)
 
+	registers[1] = bitwiseAnd_8(shift, 0xff)
+	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16))) > 0)
 end
 
--- 0x17
+-- 0x17 (THIS COMMAND IS NOT WELL DOCUMENTED)
 function RLA ()
+	shift = shiftLeft(registers[1], 1)
 
+	registers[1] = bitwiseAnd_8(shift, 0xff)
+	setFlags((shift == 0), false, false, false)
 end
 
 -- 0x0f
