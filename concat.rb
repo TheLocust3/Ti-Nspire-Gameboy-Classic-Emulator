@@ -1,6 +1,18 @@
 program = ""
 files = ["rom.lua", "header.lua", "bitwise.lua", "dispatcher.lua", "helperFunctions.lua", "opcodes.lua"]
 
+if ARGV[0] == "-a"
+	if File.file?(ARGV[1])
+		files[6] = ARGV[1]
+	else
+		puts ARGV[1] + " is not a file"
+		exit
+	end
+else
+	puts "Unkown arguemnt " + ARGV[0]
+	exit
+end
+
 for i in files
 	f = File.open(i, "r")
 
