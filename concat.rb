@@ -8,7 +8,7 @@ if ARGV[0] == "-a"
 		puts ARGV[1] + " is not a file"
 		exit
 	end
-else
+elsif ARGV[0] != nil
 	puts "Unkown arguemnt " + ARGV[0]
 	exit
 end
