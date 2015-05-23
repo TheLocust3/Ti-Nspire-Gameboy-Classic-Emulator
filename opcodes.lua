@@ -1243,51 +1243,60 @@ end
 
 -- 0x0f
 function RRCA ()
+	shift = shiftRight(registers[1], 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd_8(shift, 0x01) > 0))
+	registers[1] = bitwiseAnd_8(shift, 0xff)
 end
 
 -- 0x1f
 function RRA ()
+	shift = shiftRight(registers[1], 1)
 
+	registers[1] = bitwiseAnd_8(shift, 0xff)
+	setFlags((shift == 0), false, false, false)
 end
 
-function rlc (n)
+function rlc (rIndex)
+	shift = shiftLeft(registers[rIndex], 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+	registers[rIndex] = bitwiseAnd_8(shift, 0xff)
 end
 
 -- 0xcb 0x07
 function RLC_A ()
-
+	rlc(1)
 end
 
 -- 0xcb 0x00
 function RLC_B ()
-
+	rlc(2)
 end
 
 -- 0xcb 0x01
 function RLC_C ()
-
+	rlc(3)
 end
 
 -- 0xcb 0x02
 function RLC_D ()
-
+	rlc(4)
 end
 
 -- 0xcb 0x03
 function RLC_E ()
-
+	rlc(5)
 end
 
 -- 0xcb 0x04
 function RLC_H ()
-
+	rlc(6)
 end
 
 -- 0xcb 0x05
 function RLC_L ()
-
+	rlc(7)
 end
 
 -- 0xcb 0x06
@@ -1295,43 +1304,46 @@ function RLC_HL ()
 
 end
 
-function rl (n)
+function rl (rIndex)
+	shift = shiftLeft(registers[rIndex], 1)
 
+	registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+	setFlags((shift == 0), false, false, false)
 end
 
 -- 0xcb 0x17
 function RL_A ()
-
+	rl(1)
 end
 
 -- 0xcb 0x10
 function RL_B ()
-
+	rl(2)
 end
 
 -- 0xcb 0x11
 function RL_C ()
-
+	rl(3)
 end
 
 -- 0xcb 0x12
 function RL_D ()
-
+	rl(4)
 end
 
 -- 0xcb 0x13
 function RL_E ()
-
+	rl(5)
 end
 
 -- 0xcb 0x14
 function RL_H ()
-
+	rl(6)
 end
 
 -- 0xcb 0x15
 function RL_L ()
-
+	rl(7)
 end
 
 -- 0xcb 0x16
@@ -1339,43 +1351,46 @@ function RL_HL ()
 
 end
 
-function rrc (n)
+function rrc (rIndex)
+	shift = shiftRight(registers[rIndex], 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd_8(registers[rIndex], 0x01) > 0))
+	registers[rIndex] = bitwiseAnd_8(shift, 0xff)
 end
 
 -- 0xcb 0x0f
 function RRC_A ()
-
+	rrc(1)
 end
 
 -- 0xcb 0x08
 function RRC_B ()
-
+	rrc(2)
 end
 
 -- 0xcb 0x09
 function RRC_C ()
-
+	rrc(3)
 end
 
 -- 0xcb 0x0a
 function RRC_D ()
-
+	rrc(4)
 end
 
 -- 0xcb 0x0b
 function RRC_E ()
-
+	rrc(5)
 end
 
 -- 0xcb 0x0c
 function RRC_H ()
-
+	rrc(6)
 end
 
 -- 0xcb 0x0d
 function RRC_L ()
-
+	rrc(7)
 end
 
 -- 0xcb 0x0e
@@ -1383,43 +1398,46 @@ function RRC_HL ()
 
 end
 
-function rr (n)
+function rr (rIndex)
+	shift = shiftRight(registers[rIndex], 1)
 
+	registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+	setFlags((shift == 0), false, false, false)
 end
 
 -- 0xcb 0x1f
 function RR_A ()
-
+	rr(1)
 end
 
 -- 0xcb 0x18
 function RR_B ()
-
+	rr(2)
 end
 
 -- 0xcb 0x19
 function RR_C ()
-
+	rr(3)
 end
 
 -- 0xcb 0x1a
 function RR_D ()
-
+	rr(4)
 end
 
 -- 0xcb 0x1b
 function RR_E ()
-
+	rr(5)
 end
 
 -- 0xcb 0x1c
 function RR_H ()
-
+	rr(6)
 end
 
 -- 0xcb 0x1d
 function RR_L ()
-
+	rr(7)
 end
 
 -- 0xcb 0x1e
