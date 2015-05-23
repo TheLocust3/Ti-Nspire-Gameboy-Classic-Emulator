@@ -1496,9 +1496,9 @@ function SLA_HL ()
 end
 
 function sra (rIndex)
-	shift = shiftLeft(registers[rIndex], 1)
+	shift = shiftRight(registers[rIndex], 1)
 
-	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+	setFlags((shift == 0), false, false, (bitwiseAnd(registers[rIndex], 0x01) > 0))
 
 	bShift = toBits(shift, 8)
 	bShift[8] = 0
@@ -1545,43 +1545,49 @@ function SRA_HL ()
 
 end
 
-function srl (n)
+function srl (rIndex)
+	shift = shiftRight(registers[rIndex], 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(registers[rIndex], 0x01) > 0))
+
+	bShift = toBits(shift, 8)
+	bShift[8] = 0
+	registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x3f
 function SRL_A ()
-
+	srl(1)
 end
 
 -- 0xcb 0x38
 function SRL_B ()
-
+	srl(2)
 end
 
 -- 0xcb 0x39
 function SRL_C ()
-
+	srl(3)
 end
 
 -- 0xcb 0x3a
 function SRL_D ()
-
+	srl(4)
 end
 
 -- 0xcb 0x3b
 function SRL_E ()
-
+	srl(5)
 end
 
 -- 0xcb 0x3c
 function SRL_H ()
-
+	srl(6)
 end
 
 -- 0xcb 0x3d
 function SRL_L ()
-
+	srl(7)
 end
 
 -- 0xcb 0x3e
