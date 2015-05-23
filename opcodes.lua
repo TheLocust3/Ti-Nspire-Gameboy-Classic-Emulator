@@ -1445,43 +1445,49 @@ function RR_HL ()
 
 end
 
-function sla (n)
+function sla (rIndex)
+	shift = shiftLeft(registers[rIndex], 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+
+	bShift = toBits(shift, 8)
+	bShift[8] = 0
+	registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x27
 function SLA_A ()
-
+	sla(1)
 end
 
 -- 0xcb 0x20
 function SLA_B ()
-
+	sla(2)
 end
 
 -- 0xcb 0x21
 function SLA_C ()
-
+	sla(3)
 end
 
 -- 0xcb 0x22
 function SLA_D ()
-
+	sla(4)
 end
 
 -- 0xcb 0x23
 function SLA_E ()
-
+	sla(5)
 end
 
 -- 0xcb 0x24
 function SLA_H ()
-
+	sla(6)
 end
 
 -- 0xcb 0x25
 function SLA_L ()
-
+	sla(7)
 end
 
 -- 0xcb 0x26
@@ -1489,43 +1495,49 @@ function SLA_HL ()
 
 end
 
-function sra (n)
+function sra (rIndex)
+	shift = shiftLeft(registers[rIndex], 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+
+	bShift = toBits(shift, 8)
+	bShift[8] = 0
+	registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x2f
 function SRA_A ()
-
+	sra(1)
 end
 
 -- 0xcb 0x28
 function SRA_B ()
-
+	sra(2)
 end
 
 -- 0xcb 0x29
 function SRA_C ()
-
+	sra(3)
 end
 
 -- 0xcb 0x2a
 function SRA_D ()
-
+	sra(4)
 end
 
 -- 0xcb 0x2b
 function SRA_E ()
-
+	sra(5)
 end
 
 -- 0xcb 0x2c
 function SRA_H ()
-
+	sra(6)
 end
 
 -- 0xcb 0x2d
 function SRA_L ()
-
+	sra(7)
 end
 
 -- 0xcb 0x2e
