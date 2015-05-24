@@ -1,12 +1,14 @@
 require 'fileutils'
 
-dirname = File.dirname("../release")
-unless File.directory?("../release")
-  FileUtils.mkdir_p("../release")
+path = File.expand_path(File.dirname(File.dirname(__FILE__))) + "/"
+
+dirname = File.dirname(path + "release")
+unless File.directory?(path + "release")
+  FileUtils.mkdir_p(path + "release")
 end
 
 program = ""
-files = ["../rom.lua", "../header.lua", "../bitwise.lua", "../dispatcher.lua", "../helperFunctions.lua", "../opcodes.lua"]
+files = [path + "rom.lua", path + "header.lua", path + "bitwise.lua", path + "dispatcher.lua", path + "helperFunctions.lua", path + "opcodes.lua"]
 
 if ARGV[0] == "-a"
 	if File.file?(ARGV[1])
@@ -32,7 +34,7 @@ for i in files
 	program += "\n\n"
 end
 
-out = File.open("../release/full.lua", 'w')
+out = File.open(path + "release/full.lua", 'w')
 out.puts(program)
 out.close
 
