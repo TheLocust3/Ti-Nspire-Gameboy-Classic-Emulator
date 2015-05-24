@@ -4,10 +4,9 @@ require 'pathname'
 path = File.expand_path(File.dirname(File.dirname(__FILE__))) + "/"
 
 tests = Dir[path + "tests/*"]
-success = File.open(path + "/tests/success", 'r')
 
 for file in tests
-	if !file.include?("success")
+	if File.basename(file) != "success"
 		rubyFile = path + "scripts/concat.rb -a " + file
 		`ruby #{rubyFile}`
 
@@ -16,6 +15,8 @@ for file in tests
 		basename = File.basename(file) + ":"
 
 		found = false
+		success = File.open(path + "/tests/success", 'r')
+
 		success.each_line do |line|
 			if found == true
 				if line.chomp == output.chomp + ";"
@@ -31,7 +32,7 @@ for file in tests
 				found = true
 			end
 		end
+
+		success.close()
 	end
 end
-
-success.close()

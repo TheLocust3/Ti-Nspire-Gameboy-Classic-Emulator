@@ -1,2 +1,4 @@
 add_8.lua:
 Results: 72, fZero false, fSubtract false, fHalfCarry false, fCarry false;
+adc_8.lua:
+Results: 72, fZero false, fSubtract false, fHalfCarry false, fCarry false;
