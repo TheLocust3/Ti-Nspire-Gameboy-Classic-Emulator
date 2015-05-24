@@ -1,4 +1,5 @@
 require 'fileutils'
+require 'rbconfig'
 
 path = File.expand_path(File.dirname(File.dirname(__FILE__))) + "/"
 
@@ -38,4 +39,11 @@ out = File.open(path + "release/full.lua", 'w')
 out.puts(program)
 out.close
 
-puts "Files have been combined into full.lua"
+if RbConfig::CONFIG['host_os'].include?("darwin") # OS must be Mac OS X
+	release = path + "/release/full.lua"
+	`cat #{release} |pbcopy`
+
+	puts "File have been combined into full.lua and copied to clipboard"
+else
+	puts "Files have been combined into full.lua"
+end
