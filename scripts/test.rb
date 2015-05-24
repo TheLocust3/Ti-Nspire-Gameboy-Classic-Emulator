@@ -11,7 +11,7 @@ for file in tests
 		`ruby #{rubyFile}`
 
 		luaFile = path + "release/full.lua"
-		output = `lua #{luaFile}`
+		output = `lua #{luaFile} 2>&1` # Surpress output of stderr
 		basename = File.basename(file) + ":"
 
 		found = false
@@ -22,7 +22,8 @@ for file in tests
 				if line.chomp == output.chomp + ";"
 					puts basename + " has passed"
 				else
-					puts basename + " has failed"
+					puts basename + " has failed with output "
+					puts output
 				end
 
 				break
