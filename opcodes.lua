@@ -1179,7 +1179,12 @@ end
 
 -- 0xCB 0x30
 function SWAP_HL ()
+	num = get_8b(getRegister_16b(6))
 
+	byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8(num, 0xf), 4))
+
+	write_8b(getRegister_16b(6), byte)
+	setFlags((byte == 0), false, false, false)
 end
 
 -- 0x27
