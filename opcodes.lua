@@ -439,23 +439,23 @@ end
 
 -- 16-Bit Loads
 
-function ld_16b (n, nn)
-
+function ld_16b (rIndex, nn)
+	store16b(rIndex, rIndex + 1, nn)
 end
 
 -- 0x01
 function LD_BC_nn (nn)
-
+	ld_16b(2, nn)
 end
 
 -- 0x11
 function LD_DE_nn (nn)
-
+	ld_16b(4, nn)
 end
 
 -- 0x21
 function LD_HL_nn (nn)
-
+	ld_16b(6, nn)
 end
 
 -- 0xf9
