@@ -1787,61 +1787,106 @@ end
 -- Jumps
 
 function jp (cc, nn)
+	if jp == nil then
+		pc = nn
+	else
+		if cc == "NZ" then
+			if fZero == false then
+				pc = nn
+			end
+		elseif cc == "Z" then
+			if fZero == true then
+				pc = nn
+			end
+		elseif cc == "NC" then
+			if fCarry == false then
+				pc = nn
+			end
+		else
+			if fCarry == true then
+				pc = nn
+			end
+		end
+	end
+end
 
+-- 0xc3
+function JP_nn (nn)
+	jp(nil, nn)
 end
 
 -- 0xc2
 function JP_NZ_nn (nn)
-
+	jp("NZ", nn)
 end
 
 -- 0xca
 function JP_Z_nn (nn)
-
+	jp("Z", nn)
 end
 
 -- 0xd2
 function JP_NC_nn (nn)
-
+	jp("NC", nn)
 end
 
 -- 0xda
 function JP_C_nn (nn)
-
+	jp("C", nn)
 end
 
 -- 0xe9
-function JP_HL (nn)
-
+function JP_HL ()
+	jp(nil, getRegister_16b[6])
 end
 
 function jr (cc, n)
-
+	if jp == nil then
+		pc = pc + nn
+	else
+		if cc == "NZ" then
+			if fZero == false then
+				pc = pc + nn
+			end
+		elseif cc == "Z" then
+			if fZero == true then
+				pc = pc + nn
+			end
+		elseif cc == "NC" then
+			if fCarry == false then
+				pc = pc + nn
+			end
+		else
+			if fCarry == true then
+				pc = pc + nn
+			end
+		end
+	end
 end
 
 -- 0x18
 function JR_n (n)
-
+	jr(nil, n)
 end
 
 -- 0x20
 function JR_NZ_nn (n)
-
+	jr("NZ", n)
 end
 
 -- 0x28
 function JR_Z_nn (n)
-
+	jr("Z", n)
 end
 
 -- 0x30
 function JR_NC_nn (nn)
-
+	jr("NC", n)
 end
 
 -- 0x38
 function JR_C_nn (n)
-
+	jr("C", n)
 end
 
 -- Calls
