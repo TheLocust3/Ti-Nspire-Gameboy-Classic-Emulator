@@ -974,7 +974,7 @@ end
 
 -- 0x34
 function INC_HL ()
-
+	write_8b(getRegister_16b(6), get_8b(getRegister_16b(6)) + 1)
 end
 
 function dec_8b (rIndex, n)
@@ -1025,7 +1025,7 @@ end
 
 -- 0x35
 function DEC_HL ()
-
+	write_8b(getRegister_16b(6), get_8b(getRegister_16b(6)) - 1)
 end
 
 -- 16-Bit Arithmetic
@@ -1098,7 +1098,7 @@ end
 
 -- 0x33
 function INC_SP ()
-	inc_16b(8, nil)
+
 end
 
 function dec_16b (rIndex1, rIndex2)
@@ -1130,7 +1130,7 @@ end
 
 -- 0x3b
 function DEC_SP ()
-	dec_16b(8, nil)
+
 end
 
 -- Miscellaneous
