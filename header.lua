@@ -9,3 +9,13 @@ fCarry = false
 
 -- Program Counter
 pc = 0x100 -- Start of rom should be 0x100
+
+memory = {0}
+
+i = 0
+ 
+while i < #memory do
+	memory[i] = 0
+
+	i = i + 1
+end
