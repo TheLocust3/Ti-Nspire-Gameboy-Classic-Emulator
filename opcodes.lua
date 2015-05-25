@@ -1800,7 +1800,7 @@ end
 -- Jumps
 
 function jp (cc, nn)
-	if jp == nil then
+	if cc == nil then
 		pc = nn
 	else
 		if cc == "NZ" then
@@ -1854,7 +1854,7 @@ function JP_HL ()
 end
 
 function jr (cc, n)
-	if jp == nil then
+	if cc == nil then
 		pc = pc + nn
 	else
 		if cc == "NZ" then
@@ -1905,32 +1905,34 @@ end
 -- Calls
 
 function call (cc, nn)
+	push(pc)
 
+	jp(cc, nn)
 end
 
 -- 0xcd
 function CALL_nn (nn)
-
+	call(nil, nn)
 end
 
 -- 0xc4
 function CALL_NZ_nn (nn)
-
+	call("NZ", nn)
 end
 
 -- 0xcc
 function CALL_Z_nn (nn)
-
+	call("Z", nn)
 end
 
 -- 0xd4
 function CALL_NC_nn (nn)
-
+	call("NC", nn)
 end
 
 -- 0xdc
 function CALL_C_nn (nn)
-
+	call("C", nn)
 end
 
 -- Restarts
