@@ -460,12 +460,13 @@ end
 
 -- 0xf9
 function LD_SP_HL ()
-
+	registers[9] = getRegister_16b(6)
 end
 
 -- 0xf8
 function LDHL_SP_n (n)
-
+	store16b(6, 7, registers[9] + n)
+	setFlags(false, false, false, false) -- The documentation on this command's flags is a bit weird
 end
 
 -- 0x08
