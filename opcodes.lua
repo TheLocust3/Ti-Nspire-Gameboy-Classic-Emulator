@@ -428,13 +428,13 @@ function LDI_HL_A ()
 end
 
 -- 0xe0
-function LD_n_A (n)
-
+function LDH_in_A (n)
+	write_8b(0xff00 + n, registers[1])
 end
 
 -- 0xf0
-function LD_A_n (n)
-
+function LDH_A_in (n)
+	registers[1] = get_8b(0xff00 + n)
 end
 
 -- 16-Bit Loads
