@@ -669,94 +669,64 @@ function dispatcher ()
 		pc = pc + 1
 	elseif rom[pc] == 0xc3 then
 		print("JP " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xc2 then
 		print("JP NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xca then
 		print("JP Z" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xd2 then
 		print("JP  NC" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xda then
 		print("JP  C" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xe9 then
 		print("JP (HL)")
-		pc = pc + 1
 	elseif rom[pc] == 0x18 then
 		print("JR " .. toHex(rom[pc + 1]))
-		pc = pc + 2
 	elseif rom[pc] == 0x20 then
 		print("JR NZ, " .. toHex(rom[pc + 1]))
-		pc = pc + 2
 	elseif rom[pc] == 0x28 then
 		print("JR Z, " .. toHex(rom[pc + 1]))
-		pc = pc + 2
 	elseif rom[pc] == 0x30 then
 		print("JR NC, " .. toHex(rom[pc + 1]))
-		pc = pc + 2
 	elseif rom[pc] == 0x38 then
 		print("JR C, " .. toHex(rom[pc + 1]))
-		pc = pc + 2
 	elseif rom[pc] == 0xcd then
 		print("CALL " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xc4 then
 		print("CALL NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xcc then
 		print("CALL Z, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xd4 then
 		print("CALL NC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xdc then
 		print("CALL C, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
-		pc = pc + 3
 	elseif rom[pc] == 0xc7 then
 		print("RST 00H")
-		pc = pc + 1
 	elseif rom[pc] == 0xcf then
 		print("RST 08H")
-		pc = pc + 1
 	elseif rom[pc] == 0xd7 then
 		print("RST 10H")
-		pc = pc + 1
 	elseif rom[pc] == 0xdf then
 		print("RST 18H")
-		pc = pc + 1
 	elseif rom[pc] == 0xe7 then
 		print("RST 20H")
-		pc = pc + 1
 	elseif rom[pc] == 0xef then
 		print("RST 28H")
-		pc = pc + 1
 	elseif rom[pc] == 0xf7 then
 		print("RST 30H")
-		pc = pc + 1
 	elseif rom[pc] == 0xff then
 		print("RST 38H")
-		pc = pc + 1
 	elseif rom[pc] == 0xc9 then
 		print("RET")
-		pc = pc + 1
 	elseif rom[pc] == 0xc0 then
 		print("RET NZ")
-		pc = pc + 1
 	elseif rom[pc] == 0xc8 then
 		print("RET Z")
-		pc = pc + 1
 	elseif rom[pc] == 0xd0 then
 		print("RET NC")
-		pc = pc + 1
 	elseif rom[pc] == 0xd8 then
 		print("RET C")
-		pc = pc + 1
 	elseif rom[pc] == 0xd9 then
 		print("RETI")
-		pc = pc + 1
 	elseif rom[pc] == 0xfc then
 		print("0xfc in an undocumented opcode and should not be used!")
 		pc = pc + 1
