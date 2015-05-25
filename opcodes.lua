@@ -405,22 +405,26 @@ end
 
 -- 0x3a
 function LDD_A_HL ()
-
+	LD_A_HL()
+	DEC_HL()
 end
 
 -- 0x32
 function LDD_HL_A ()
-
+	LD_HL_A()
+	DEC_HL()
 end
 
 -- 0x2a
 function LDI_A_HL ()
-
+	LD_A_HL()
+	INC_HL()
 end
 
 -- 0x22
 function LDI_HL_A ()
-
+	LD_HL_A()
+	INC_HL()
 end
 
 -- 0xe0
