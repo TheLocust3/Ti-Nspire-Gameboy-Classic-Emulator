@@ -1938,47 +1938,49 @@ end
 -- Restarts
 
 function rst (n)
+	push(pc)
 
+	jp(nil, n)
 end
 
 -- 0xc7
 function RST_00H ()
-
+	rst(0x00)
 end
 
 -- 0xcf
 function RST_08H ()
-
+	rst(0x08)
 end
 
 -- 0xd7
 function RST_10H ()
-
+	rst(0x10)
 end
 
 -- 0xdf
 function RST_18H ()
-
+	rst(0x18)
 end
 
 -- 0xe7
 function RST_20H ()
-
+	rst(0x20)
 end
 
 -- 0xef
 function RST_28H ()
-
+	rst(0x28)
 end
 
 -- 0xf7
 function RST_30H ()
-
+	rst(0x30)
 end
 
 -- 0xff
 function RST_38H ()
-
+	rst(0x38)
 end
 
 -- Returns
