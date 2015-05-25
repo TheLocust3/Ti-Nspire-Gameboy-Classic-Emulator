@@ -476,7 +476,7 @@ end
 function push (nn)
 	registers[9] = registers[9] - 2
 
-	write_16b(registers[9], getRegister_16b(nn))
+	write_16b(registers[9], nn)
 end
 
 -- 0xf5
@@ -1986,35 +1986,38 @@ end
 -- Returns
 
 function ret (cc)
+	jp(cc, to16b(get_16b(registers[9])))
 
+	registers[9] = registers[9] + 2
 end
 
 -- 0xc9
 function RET ()
-
+	ret(nil)
 end
 
 -- 0xc0
 function RET_NZ ()
-
+	ret("NZ")
 end
 
 -- 0xc8
 function RET_Z ()
-
+	ret("Z")
 end
 
 -- 0xd0
 function RET_NC ()
-
+	ret("NC")
 end
 
 -- 0xd8
 function RET_C ()
-
+	ret("C")
 end
 
 -- 0xd9
 function RETI ()
-
+	ret(nil)
+	EI()
 end
