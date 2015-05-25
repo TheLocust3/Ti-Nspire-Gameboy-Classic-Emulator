@@ -71,7 +71,7 @@ end
 
 -- 0x7e
 function LD_A_HL ()
-	ld_8b(1, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(1, getRegister_16b(6))
 end
 
 -- 0x40
@@ -106,7 +106,7 @@ end
 
 -- 0x46
 function LD_B_HL ()
-	ld_8b(2, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(2, getRegister_16b(6))
 end
 
 -- 0x48
@@ -141,7 +141,7 @@ end
 
 -- 0x4e
 function LD_C_HL ()
-	ld_8b(3, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(3, getRegister_16b(6))
 end
 
 -- 0x50
@@ -176,7 +176,7 @@ end
 
 -- 0x56
 function LD_D_HL ()
-	ld_8b(4, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(4, getRegister_16b(6))
 end
 
 -- 0x58
@@ -211,7 +211,7 @@ end
 
 -- 0x5e
 function LD_E_HL ()
-	ld_8b(5, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(5, getRegister_16b(6))
 end
 
 -- 0x60
@@ -246,7 +246,7 @@ end
 
 -- 0x66
 function LD_H_HL ()
-	ld_8b(6, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(6, getRegister_16b(6))
 end
 
 -- 0x68
@@ -281,61 +281,61 @@ end
 
 -- 0x6e
 function LD_L_HL ()
-	ld_8b(7, get_8b(to16b(registers[6], registers[7])))
+	ld_8b(7, getRegister_16b(6))
 end
 
-function ldMemory_8b (value)
-	write_8b(getHL(), value)
+function ldMemory_8b (rIndex, value)
+	write_8b(getRegister_16b(rIndex), value)
 end
 
 -- 0x70
 function LD_HL_B ()
-	ldMemory_8b(registers[2])
+	ldMemory_8b(6, registers[2])
 end
 
 -- 0x71
 function LD_HL_C ()
-	ldMemory_8b(registers[3])
+	ldMemory_8b(6, registers[3])
 end
 
 -- 0x72
 function LD_HL_D ()
-	ldMemory_8b(registers[4])
+	ldMemory_8b(6, registers[4])
 end
 
 -- 0x73
 function LD_HL_E ()
-	ldMemory_8b(registers[5])
+	ldMemory_8b(6, registers[5])
 end
 
 -- 0x74
 function LD_HL_H ()
-	ldMemory_8b(registers[6])
+	ldMemory_8b(6, registers[6])
 end
 
 -- 0x75
 function LD_HL_L ()
-	ldMemory_8b(registers[7])
+	ldMemory_8b(6, registers[7])
 end
 
 -- 0x36
 function LD_HL_n (n)
-	ldMemory_8b(n)
+	ldMemory_8b(6, n)
 end
 
 -- 0x0a
 function LD_A_BC ()
-
+	ld_8b(1, get_8b(getRegister_16b(2)))
 end
 
 -- 0x1a
 function LD_A_DE ()
-
+	ld_8b(1, get_8b(getRegister_16b(4)))
 end
 
 -- 0xfa
 function LD_A_nn (nn)
-
+	ld_8b(1, get_8b(nn))
 end
 
 -- 0x3e
@@ -345,52 +345,52 @@ end
 
 -- 0x47
 function LD_B_A ()
-
+	ld_8b(2, registers[1])
 end
 
 -- 0x4f
 function LD_C_A ()
-
+	ld_8b(3, registers[1])
 end
 
 -- 0x57
 function LD_D_A ()
-
+	ld_8b(4, registers[1])
 end
 
 -- 0x5f
 function LD_E_A ()
-
+	ld_8b(5, registers[1])
 end
 
 -- 0x67
 function LD_H_A ()
-
+	ld_8b(6, registers[1])
 end
 
 -- 0x6f
 function LD_L_A ()
-
+	ld_8b(7, registers[1])
 end
 
 -- 0x02
 function LD_BC_A ()
-
+	ld_8b(get_8b(getRegister_16b(2)), registers[1])
 end
 
 -- 0x12
 function LD_DE_A ()
-
+	ld_8b(get_8b(getRegister_16b(4)), registers[1])
 end
 
 -- 0x77
 function LD_HL_A ()
-
+	ld_8b(get_8b(getRegister_16b(6)), registers[1])
 end
 
 -- 0xea
 function LD_nn_A ()
-
+	ld_8b(get_8b(nn), registers[1])
 end
 
 -- 0xf2

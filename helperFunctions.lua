@@ -21,8 +21,8 @@ function store16b (rIndex1, rIndex2, num)
 	registers[rIndex2] = bitwiseAnd(toBits(num, 16), 0x00ff)
 end
 
-function getHL ()
-	return to16b(registers[6], registers[7])
+function getRegister_16b (first)
+	return to16b(registers[first], registers[first + 1])
 end
 
 function to16b (high, low)
