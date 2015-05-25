@@ -1676,7 +1676,7 @@ end
 
 -- 0xcb 0x46
 function BIT_b_HL (b)
-
+	setFlags((toBits(get_8b(getRegister_16b(6)), 8)[b + 1] == 0), false, true, nil)
 end
 
 function set (b, rIndex)
@@ -1723,7 +1723,10 @@ end
 
 -- 0xcb 0xc6
 function SET_b_HL (b)
+	bits = toBits(get_8b(getRegister_16b(6)), 8)
+	bits[b + 1] = 1
 
+	write_8b(getRegister_16b(6), toInt(bits))
 end
 
 function res (b, r)
@@ -1770,7 +1773,10 @@ end
 
 -- 0xcb 0x86
 function RES_b_HL (b)
+	bits = toBits(get_8b(getRegister_16b(6)), 8)
+	bits[b + 1] = 0
 
+	write_8b(getRegister_16b(6), toInt(bits))
 end
 
 -- Jumps
