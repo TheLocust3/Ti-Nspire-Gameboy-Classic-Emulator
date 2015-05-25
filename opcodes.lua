@@ -1309,7 +1309,10 @@ end
 
 -- 0xcb 0x06
 function RLC_HL ()
+	shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+	write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
 end
 
 function rl (rIndex)
@@ -1356,7 +1359,10 @@ end
 
 -- 0xcb 0x16
 function RL_HL ()
+	shift = shiftLeft(get_8b(getRegister_16b(6), 1))
 
+	setFlags((shift == 0), false, false, false)
+	write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
 end
 
 function rrc (rIndex)
@@ -1403,7 +1409,10 @@ end
 
 -- 0xcb 0x0e
 function RRC_HL ()
+	shift = shiftRight(getRegister_16b(6), 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd_8(getRegister_16b(6), 0x01) > 0))
+	write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
 end
 
 function rr (rIndex)
@@ -1450,7 +1459,10 @@ end
 
 -- 0xcb 0x1e
 function RR_HL ()
+	shift = shiftRight(getRegister_16b(6), 1)
 
+	write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+	setFlags((shift == 0), false, false, false)
 end
 
 function sla (rIndex)
@@ -1500,7 +1512,13 @@ end
 
 -- 0xcb 0x26
 function SLA_HL ()
+	shift = shiftLeft(getRegister_16b(6), 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+
+	bShift = toBits(shift, 8)
+	bShift[8] = 0
+	write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
 end
 
 function sra (rIndex)
@@ -1550,7 +1568,13 @@ end
 
 -- 0xcb 0x2e
 function SRA_HL ()
+	shift = shiftRight(getRegister_16b(6), 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(getRegister_16b(6), 0x01) > 0))
+
+	bShift = toBits(shift, 8)
+	bShift[8] = 0
+	write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
 end
 
 function srl (rIndex)
@@ -1600,7 +1624,13 @@ end
 
 -- 0xcb 0x3e
 function SRL_HL ()
+	shift = shiftRight(getRegister_16b(6), 1)
 
+	setFlags((shift == 0), false, false, (bitwiseAnd(getRegister_16b(6), 0x01) > 0))
+
+	bShift = toBits(shift, 8)
+	bShift[8] = 0
+	write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
 end
 
 -- Bit Operations
