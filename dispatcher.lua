@@ -2,327 +2,407 @@ function dispatcher ()
 	io.print(toHex(pc) .. ": ")
 
 	if rom[pc] == 0x06 then
+		LD_B_n()
 		print("LD B, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x0e then
+		LD_C_n()
 		print("LD C, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x16 then
+		LD_D_n()
 		print("LD D, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x1e then
+		LD_E_n()
 		print("LD E, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x26 then
+		LD_H_n()
 		print("LD H, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x2e then
+		LD_L_n()
 		print("LD L, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x7f then
+		LD_A_A()
 		print("LD A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x78 then
+		LD_A_B()
 		print("LD A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x79 then
+		LD_A_C()
 		print("LD A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x7a then
+		LD_A_D()
 		print("LD A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x7b then
+		LD_A_E()
 		print("LD A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x7c then
+		LD_A_H()
 		print("LD A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x7d then
+		LD_A_L()
 		print("LD A, L")
 		pc = pc +1
 	elseif rom[pc] == 0x7e then
+		LD_A_HL()
 		print("LD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x40 then
+		LD_B_B()
 		print("LD B, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x41 then
+		LD_B_C()
 		print("LD B, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x42 then
+		LD_B_D()
 		print("LD B, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x43 then
+		LD_B_E()
 		print("LD B, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x44 then
+		LD_B_H()
 		print("LD B, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x45 then
+		LD_B_L()
 		print("LD B, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x46 then
+		LD_B_HL()
 		print("LD B, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x48 then
+		LD_C_B()
 		print("LD C, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x49 then
+		LD_C_C()
 		print("LD C, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x4a then
+		LD_C_D()
 		print("LD C, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x4b then
+		LD_C_E()
 		print("LD C, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x4c then
+		LD_C_H()
 		print("LD C, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x4d then
+		LD_C_L()
 		print("LD C, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x4e then
+		LD_C_HL()
 		print("LD C, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x50 then
+		LD_D_B()
 		print("LD D, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x51 then
+		LD_D_C()
 		print("LD D, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x52 then
+		LD_D_D()
 		print("LD D, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x53 then
+		LD_D_E()
 		print("LD D, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x54 then
+		LD_D_H()
 		print("LD D, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x55 then
+		LD_D_L()
 		print("LD D, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x56 then
+		LD_D_HL()
 		print("LD D, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x58 then
+		LD_E_B()
 		print("LD E, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x59 then
+		LD_E_C()
 		print("LD E, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x5a then
+		LD_E_D()
 		print("LD E, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x5b then
+		LD_E_E()
 		print("LD E, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x5c then
+		LD_E_H()
 		print("LD E, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x5d then
+		LD_E_L()
 		print("LD E, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x5e then
+		LD_E_HL()
 		print("LD E, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x60 then
+		LD_H_B()
 		print("LD H, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x61 then
+		LD_H_C()
 		print("LD H, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x62 then
+		LD_H_D()
 		print("LD H, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x63 then
+		LD_H_E()
 		print("LD H, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x64 then
+		LD_H_H()
 		print("LD H, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x65 then
+		LD_H_L()
 		print("LD H, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x66 then
+		LD_H_HL()
 		print("LD H, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x68 then
+		LD_L_B()
 		print("LD L, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x69 then
+		LD_L_C()
 		print("LD L, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x6a then
+		LD_L_D()
 		print("LD L, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x6b then
+		LD_L_E()
 		print("LD L, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x6c then
+		LD_L_H()
 		print("LD L, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x6d then
+		LD_L_L()
 		print("LD L, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x6e then
+		LD_L_HL()
 		print("LD L, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x70 then
+		LD_HL_B()
 		print("LD (HL), B")
 		pc = pc + 1
 	elseif rom[pc] == 0x71 then
+		LD_HL_C()
 		print("LD (HL), C")
 		pc = pc + 1
 	elseif rom[pc] == 0x72 then
+		LD_HL_D()
 		print("LD (HL), D")
 		pc = pc + 1
 	elseif rom[pc] == 0x73 then
+		LD_HL_E()
 		print("LD (HL), E")
 		pc = pc + 1
 	elseif rom[pc] == 0x74 then
+		LD_HL_H()
 		print("LD (HL), H")
 		pc = pc + 1
 	elseif rom[pc] == 0x75 then
+		LD_HL_L()
 		print("LD (HL), L")
 		pc = pc + 1
 	elseif rom[pc] == 0x36 then
+		LD_HL_n()
 		print("LD (HL), " .. toHex(rom[pc + 1]))
 		pc = pc + 2
-	elseif rom[pc] == 0x7f then
-		print("LD A, A")
-		pc = pc + 1
-	elseif rom[pc] == 0x78 then
-		print("LD A, B")
-		pc = pc + 1
-	elseif rom[pc] == 0x79 then
-		print("LD A, C")
-		pc = pc + 1
-	elseif rom[pc] == 0x7a then
-		print("LD A, D")
-		pc = pc + 1
-	elseif rom[pc] == 0x7b then
-		print("LD A, E")
-		pc = pc + 1
-	elseif rom[pc] == 0x7c then
-		print("LD A, H")
-		pc = pc + 1
-	elseif rom[pc] == 0x7d then
-		print("LD A, L")
-		pc = pc + 1
 	elseif rom[pc] == 0x0a then
+		LD_A_BC()
 		print("LD A, (BC)")
 		pc = pc + 1
 	elseif rom[pc] == 0x1a then
+		LD_A_DE()
 		print("LD A, (DE)")
 		pc = pc + 1
 	elseif rom[pc] == 0x7e then
+		LD_A_HL()
 		print("LD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xfa then
+		LD_A_nn()
 		print("LD A, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x3e then
+		LD_A_n()
 		print("LD A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x47 then
+		LD_B_A()
 		print("LD B, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x4f then
+		LD_C_A()
 		print("LD C, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x57 then
+		LD_D_A()
 		print("LD D, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x5f then
+		LD_E_A()
 		print("LD E, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x67 then
+		LD_H_A()
 		print("LD H, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x6f then
+		LD_L_A()
 		print("LD L, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x02 then
+		LD_BC_A()
 		print("LD (BC), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x12 then
+		LD_DE_A()
 		print("LD (DE), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x77 then
+		LD_HL_A()
 		print("LD (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0xea then
+		LD_nn_A()
 		print("LD (" .. toHex(rom[pc + 1]) .. "" .. u_toHex(pc + 2) .. "), A")
 		pc = pc + 3
 	elseif rom[pc] == 0xf2 then
+		LD_A_iC()
 		print("LD A, (C)")
 		pc = pc + 1
 	elseif rom[pc] == 0xe2 then
+		LD_iC_A()
 		print("LD ($FF00 .. C), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x3a then
+		LDD_A_HL()
 		print("LD A, (HLD) or LD A, (HL-) or LDD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x32 then
+		LDD_HL_A()
 		print("LD (HLD), A or LD (HL-), A or LDD (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x2a then
+		LDI_A_HL()
 		print("LD A, (HLI) or LD A, (HL..) or LDI A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x22 then
+		LDI_HL_A()
 		print("LD (HLI), LD A or LD (HL..), LDI A or (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0xe0 then
+		LDH_in_A()
 		print("LDH ($FF00 .. " .. toHex(rom[pc + 1]) .. "), A")
 		pc = pc + 2
 	elseif rom[pc] == 0xf0 then
+		LDH_A_in()
 		print("LDH A, ($FF00 .. " .. toHex(rom[pc + 1]) .. ")")
 		pc = pc + 2
 	elseif rom[pc] == 0x01 then
+		LD_BC_nn()
 		print("LD BC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x11 then
+		LD_DE_nn()
 		print("LD DE, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x21 then
+		LD_HL_nn()
 		print("LD HL, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x31 then
+		LD_SP_nn()
 		print("LD SP, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0xf9 then
+		LD_SP_HL()
 		print("LD SP, HL")
 		pc = pc + 1
 	elseif rom[pc] == 0xf8 then
+		LDHL_SP_n()
 		print("LDHL SP, " .. toHex(rom[pc + 1]) .. " or LD HL, SP .. " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x08 then
+		LD_nn_SP()
 		print("LD " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2) .. ", SP")
 		pc = pc + 3
 	elseif rom[pc] == 0xf5 then
+		PUSH_AF()
 		print("PUSH AF")
 		pc = pc + 1
 	elseif rom[pc] == 0xc5 then
+		PUSH_BC()
 		print("PUSH BC")
 		pc = pc + 1
 	elseif rom[pc] == 0xd5 then
+		PUSH_DE()
 		print("PUSH DE")
 		pc = pc + 1
 	elseif rom[pc] == 0xe5 then
+		PUSH_HL()
 		print("PUSH HL")
 		pc = pc + 1
 	elseif rom[pc] == 0xf1 then
+		POP_AF()
 		print("POP AF")
 		pc = pc + 1
 	elseif rom[pc] == 0xc1 then
+		POP_BC()
 		print("POP BC")
 		pc = pc + 1
 	elseif rom[pc] == 0xd1 then
+		POP_DE()
 		print("POP DE")
 		pc = pc + 1
 	elseif rom[pc] == 0xe1 then
+		POP_HL()
 		print("POP HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x87 then
