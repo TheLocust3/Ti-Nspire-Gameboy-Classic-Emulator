@@ -36,37 +36,37 @@ end
 
 -- 0x7f
 function LD_A_A ()
-
+	ld_8b(1, registers[1])
 end
 
 -- 0x78
 function LD_A_B ()
-
+	ld_8b(1, registers[2])
 end
 
 -- 0x79
 function LD_A_C ()
-
+	ld_8b(1, registers[3])
 end
 
 -- 0x7a
 function LD_A_D ()
-
+	ld_8b(1, registers[4])
 end
 
 -- 0x7b
 function LD_A_E ()
-
+	ld_8b(1, registers[5])
 end
 
 -- 0x7c
 function LD_A_H ()
-
+	ld_8b(1, registers[6])
 end
 
 -- 0x7d
 function LD_A_L ()
-
+	ld_8b(1, registers[7])
 end
 
 -- 0x7e
@@ -76,32 +76,32 @@ end
 
 -- 0x40
 function LD_B_B ()
-
+	ld_8b(2, registers[2])
 end
 
 -- 0x41
 function LD_B_C ()
-
+	ld_8b(2, registers[3])
 end
 
 -- 0x42
 function LD_B_D ()
-
+	ld_8b(2, registers[4])
 end
 
 -- 0x43
 function LD_B_E ()
-
+	ld_8b(2, registers[5])
 end
 
 -- 0x44
 function LD_B_H ()
-
+	ld_8b(2, registers[6])
 end
 
 -- 0x45
 function LD_B_L ()
-
+	ld_8b(2, registers[7])
 end
 
 -- 0x46
@@ -111,32 +111,32 @@ end
 
 -- 0x48
 function LD_C_B ()
-
+	ld_8b(3, registers[2])
 end
 
 -- 0x49
 function LD_C_C ()
-
+	ld_8b(3, registers[3])
 end
 
 -- 0x4a
 function LD_C_D ()
-
+	ld_8b(3, registers[4])
 end
 
 -- 0x4b
 function LD_C_E ()
-
+	ld_8b(3, registers[5])
 end
 
 -- 0x4c
 function LD_C_H ()
-
+	ld_8b(3, registers[6])
 end
 
 -- 0x4d
 function LD_C_L ()
-
+	ld_8b(3, registers[7])
 end
 
 -- 0x4e
@@ -146,32 +146,32 @@ end
 
 -- 0x50
 function LD_D_B ()
-
+	ld_8b(4, registers[2])
 end
 
 -- 0x51
 function LD_D_C ()
-
+	ld_8b(4, registers[3])
 end
 
 -- 0x52
 function LD_D_D ()
-
+	ld_8b(4, registers[4])
 end
 
 -- 0x53
 function LD_D_E ()
-
+	ld_8b(4, registers[5])
 end
 
 -- 0x54
 function LD_D_H ()
-
+	ld_8b(4, registers[6])
 end
 
 -- 0x55
 function LD_D_L ()
-
+	ld_8b(4, registers[7])
 end
 
 -- 0x56
@@ -181,32 +181,32 @@ end
 
 -- 0x58
 function LD_E_B ()
-
+	ld_8b(5, registers[2])
 end
 
 -- 0x59
 function LD_E_C ()
-
+	ld_8b(5, registers[3])
 end
 
 -- 0x5a
 function LD_E_D ()
-
+	ld_8b(5, registers[4])
 end
 
 -- 0x5b
 function LD_E_E ()
-
+	ld_8b(5, registers[5])
 end
 
 -- 0x5c
 function LD_E_H ()
-
+	ld_8b(5, registers[6])
 end
 
 -- 0x5d
 function LD_E_L ()
-
+	ld_8b(5, registers[7])
 end
 
 -- 0x5e
@@ -216,32 +216,32 @@ end
 
 -- 0x60
 function LD_H_B ()
-
+	ld_8b(6, registers[2])
 end
 
 -- 0x61
 function LD_H_C ()
-
+	ld_8b(6, registers[3])
 end
 
 -- 0x62
 function LD_H_D ()
-
+	ld_8b(6, registers[4])
 end
 
 -- 0x63
 function LD_H_E ()
-
+	ld_8b(6, registers[5])
 end
 
 -- 0x64
 function LD_H_H ()
-
+	ld_8b(6, registers[6])
 end
 
 -- 0x65
 function LD_H_L ()
-
+	ld_8b(6, registers[7])
 end
 
 -- 0x66
@@ -251,32 +251,32 @@ end
 
 -- 0x68
 function LD_L_B ()
-
+	ld_8b(7, registers[2])
 end
 
 -- 0x69
 function LD_L_C ()
-
+	ld_8b(7, registers[3])
 end
 
 -- 0x6a
 function LD_L_D ()
-
+	ld_8b(7, registers[4])
 end
 
 -- 0x6b
 function LD_L_E ()
-
+	ld_8b(7, registers[5])
 end
 
 -- 0x6c
 function LD_L_H ()
-
+	ld_8b(7, registers[6])
 end
 
 -- 0x6d
 function LD_L_L ()
-
+	ld_8b(7, registers[7])
 end
 
 -- 0x6e
