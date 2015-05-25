@@ -284,39 +284,43 @@ function LD_L_HL ()
 	ld_8b(7, get_8b(to16b(registers[6], registers[7])))
 end
 
+function ldMemory_8b (value)
+	write_8b(getHL(), value)
+end
+
 -- 0x70
 function LD_HL_B ()
-
+	ldMemory_8b(registers[2])
 end
 
 -- 0x71
 function LD_HL_C ()
-
+	ldMemory_8b(registers[3])
 end
 
 -- 0x72
 function LD_HL_D ()
-
+	ldMemory_8b(registers[4])
 end
 
 -- 0x73
 function LD_HL_E ()
-
+	ldMemory_8b(registers[5])
 end
 
 -- 0x74
 function LD_HL_H ()
-
+	ldMemory_8b(registers[6])
 end
 
 -- 0x75
 function LD_HL_L ()
-
+	ldMemory_8b(registers[7])
 end
 
 -- 0x36
-function LD_HL_n ()
-
+function LD_HL_n (n)
+	ldMemory_8b(n)
 end
 
 -- 0x0a
