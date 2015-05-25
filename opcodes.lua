@@ -1,37 +1,37 @@
 -- 8-Bit Loads
 
-function ld_8b (n, nn)
-
+function ld_8b (rIndex, n)
+	registers[rIndex] = n
 end
 
 -- 0x06
-function LD_nn_n (nn, n)
-
+function LD_B_n (n)
+	ld_8b(2, n)
 end
 
 -- 0x0e
 function LD_C_n (n)
-
+	ld_8b(3, n)
 end
 
 -- 0x16
 function LD_D_n (n)
-
+	ld_8b(4, n)
 end
 
 -- 0x1e
 function LD_E_n (n)
-
+	ld_8b(5, n)
 end
 
 -- 0x26
 function LD_H_n (n)
-
+	ld_8b(6, n)
 end
 
 -- 0x2e
 function LD_L_n (n)
-
+	ld_8b(7, n)
 end
 
 -- 0x7f
