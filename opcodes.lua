@@ -286,7 +286,7 @@ end
 
 -- 0x70
 function LD_HL_B ()
-	
+
 end
 
 -- 0x71
@@ -551,7 +551,7 @@ end
 
 -- 0x86
 function ADD_A_HL ()
-
+	add_8b(1, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xc6
@@ -605,7 +605,7 @@ end
 
 -- 0x8e
 function ADC_A_HL ()
-
+	adc_8b(1, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xce
@@ -657,7 +657,7 @@ end
 
 -- 0x96
 function SUB_HL ()
-
+	sub_8b(1, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xd6
@@ -711,7 +711,7 @@ end
 
 -- 0x9e
 function SBC_A_HL ()
-
+	sbc_8b(1, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xde
@@ -760,7 +760,7 @@ end
 
 -- 0xa6
 function AND_HL ()
-
+	and_8b(get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xe6
@@ -809,7 +809,7 @@ end
 
 -- 0xb6
 function OR_HL ()
-
+	or_8b(get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xf6
@@ -858,7 +858,7 @@ end
 
 -- 0xae
 function XOR_HL ()
-
+	xor_8b(get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xee
@@ -909,7 +909,7 @@ end
 
 -- 0xbe
 function CP_HL ()
-
+	cp(get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xfe
