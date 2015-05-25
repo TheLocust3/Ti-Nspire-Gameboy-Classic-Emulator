@@ -340,7 +340,7 @@ end
 
 -- 0x3e
 function LD_A_n (n)
-
+	ld_8b(1, n)
 end
 
 -- 0x47
@@ -395,12 +395,12 @@ end
 
 -- 0xf2
 function LD_A_iC ()
-
+	ld_8b(1, get_8b(0xff00 + registers[3]))
 end
 
 -- 0xe2
 function LD_iC_A ()
-
+	write_8b(0xff00 + registers[3], registers[1])
 end
 
 -- 0x3a
