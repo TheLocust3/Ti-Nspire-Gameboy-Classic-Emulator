@@ -71,7 +71,7 @@ end
 
 -- 0x7e
 function LD_A_HL ()
-
+	ld_8b(1, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x40
@@ -106,7 +106,7 @@ end
 
 -- 0x46
 function LD_B_HL ()
-
+	ld_8b(2, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x48
@@ -141,7 +141,7 @@ end
 
 -- 0x4e
 function LD_C_HL ()
-
+	ld_8b(3, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x50
@@ -176,7 +176,7 @@ end
 
 -- 0x56
 function LD_D_HL ()
-
+	ld_8b(4, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x58
@@ -211,7 +211,7 @@ end
 
 -- 0x5e
 function LD_E_HL ()
-
+	ld_8b(5, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x60
@@ -246,7 +246,7 @@ end
 
 -- 0x66
 function LD_H_HL ()
-
+	ld_8b(6, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x68
@@ -281,12 +281,12 @@ end
 
 -- 0x6e
 function LD_L_HL ()
-
+	ld_8b(7, get_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0x70
 function LD_HL_B ()
-
+	
 end
 
 -- 0x71
