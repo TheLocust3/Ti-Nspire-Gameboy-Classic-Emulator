@@ -473,44 +473,57 @@ function LD_nn_SP (nn)
 
 end
 
+function push (nn)
+	registers[9] = registers[9] - 2
+
+	write_16b(registers[9], getRegister_16b(nn))
+end
+
 -- 0xf5
 function PUSH_AF ()
-
+	push(to16b(registers[1], registers[8]))
 end
 
 -- 0xc5
 function PUSH_BC ()
-
+	push(2)
 end
 
 -- 0xd5
 function PUSH_DE ()
-
+	push(4)
 end
 
 -- 0xe5
 function PUSH_HL ()
+	push(6)
+end
 
+function pop (rIndex1, rIndex2)
+	registers[rIndex1] = shiftRight(get_8b(registers[9]), 8)
+	registers[rIndex2] = bitwiseAnd(toBits(get_8(registers[9] + 1), 16), 0x00ff)
+
+	registers[9] = registers[9] + 2 -- Technically it is gone
 end
 
 -- 0xf1
 function POP_AF ()
-
+	pop(1, 8)
 end
 
 -- 0xc1
 function POP_BC ()
-
+	pop(2, 3)
 end
 
 -- 0xd1
 function POP_DE ()
-
+	pop(4, 5)
 end
 
 -- 0xe1
 function POP_HL ()
-
+	pop(6, 7)
 end
 
 -- 8-Bit ALU
