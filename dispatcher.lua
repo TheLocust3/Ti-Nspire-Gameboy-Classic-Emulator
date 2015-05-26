@@ -810,103 +810,146 @@ function dispatcher ()
 		print("DEC SP")
 		pc = pc + 1
 	elseif rom[pc] == 0x27 then
+		DAA()
 		print("DAA")
 		pc = pc + 1
 	elseif rom[pc] == 0x2f then
+		CPL()
 		print("CPL")
 		pc = pc + 1
 	elseif rom[pc] == 0x3f then
+		CCF()
 		print("CCF")
 		pc = pc + 1
 	elseif rom[pc] == 0x37 then
+		SCF()
 		print("SCF")
 		pc = pc + 1
 	elseif rom[pc] == 0x00 then
+		NOP()
 		print("NOP")
 		pc = pc + 1
 	elseif rom[pc] == 0x76 then
+		HALT()
 		print("HALT")
 		pc = pc + 1
 	elseif rom[pc] == 0x10 then
+		STOP()
 		print("STOP")
 		pc = pc + 1
 	elseif rom[pc] == 0xf3 then
+		DI()
 		print("DI")
 		pc = pc + 1
 	elseif rom[pc] == 0xfb then
+		EI()
 		print("EI")
 		pc = pc + 1
 	elseif rom[pc] == 0x07 then
+		RLCA()
 		print("RLCA")
 		pc = pc + 1
 	elseif rom[pc] == 0x17 then
+		RLA()
 		print("RLA")
 		pc = pc + 1
 	elseif rom[pc] == 0x0f then
+		RRCA()
 		print("RRCA")
 		pc = pc + 1
 	elseif rom[pc] == 0x1f then
+		RRA()
 		print("RRA")
 		pc = pc + 1
 	elseif rom[pc] == 0xc3 then
+		JP_nn()
 		print("JP " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc2 then
+		JP_NZ_nn()
 		print("JP NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xca then
+		JP_Z_nn()
 		print("JP Z" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xd2 then
+		JP_NC_nn()
 		print("JP  NC" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xda then
+		JP_C_nn()
 		print("JP  C" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xe9 then
+		JP_HL()
 		print("JP (HL)")
 	elseif rom[pc] == 0x18 then
+		JR_n()
 		print("JR " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x20 then
+		JR_NZ_n()
 		print("JR NZ, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x28 then
+		JR_Z_n()
 		print("JR Z, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x30 then
+		JR_NC_n()
 		print("JR NC, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x38 then
+		JR_C_n()
 		print("JR C, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0xcd then
+		CALL_nn()
 		print("CALL " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc4 then
+		CALL_NZ_nn()
 		print("CALL NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xcc then
+		CALL_Z_nn()
 		print("CALL Z, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xd4 then
+		CALL_NC_nn()
 		print("CALL NC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xdc then
+		CALL_C_nn()
 		print("CALL C, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc7 then
+		RST_00H()
 		print("RST 00H")
 	elseif rom[pc] == 0xcf then
+		RST_08H()
 		print("RST 08H")
 	elseif rom[pc] == 0xd7 then
+		RST_10H()
 		print("RST 10H")
 	elseif rom[pc] == 0xdf then
+		RST_18H()
 		print("RST 18H")
 	elseif rom[pc] == 0xe7 then
+		RST_20H()
 		print("RST 20H")
 	elseif rom[pc] == 0xef then
+		RST_28H()
 		print("RST 28H")
 	elseif rom[pc] == 0xf7 then
+		RST_30H()
 		print("RST 30H")
 	elseif rom[pc] == 0xff then
+		RST_38H()
 		print("RST 38H")
 	elseif rom[pc] == 0xc9 then
+		RET()
 		print("RET")
 	elseif rom[pc] == 0xc0 then
+		RET_NZ()
 		print("RET NZ")
 	elseif rom[pc] == 0xc8 then
+		RET_Z()
 		print("RET Z")
 	elseif rom[pc] == 0xd0 then
+		RET_NC()
 		print("RET NC")
 	elseif rom[pc] == 0xd8 then
+		RET_C()
 		print("RET C")
 	elseif rom[pc] == 0xd9 then
+		RETI()
 		print("RETI")
 	elseif rom[pc] == 0xfc then
 		print("0xfc in an undocumented opcode and should not be used!")
