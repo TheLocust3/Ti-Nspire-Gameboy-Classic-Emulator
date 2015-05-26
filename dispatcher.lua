@@ -956,133 +956,261 @@ function dispatcher ()
 		pc = pc + 1
 	elseif rom[pc] == 0xcb then
 		if rom[pc + 1] == 0x37 then
+			SWAP_A()
 			print("SWAP A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x30 then
+			SWAP_B()
 			print("SWAP B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x31 then
+			SWAP_C()
 			print("SWAP C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x32 then
+			SWAP_D()
 			print("SWAP D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x33 then
+			SWAP_E()
 			print("SWAP E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x34 then
+			SWAP_H()
 			print("SWAP H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x35 then
+			SWAP_L()
 			print("SWAP L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x36 then
+			SWAP_HL()
 			print("SWAP (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x07 then
+			RLC_A()
 			print("RLC A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x00 then
+			RLC_B()
 			print("RLC B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x01 then
+			RLC_C()
 			print("RLC C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x02 then
+			RLC_D()
 			print("RLC D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x03 then
+			RLC_E()
 			print("RLC E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x04 then
+			RLC_H()
 			print("RLC H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x05 then
+			RLC_L()
 			print("RLC L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x06 then
+			RLC_HL()
 			print("RLC (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x17 then
+			RL_A()
 			print("RL A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x10 then
+			RL_B()
 			print("RL B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x11 then
+			RL_C()
 			print("RL C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x12 then
+			RL_D()
 			print("RL D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x13 then
+			RL_E()
 			print("RL E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x14 then
+			RL_H()
 			print("RL H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x15 then
+			RL_L()
 			print("RL L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x16 then
+			RL_HL()
 			print("RL (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x0f then
+			RRC_A()
 			print("RRC A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x08 then
+			RRC_B()
 			print("RRC B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x09 then
+			RRC_C()
 			print("RRC C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x0a then
+			RRC_D()
 			print("RRC D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x0b then
+			RRC_E()
 			print("RRC E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x0c then
+			RRC_H()
 			print("RRC H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x0d then
+			RRC_L()
 			print("RRC L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x0e then
+			RRC_HL()
 			print("RRC (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x1f then
+			RR_A()
 			print("RR A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x18 then
+			RR_B()
 			print("RR B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x19 then
+			RR_C()
 			print("RR C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x1a then
+			RR_D()
 			print("RR D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x1b then
+			RR_E()
 			print("RR E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x1c then
+			RR_H()
 			print("RR H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x1d then
+			RR_L()
 			print("RR L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x1e then
+			RR_HL()
 			print("RR (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x27 then
+			SLA_A()
 			print("SLA A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x20 then
+			SLA_B()
 			print("SLA B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x21 then
+			SLA_C()
 			print("SLA C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x22 then
+			SLA_D()
 			print("SLA D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x23 then
+			SLA_E()
 			print("SLA E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x24 then
+			SLA_H()
 			print("SLA H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x25 then
+			SLA_L()
 			print("SLA L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x26 then
+			SLA_HL()
 			print("SLA (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x2f then
+			SRA_A()
 			print("SRA A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x28 then
+			SRA_B()
 			print("SRA B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x29 then
+			SRA_C()
 			print("SRA C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x2a then
+			SRA_D()
 			print("SRA D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x2b then
+			SRA_E()
 			print("SRA E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x2c then
+			SRA_H()
 			print("SRA H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x2d then
+			SRA_L()
 			print("SRA L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x2e then
+			SRA_HL()
 			print("SRA (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x3f then
+			SRL_A()
 			print("SRL A")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x38 then
+			SRL_B()
 			print("SRL B")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x39 then
+			SRL_C()
 			print("SRL C")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x3a then
+			SRL_D()
 			print("SRL D")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x3b then
+			SRL_E()
 			print("SRL E")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x3c then
+			SRL_H()
 			print("SRL H")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x3d then
+			SRL_L()
 			print("SRL L")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x3e then
+			SRL_HL()
 			print("SRL (HL)")
+			pc = pc + 1
 		elseif rom[pc + 1] == 0x47 then
 			print("BIT " .. toHex(pc + 2) .. ", A")
 			pc = pc + 1
