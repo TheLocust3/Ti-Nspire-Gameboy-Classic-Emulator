@@ -406,267 +406,355 @@ function dispatcher ()
 		print("POP HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x87 then
+		ADD_A_A()
 		print("ADD A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x80 then
+		ADD_A_B()
 		print("ADD A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x81 then
+		ADD_A_C()
 		print("ADD A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x82 then
+		ADD_A_D()
 		print("ADD A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x83 then
+		ADD_A_E()
 		print("ADD A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x84 then
+		ADD_A_H()
 		print("ADD A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x85 then
+		ADD_A_L()
 		print("ADD A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x86 then
+		ADD_A_HL()
 		print("ADD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xc6 then
+		ADD_A_n()
 		print("ADD A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x8f then
+		ADC_A_A()
 		print("ADC A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x88 then
+		ADC_A_B()
 		print("ADC A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x89 then
+		ADC_A_C()
 		print("ADC A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x8a then
+		ADC_A_D()
 		print("ADC A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x8b then
+		ADC_A_E()
 		print("ADC A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x8c then
+		ADC_A_H()
 		print("ADC A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x8d then
+		ADC_A_L()
 		print("ADC A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x8e then
+		ADC_A_HL()
 		print("ADC A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xce then
+		ADC_A_n()
 		print("ADC A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x97 then
+		SUB_A()
 		print("SUB A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x90 then
+		SUB_B()
 		print("SUB A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x91 then
+		SUB_C()
 		print("SUB A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x92 then
+		SUB_D()
 		print("SUB A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x93 then
+		SUB_E()
 		print("SUB A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x94 then
+		SUB_H()
 		print("SUB A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x95 then
+		SUB_L()
 		print("SUB A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x96 then
+		SUB_HL()
 		print("SUB A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xd6 then
+		SUB_n()
 		print("SUB A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x9f then
+		SBC_A_A()
 		print("SBC A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x98 then
+		SBC_A_B()	
 		print("SBC A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x99 then
+		SBC_A_C()
 		print("SBC A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x9a then
+		SBC_A_D()
 		print("SBC A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x9b then
+		SBC_A_E()
 		print("SBC A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x9c then
+		SBC_A_H()
 		print("SBC A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x9d then
+		SBC_A_L()
 		print("SBC A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x9e then
+		SBC_A_HL()
 		print("SBC A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xde then
+		SBC_A_n()
 		print("SBC A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xa7 then
+		AND_A()
 		print("AND A")
 		pc = pc + 1
 	elseif rom[pc] == 0xa0 then
+		AND_B()
 		print("AND B")
 		pc = pc + 1
 	elseif rom[pc] == 0xa1 then
+		AND_C()
 		print("AND C")
 		pc = pc + 1
 	elseif rom[pc] == 0xa2 then
+		AND_D()
 		print("AND D")
 		pc = pc + 1
 	elseif rom[pc] == 0xa3 then
+		AND_E()
 		print("AND E")
 		pc = pc + 1
 	elseif rom[pc] == 0xa4 then
+		AND_H()
 		print("AND H")
 		pc = pc + 1
 	elseif rom[pc] == 0xa5 then
+		AND_L()
 		print("AND L")
 		pc = pc + 1
 	elseif rom[pc] == 0xa6 then
+		AND_HL()
 		print("AND (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xe6 then
+		AND_n()
 		print("AND " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xb7 then
+		OR_A()
 		print("OR A")
 		pc = pc + 1
 	elseif rom[pc] == 0xb0 then
+		OR_B()
 		print("OR B")
 		pc = pc + 1
 	elseif rom[pc] == 0xb1 then
+		OR_C()
 		print("OR C")
 		pc = pc + 1
 	elseif rom[pc] == 0xb2 then
+		OR_D()
 		print("OR D")
 		pc = pc + 1
 	elseif rom[pc] == 0xb3 then
+		OR_E()
 		print("OR E")
 		pc = pc + 1
 	elseif rom[pc] == 0xb4 then
+		OR_H()
 		print("OR H")
 		pc = pc + 1
 	elseif rom[pc] == 0xb5 then
+		OR_L()
 		print("OR L")
 		pc = pc + 1
 	elseif rom[pc] == 0xb6 then
+		OR_HL()
 		print("OR (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xf6 then
+		OR_n()
 		print("OR " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xaf then
+		XOR_A()
 		print("XOR A")
 		pc = pc + 1
 	elseif rom[pc] == 0xa8 then
+		XOR_B()
 		print("XOR B")
 		pc = pc + 1
 	elseif rom[pc] == 0xa9 then
+		XOR_C()
 		print("XOR C")
 		pc = pc + 1
 	elseif rom[pc] == 0xaa then
+		XOR_D()
 		print("XOR D")
 		pc = pc + 1
 	elseif rom[pc] == 0xab then
+		XOR_E()
 		print("XOR E")
 		pc = pc + 1
 	elseif rom[pc] == 0xac then
+		XOR_H()
 		print("XOR H")
 		pc = pc + 1
 	elseif rom[pc] == 0xad then
+		XOR_L()
 		print("XOR L")
 		pc = pc + 1
 	elseif rom[pc] == 0xea then
+		XOR_HL()
 		print("XOR (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xee then
+		XOR_n()
 		print("XOR " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xbf then
+		CP_A()
 		print("CP A")
 		pc = pc + 1
 	elseif rom[pc] == 0xb8 then
+		CP_B()
 		print("CP B")
 		pc = pc + 1
 	elseif rom[pc] == 0xb9 then
+		CP_C()
 		print("CP C")
 		pc = pc + 1
 	elseif rom[pc] == 0xba then
+		CP_D()
 		print("CP D")
 		pc = pc + 1
 	elseif rom[pc] == 0xbb then
+		CP_E()
 		print("CP E")
 		pc = pc + 1
 	elseif rom[pc] == 0xbc then
+		CP_H()
 		print("CP H")
 		pc = pc + 1
 	elseif rom[pc] == 0xbd then
+		CP_L()
 		print("CP L")
 		pc = pc + 1
 	elseif rom[pc] == 0xbe then
+		CP_HL()
 		print("CP (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xfe then
+		CP_n()
 		print("CP " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x3c then
+		INC_A()
 		print("INC A")
 		pc = pc + 1
 	elseif rom[pc] == 0x04 then
+		INC_B()
 		print("INC B")
 		pc = pc + 1
 	elseif rom[pc] == 0x0c then
+		INC_C()
 		print("INC C")
 		pc = pc + 1
 	elseif rom[pc] == 0x14 then
+		INC_D()
 		print("INC D")
 		pc = pc + 1
 	elseif rom[pc] == 0x1c then
+		INC_E()
 		print("INC E")
 		pc = pc + 1
 	elseif rom[pc] == 0x24 then
+		INC_H()
 		print("INC H")
 		pc = pc + 1
 	elseif rom[pc] == 0x2c then
+		INC_L()
 		print("INC L")
 		pc = pc + 1
 	elseif rom[pc] == 0x34 then
+		INC_HL()
 		print("INC (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x3d then
+		DEC_A()
 		print("DEC A")
 		pc = pc + 1
 	elseif rom[pc] == 0x05 then
+		DEC_B()
 		print("DEC B")
 		pc = pc + 1
 	elseif rom[pc] == 0x0d then
+		DEC_C()
 		print("DEC C")
 		pc = pc + 1
 	elseif rom[pc] == 0x15 then
+		DEC_D()
 		print("DEC D")
 		pc = pc + 1
 	elseif rom[pc] == 0x1d then
+		DEC_E()
 		print("DEC E")
 		pc = pc + 1
 	elseif rom[pc] == 0x25 then
+		DEC_H()
 		print("DEC H")
 		pc = pc + 1
 	elseif rom[pc] == 0x2d then
+		DEC_L()
 		print("DEC L")
 		pc = pc + 1
 	elseif rom[pc] == 0x35 then
+		DEC_HL()
 		print("DEC (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x09 then
