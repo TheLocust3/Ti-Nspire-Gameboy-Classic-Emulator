@@ -26,7 +26,7 @@ function getRegister_16b (first)
 end
 
 function to16b (high, low)
-	return shiftLeft(hight, 8) + low
+	return shiftLeft(high, 8) + low
 end
 
 function halfCarry_add_8 (a, b)

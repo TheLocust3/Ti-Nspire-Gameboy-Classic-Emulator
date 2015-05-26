@@ -1,5 +1,5 @@
 function dispatcher ()
-	io.print(toHex(pc) .. ": ")
+	io.write(toHex(pc) .. ": ")
 
 	if rom[pc] == 0x06 then
 		LD_B_n(rom[pc + 1])
@@ -862,95 +862,95 @@ function dispatcher ()
 		print("RRA")
 		pc = pc + 1
 	elseif rom[pc] == 0xc3 then
+		print("JP " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("JP " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc2 then
+		print("JP NZ, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_NZ_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("JP NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xca then
+		print("JP Z" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_Z_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("JP Z" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xd2 then
+		print("JP  NC" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_NC_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("JP  NC" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xda then
+		print("JP  C" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_C_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("JP  C" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xe9 then
-		JP_HL(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP (HL)")
+		JP_HL(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0x18 then
-		JR_n(rom[pc + 1])
 		print("JR " .. toHex(rom[pc + 1]))
+		JR_n(rom[pc + 1])
 	elseif rom[pc] == 0x20 then
-		JR_NZ_n(rom[pc + 1])
 		print("JR NZ, " .. toHex(rom[pc + 1]))
+		JR_NZ_n(rom[pc + 1])
 	elseif rom[pc] == 0x28 then
-		JR_Z_n(rom[pc + 1])
 		print("JR Z, " .. toHex(rom[pc + 1]))
+		JR_Z_n(rom[pc + 1])
 	elseif rom[pc] == 0x30 then
-		JR_NC_n(rom[pc + 1])
 		print("JR NC, " .. toHex(rom[pc + 1]))
+		JR_NC_n(rom[pc + 1])
 	elseif rom[pc] == 0x38 then
-		JR_C_n(rom[pc + 1])
 		print("JR C, " .. toHex(rom[pc + 1]))
+		JR_C_n(rom[pc + 1])
 	elseif rom[pc] == 0xcd then
+		print("CALL " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("CALL " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc4 then
+		print("CALL NZ, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_NZ_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("CALL NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xcc then
+		print("CALL Z, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_Z_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("CALL Z, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xd4 then
+		print("CALL NC, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_NC_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("CALL NC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xdc then
+		print("CALL C, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_C_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("CALL C, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc7 then
 		RST_00H()
 		print("RST 00H")
 	elseif rom[pc] == 0xcf then
-		RST_08H()
 		print("RST 08H")
+		RST_08H()
 	elseif rom[pc] == 0xd7 then
-		RST_10H()
 		print("RST 10H")
+		RST_10H()
 	elseif rom[pc] == 0xdf then
-		RST_18H()
 		print("RST 18H")
+		RST_18H()
 	elseif rom[pc] == 0xe7 then
-		RST_20H()
 		print("RST 20H")
+		RST_20H()
 	elseif rom[pc] == 0xef then
-		RST_28H()
 		print("RST 28H")
+		RST_28H()
 	elseif rom[pc] == 0xf7 then
-		RST_30H()
 		print("RST 30H")
+		RST_30H()
 	elseif rom[pc] == 0xff then
-		RST_38H()
 		print("RST 38H")
+		RST_38H()
 	elseif rom[pc] == 0xc9 then
-		RET()
 		print("RET")
+		RET()
 	elseif rom[pc] == 0xc0 then
-		RET_NZ()
 		print("RET NZ")
+		RET_NZ()
 	elseif rom[pc] == 0xc8 then
-		RET_Z()
 		print("RET Z")
+		RET_Z()
 	elseif rom[pc] == 0xd0 then
-		RET_NC()
 		print("RET NC")
+		RET_NC()
 	elseif rom[pc] == 0xd8 then
-		RET_C()
 		print("RET C")
+		RET_C()
 	elseif rom[pc] == 0xd9 then
-		RETI()
 		print("RETI")
+		RETI()
 	elseif rom[pc] == 0xfc then
 		print("0xfc in an undocumented opcode and should not be used!")
 		pc = pc + 1

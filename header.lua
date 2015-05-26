@@ -8,7 +8,7 @@ fHalfCarry = false
 fCarry = false
 
 -- Program Counter
-pc = 0x100 -- Start of rom should be 0x100
+pc = 0x100 -- Start of rom is be 0x100 but the start of the bios is 0x104
 
 memory = {0}
 

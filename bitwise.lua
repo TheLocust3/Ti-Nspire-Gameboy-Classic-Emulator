@@ -32,20 +32,12 @@ end
 
 -- Shifts take only ints
 
-function bShiftRight (number, shift)
+function shiftRight (number, shift)
     return number * math.pow(2, shift)
 end
 
-function shiftRight (number, shift)
-	return toInt(bShiftRight(number, shift))
-end
-
-function bShiftLeft (number, shift)
-	return number / math.pow(2, shift)
-end
-
 function shiftLeft (number, shift)
-	return toInt(bShiftLeft(number, shift))
+	return number / math.pow(2, shift)
 end
 
 function bBitwiseAnd (bits1, bits2)
@@ -150,9 +142,9 @@ end
 
 
 function u_toHex (num)
-    return tonumber(num, 16) -- Expecting to see that this doesn't work
+    return tonumber(tostring(num)) -- Expecting to see that this doesn't work
 end
 
 function toHex (num)
-    return "0x" + u_toHex(num)
+    return "0x" .. u_toHex(num)
 end
