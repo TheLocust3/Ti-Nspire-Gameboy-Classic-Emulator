@@ -758,42 +758,55 @@ function dispatcher ()
 		print("DEC (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x09 then
+		ADD_HL_BC()
 		print("ADD HL, BC")
 		pc = pc + 1
 	elseif rom[pc] == 0x19 then
+		ADD_HL_DE()
 		print("ADD HL, DE")
 		pc = pc + 1
 	elseif rom[pc] == 0x29 then
+		ADD_HL_HL()
 		print("ADD HL, HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x39 then
+		ADD_HL_SP()
 		print("ADD HL, SP")
 		pc = pc + 1
 	elseif rom[pc] == 0xe8 then
+		ADD_SP_n()
 		print("ADD SP, " .. toHex(pc + 1))
 		pc = pc + 2
 	elseif rom[pc] == 0x03 then
+		INC_BC()
 		print("INC BC")
 		pc = pc + 1
 	elseif rom[pc] == 0x13 then
+		INC_DE()
 		print("INC DE")
 		pc = pc + 1
 	elseif rom[pc] == 0x23 then
+		INC_HL()
 		print("INC HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x33 then
-		print("INC P")
+		INC_PC()
+		print("INC PC")
 		pc = pc + 1
 	elseif rom[pc] == 0x0b then
+		DEC_BC()
 		print("DEC BC")
 		pc = pc + 1
 	elseif rom[pc] == 0x1b then
+		DEC_DE()
 		print("DEC DE")
 		pc = pc + 1
 	elseif rom[pc] == 0x2b then
+		DEC_HL()
 		print("DEC HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x3b then
+		DEC_SP()
 		print("DEC SP")
 		pc = pc + 1
 	elseif rom[pc] == 0x27 then
