@@ -1212,77 +1212,101 @@ function dispatcher ()
 			print("SRL (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x47 then
+			BIT_b_A()
 			print("BIT " .. toHex(pc + 2) .. ", A")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x40 then
+			BIT_b_B(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", B")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x41 then
+			BIT_b_C(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", C")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x42 then
+			BIT_b_D(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", D")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x43 then
+			BIT_b_E(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", E")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x44 then
+			BIT_b_H(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", H")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x45 then
+			BIT_b_L(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", L")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x46 then
+			BIT_b_HL(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", (HL)")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc7 then
+			SET_b_A(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", A")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc0 then
+			SET_b_B(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", B")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc1 then
+			SET_b_C(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", C")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc2 then
+			SET_b_D(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", D")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc3 then
+			SET_b_E(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", E")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc4 then
+			SET_b_H(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", H")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0xc5 then
+			SET_b_L(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0xc6 then
+			SET_b_HL(rom[pc + 2])
 			print("SET " .. toHex(pc + 2) .. ", (HL)")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x87 then
+			RES_b_A(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", A")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x80 then
+			RES_b_B(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", B")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x81 then
+			RES_b_C(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", C")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x82 then
+			RES_b_D(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", D")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x83 then
+			RES_b_E(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", E")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x84 then
+			RES_b_H(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", H")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x85 then
+			RES_b_L(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", L")
-			pc = pc + 1
+			pc = pc + 2
 		elseif rom[pc + 1] == 0x86 then
+			RES_b_HL(rom[pc + 2])
 			print("RES " .. toHex(pc + 2) .. ", (HL)")
-			pc = pc + 1
+			pc = pc + 2
 		else
 			print(toHex(rom[pc + 1]) .. " is not an opcode with the prefix CB!")
 		end
