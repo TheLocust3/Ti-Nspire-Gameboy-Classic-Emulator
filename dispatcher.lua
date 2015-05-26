@@ -2,27 +2,27 @@ function dispatcher ()
 	io.print(toHex(pc) .. ": ")
 
 	if rom[pc] == 0x06 then
-		LD_B_n()
+		LD_B_n(rom[pc + 1])
 		print("LD B, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x0e then
-		LD_C_n()
+		LD_C_n(rom[pc + 1])
 		print("LD C, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x16 then
-		LD_D_n()
+		LD_D_n(rom[pc + 1])
 		print("LD D, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x1e then
-		LD_E_n()
+		LD_E_n(rom[pc + 1])
 		print("LD E, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x26 then
-		LD_H_n()
+		LD_H_n(rom[pc + 1])
 		print("LD H, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x2e then
-		LD_L_n()
+		LD_L_n(rom[pc + 1])
 		print("LD L, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x7f then
@@ -250,7 +250,7 @@ function dispatcher ()
 		print("LD (HL), L")
 		pc = pc + 1
 	elseif rom[pc] == 0x36 then
-		LD_HL_n()
+		LD_HL_n(rom[pc + 1])
 		print("LD (HL), " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x0a then
@@ -266,11 +266,11 @@ function dispatcher ()
 		print("LD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xfa then
-		LD_A_nn()
+		LD_A_nn(to16n(rom[pc + 1], rom[pc + 2]))
 		print("LD A, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x3e then
-		LD_A_n()
+		LD_A_n(rom[pc + 1])
 		print("LD A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x47 then
@@ -310,7 +310,7 @@ function dispatcher ()
 		print("LD (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0xea then
-		LD_nn_A()
+		LD_nn_A(to16b(rom[pc + 1], rom[pc + 2]))
 		print("LD (" .. toHex(rom[pc + 1]) .. "" .. u_toHex(pc + 2) .. "), A")
 		pc = pc + 3
 	elseif rom[pc] == 0xf2 then
@@ -338,27 +338,27 @@ function dispatcher ()
 		print("LD (HLI), LD A or LD (HL..), LDI A or (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0xe0 then
-		LDH_in_A()
+		LDH_in_A(rom[pc + 1])
 		print("LDH ($FF00 .. " .. toHex(rom[pc + 1]) .. "), A")
 		pc = pc + 2
 	elseif rom[pc] == 0xf0 then
-		LDH_A_in()
+		LDH_A_in(rom[pc + 1])
 		print("LDH A, ($FF00 .. " .. toHex(rom[pc + 1]) .. ")")
 		pc = pc + 2
 	elseif rom[pc] == 0x01 then
-		LD_BC_nn()
+		LD_BC_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("LD BC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x11 then
-		LD_DE_nn()
+		LD_DE_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("LD DE, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x21 then
-		LD_HL_nn()
+		LD_HL_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("LD HL, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x31 then
-		LD_SP_nn()
+		LD_SP_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("LD SP, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0xf9 then
@@ -366,11 +366,11 @@ function dispatcher ()
 		print("LD SP, HL")
 		pc = pc + 1
 	elseif rom[pc] == 0xf8 then
-		LDHL_SP_n()
+		LDHL_SP_n(rom[pc + 1])
 		print("LDHL SP, " .. toHex(rom[pc + 1]) .. " or LD HL, SP .. " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x08 then
-		LD_nn_SP()
+		LD_nn_SP(to16b(rom[pc + 1], rom[pc + 2]))
 		print("LD " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2) .. ", SP")
 		pc = pc + 3
 	elseif rom[pc] == 0xf5 then
@@ -438,7 +438,7 @@ function dispatcher ()
 		print("ADD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xc6 then
-		ADD_A_n()
+		ADD_A_n(rom[pc + 1])
 		print("ADD A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x8f then
@@ -474,7 +474,7 @@ function dispatcher ()
 		print("ADC A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xce then
-		ADC_A_n()
+		ADC_A_n(rom[pc + 1])
 		print("ADC A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x97 then
@@ -510,7 +510,7 @@ function dispatcher ()
 		print("SUB A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xd6 then
-		SUB_n()
+		SUB_n(rom[pc + 1])
 		print("SUB A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x9f then
@@ -546,7 +546,7 @@ function dispatcher ()
 		print("SBC A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xde then
-		SBC_A_n()
+		SBC_A_n(rom[pc + 1])
 		print("SBC A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xa7 then
@@ -582,7 +582,7 @@ function dispatcher ()
 		print("AND (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xe6 then
-		AND_n()
+		AND_n(rom[pc + 1])
 		print("AND " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xb7 then
@@ -618,7 +618,7 @@ function dispatcher ()
 		print("OR (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xf6 then
-		OR_n()
+		OR_n(rom[pc + 1])
 		print("OR " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xaf then
@@ -654,7 +654,7 @@ function dispatcher ()
 		print("XOR (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xee then
-		XOR_n()
+		XOR_n(rom[pc + 1])
 		print("XOR " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xbf then
@@ -690,7 +690,7 @@ function dispatcher ()
 		print("CP (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xfe then
-		CP_n()
+		CP_n(rom[pc + 1])
 		print("CP " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x3c then
@@ -774,7 +774,7 @@ function dispatcher ()
 		print("ADD HL, SP")
 		pc = pc + 1
 	elseif rom[pc] == 0xe8 then
-		ADD_SP_n()
+		ADD_SP_n(rom[pc + 1])
 		print("ADD SP, " .. toHex(pc + 1))
 		pc = pc + 2
 	elseif rom[pc] == 0x03 then
@@ -862,52 +862,52 @@ function dispatcher ()
 		print("RRA")
 		pc = pc + 1
 	elseif rom[pc] == 0xc3 then
-		JP_nn()
+		JP_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc2 then
-		JP_NZ_nn()
+		JP_NZ_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xca then
-		JP_Z_nn()
+		JP_Z_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP Z" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xd2 then
-		JP_NC_nn()
+		JP_NC_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP  NC" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xda then
-		JP_C_nn()
+		JP_C_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP  C" .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xe9 then
-		JP_HL()
+		JP_HL(to16b(rom[pc + 1], rom[pc + 2]))
 		print("JP (HL)")
 	elseif rom[pc] == 0x18 then
-		JR_n()
+		JR_n(rom[pc + 1])
 		print("JR " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x20 then
-		JR_NZ_n()
+		JR_NZ_n(rom[pc + 1])
 		print("JR NZ, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x28 then
-		JR_Z_n()
+		JR_Z_n(rom[pc + 1])
 		print("JR Z, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x30 then
-		JR_NC_n()
+		JR_NC_n(rom[pc + 1])
 		print("JR NC, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0x38 then
-		JR_C_n()
+		JR_C_n(rom[pc + 1])
 		print("JR C, " .. toHex(rom[pc + 1]))
 	elseif rom[pc] == 0xcd then
-		CALL_nn()
+		CALL_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("CALL " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc4 then
-		CALL_NZ_nn()
+		CALL_NZ_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("CALL NZ, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xcc then
-		CALL_Z_nn()
+		CALL_Z_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("CALL Z, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xd4 then
-		CALL_NC_nn()
+		CALL_NC_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("CALL NC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xdc then
-		CALL_C_nn()
+		CALL_C_nn(to16b(rom[pc + 1], rom[pc + 2]))
 		print("CALL C, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 	elseif rom[pc] == 0xc7 then
 		RST_00H()
@@ -1212,7 +1212,7 @@ function dispatcher ()
 			print("SRL (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x47 then
-			BIT_b_A()
+			BIT_b_A(rom[pc + 2])
 			print("BIT " .. toHex(pc + 2) .. ", A")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x40 then
