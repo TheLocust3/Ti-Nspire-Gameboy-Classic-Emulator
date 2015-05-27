@@ -9,15 +9,17 @@ unless File.directory?(path + "release")
 end
 
 program = ""
-files = [path + "rom.lua", path + "header.lua", path + "bitwise.lua", path + "dispatcher.lua", path + "memory.lua", path + "helperFunctions.lua", path + "opcodes.lua", path + "main.lua"]
+files = [path + "rom.lua", path + "header.lua", path + "bitwise.lua", path + "dispatcher.lua", path + "memory.lua", path + "helperFunctions.lua", path + "opcodes.lua"]
 
 if ARGV[0] == "-a"
 	if File.file?(ARGV[1])
-		files[6] = ARGV[1]
+		files[files.length] = ARGV[1]
 	else
 		puts ARGV[1] + " is not a file"
 		exit
 	end
+elsif ARGV[0] == "-r"
+	files[files.length] = path + "main.lua"
 elsif ARGV[0] != nil
 	puts "Unkown arguemnt " + ARGV[0]
 	exit
