@@ -1056,13 +1056,14 @@ function add_16b (rIndex1, rIndex2, n)
 		sum = to16b(registers[rIndex], registers[rIndex2]) + n
 
 		store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
+		setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
 	else
-		sum = registers[8] + n
+		sum = registers[rIndex1] + n
 
-		registers[rIndex1] = bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16))
+		registers[rIndex1] = toInt(toBits(sum, 16))
+		print(registers[rIndex1])
+		setFlags(nil, false, halfCarry_add_16(shiftRight(registers[rIndex1], 8), toInt(toBits(registers[rIndex1], 8))), (sum > 65535))
 	end
-
-	setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
 end
 
 -- 0x09
@@ -1087,7 +1088,7 @@ end
 
 -- 0xe8
 function ADD_SP_n (n)
-	add_16b(8, nil, n)
+	add_16b(9, nil, n)
 end
 
 function inc_16b (rIndex1, rIndex2)

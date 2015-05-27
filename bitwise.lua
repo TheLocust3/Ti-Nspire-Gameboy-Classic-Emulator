@@ -2,17 +2,18 @@
 -- Functions that start with b return a bit array
 -- Functions that do not start with b return an int
 
-
--- The function toBits is from http://stackoverflow.com/questions/9079853/lua-print-integer-as-a-binary
 function toBits (num, bits)
-    bits = bits or select(2, math.frexp(num))
-    local bitArray = {}      
-    for b = bits, 1, -1 do
-        bitArray[b] = math.fmod(num,2)
-        num = (num - bitArray[b]) / 2
+    binary = {}
+    total = num
+    i = 0
+
+    while i <= bits do
+        binary[i] = total % 2
+        total = math.floor(total / 2)
+        i = i + 1
     end
-    
-    return bitArray
+
+    return binary
 end
 
 function toInt (bits)
@@ -27,7 +28,7 @@ function toInt (bits)
 		i = i - 1
 	end
 	
-	return number
+	return math.floor(number)
 end
 
 -- Shifts take only ints
@@ -63,6 +64,10 @@ end
 
 function bitwiseAnd_8 (bits1, bits2)
     return bitwiseAnd(toBits(bits1, 8), toBits(bits2, 8))
+end
+
+function bitwiseAnd_16 (bits1, bits2)
+    return bitwiseAnd(toBits(bits1, 16), toBits(bits2, 16))
 end
 
 function bBitwiseOr (bits1, bits2)

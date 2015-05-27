@@ -67,7 +67,7 @@ function halfCarry_add_8 (a, b)
 end
 
 function halfCarry_add_16 (a, b)
-	if bitwiseAnd(toBits(bitwiseAnd(a, 0xfff) + bitwiseAnd(b, 0xfff), 16), toBits(0xfff0, 16)) > 0 then
+	if bitwiseAnd_16(bitwiseAnd_16(a, 0xfff) + bitwiseAnd_16(b, 0xfff), 0xfff0) > 0 then
 		return true
 	else
 		return false
