@@ -46,7 +46,7 @@ end
 
 function store16b (rIndex1, rIndex2, num)
 	registers[rIndex1] = shiftRight(num, 8)
-	registers[rIndex2] = bitwiseAnd(toBits(num, 16), 0x00ff)
+	registers[rIndex2] = toInt(toBits(num, 8))
 end
 
 function getRegister_16b (first)

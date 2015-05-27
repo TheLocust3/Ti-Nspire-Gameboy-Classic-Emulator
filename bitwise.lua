@@ -33,11 +33,11 @@ end
 -- Shifts take only ints
 
 function shiftLeft (number, shift)
-    return number * math.pow(2, shift)
+    return math.floor(number * math.pow(2, shift))
 end
 
 function shiftRight (number, shift)
-	return number / math.pow(2, shift)
+	return math.floor(number / math.pow(2, shift))
 end
 
 function bBitwiseAnd (bits1, bits2)
