@@ -1,3 +1,3 @@
-while pc < #rom do
+while true do
 	dispatcher()
 end

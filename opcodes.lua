@@ -389,7 +389,7 @@ function LD_HL_A ()
 end
 
 -- 0xea
-function LD_nn_A ()
+function LD_nn_A (nn)
 	ld_8b(get_8b(nn), registers[1])
 end
 
@@ -458,6 +458,11 @@ function LD_HL_nn (nn)
 	ld_16b(6, nn)
 end
 
+-- 0x31
+function LD_SP_nn (nn)
+	registers[9] = nn
+end
+
 -- 0xf9
 function LD_SP_HL ()
 	registers[9] = getRegister_16b(6)
@@ -471,7 +476,7 @@ end
 
 -- 0x08
 function LD_nn_SP (nn)
-
+	registers[9] = nn
 end
 
 function push (nn)
@@ -487,21 +492,21 @@ end
 
 -- 0xc5
 function PUSH_BC ()
-	push(2)
+	push(to16b(registers[2], registers[3]))
 end
 
 -- 0xd5
 function PUSH_DE ()
-	push(4)
+	push(to16b(registers[4], registers[5]))
 end
 
 -- 0xe5
 function PUSH_HL ()
-	push(6)
+	push(to16b(registers[6], registers[7]))
 end
 
 function pop (rIndex1, rIndex2)
-	registers[rIndex1] = shiftRight(get_8b(registers[9]), 8)
+	registers[rIndex1] = shiftRight(bitwiseAnd_8(get_8b(registers[9]), 0xf0), 8)
 	registers[rIndex2] = bitwiseAnd(toBits(get_8(registers[9] + 1), 16), 0x00ff)
 
 	registers[9] = registers[9] + 2 -- Technically it is gone
@@ -639,7 +644,7 @@ function sub_8b (rIndex, n)
 	diff = registers[rIndex] + n
 
 	registers[rIndex] = bitwiseAnd_8(diff, 0xff)
-	setFlags((diff == 0), true, halfCarry_sub_8(registers[rIndex], nn), diff < 0)
+	setFlags((diff == 0), true, halfCarry_sub_8(registers[rIndex], n), diff < 0)
 end
 
 -- 0x97
@@ -1801,24 +1806,26 @@ end
 -- Jumps
 
 function jp (cc, nn)
+	location = nn + 1
+
 	if cc == nil then
-		pc = nn
+		pc = location
 	else
 		if cc == "NZ" then
 			if fZero == false then
-				pc = nn
+				pc = location
 			end
 		elseif cc == "Z" then
 			if fZero == true then
-				pc = nn
+				pc = location
 			end
 		elseif cc == "NC" then
 			if fCarry == false then
-				pc = nn
+				pc = location
 			end
 		else
 			if fCarry == true then
-				pc = nn
+				pc = location
 			end
 		end
 	end
@@ -1987,9 +1994,9 @@ end
 -- Returns
 
 function ret (cc)
-	jp(cc, to16b(get_16b(registers[9])))
-
 	registers[9] = registers[9] + 2
+
+	jp(cc, get_16b(registers[9]))
 end
 
 -- 0xc9

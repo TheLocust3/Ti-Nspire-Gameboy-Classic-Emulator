@@ -11,6 +11,7 @@ function write_8b (location, value)
 end
 
 function write_16b (location, value)
-	memory[location] = shiftRight(value, 8)
+	print(bitwiseAnd(toBits(value, 16), toBits(0x00ff, 16)))
+	memory[location] = shiftRight(bitwiseAnd(toBits(value, 16), toBits(0xff00, 16)), 8)
 	memory[location + 1] = bitwiseAnd(toBits(value, 16), toBits(0x00ff, 16))
 end

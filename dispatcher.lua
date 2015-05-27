@@ -1,4 +1,5 @@
 function dispatcher ()
+	print("SP: " .. registers[9] .. " and points to: " .. get_8b(registers[9]))
 	io.write(toHex(pc) .. ": ")
 
 	if rom[pc] == 0x06 then
@@ -339,11 +340,11 @@ function dispatcher ()
 		pc = pc + 1
 	elseif rom[pc] == 0xe0 then
 		LDH_in_A(rom[pc + 1])
-		print("LDH ($FF00 .. " .. toHex(rom[pc + 1]) .. "), A")
+		print("LDH ($FF00 + " .. toHex(rom[pc + 1]) .. "), A")
 		pc = pc + 2
 	elseif rom[pc] == 0xf0 then
 		LDH_A_in(rom[pc + 1])
-		print("LDH A, ($FF00 .. " .. toHex(rom[pc + 1]) .. ")")
+		print("LDH A, ($FF00 + " .. toHex(rom[pc + 1]) .. ")")
 		pc = pc + 2
 	elseif rom[pc] == 0x01 then
 		LD_BC_nn(to16b(rom[pc + 1], rom[pc + 2]))
