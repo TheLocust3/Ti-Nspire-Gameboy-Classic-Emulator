@@ -1,4 +1,6 @@
 function setFlags (z, s, hc, c)
+	flag = {0, 0, 0, 0, 0, 0, 0, 0}
+
 	if z ~= nil then
 		fZero = z
 	end
@@ -14,6 +16,32 @@ function setFlags (z, s, hc, c)
 	if c ~= nil then
 		fCarry = c
 	end
+
+	if z == true then
+		flag[8] = 1
+	else
+		flag[8] = 0
+	end
+
+	if s == true then
+		flag[7] = 1
+	else
+		flag[7] = 0
+	end
+
+	if hc == true then
+		flag[6] = 1
+	else
+		flag[6] = 0
+	end
+
+	if c == true then
+		flag[5] = 1
+	else
+		flag[5] = 0
+	end
+
+	registers[8] = toInt(flag)
 end
 
 function store16b (rIndex1, rIndex2, num)
