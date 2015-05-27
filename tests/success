@@ -2,3 +2,9 @@ add_8.lua:
 Results: 72, fZero false, fSubtract false, fHalfCarry false, fCarry false;
 adc_8.lua:
 Results: 72, fZero false, fSubtract false, fHalfCarry false, fCarry false;
+add_zero.lua:
+Results: 0, fZero true, fSubtract false, fHalfCarry false, fCarry false;
+add_A_B.lua:
+Results: 7, fZero false, fSubtract false, fHalfCarry true, fCarry true;
+sub_8.lua:
+Results: 0, fZero false, fSubtract true, fHalfCarry true, fCarry true;
