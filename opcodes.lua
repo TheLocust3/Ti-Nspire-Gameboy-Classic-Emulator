@@ -507,7 +507,7 @@ end
 
 function pop (rIndex1, rIndex2)
 	registers[rIndex1] = get_8b(registers[9])
-	registers[rIndex2] = get_8(registers[9] + 1)
+	registers[rIndex2] = get_8b(registers[9] + 1)
 
 	registers[9] = registers[9] + 2 -- Technically it is gone
 end
