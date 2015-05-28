@@ -1,1320 +1,1327 @@
+command = ""
+
+function log (str)
+	command = str
+
+	print(str)
+end
+
 function dispatcher ()
-	print("SP: " .. registers[9] .. " and points to: " .. get_8b(registers[9]))
-	io.write(toHex(pc) .. ": ")
+	log(toHex(pc) .. ": ")
 
 	if rom[pc] == 0x06 then
 		LD_B_n(rom[pc + 1])
-		print("LD B, " .. toHex(rom[pc + 1]))
+		log("LD B, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x0e then
 		LD_C_n(rom[pc + 1])
-		print("LD C, " .. toHex(rom[pc + 1]))
+		log("LD C, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x16 then
 		LD_D_n(rom[pc + 1])
-		print("LD D, " .. toHex(rom[pc + 1]))
+		log("LD D, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x1e then
 		LD_E_n(rom[pc + 1])
-		print("LD E, " .. toHex(rom[pc + 1]))
+		log("LD E, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x26 then
 		LD_H_n(rom[pc + 1])
-		print("LD H, " .. toHex(rom[pc + 1]))
+		log("LD H, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x2e then
 		LD_L_n(rom[pc + 1])
-		print("LD L, " .. toHex(rom[pc + 1]))
+		log("LD L, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x7f then
 		LD_A_A()
-		print("LD A, A")
+		log("LD A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x78 then
 		LD_A_B()
-		print("LD A, B")
+		log("LD A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x79 then
 		LD_A_C()
-		print("LD A, C")
+		log("LD A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x7a then
 		LD_A_D()
-		print("LD A, D")
+		log("LD A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x7b then
 		LD_A_E()
-		print("LD A, E")
+		log("LD A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x7c then
 		LD_A_H()
-		print("LD A, H")
+		log("LD A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x7d then
 		LD_A_L()
-		print("LD A, L")
+		log("LD A, L")
 		pc = pc +1
 	elseif rom[pc] == 0x7e then
 		LD_A_HL()
-		print("LD A, (HL)")
+		log("LD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x40 then
 		LD_B_B()
-		print("LD B, B")
+		log("LD B, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x41 then
 		LD_B_C()
-		print("LD B, C")
+		log("LD B, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x42 then
 		LD_B_D()
-		print("LD B, D")
+		log("LD B, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x43 then
 		LD_B_E()
-		print("LD B, E")
+		log("LD B, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x44 then
 		LD_B_H()
-		print("LD B, H")
+		log("LD B, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x45 then
 		LD_B_L()
-		print("LD B, L")
+		log("LD B, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x46 then
 		LD_B_HL()
-		print("LD B, (HL)")
+		log("LD B, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x48 then
 		LD_C_B()
-		print("LD C, B")
+		log("LD C, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x49 then
 		LD_C_C()
-		print("LD C, C")
+		log("LD C, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x4a then
 		LD_C_D()
-		print("LD C, D")
+		log("LD C, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x4b then
 		LD_C_E()
-		print("LD C, E")
+		log("LD C, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x4c then
 		LD_C_H()
-		print("LD C, H")
+		log("LD C, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x4d then
 		LD_C_L()
-		print("LD C, L")
+		log("LD C, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x4e then
 		LD_C_HL()
-		print("LD C, (HL)")
+		log("LD C, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x50 then
 		LD_D_B()
-		print("LD D, B")
+		log("LD D, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x51 then
 		LD_D_C()
-		print("LD D, C")
+		log("LD D, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x52 then
 		LD_D_D()
-		print("LD D, D")
+		log("LD D, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x53 then
 		LD_D_E()
-		print("LD D, E")
+		log("LD D, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x54 then
 		LD_D_H()
-		print("LD D, H")
+		log("LD D, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x55 then
 		LD_D_L()
-		print("LD D, L")
+		log("LD D, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x56 then
 		LD_D_HL()
-		print("LD D, (HL)")
+		log("LD D, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x58 then
 		LD_E_B()
-		print("LD E, B")
+		log("LD E, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x59 then
 		LD_E_C()
-		print("LD E, C")
+		log("LD E, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x5a then
 		LD_E_D()
-		print("LD E, D")
+		log("LD E, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x5b then
 		LD_E_E()
-		print("LD E, E")
+		log("LD E, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x5c then
 		LD_E_H()
-		print("LD E, H")
+		log("LD E, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x5d then
 		LD_E_L()
-		print("LD E, L")
+		log("LD E, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x5e then
 		LD_E_HL()
-		print("LD E, (HL)")
+		log("LD E, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x60 then
 		LD_H_B()
-		print("LD H, B")
+		log("LD H, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x61 then
 		LD_H_C()
-		print("LD H, C")
+		log("LD H, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x62 then
 		LD_H_D()
-		print("LD H, D")
+		log("LD H, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x63 then
 		LD_H_E()
-		print("LD H, E")
+		log("LD H, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x64 then
 		LD_H_H()
-		print("LD H, H")
+		log("LD H, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x65 then
 		LD_H_L()
-		print("LD H, L")
+		log("LD H, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x66 then
 		LD_H_HL()
-		print("LD H, (HL)")
+		log("LD H, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x68 then
 		LD_L_B()
-		print("LD L, B")
+		log("LD L, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x69 then
 		LD_L_C()
-		print("LD L, C")
+		log("LD L, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x6a then
 		LD_L_D()
-		print("LD L, D")
+		log("LD L, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x6b then
 		LD_L_E()
-		print("LD L, E")
+		log("LD L, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x6c then
 		LD_L_H()
-		print("LD L, H")
+		log("LD L, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x6d then
 		LD_L_L()
-		print("LD L, L")
+		log("LD L, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x6e then
 		LD_L_HL()
-		print("LD L, (HL)")
+		log("LD L, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x70 then
 		LD_HL_B()
-		print("LD (HL), B")
+		log("LD (HL), B")
 		pc = pc + 1
 	elseif rom[pc] == 0x71 then
 		LD_HL_C()
-		print("LD (HL), C")
+		log("LD (HL), C")
 		pc = pc + 1
 	elseif rom[pc] == 0x72 then
 		LD_HL_D()
-		print("LD (HL), D")
+		log("LD (HL), D")
 		pc = pc + 1
 	elseif rom[pc] == 0x73 then
 		LD_HL_E()
-		print("LD (HL), E")
+		log("LD (HL), E")
 		pc = pc + 1
 	elseif rom[pc] == 0x74 then
 		LD_HL_H()
-		print("LD (HL), H")
+		log("LD (HL), H")
 		pc = pc + 1
 	elseif rom[pc] == 0x75 then
 		LD_HL_L()
-		print("LD (HL), L")
+		log("LD (HL), L")
 		pc = pc + 1
 	elseif rom[pc] == 0x36 then
 		LD_HL_n(rom[pc + 1])
-		print("LD (HL), " .. toHex(rom[pc + 1]))
+		log("LD (HL), " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x0a then
 		LD_A_BC()
-		print("LD A, (BC)")
+		log("LD A, (BC)")
 		pc = pc + 1
 	elseif rom[pc] == 0x1a then
 		LD_A_DE()
-		print("LD A, (DE)")
+		log("LD A, (DE)")
 		pc = pc + 1
 	elseif rom[pc] == 0x7e then
 		LD_A_HL()
-		print("LD A, (HL)")
+		log("LD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xfa then
 		LD_A_nn(to16n(rom[pc + 1], rom[pc + 2]))
-		print("LD A, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
+		log("LD A, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x3e then
 		LD_A_n(rom[pc + 1])
-		print("LD A, " .. toHex(rom[pc + 1]))
+		log("LD A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x47 then
 		LD_B_A()
-		print("LD B, A")
+		log("LD B, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x4f then
 		LD_C_A()
-		print("LD C, A")
+		log("LD C, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x57 then
 		LD_D_A()
-		print("LD D, A")
+		log("LD D, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x5f then
 		LD_E_A()
-		print("LD E, A")
+		log("LD E, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x67 then
 		LD_H_A()
-		print("LD H, A")
+		log("LD H, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x6f then
 		LD_L_A()
-		print("LD L, A")
+		log("LD L, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x02 then
 		LD_BC_A()
-		print("LD (BC), A")
+		log("LD (BC), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x12 then
 		LD_DE_A()
-		print("LD (DE), A")
+		log("LD (DE), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x77 then
 		LD_HL_A()
-		print("LD (HL), A")
+		log("LD (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0xea then
 		LD_nn_A(to16b(rom[pc + 1], rom[pc + 2]))
-		print("LD (" .. toHex(rom[pc + 1]) .. "" .. u_toHex(pc + 2) .. "), A")
+		log("LD (" .. toHex(rom[pc + 1]) .. "" .. u_toHex(pc + 2) .. "), A")
 		pc = pc + 3
 	elseif rom[pc] == 0xf2 then
 		LD_A_iC()
-		print("LD A, (C)")
+		log("LD A, (C)")
 		pc = pc + 1
 	elseif rom[pc] == 0xe2 then
 		LD_iC_A()
-		print("LD ($FF00 .. C), A")
+		log("LD ($FF00 .. C), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x3a then
 		LDD_A_HL()
-		print("LD A, (HLD) or LD A, (HL-) or LDD A, (HL)")
+		log("LD A, (HLD) or LD A, (HL-) or LDD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x32 then
 		LDD_HL_A()
-		print("LD (HLD), A or LD (HL-), A or LDD (HL), A")
+		log("LD (HLD), A or LD (HL-), A or LDD (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0x2a then
 		LDI_A_HL()
-		print("LD A, (HLI) or LD A, (HL..) or LDI A, (HL)")
+		log("LD A, (HLI) or LD A, (HL..) or LDI A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x22 then
 		LDI_HL_A()
-		print("LD (HLI), LD A or LD (HL..), LDI A or (HL), A")
+		log("LD (HLI), LD A or LD (HL..), LDI A or (HL), A")
 		pc = pc + 1
 	elseif rom[pc] == 0xe0 then
 		LDH_in_A(rom[pc + 1])
-		print("LDH ($FF00 + " .. toHex(rom[pc + 1]) .. "), A")
+		log("LDH ($FF00 + " .. toHex(rom[pc + 1]) .. "), A")
 		pc = pc + 2
 	elseif rom[pc] == 0xf0 then
 		LDH_A_in(rom[pc + 1])
-		print("LDH A, ($FF00 + " .. toHex(rom[pc + 1]) .. ")")
+		log("LDH A, ($FF00 + " .. toHex(rom[pc + 1]) .. ")")
 		pc = pc + 2
 	elseif rom[pc] == 0x01 then
 		LD_BC_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("LD BC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
+		log("LD BC, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x11 then
 		LD_DE_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("LD DE, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
+		log("LD DE, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x21 then
 		LD_HL_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("LD HL, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
+		log("LD HL, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0x31 then
 		LD_SP_nn(to16b(rom[pc + 1], rom[pc + 2]))
-		print("LD SP, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
+		log("LD SP, " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2))
 		pc = pc + 3
 	elseif rom[pc] == 0xf9 then
 		LD_SP_HL()
-		print("LD SP, HL")
+		log("LD SP, HL")
 		pc = pc + 1
 	elseif rom[pc] == 0xf8 then
 		LDHL_SP_n(rom[pc + 1])
-		print("LDHL SP, " .. toHex(rom[pc + 1]) .. " or LD HL, SP .. " .. toHex(rom[pc + 1]))
+		log("LDHL SP, " .. toHex(rom[pc + 1]) .. " or LD HL, SP .. " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x08 then
 		LD_nn_SP(to16b(rom[pc + 1], rom[pc + 2]))
-		print("LD " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2) .. ", SP")
+		log("LD " .. toHex(rom[pc + 1]) .. u_toHex(pc + 2) .. ", SP")
 		pc = pc + 3
 	elseif rom[pc] == 0xf5 then
 		PUSH_AF()
-		print("PUSH AF")
+		log("PUSH AF")
 		pc = pc + 1
 	elseif rom[pc] == 0xc5 then
 		PUSH_BC()
-		print("PUSH BC")
+		log("PUSH BC")
 		pc = pc + 1
 	elseif rom[pc] == 0xd5 then
 		PUSH_DE()
-		print("PUSH DE")
+		log("PUSH DE")
 		pc = pc + 1
 	elseif rom[pc] == 0xe5 then
 		PUSH_HL()
-		print("PUSH HL")
+		log("PUSH HL")
 		pc = pc + 1
 	elseif rom[pc] == 0xf1 then
 		POP_AF()
-		print("POP AF")
+		log("POP AF")
 		pc = pc + 1
 	elseif rom[pc] == 0xc1 then
 		POP_BC()
-		print("POP BC")
+		log("POP BC")
 		pc = pc + 1
 	elseif rom[pc] == 0xd1 then
 		POP_DE()
-		print("POP DE")
+		log("POP DE")
 		pc = pc + 1
 	elseif rom[pc] == 0xe1 then
 		POP_HL()
-		print("POP HL")
+		log("POP HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x87 then
 		ADD_A_A()
-		print("ADD A, A")
+		log("ADD A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x80 then
 		ADD_A_B()
-		print("ADD A, B")
+		log("ADD A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x81 then
 		ADD_A_C()
-		print("ADD A, C")
+		log("ADD A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x82 then
 		ADD_A_D()
-		print("ADD A, D")
+		log("ADD A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x83 then
 		ADD_A_E()
-		print("ADD A, E")
+		log("ADD A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x84 then
 		ADD_A_H()
-		print("ADD A, H")
+		log("ADD A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x85 then
 		ADD_A_L()
-		print("ADD A, L")
+		log("ADD A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x86 then
 		ADD_A_HL()
-		print("ADD A, (HL)")
+		log("ADD A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xc6 then
 		ADD_A_n(rom[pc + 1])
-		print("ADD A, " .. toHex(rom[pc + 1]))
+		log("ADD A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x8f then
 		ADC_A_A()
-		print("ADC A, A")
+		log("ADC A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x88 then
 		ADC_A_B()
-		print("ADC A, B")
+		log("ADC A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x89 then
 		ADC_A_C()
-		print("ADC A, C")
+		log("ADC A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x8a then
 		ADC_A_D()
-		print("ADC A, D")
+		log("ADC A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x8b then
 		ADC_A_E()
-		print("ADC A, E")
+		log("ADC A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x8c then
 		ADC_A_H()
-		print("ADC A, H")
+		log("ADC A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x8d then
 		ADC_A_L()
-		print("ADC A, L")
+		log("ADC A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x8e then
 		ADC_A_HL()
-		print("ADC A, (HL)")
+		log("ADC A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xce then
 		ADC_A_n(rom[pc + 1])
-		print("ADC A, " .. toHex(rom[pc + 1]))
+		log("ADC A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x97 then
 		SUB_A()
-		print("SUB A, A")
+		log("SUB A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x90 then
 		SUB_B()
-		print("SUB A, B")
+		log("SUB A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x91 then
 		SUB_C()
-		print("SUB A, C")
+		log("SUB A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x92 then
 		SUB_D()
-		print("SUB A, D")
+		log("SUB A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x93 then
 		SUB_E()
-		print("SUB A, E")
+		log("SUB A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x94 then
 		SUB_H()
-		print("SUB A, H")
+		log("SUB A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x95 then
 		SUB_L()
-		print("SUB A, L")
+		log("SUB A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x96 then
 		SUB_HL()
-		print("SUB A, (HL)")
+		log("SUB A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xd6 then
 		SUB_n(rom[pc + 1])
-		print("SUB A, " .. toHex(rom[pc + 1]))
+		log("SUB A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x9f then
 		SBC_A_A()
-		print("SBC A, A")
+		log("SBC A, A")
 		pc = pc + 1
 	elseif rom[pc] == 0x98 then
 		SBC_A_B()	
-		print("SBC A, B")
+		log("SBC A, B")
 		pc = pc + 1
 	elseif rom[pc] == 0x99 then
 		SBC_A_C()
-		print("SBC A, C")
+		log("SBC A, C")
 		pc = pc + 1
 	elseif rom[pc] == 0x9a then
 		SBC_A_D()
-		print("SBC A, D")
+		log("SBC A, D")
 		pc = pc + 1
 	elseif rom[pc] == 0x9b then
 		SBC_A_E()
-		print("SBC A, E")
+		log("SBC A, E")
 		pc = pc + 1
 	elseif rom[pc] == 0x9c then
 		SBC_A_H()
-		print("SBC A, H")
+		log("SBC A, H")
 		pc = pc + 1
 	elseif rom[pc] == 0x9d then
 		SBC_A_L()
-		print("SBC A, L")
+		log("SBC A, L")
 		pc = pc + 1
 	elseif rom[pc] == 0x9e then
 		SBC_A_HL()
-		print("SBC A, (HL)")
+		log("SBC A, (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xde then
 		SBC_A_n(rom[pc + 1])
-		print("SBC A, " .. toHex(rom[pc + 1]))
+		log("SBC A, " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xa7 then
 		AND_A()
-		print("AND A")
+		log("AND A")
 		pc = pc + 1
 	elseif rom[pc] == 0xa0 then
 		AND_B()
-		print("AND B")
+		log("AND B")
 		pc = pc + 1
 	elseif rom[pc] == 0xa1 then
 		AND_C()
-		print("AND C")
+		log("AND C")
 		pc = pc + 1
 	elseif rom[pc] == 0xa2 then
 		AND_D()
-		print("AND D")
+		log("AND D")
 		pc = pc + 1
 	elseif rom[pc] == 0xa3 then
 		AND_E()
-		print("AND E")
+		log("AND E")
 		pc = pc + 1
 	elseif rom[pc] == 0xa4 then
 		AND_H()
-		print("AND H")
+		log("AND H")
 		pc = pc + 1
 	elseif rom[pc] == 0xa5 then
 		AND_L()
-		print("AND L")
+		log("AND L")
 		pc = pc + 1
 	elseif rom[pc] == 0xa6 then
 		AND_HL()
-		print("AND (HL)")
+		log("AND (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xe6 then
 		AND_n(rom[pc + 1])
-		print("AND " .. toHex(rom[pc + 1]))
+		log("AND " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xb7 then
 		OR_A()
-		print("OR A")
+		log("OR A")
 		pc = pc + 1
 	elseif rom[pc] == 0xb0 then
 		OR_B()
-		print("OR B")
+		log("OR B")
 		pc = pc + 1
 	elseif rom[pc] == 0xb1 then
 		OR_C()
-		print("OR C")
+		log("OR C")
 		pc = pc + 1
 	elseif rom[pc] == 0xb2 then
 		OR_D()
-		print("OR D")
+		log("OR D")
 		pc = pc + 1
 	elseif rom[pc] == 0xb3 then
 		OR_E()
-		print("OR E")
+		log("OR E")
 		pc = pc + 1
 	elseif rom[pc] == 0xb4 then
 		OR_H()
-		print("OR H")
+		log("OR H")
 		pc = pc + 1
 	elseif rom[pc] == 0xb5 then
 		OR_L()
-		print("OR L")
+		log("OR L")
 		pc = pc + 1
 	elseif rom[pc] == 0xb6 then
 		OR_HL()
-		print("OR (HL)")
+		log("OR (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xf6 then
 		OR_n(rom[pc + 1])
-		print("OR " .. toHex(rom[pc + 1]))
+		log("OR " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xaf then
 		XOR_A()
-		print("XOR A")
+		log("XOR A")
 		pc = pc + 1
 	elseif rom[pc] == 0xa8 then
 		XOR_B()
-		print("XOR B")
+		log("XOR B")
 		pc = pc + 1
 	elseif rom[pc] == 0xa9 then
 		XOR_C()
-		print("XOR C")
+		log("XOR C")
 		pc = pc + 1
 	elseif rom[pc] == 0xaa then
 		XOR_D()
-		print("XOR D")
+		log("XOR D")
 		pc = pc + 1
 	elseif rom[pc] == 0xab then
 		XOR_E()
-		print("XOR E")
+		log("XOR E")
 		pc = pc + 1
 	elseif rom[pc] == 0xac then
 		XOR_H()
-		print("XOR H")
+		log("XOR H")
 		pc = pc + 1
 	elseif rom[pc] == 0xad then
 		XOR_L()
-		print("XOR L")
+		log("XOR L")
 		pc = pc + 1
 	elseif rom[pc] == 0xea then
 		XOR_HL()
-		print("XOR (HL)")
+		log("XOR (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xee then
 		XOR_n(rom[pc + 1])
-		print("XOR " .. toHex(rom[pc + 1]))
+		log("XOR " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0xbf then
 		CP_A()
-		print("CP A")
+		log("CP A")
 		pc = pc + 1
 	elseif rom[pc] == 0xb8 then
 		CP_B()
-		print("CP B")
+		log("CP B")
 		pc = pc + 1
 	elseif rom[pc] == 0xb9 then
 		CP_C()
-		print("CP C")
+		log("CP C")
 		pc = pc + 1
 	elseif rom[pc] == 0xba then
 		CP_D()
-		print("CP D")
+		log("CP D")
 		pc = pc + 1
 	elseif rom[pc] == 0xbb then
 		CP_E()
-		print("CP E")
+		log("CP E")
 		pc = pc + 1
 	elseif rom[pc] == 0xbc then
 		CP_H()
-		print("CP H")
+		log("CP H")
 		pc = pc + 1
 	elseif rom[pc] == 0xbd then
 		CP_L()
-		print("CP L")
+		log("CP L")
 		pc = pc + 1
 	elseif rom[pc] == 0xbe then
 		CP_HL()
-		print("CP (HL)")
+		log("CP (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0xfe then
 		CP_n(rom[pc + 1])
-		print("CP " .. toHex(rom[pc + 1]))
+		log("CP " .. toHex(rom[pc + 1]))
 		pc = pc + 2
 	elseif rom[pc] == 0x3c then
 		INC_A()
-		print("INC A")
+		log("INC A")
 		pc = pc + 1
 	elseif rom[pc] == 0x04 then
 		INC_B()
-		print("INC B")
+		log("INC B")
 		pc = pc + 1
 	elseif rom[pc] == 0x0c then
 		INC_C()
-		print("INC C")
+		log("INC C")
 		pc = pc + 1
 	elseif rom[pc] == 0x14 then
 		INC_D()
-		print("INC D")
+		log("INC D")
 		pc = pc + 1
 	elseif rom[pc] == 0x1c then
 		INC_E()
-		print("INC E")
+		log("INC E")
 		pc = pc + 1
 	elseif rom[pc] == 0x24 then
 		INC_H()
-		print("INC H")
+		log("INC H")
 		pc = pc + 1
 	elseif rom[pc] == 0x2c then
 		INC_L()
-		print("INC L")
+		log("INC L")
 		pc = pc + 1
 	elseif rom[pc] == 0x34 then
 		INC_HL()
-		print("INC (HL)")
+		log("INC (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x3d then
 		DEC_A()
-		print("DEC A")
+		log("DEC A")
 		pc = pc + 1
 	elseif rom[pc] == 0x05 then
 		DEC_B()
-		print("DEC B")
+		log("DEC B")
 		pc = pc + 1
 	elseif rom[pc] == 0x0d then
 		DEC_C()
-		print("DEC C")
+		log("DEC C")
 		pc = pc + 1
 	elseif rom[pc] == 0x15 then
 		DEC_D()
-		print("DEC D")
+		log("DEC D")
 		pc = pc + 1
 	elseif rom[pc] == 0x1d then
 		DEC_E()
-		print("DEC E")
+		log("DEC E")
 		pc = pc + 1
 	elseif rom[pc] == 0x25 then
 		DEC_H()
-		print("DEC H")
+		log("DEC H")
 		pc = pc + 1
 	elseif rom[pc] == 0x2d then
 		DEC_L()
-		print("DEC L")
+		log("DEC L")
 		pc = pc + 1
 	elseif rom[pc] == 0x35 then
 		DEC_HL()
-		print("DEC (HL)")
+		log("DEC (HL)")
 		pc = pc + 1
 	elseif rom[pc] == 0x09 then
 		ADD_HL_BC()
-		print("ADD HL, BC")
+		log("ADD HL, BC")
 		pc = pc + 1
 	elseif rom[pc] == 0x19 then
 		ADD_HL_DE()
-		print("ADD HL, DE")
+		log("ADD HL, DE")
 		pc = pc + 1
 	elseif rom[pc] == 0x29 then
 		ADD_HL_HL()
-		print("ADD HL, HL")
+		log("ADD HL, HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x39 then
 		ADD_HL_SP()
-		print("ADD HL, SP")
+		log("ADD HL, SP")
 		pc = pc + 1
 	elseif rom[pc] == 0xe8 then
 		ADD_SP_n(rom[pc + 1])
-		print("ADD SP, " .. toHex(pc + 1))
+		log("ADD SP, " .. toHex(pc + 1))
 		pc = pc + 2
 	elseif rom[pc] == 0x03 then
 		INC_BC()
-		print("INC BC")
+		log("INC BC")
 		pc = pc + 1
 	elseif rom[pc] == 0x13 then
 		INC_DE()
-		print("INC DE")
+		log("INC DE")
 		pc = pc + 1
 	elseif rom[pc] == 0x23 then
 		INC_HL()
-		print("INC HL")
+		log("INC HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x33 then
 		INC_PC()
-		print("INC PC")
+		log("INC PC")
 		pc = pc + 1
 	elseif rom[pc] == 0x0b then
 		DEC_BC()
-		print("DEC BC")
+		log("DEC BC")
 		pc = pc + 1
 	elseif rom[pc] == 0x1b then
 		DEC_DE()
-		print("DEC DE")
+		log("DEC DE")
 		pc = pc + 1
 	elseif rom[pc] == 0x2b then
 		DEC_HL()
-		print("DEC HL")
+		log("DEC HL")
 		pc = pc + 1
 	elseif rom[pc] == 0x3b then
 		DEC_SP()
-		print("DEC SP")
+		log("DEC SP")
 		pc = pc + 1
 	elseif rom[pc] == 0x27 then
 		DAA()
-		print("DAA")
+		log("DAA")
 		pc = pc + 1
 	elseif rom[pc] == 0x2f then
 		CPL()
-		print("CPL")
+		log("CPL")
 		pc = pc + 1
 	elseif rom[pc] == 0x3f then
 		CCF()
-		print("CCF")
+		log("CCF")
 		pc = pc + 1
 	elseif rom[pc] == 0x37 then
 		SCF()
-		print("SCF")
+		log("SCF")
 		pc = pc + 1
 	elseif rom[pc] == 0x00 then
 		NOP()
-		print("NOP")
+		log("NOP")
 		pc = pc + 1
 	elseif rom[pc] == 0x76 then
 		HALT()
-		print("HALT")
+		log("HALT")
 		pc = pc + 1
 	elseif rom[pc] == 0x10 then
 		STOP()
-		print("STOP")
+		log("STOP")
 		pc = pc + 1
 	elseif rom[pc] == 0xf3 then
 		DI()
-		print("DI")
+		log("DI")
 		pc = pc + 1
 	elseif rom[pc] == 0xfb then
 		EI()
-		print("EI")
+		log("EI")
 		pc = pc + 1
 	elseif rom[pc] == 0x07 then
 		RLCA()
-		print("RLCA")
+		log("RLCA")
 		pc = pc + 1
 	elseif rom[pc] == 0x17 then
 		RLA()
-		print("RLA")
+		log("RLA")
 		pc = pc + 1
 	elseif rom[pc] == 0x0f then
 		RRCA()
-		print("RRCA")
+		log("RRCA")
 		pc = pc + 1
 	elseif rom[pc] == 0x1f then
 		RRA()
-		print("RRA")
+		log("RRA")
 		pc = pc + 1
 	elseif rom[pc] == 0xc3 then
-		print("JP " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("JP " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xc2 then
-		print("JP NZ, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("JP NZ, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_NZ_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xca then
-		print("JP Z" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("JP Z" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_Z_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xd2 then
-		print("JP  NC" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("JP  NC" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_NC_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xda then
-		print("JP  C" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("JP  C" .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		JP_C_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xe9 then
-		print("JP (HL)")
+		log("JP (HL)")
 		JP_HL(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0x18 then
-		print("JR " .. toHex(rom[pc + 1]))
+		log("JR " .. toHex(rom[pc + 1]))
 		JR_n(rom[pc + 1])
 	elseif rom[pc] == 0x20 then
-		print("JR NZ, " .. toHex(rom[pc + 1]))
+		log("JR NZ, " .. toHex(rom[pc + 1]))
 		JR_NZ_n(rom[pc + 1])
 	elseif rom[pc] == 0x28 then
-		print("JR Z, " .. toHex(rom[pc + 1]))
+		log("JR Z, " .. toHex(rom[pc + 1]))
 		JR_Z_n(rom[pc + 1])
 	elseif rom[pc] == 0x30 then
-		print("JR NC, " .. toHex(rom[pc + 1]))
+		log("JR NC, " .. toHex(rom[pc + 1]))
 		JR_NC_n(rom[pc + 1])
 	elseif rom[pc] == 0x38 then
-		print("JR C, " .. toHex(rom[pc + 1]))
+		log("JR C, " .. toHex(rom[pc + 1]))
 		JR_C_n(rom[pc + 1])
 	elseif rom[pc] == 0xcd then
-		print("CALL " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("CALL " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xc4 then
-		print("CALL NZ, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("CALL NZ, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_NZ_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xcc then
-		print("CALL Z, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("CALL Z, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_Z_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xd4 then
-		print("CALL NC, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("CALL NC, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_NC_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xdc then
-		print("CALL C, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
+		log("CALL C, " .. toHex(rom[pc + 1]) .. " " .. toHex(rom[pc + 2]))
 		CALL_C_nn(to16b(rom[pc + 1], rom[pc + 2]))
 	elseif rom[pc] == 0xc7 then
 		RST_00H()
-		print("RST 00H")
+		log("RST 00H")
 	elseif rom[pc] == 0xcf then
-		print("RST 08H")
+		log("RST 08H")
 		RST_08H()
 	elseif rom[pc] == 0xd7 then
-		print("RST 10H")
+		log("RST 10H")
 		RST_10H()
 	elseif rom[pc] == 0xdf then
-		print("RST 18H")
+		log("RST 18H")
 		RST_18H()
 	elseif rom[pc] == 0xe7 then
-		print("RST 20H")
+		log("RST 20H")
 		RST_20H()
 	elseif rom[pc] == 0xef then
-		print("RST 28H")
+		log("RST 28H")
 		RST_28H()
 	elseif rom[pc] == 0xf7 then
-		print("RST 30H")
+		log("RST 30H")
 		RST_30H()
 	elseif rom[pc] == 0xff then
-		print("RST 38H")
+		log("RST 38H")
 		RST_38H()
 	elseif rom[pc] == 0xc9 then
-		print("RET")
+		log("RET")
 		RET()
 	elseif rom[pc] == 0xc0 then
-		print("RET NZ")
+		log("RET NZ")
 		RET_NZ()
 	elseif rom[pc] == 0xc8 then
-		print("RET Z")
+		log("RET Z")
 		RET_Z()
 	elseif rom[pc] == 0xd0 then
-		print("RET NC")
+		log("RET NC")
 		RET_NC()
 	elseif rom[pc] == 0xd8 then
-		print("RET C")
+		log("RET C")
 		RET_C()
 	elseif rom[pc] == 0xd9 then
-		print("RETI")
+		log("RETI")
 		RETI()
 	elseif rom[pc] == 0xfc then
-		print("0xfc in an undocumented opcode and should not be used!")
+		log("0xfc in an undocumented opcode and should not be used!")
 		pc = pc + 1
 	elseif rom[pc] == 0xcb then
 		if rom[pc + 1] == 0x37 then
 			SWAP_A()
-			print("SWAP A")
+			log("SWAP A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x30 then
 			SWAP_B()
-			print("SWAP B")
+			log("SWAP B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x31 then
 			SWAP_C()
-			print("SWAP C")
+			log("SWAP C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x32 then
 			SWAP_D()
-			print("SWAP D")
+			log("SWAP D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x33 then
 			SWAP_E()
-			print("SWAP E")
+			log("SWAP E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x34 then
 			SWAP_H()
-			print("SWAP H")
+			log("SWAP H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x35 then
 			SWAP_L()
-			print("SWAP L")
+			log("SWAP L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x36 then
 			SWAP_HL()
-			print("SWAP (HL)")
+			log("SWAP (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x07 then
 			RLC_A()
-			print("RLC A")
+			log("RLC A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x00 then
 			RLC_B()
-			print("RLC B")
+			log("RLC B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x01 then
 			RLC_C()
-			print("RLC C")
+			log("RLC C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x02 then
 			RLC_D()
-			print("RLC D")
+			log("RLC D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x03 then
 			RLC_E()
-			print("RLC E")
+			log("RLC E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x04 then
 			RLC_H()
-			print("RLC H")
+			log("RLC H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x05 then
 			RLC_L()
-			print("RLC L")
+			log("RLC L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x06 then
 			RLC_HL()
-			print("RLC (HL)")
+			log("RLC (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x17 then
 			RL_A()
-			print("RL A")
+			log("RL A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x10 then
 			RL_B()
-			print("RL B")
+			log("RL B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x11 then
 			RL_C()
-			print("RL C")
+			log("RL C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x12 then
 			RL_D()
-			print("RL D")
+			log("RL D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x13 then
 			RL_E()
-			print("RL E")
+			log("RL E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x14 then
 			RL_H()
-			print("RL H")
+			log("RL H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x15 then
 			RL_L()
-			print("RL L")
+			log("RL L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x16 then
 			RL_HL()
-			print("RL (HL)")
+			log("RL (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x0f then
 			RRC_A()
-			print("RRC A")
+			log("RRC A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x08 then
 			RRC_B()
-			print("RRC B")
+			log("RRC B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x09 then
 			RRC_C()
-			print("RRC C")
+			log("RRC C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x0a then
 			RRC_D()
-			print("RRC D")
+			log("RRC D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x0b then
 			RRC_E()
-			print("RRC E")
+			log("RRC E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x0c then
 			RRC_H()
-			print("RRC H")
+			log("RRC H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x0d then
 			RRC_L()
-			print("RRC L")
+			log("RRC L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x0e then
 			RRC_HL()
-			print("RRC (HL)")
+			log("RRC (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x1f then
 			RR_A()
-			print("RR A")
+			log("RR A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x18 then
 			RR_B()
-			print("RR B")
+			log("RR B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x19 then
 			RR_C()
-			print("RR C")
+			log("RR C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x1a then
 			RR_D()
-			print("RR D")
+			log("RR D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x1b then
 			RR_E()
-			print("RR E")
+			log("RR E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x1c then
 			RR_H()
-			print("RR H")
+			log("RR H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x1d then
 			RR_L()
-			print("RR L")
+			log("RR L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x1e then
 			RR_HL()
-			print("RR (HL)")
+			log("RR (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x27 then
 			SLA_A()
-			print("SLA A")
+			log("SLA A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x20 then
 			SLA_B()
-			print("SLA B")
+			log("SLA B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x21 then
 			SLA_C()
-			print("SLA C")
+			log("SLA C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x22 then
 			SLA_D()
-			print("SLA D")
+			log("SLA D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x23 then
 			SLA_E()
-			print("SLA E")
+			log("SLA E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x24 then
 			SLA_H()
-			print("SLA H")
+			log("SLA H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x25 then
 			SLA_L()
-			print("SLA L")
+			log("SLA L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x26 then
 			SLA_HL()
-			print("SLA (HL)")
+			log("SLA (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x2f then
 			SRA_A()
-			print("SRA A")
+			log("SRA A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x28 then
 			SRA_B()
-			print("SRA B")
+			log("SRA B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x29 then
 			SRA_C()
-			print("SRA C")
+			log("SRA C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x2a then
 			SRA_D()
-			print("SRA D")
+			log("SRA D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x2b then
 			SRA_E()
-			print("SRA E")
+			log("SRA E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x2c then
 			SRA_H()
-			print("SRA H")
+			log("SRA H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x2d then
 			SRA_L()
-			print("SRA L")
+			log("SRA L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x2e then
 			SRA_HL()
-			print("SRA (HL)")
+			log("SRA (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x3f then
 			SRL_A()
-			print("SRL A")
+			log("SRL A")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x38 then
 			SRL_B()
-			print("SRL B")
+			log("SRL B")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x39 then
 			SRL_C()
-			print("SRL C")
+			log("SRL C")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x3a then
 			SRL_D()
-			print("SRL D")
+			log("SRL D")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x3b then
 			SRL_E()
-			print("SRL E")
+			log("SRL E")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x3c then
 			SRL_H()
-			print("SRL H")
+			log("SRL H")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x3d then
 			SRL_L()
-			print("SRL L")
+			log("SRL L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x3e then
 			SRL_HL()
-			print("SRL (HL)")
+			log("SRL (HL)")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0x47 then
 			BIT_b_A(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", A")
+			log("BIT " .. toHex(pc + 2) .. ", A")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x40 then
 			BIT_b_B(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", B")
+			log("BIT " .. toHex(pc + 2) .. ", B")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x41 then
 			BIT_b_C(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", C")
+			log("BIT " .. toHex(pc + 2) .. ", C")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x42 then
 			BIT_b_D(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", D")
+			log("BIT " .. toHex(pc + 2) .. ", D")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x43 then
 			BIT_b_E(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", E")
+			log("BIT " .. toHex(pc + 2) .. ", E")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x44 then
 			BIT_b_H(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", H")
+			log("BIT " .. toHex(pc + 2) .. ", H")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x45 then
 			BIT_b_L(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", L")
+			log("BIT " .. toHex(pc + 2) .. ", L")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x46 then
 			BIT_b_HL(rom[pc + 2])
-			print("BIT " .. toHex(pc + 2) .. ", (HL)")
+			log("BIT " .. toHex(pc + 2) .. ", (HL)")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc7 then
 			SET_b_A(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", A")
+			log("SET " .. toHex(pc + 2) .. ", A")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc0 then
 			SET_b_B(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", B")
+			log("SET " .. toHex(pc + 2) .. ", B")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc1 then
 			SET_b_C(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", C")
+			log("SET " .. toHex(pc + 2) .. ", C")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc2 then
 			SET_b_D(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", D")
+			log("SET " .. toHex(pc + 2) .. ", D")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc3 then
 			SET_b_E(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", E")
+			log("SET " .. toHex(pc + 2) .. ", E")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc4 then
 			SET_b_H(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", H")
+			log("SET " .. toHex(pc + 2) .. ", H")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0xc5 then
 			SET_b_L(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", L")
+			log("SET " .. toHex(pc + 2) .. ", L")
 			pc = pc + 1
 		elseif rom[pc + 1] == 0xc6 then
 			SET_b_HL(rom[pc + 2])
-			print("SET " .. toHex(pc + 2) .. ", (HL)")
+			log("SET " .. toHex(pc + 2) .. ", (HL)")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x87 then
 			RES_b_A(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", A")
+			log("RES " .. toHex(pc + 2) .. ", A")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x80 then
 			RES_b_B(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", B")
+			log("RES " .. toHex(pc + 2) .. ", B")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x81 then
 			RES_b_C(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", C")
+			log("RES " .. toHex(pc + 2) .. ", C")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x82 then
 			RES_b_D(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", D")
+			log("RES " .. toHex(pc + 2) .. ", D")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x83 then
 			RES_b_E(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", E")
+			log("RES " .. toHex(pc + 2) .. ", E")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x84 then
 			RES_b_H(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", H")
+			log("RES " .. toHex(pc + 2) .. ", H")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x85 then
 			RES_b_L(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", L")
+			log("RES " .. toHex(pc + 2) .. ", L")
 			pc = pc + 2
 		elseif rom[pc + 1] == 0x86 then
 			RES_b_HL(rom[pc + 2])
-			print("RES " .. toHex(pc + 2) .. ", (HL)")
+			log("RES " .. toHex(pc + 2) .. ", (HL)")
 			pc = pc + 2
 		else
-			print(toHex(rom[pc + 1]) .. " is not an opcode with the prefix CB!")
+			log(toHex(rom[pc + 1]) .. " is not an opcode with the prefix CB!")
 		end
 
 		pc = pc + 2
 	else
-		print(toHex(rom[pc]) .. " is not handled")
+		log(toHex(rom[pc]) .. " is not handled")
 		pc = pc + 1
 	end
 end
