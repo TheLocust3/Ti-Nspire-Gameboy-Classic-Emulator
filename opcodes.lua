@@ -506,8 +506,6 @@ function PUSH_HL ()
 end
 
 function pop (rIndex1, rIndex2)
-	print(registers[9])
-	print(registers[9] + 1)
 	registers[rIndex1] = get_8b(registers[9])
 	registers[rIndex2] = get_8(registers[9] + 1)
 
@@ -1053,7 +1051,7 @@ end
 
 function add_16b (rIndex1, rIndex2, n)
 	if rIndex2 ~= nil then
-		sum = to16b(registers[rIndex], registers[rIndex2]) + n
+		sum = to16b(registers[rIndex1], registers[rIndex2]) + n
 
 		store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
 		setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
@@ -1083,7 +1081,7 @@ end
 
 -- 0x39
 function ADD_HL_SP ()
-	add_16b(6, 7, registers[8])
+	add_16b(6, 7, registers[9])
 end
 
 -- 0xe8
