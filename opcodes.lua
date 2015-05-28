@@ -71,7 +71,7 @@ end
 
 -- 0x7e
 function LD_A_HL ()
-	ld_8b(1, getRegister_16b(6))
+	ld_8b(1, get_8b(getRegister_16b(6)))
 end
 
 -- 0x40
