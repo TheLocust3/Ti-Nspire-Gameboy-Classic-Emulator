@@ -1118,7 +1118,7 @@ end
 
 -- 0x33
 function INC_SP ()
-
+	inc_16b(9, nil)
 end
 
 function dec_16b (rIndex1, rIndex2)
@@ -1150,7 +1150,7 @@ end
 
 -- 0x3b
 function DEC_SP ()
-
+	dec_16b(9, nil)
 end
 
 -- Miscellaneous
