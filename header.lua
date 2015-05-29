@@ -29,3 +29,5 @@ while i <= #rom do
 
 	i = i + 1
 end
+
+rom = nil
