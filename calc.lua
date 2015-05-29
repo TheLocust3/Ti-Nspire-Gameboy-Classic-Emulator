@@ -15,3 +15,36 @@ function on.charIn (char)
 
 	end
 end
+
+function main ()
+	i = 0
+	while i < 10 do
+		old = timer.getMilliSecCounter()
+
+		if vBlank == 60 then
+			callInterrupt(0x40, 0x01)
+
+			vBlank = 0
+		else
+			vBlank = vBlank + 1
+		end
+
+		new = timer.getMilliSecCounter()
+		while old + 1 > new do
+			new = timer.getMilliSecCounter()
+		end
+
+		i = i + 1
+	end
+end
+
+function on.timer ()
+	start = timer.getMilliSecCounter()
+	dispatcher()
+
+	platform.window:invalidate()
+
+	main()
+end
+
+timer.start(0.01)

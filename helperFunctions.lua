@@ -81,3 +81,10 @@ function halfCarry_sub_8 (a, b)
 		return false
 	end
 end
+
+function callInterrupt (location, bit)
+	if ime == true and bitwiseAnd_8(get_8b(0xffff), bit) > 0 then
+		di()
+		call(nil, pc)
+	end
+end

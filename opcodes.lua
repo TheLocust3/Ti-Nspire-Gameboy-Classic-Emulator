@@ -1248,12 +1248,12 @@ end
 
 -- 0xf3
 function DI ()
-	interrupts = false
+	ime = false
 end
 
 -- 0xfb
 function EI ()
-	interrupts = true
+	ime = true
 end
 
 -- Rotates & Shifts

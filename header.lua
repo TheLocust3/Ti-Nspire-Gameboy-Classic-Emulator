@@ -7,7 +7,14 @@ fSubtract = false
 fHalfCarry = false
 fCarry = false
 
-interrupts = true
+ime = true
+
+-- Interrupts
+vBlank = 0
+lcdcStatus = false
+timerOverflow = false
+-- No Serial Transfer Completion because this will never be implemented
+keyBounce = false
 
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
@@ -31,3 +38,4 @@ while i <= #rom do
 end
 
 rom = nil
+collectgarbage() -- Deallocate rom
