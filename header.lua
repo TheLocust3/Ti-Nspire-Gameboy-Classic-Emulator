@@ -7,15 +7,25 @@ fSubtract = false
 fHalfCarry = false
 fCarry = false
 
+interrupts = true
+
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
 
 memory = {0}
 
-i = 0
- 
-while i < 65535 do
+i = 1
+
+while i <= 0xffff do
 	memory[i] = 0
+
+	i = i + 1
+end
+
+i = 1
+
+while i <= #rom do
+	memory[i] = rom[i]
 
 	i = i + 1
 end

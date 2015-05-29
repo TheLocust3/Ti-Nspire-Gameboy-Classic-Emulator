@@ -10,4 +10,4 @@ function on.timer ()
 	platform.window:invalidate()
 end
 
-timer.start(0.1)
+timer.start(0.01)

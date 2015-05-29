@@ -375,17 +375,17 @@ end
 
 -- 0x02
 function LD_BC_A ()
-	ld_8b(get_8b(getRegister_16b(2)), registers[1])
+	ld_8b(registers[1], get_8b(getRegister_16b(2)))
 end
 
 -- 0x12
 function LD_DE_A ()
-	ld_8b(get_8b(getRegister_16b(4)), registers[1])
+	ld_8b(registers[1], get_8b(getRegister_16b(4)))
 end
 
 -- 0x77
 function LD_HL_A ()
-	ld_8b(get_8b(getRegister_16b(6)), registers[1])
+	ld_8b(registers[1], get_8b(getRegister_16b(6)))
 end
 
 -- 0xea
@@ -1248,12 +1248,12 @@ end
 
 -- 0xf3
 function DI ()
-
+	interrupts = false
 end
 
 -- 0xfb
 function EI ()
-
+	interrupts = true
 end
 
 -- Rotates & Shifts
