@@ -23,7 +23,7 @@ memory = {0}
 
 i = 1
 
-while i <= 0xffff do
+while i <= 65536 do
 	memory[i] = 0
 
 	i = i + 1

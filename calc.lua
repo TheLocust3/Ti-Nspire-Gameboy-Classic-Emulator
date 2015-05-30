@@ -42,7 +42,7 @@ function main ()
 
 			vBlank = 0
 		else
-			vBlank = vBlank + (start - old)
+			vBlank = vBlank + old - start)
 		end
 
 		wait = timer.getMilliSecCounter() - start
