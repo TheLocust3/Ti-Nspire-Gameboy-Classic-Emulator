@@ -22,7 +22,7 @@ function main ()
 			refresh = true
 		end
 
-		if dispatch == false and wait > 7 then
+		if dispatch == false then
 			dispatcher()
 			dispatch = true
 		end
