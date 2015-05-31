@@ -27,6 +27,7 @@ function main ()
 			dispatch = true
 		end
 
+		-- V-Blank Interrupt
 		if vBlank >= 59 then
 			callInterrupt(0x40, 0x01, 1)
 
@@ -40,6 +41,7 @@ function main ()
 		else
 			vBlank = vBlank + (old - start)
 		end
+
 
 		wait = timer.getMilliSecCounter() - start
 	end
