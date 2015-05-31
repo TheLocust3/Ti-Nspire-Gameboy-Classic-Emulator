@@ -82,8 +82,12 @@ function halfCarry_sub_8 (a, b)
 	end
 end
 
-function callInterrupt (location, bit)
+function callInterrupt (location, bit, fNum)
 	if ime == true and bitwiseAnd_8(get_8b(0xffff), bit) > 0 then
+		flags = toBits(get_8b(0xff0f), 8)
+		flags[fNum] = 1
+		write_8b(0xff0f, toInt(flags))
+
 		di()
 		call(nil, pc)
 	end

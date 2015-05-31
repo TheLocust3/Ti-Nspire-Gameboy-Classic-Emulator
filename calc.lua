@@ -28,9 +28,15 @@ function main ()
 		end
 
 		if vBlank >= 59 then
-			callInterrupt(0x40, 0x01)
+			callInterrupt(0x40, 0x01, 1)
 
 			vBlank = 0
+		elseif vBlank >= 1 and bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 then
+			flags = toBits(get_8b(0xff0f), 8)
+			flags[1] = 0
+			write_8b(0xff0f, flags)
+
+			vBlank = vBlank + (old - start)
 		else
 			vBlank = vBlank + (old - start)
 		end

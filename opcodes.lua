@@ -1059,7 +1059,6 @@ function add_16b (rIndex1, rIndex2, n)
 		sum = registers[rIndex1] + n
 
 		registers[rIndex1] = toInt(toBits(sum, 16))
-		print(registers[rIndex1])
 		setFlags(nil, false, halfCarry_add_16(shiftRight(registers[rIndex1], 8), toInt(toBits(registers[rIndex1], 8))), (sum > 65535))
 	end
 end
