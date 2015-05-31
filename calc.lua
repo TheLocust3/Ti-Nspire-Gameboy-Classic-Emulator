@@ -27,7 +27,7 @@ function main ()
 			dispatch = true
 		end
 
-		if vBlank >= 60 then
+		if vBlank >= 59 then
 			callInterrupt(0x40, 0x01)
 
 			vBlank = 0
