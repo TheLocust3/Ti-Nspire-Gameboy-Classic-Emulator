@@ -17,22 +17,22 @@ function main ()
 	while wait < 10 do
 		old = timer.getMilliSecCounter()
 
-		if dispatch == false then
-			dispatcher()
-			dispatch = true
-		end
-
 		if refresh == false then
 			platform.window:invalidate()
 			refresh = true
 		end
 
-		if vBlank == 60 then
+		if dispatch == false and wait > 7 then
+			dispatcher()
+			dispatch = true
+		end
+
+		if vBlank >= 60 then
 			callInterrupt(0x40, 0x01)
 
 			vBlank = 0
 		else
-			vBlank = vBlank + old - start)
+			vBlank = vBlank + (old - start)
 		end
 
 		wait = timer.getMilliSecCounter() - start
