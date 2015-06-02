@@ -37,18 +37,17 @@ function main ()
 			flags[1] = 0
 			write_8b(0xff0f, flags)
 
-			vBlank = vBlank + (old - start)
+			vBlank = vBlank + (timer.getMilliSecCounter() - old)
 		else
-			vBlank = vBlank + (old - start)
+			vBlank = vBlank + (timer.getMilliSecCounter() - old)
 		end
 
 		-- Increment Divider Register
 		div = get_8b(0xff04)
-		div = div + (16 * (old - start)) -- Rounded from 16.384
+		div = div + (16 * (timer.getMilliSecCounter() - old)) -- Rounded from 16.384
 		if div > 0xff then
 			div = 0
 		end
-
 		write_8b(0xff04, div)
 
 		wait = timer.getMilliSecCounter() - start
