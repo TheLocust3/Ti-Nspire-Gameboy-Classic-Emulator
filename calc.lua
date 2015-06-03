@@ -50,6 +50,14 @@ function main ()
 		end
 		write_8b(0xff04, div)
 
+		-- Increment Timer Register
+		rTimer = get_8b(0xff05)
+		rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
+		if rTimer > 0xff then
+			rTimer = 0
+		end
+		write_8b(0xff05, rTimer)
+
 		wait = timer.getMilliSecCounter() - start
 	end
 end

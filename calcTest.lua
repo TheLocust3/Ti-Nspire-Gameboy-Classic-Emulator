@@ -4,4 +4,5 @@ function on.paint (gc)
 	gc:drawString(command, 2, 50)
 	gc:drawString("Timer Loop: " .. time .. " ms", 2, 70)
 	gc:drawString("DIV Register: " .. toHex(get_8b(0xff04)), 2, 90)
+	gc:drawString("Timer Register: " .. toHex(get_8b(0xff05)), 2, 110)
 end

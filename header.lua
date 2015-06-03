@@ -16,6 +16,9 @@ timerOverflow = false
 -- No Serial Transfer Completion because this will never be implemented
 keyBounce = false
 
+-- Memory Register Stuff
+timerSpeed = 4 -- 4096 * 0.001 and truncate
+
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
 
