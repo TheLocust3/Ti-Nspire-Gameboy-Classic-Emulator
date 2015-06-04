@@ -55,6 +55,7 @@ function main ()
 		rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
 		if rTimer > 0xff then
 			rTimer = 0
+			callInterrupt(0x50, 0x02, 2)
 		end
 		write_8b(0xff05, rTimer)
 
