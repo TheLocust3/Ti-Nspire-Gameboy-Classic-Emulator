@@ -50,21 +50,16 @@ function main ()
 		end
 		write_8b(0xff04, div)
 
-		-- Set timerSpeed
-		if bitwiseAnd_8(get_8b(0xff07), 0x01) == 1 then
-			timerSpeed = 4
-		else
-			timerSpeed = 0
+		if bitwiseAnd_8(get_8b(0xff07), 0x01) == 1 then -- Check if timer is enabled
+			-- Increment Timer Register
+			rTimer = get_8b(0xff05)
+			rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
+			if rTimer > 0xff then
+				rTimer = 0
+				callInterrupt(0x50, 0x02, 2)
+			end
+			write_8b(0xff05, rTimer)
 		end
-
-		-- Increment Timer Register
-		rTimer = get_8b(0xff05)
-		rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
-		if rTimer > 0xff then
-			rTimer = 0
-			callInterrupt(0x50, 0x02, 2)
-		end
-		write_8b(0xff05, rTimer)
 
 		wait = timer.getMilliSecCounter() - start
 	end
