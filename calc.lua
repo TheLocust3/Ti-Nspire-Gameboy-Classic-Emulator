@@ -50,6 +50,13 @@ function main ()
 		end
 		write_8b(0xff04, div)
 
+		-- Set timerSpeed
+		if bitwiseAnd_8(get_8b(0xff07), 0x01) == 1 then
+			timerSpeed = 4
+		else
+			timerSpeed = 0
+		end
+
 		-- Increment Timer Register
 		rTimer = get_8b(0xff05)
 		rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
