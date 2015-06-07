@@ -50,7 +50,20 @@ function main ()
 		end
 		write_8b(0xff04, div)
 
-		if bitwiseAnd_8(get_8b(0xff07), 0x01) == 1 then -- Check if timer is enabled
+		if bitwiseAnd_8(get_8b(0xff07), 0x04) == 1 then -- Check if timer is enabled
+			-- Set timerSpeed
+			bit1 = bitwiseAnd_8(get_8b(0xff07), 0x01)
+			bit2 = bitwiseAnd_8(get_8b(0xff07), 0x02)
+			if bit1 == 0 and bit2 == 0 then
+				timerSpeed = 4
+			elseif bit1 == 0 and bit2 == 1 then
+				timerSpeed = 262
+			elseif bit1 == 1 and bit2 == 0 then
+				timerSpeed = 65
+			elseif bit1 == 1 and bit2 == 1 then
+				timerSpeed = 16
+			end
+
 			-- Increment Timer Register
 			rTimer = get_8b(0xff05)
 			rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
