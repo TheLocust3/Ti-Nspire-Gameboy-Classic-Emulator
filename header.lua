@@ -42,3 +42,6 @@ end
 
 rom = nil
 collectgarbage() -- Deallocate rom
+
+-- Set specific memory values
+write_8b(0xff00, 0xf)
