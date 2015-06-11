@@ -3,7 +3,7 @@ command = ""
 function log (str)
 	command = str
 
-	print(str)
+	--print(str)
 end
 
 function dispatcher ()

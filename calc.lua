@@ -1,8 +1,16 @@
 function on.charIn (char)
 	if bitwiseAnd_8(get_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
-    
-	elseif bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+    	if char == '9' then -- A
 
+    	else
+
+    	end
+
+    	if char == '6' then -- B
+
+    	else
+
+    	end
 	end
 end
 
