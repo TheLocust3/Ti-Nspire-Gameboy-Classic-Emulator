@@ -72,14 +72,14 @@ function main ()
 			flags[1] = 0
 			write_8b(0xff0f, flags)
 
-			vBlank = vBlank + (timer.getMilliSecCounter() - old)
+			vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
 		else
-			vBlank = vBlank + (timer.getMilliSecCounter() - old)
+			vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
 		end
 
 		-- Increment Divider Register
 		div = get_8b(0xff04)
-		div = div + (16 * (timer.getMilliSecCounter() - old)) -- Rounded from 16.384
+		div = div + ((16 * (timer.getMilliSecCounter() - old)) * speedScaler) -- Rounded from 16.384
 		if div > 0xff then
 			div = 0
 		end
@@ -98,6 +98,7 @@ function main ()
 			elseif bit1 == 1 and bit2 == 1 then
 				timerSpeed = 16
 			end
+			timerSpeed = timerSpeed * speedScaler
 
 			-- Increment Timer Register
 			rTimer = get_8b(0xff05)
