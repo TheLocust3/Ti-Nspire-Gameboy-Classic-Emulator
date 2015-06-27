@@ -15,19 +15,27 @@ function on.charIn (char)
 end
 
 function on.arrowUp ()
-	print("Up")
+	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+		print("Up")
+	end
 end
 
 function on.arrowDown ()
-	print("Down")
+	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+		print("Down")
+	end
 end
 
 function on.arrowLeft ()
-	print("Left")
+	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+		print("Left")
+	end
 end
 
 function on.arrowRight ()
-	print("Right")
+	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+		print("Right")
+	end
 end
 
 function main ()
