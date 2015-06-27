@@ -526,7 +526,7 @@ function dispatcher ()
 		log("SBC A, A")
 		pc = pc + 1
 	elseif memory[pc] == 0x98 then
-		SBC_A_B()	
+		SBC_A_B()
 		log("SBC A, B")
 		pc = pc + 1
 	elseif memory[pc] == 0x99 then

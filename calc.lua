@@ -38,6 +38,8 @@ function on.arrowRight ()
 	end
 end
 
+speed = 0
+
 function main ()
 	start = timer.getMilliSecCounter()
 	old = timer.getMilliSecCounter()
@@ -45,8 +47,9 @@ function main ()
 	dispatch = false
 	refresh = false
 
-	i = 0
+	speed = 0
 	while wait < 5 do
+		speed = speed + 1
 		old = timer.getMilliSecCounter()
 
 		if refresh == false then
