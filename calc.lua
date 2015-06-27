@@ -1,17 +1,33 @@
 function on.charIn (char)
 	if bitwiseAnd_8(get_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
     	if char == '9' then -- A
-
+    		print("9")
     	else
 
     	end
 
     	if char == '6' then -- B
-
+    		print("6")
     	else
 
     	end
 	end
+end
+
+function on.arrowUp ()
+	print("Up")
+end
+
+function on.arrowDown ()
+	print("Down")
+end
+
+function on.arrowLeft ()
+	print("Left")
+end
+
+function on.arrowRight ()
+	print("Right")
 end
 
 function main ()
