@@ -22,7 +22,7 @@ function main ()
 	refresh = false
 
 	i = 0
-	while wait < 10 do
+	while wait < 5 do
 		old = timer.getMilliSecCounter()
 
 		if refresh == false then
