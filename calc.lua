@@ -82,7 +82,7 @@ function main ()
 			write_8b(0xff05, rTimer)
 		end
 
-		wait = timer.getMilliSecCounter() - start
+		wait = (timer.getMilliSecCounter() - start) * speedScaler -- Slow down speed
 	end
 end
 
