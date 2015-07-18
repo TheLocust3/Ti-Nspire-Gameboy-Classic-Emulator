@@ -1207,7 +1207,7 @@ function SWAP_HL ()
 end
 
 -- 0x27
--- Explanation of opcode provided from http://stackoverflow.com/questions/8119577/z80-daa-instruction (3rd answer)
+-- Explanation of command provided from http://stackoverflow.com/questions/8119577/z80-daa-instruction (3rd answer)
 function DAA ()
 	if bitwiseAnd_8(registers[1], 0x0f) > 9 or fHalfCarry
 		registers[1] = registers[1] + 0x06
