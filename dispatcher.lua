@@ -9,1646 +9,1644 @@ end
 function dispatcher ()
 	log(toHex(pc) .. ": ")
 
-	c = 0 -- Number of clock cycles to run the command
-
 	if memory[pc] == 0x06 then
+		c = 8
 		LD_B_n(memory[pc + 1])
 		log("LD B, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x0e then
+		c = 8
 		LD_C_n(memory[pc + 1])
 		log("LD C, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x16 then
+		c = 8
 		LD_D_n(memory[pc + 1])
 		log("LD D, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x1e then
+		c = 8
 		LD_E_n(memory[pc + 1])
 		log("LD E, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x26 then
+		c = 8
 		LD_H_n(memory[pc + 1])
 		log("LD H, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x2e then
+		c = 8
 		LD_L_n(memory[pc + 1])
 		log("LD L, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x7f then
+		c = 4
 		LD_A_A()
 		log("LD A, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x78 then
+		c = 4
 		LD_A_B()
 		log("LD A, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x79 then
+		c = 4
 		LD_A_C()
 		log("LD A, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x7a then
+		c = 4
 		LD_A_D()
 		log("LD A, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x7b then
+		c = 4
 		LD_A_E()
 		log("LD A, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x7c then
+		c = 4
 		LD_A_H()
 		log("LD A, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x7d then
+		c = 4
 		LD_A_L()
 		log("LD A, L")
-		c = 4
 		pc = pc +1
 	elseif memory[pc] == 0x7e then
+		c = 8
 		LD_A_HL()
 		log("LD A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x40 then
+		c = 4
 		LD_B_B()
 		log("LD B, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x41 then
+		c = 4
 		LD_B_C()
 		log("LD B, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x42 then
+		c = 4
 		LD_B_D()
 		log("LD B, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x43 then
+		c = 4
 		LD_B_E()
 		log("LD B, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x44 then
+		c = 4
 		LD_B_H()
 		log("LD B, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x45 then
+		c = 4
 		LD_B_L()
 		log("LD B, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x46 then
+		c = 8
 		LD_B_HL()
 		log("LD B, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x48 then
+		c = 4
 		LD_C_B()
 		log("LD C, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x49 then
+		c = 4
 		LD_C_C()
 		log("LD C, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x4a then
+		c = 4
 		LD_C_D()
 		log("LD C, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x4b then
+		c = 4
 		LD_C_E()
 		log("LD C, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x4c then
+		c = 4
 		LD_C_H()
 		log("LD C, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x4d then
+		c = 4
 		LD_C_L()
 		log("LD C, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x4e then
+		c = 8
 		LD_C_HL()
 		log("LD C, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x50 then
+		c = 4
 		LD_D_B()
 		log("LD D, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x51 then
+		c = 4
 		LD_D_C()
 		log("LD D, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x52 then
+		c = 4
 		LD_D_D()
 		log("LD D, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x53 then
+		c = 4
 		LD_D_E()
 		log("LD D, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x54 then
+		c = 4
 		LD_D_H()
 		log("LD D, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x55 then
+		c = 4
 		LD_D_L()
 		log("LD D, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x56 then
+		c = 8
 		LD_D_HL()
 		log("LD D, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x58 then
+		c = 4
 		LD_E_B()
 		log("LD E, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x59 then
+		c = 4
 		LD_E_C()
 		log("LD E, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x5a then
+		c = 4
 		LD_E_D()
 		log("LD E, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x5b then
+		c = 4
 		LD_E_E()
 		log("LD E, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x5c then
+		c = 4
 		LD_E_H()
 		log("LD E, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x5d then
+		c = 4
 		LD_E_L()
 		log("LD E, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x5e then
+		c = 8
 		LD_E_HL()
 		log("LD E, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x60 then
+		c = 4
 		LD_H_B()
 		log("LD H, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x61 then
+		c = 4
 		LD_H_C()
 		log("LD H, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x62 then
+		c = 4
 		LD_H_D()
 		log("LD H, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x63 then
+		c = 4
 		LD_H_E()
 		log("LD H, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x64 then
+		c = 4
 		LD_H_H()
 		log("LD H, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x65 then
+		c = 4
 		LD_H_L()
 		log("LD H, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x66 then
+		c = 8
 		LD_H_HL()
 		log("LD H, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x68 then
+		c = 4
 		LD_L_B()
 		log("LD L, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x69 then
+		c = 4
 		LD_L_C()
 		log("LD L, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x6a then
+		c = 4
 		LD_L_D()
 		log("LD L, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x6b then
+		c = 4
 		LD_L_E()
 		log("LD L, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x6c then
+		c = 4
 		LD_L_H()
 		log("LD L, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x6d then
+		c = 4
 		LD_L_L()
 		log("LD L, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x6e then
+		c = 8
 		LD_L_HL()
 		log("LD L, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x70 then
+		c = 8
 		LD_HL_B()
 		log("LD (HL), B")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x71 then
+		c = 8
 		LD_HL_C()
 		log("LD (HL), C")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x72 then
+		c = 8
 		LD_HL_D()
 		log("LD (HL), D")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x73 then
+		c = 8
 		LD_HL_E()
 		log("LD (HL), E")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x74 then
+		c = 8
 		LD_HL_H()
 		log("LD (HL), H")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x75 then
+		c = 8
 		LD_HL_L()
 		log("LD (HL), L")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x36 then
+		c = 12
 		LD_HL_n(memory[pc + 1])
 		log("LD (HL), " .. toHex(memory[pc + 1]))
-		c = 12
 		pc = pc + 2
 	elseif memory[pc] == 0x0a then
+		c = 8
 		LD_A_BC()
 		log("LD A, (BC)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x1a then
+		c = 8
 		LD_A_DE()
 		log("LD A, (DE)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x7e then
+		c = 8
 		LD_A_HL()
 		log("LD A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xfa then
+		c = 16
 		LD_A_nn(to16n(memory[pc + 1], memory[pc + 2]))
 		log("LD A, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
-		c = 16
 		pc = pc + 3
 	elseif memory[pc] == 0x3e then
+		c = 8
 		LD_A_n(memory[pc + 1])
 		log("LD A, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x47 then
+		c = 4
 		LD_B_A()
 		log("LD B, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x4f then
+		c = 4
 		LD_C_A()
 		log("LD C, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x57 then
+		c = 4
 		LD_D_A()
 		log("LD D, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x5f then
+		c = 4
 		LD_E_A()
 		log("LD E, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x67 then
+		c = 4
 		LD_H_A()
 		log("LD H, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x6f then
+		c = 4
 		LD_L_A()
 		log("LD L, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x02 then
+		c = 8
 		LD_BC_A()
 		log("LD (BC), A")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x12 then
+		c = 8
 		LD_DE_A()
 		log("LD (DE), A")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x77 then
+		c = 8
 		LD_HL_A()
 		log("LD (HL), A")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xea then
+		c = 16
 		LD_nn_A(to16b(memory[pc + 1], memory[pc + 2]))
 		log("LD (" .. toHex(memory[pc + 1]) .. "" .. u_toHex(pc + 2) .. "), A")
-		c = 16
 		pc = pc + 3
 	elseif memory[pc] == 0xf2 then
+		c = 8
 		LD_A_iC()
 		log("LD A, (C)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xe2 then
+		c = 8
 		LD_iC_A()
 		log("LD ($FF00 .. C), A")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x3a then
+		c = 8
 		LDD_A_HL()
 		log("LD A, (HLD) or LD A, (HL-) or LDD A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x32 then
+		c = 8
 		LDD_HL_A()
 		log("LD (HLD), A or LD (HL-), A or LDD (HL), A")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x2a then
+		c = 8
 		LDI_A_HL()
 		log("LD A, (HLI) or LD A, (HL..) or LDI A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x22 then
+		c = 8
 		LDI_HL_A()
 		log("LD (HLI), LD A or LD (HL..), LDI A or (HL), A")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xe0 then
+		c = 12
 		LDH_in_A(memory[pc + 1])
 		log("LDH ($FF00 + " .. toHex(memory[pc + 1]) .. "), A")
-		c = 12
 		pc = pc + 2
 	elseif memory[pc] == 0xf0 then
+		c = 12
 		LDH_A_in(memory[pc + 1])
 		log("LDH A, ($FF00 + " .. toHex(memory[pc + 1]) .. ")")
-		c = 12
 		pc = pc + 2
 	elseif memory[pc] == 0x01 then
+		c = 12
 		LD_BC_nn(to16b(memory[pc + 1], memory[pc + 2]))
 		log("LD BC, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
-		c = 12
 		pc = pc + 3
 	elseif memory[pc] == 0x11 then
+		c = 12
 		LD_DE_nn(to16b(memory[pc + 1], memory[pc + 2]))
 		log("LD DE, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
-		c = 12
 		pc = pc + 3
 	elseif memory[pc] == 0x21 then
+		c = 12
 		LD_HL_nn(to16b(memory[pc + 1], memory[pc + 2]))
 		log("LD HL, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
-		c = 12
 		pc = pc + 3
 	elseif memory[pc] == 0x31 then
+		c = 12
 		LD_SP_nn(to16b(memory[pc + 1], memory[pc + 2]))
 		log("LD SP, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
-		c = 12
 		pc = pc + 3
 	elseif memory[pc] == 0xf9 then
+		c = 8
 		LD_SP_HL()
 		log("LD SP, HL")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xf8 then
+		c = 12
 		LDHL_SP_n(memory[pc + 1])
 		log("LDHL SP, " .. toHex(memory[pc + 1]) .. " or LD HL, SP .. " .. toHex(memory[pc + 1]))
-		c = 12
 		pc = pc + 2
 	elseif memory[pc] == 0x08 then
+		c = 20
 		LD_nn_SP(to16b(memory[pc + 1], memory[pc + 2]))
 		log("LD " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2) .. ", SP")
-		c = 20
 		pc = pc + 3
 	elseif memory[pc] == 0xf5 then
+		c = 16
 		PUSH_AF()
 		log("PUSH AF")
-		c = 16
 		pc = pc + 1
 	elseif memory[pc] == 0xc5 then
+		c = 16
 		PUSH_BC()
 		log("PUSH BC")
-		c = 16
 		pc = pc + 1
 	elseif memory[pc] == 0xd5 then
+		c = 16
 		PUSH_DE()
 		log("PUSH DE")
-		c = 16
 		pc = pc + 1
 	elseif memory[pc] == 0xe5 then
+		c = 16
 		PUSH_HL()
 		log("PUSH HL")
-		c = 16
 		pc = pc + 1
 	elseif memory[pc] == 0xf1 then
+		c = 12
 		POP_AF()
 		log("POP AF")
-		c = 12
 		pc = pc + 1
 	elseif memory[pc] == 0xc1 then
+		c = 12
 		POP_BC()
 		log("POP BC")
-		c = 12
 		pc = pc + 1
 	elseif memory[pc] == 0xd1 then
+		c = 12
 		POP_DE()
 		log("POP DE")
-		c = 12
 		pc = pc + 1
 	elseif memory[pc] == 0xe1 then
+		c = 12
 		POP_HL()
 		log("POP HL")
-		c = 12
 		pc = pc + 1
 	elseif memory[pc] == 0x87 then
+		c = 4
 		ADD_A_A()
 		log("ADD A, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x80 then
+		c = 4
 		ADD_A_B()
 		log("ADD A, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x81 then
+		c = 4
 		ADD_A_C()
 		log("ADD A, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x82 then
+		c = 4
 		ADD_A_D()
 		log("ADD A, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x83 then
+		c = 4
 		ADD_A_E()
 		log("ADD A, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x84 then
+		c = 4
 		ADD_A_H()
 		log("ADD A, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x85 then
+		c = 4
 		ADD_A_L()
 		log("ADD A, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x86 then
+		c = 8
 		ADD_A_HL()
 		log("ADD A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xc6 then
+		c = 8
 		ADD_A_n(memory[pc + 1])
 		log("ADD A, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x8f then
+		c = 4
 		ADC_A_A()
 		log("ADC A, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x88 then
+		c = 4
 		ADC_A_B()
 		log("ADC A, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x89 then
+		c = 4
 		ADC_A_C()
 		log("ADC A, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x8a then
+		c = 4
 		ADC_A_D()
 		log("ADC A, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x8b then
+		c = 4
 		ADC_A_E()
 		log("ADC A, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x8c then
+		c = 4
 		ADC_A_H()
 		log("ADC A, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x8d then
+		c = 4
 		ADC_A_L()
 		log("ADC A, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x8e then
+		c = 8
 		ADC_A_HL()
 		log("ADC A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xce then
+		c = 8
 		ADC_A_n(memory[pc + 1])
 		log("ADC A, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x97 then
+		c = 4
 		SUB_A()
 		log("SUB A, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x90 then
+		c = 4
 		SUB_B()
 		log("SUB A, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x91 then
+		c = 4
 		SUB_C()
 		log("SUB A, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x92 then
+		c = 4
 		SUB_D()
 		log("SUB A, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x93 then
+		c = 4
 		SUB_E()
 		log("SUB A, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x94 then
+		c = 4
 		SUB_H()
 		log("SUB A, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x95 then
+		c = 4
 		SUB_L()
 		log("SUB A, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x96 then
+		c = 8
 		SUB_HL()
 		log("SUB A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xd6 then
+		c = 8
 		SUB_n(memory[pc + 1])
 		log("SUB A, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x9f then
+		c = 4
 		SBC_A_A()
 		log("SBC A, A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x98 then
+		c = 4
 		SBC_A_B()
 		log("SBC A, B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x99 then
+		c = 4
 		SBC_A_C()
 		log("SBC A, C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x9a then
+		c = 4
 		SBC_A_D()
 		log("SBC A, D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x9b then
+		c = 4
 		SBC_A_E()
 		log("SBC A, E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x9c then
+		c = 4
 		SBC_A_H()
 		log("SBC A, H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x9d then
+		c = 4
 		SBC_A_L()
 		log("SBC A, L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x9e then
+		c = 8
 		SBC_A_HL()
 		log("SBC A, (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xde then
+		c = 8
 		SBC_A_n(memory[pc + 1])
 		log("SBC A, " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0xa7 then
+		c = 4
 		AND_A()
 		log("AND A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa0 then
+		c = 4
 		AND_B()
 		log("AND B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa1 then
+		c = 4
 		AND_C()
 		log("AND C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa2 then
+		c = 4
 		AND_D()
 		log("AND D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa3 then
+		c = 4
 		AND_E()
 		log("AND E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa4 then
+		c = 4
 		AND_H()
 		log("AND H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa5 then
+		c = 4
 		AND_L()
 		log("AND L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa6 then
+		c = 8
 		AND_HL()
 		log("AND (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xe6 then
+		c = 8
 		AND_n(memory[pc + 1])
 		log("AND " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0xb7 then
+		c = 4
 		OR_A()
 		log("OR A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb0 then
+		c = 4
 		OR_B()
 		log("OR B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb1 then
+		c = 4
 		OR_C()
 		log("OR C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb2 then
+		c = 4
 		OR_D()
 		log("OR D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb3 then
+		c = 4
 		OR_E()
 		log("OR E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb4 then
+		c = 4
 		OR_H()
 		log("OR H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb5 then
+		c = 4
 		OR_L()
 		log("OR L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb6 then
+		c = 8
 		OR_HL()
 		log("OR (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xf6 then
+		c = 8
 		OR_n(memory[pc + 1])
 		log("OR " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0xaf then
+		c = 4
 		XOR_A()
 		log("XOR A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa8 then
+		c = 4
 		XOR_B()
 		log("XOR B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xa9 then
+		c = 4
 		XOR_C()
 		log("XOR C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xaa then
+		c = 4
 		XOR_D()
 		log("XOR D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xab then
+		c = 4
 		XOR_E()
 		log("XOR E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xac then
+		c = 4
 		XOR_H()
 		log("XOR H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xad then
+		c = 4
 		XOR_L()
 		log("XOR L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xea then
+		c = 8
 		XOR_HL()
 		log("XOR (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xee then
+		c = 8
 		XOR_n(memory[pc + 1])
 		log("XOR " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0xbf then
+		c = 4
 		CP_A()
 		log("CP A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb8 then
+		c = 4
 		CP_B()
 		log("CP B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xb9 then
+		c = 4
 		CP_C()
 		log("CP C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xba then
+		c = 4
 		CP_D()
 		log("CP D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xbb then
+		c = 4
 		CP_E()
 		log("CP E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xbc then
+		c = 4
 		CP_H()
 		log("CP H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xbd then
+		c = 4
 		CP_L()
 		log("CP L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xbe then
+		c = 8
 		CP_HL()
 		log("CP (HL)")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xfe then
+		c = 8
 		CP_n(memory[pc + 1])
 		log("CP " .. toHex(memory[pc + 1]))
-		c = 8
 		pc = pc + 2
 	elseif memory[pc] == 0x3c then
+		c = 4
 		INC_A()
 		log("INC A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x04 then
+		c = 4
 		INC_B()
 		log("INC B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x0c then
+		c = 4
 		INC_C()
 		log("INC C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x14 then
+		c = 4
 		INC_D()
 		log("INC D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x1c then
+		c = 4
 		INC_E()
 		log("INC E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x24 then
+		c = 4
 		INC_H()
 		log("INC H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x2c then
+		c = 4
 		INC_L()
 		log("INC L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x34 then
+		c = 12
 		INC_HL()
 		log("INC (HL)")
-		c = 12
 		pc = pc + 1
 	elseif memory[pc] == 0x3d then
+		c = 4
 		DEC_A()
 		log("DEC A")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x05 then
+		c = 4
 		DEC_B()
 		log("DEC B")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x0d then
+		c = 4
 		DEC_C()
 		log("DEC C")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x15 then
+		c = 4
 		DEC_D()
 		log("DEC D")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x1d then
+		c = 4
 		DEC_E()
 		log("DEC E")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x25 then
+		c = 4
 		DEC_H()
 		log("DEC H")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x2d then
+		c = 4
 		DEC_L()
 		log("DEC L")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x35 then
+		c = 12
 		DEC_HL()
 		log("DEC (HL)")
-		c = 12
 		pc = pc + 1
 	elseif memory[pc] == 0x09 then
+		c = 8
 		ADD_HL_BC()
 		log("ADD HL, BC")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x19 then
+		c = 8
 		ADD_HL_DE()
 		log("ADD HL, DE")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x29 then
+		c = 8
 		ADD_HL_HL()
 		log("ADD HL, HL")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x39 then
+		c = 8
 		ADD_HL_SP()
 		log("ADD HL, SP")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0xe8 then
+		c = 16
 		ADD_SP_n(memory[pc + 1])
 		log("ADD SP, " .. toHex(pc + 1))
-		c = 16
 		pc = pc + 2
 	elseif memory[pc] == 0x03 then
+		c = 8
 		INC_BC()
 		log("INC BC")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x13 then
+		c = 8
 		INC_DE()
 		log("INC DE")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x23 then
+		c = 8
 		INC_HL()
 		log("INC HL")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x33 then
+		c = 8
 		INC_SP()
 		log("INC SP")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x0b then
+		c = 8
 		DEC_BC()
 		log("DEC BC")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x1b then
+		c = 8
 		DEC_DE()
 		log("DEC DE")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x2b then
+		c = 8
 		DEC_HL()
 		log("DEC HL")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x3b then
+		c = 8
 		DEC_SP()
 		log("DEC SP")
-		c = 8
 		pc = pc + 1
 	elseif memory[pc] == 0x27 then
+		c = 4
 		DAA()
 		log("DAA")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x2f then
+		c = 4
 		CPL()
 		log("CPL")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x3f then
+		c = 4
 		CCF()
 		log("CCF")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x37 then
+		c = 4
 		SCF()
 		log("SCF")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x00 then
+		c = 4
 		NOP()
 		log("NOP")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x76 then
+		c = 4
 		HALT()
 		log("HALT")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x10 then
+		c = 4
 		STOP()
 		log("STOP")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xf3 then
+		c = 4
 		DI()
 		log("DI")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xfb then
+		c = 4
 		EI()
 		log("EI")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x07 then
+		c = 4
 		RLCA()
 		log("RLCA")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x17 then
+		c = 4
 		RLA()
 		log("RLA")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x0f then
+		c = 4
 		RRCA()
 		log("RRCA")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0x1f then
+		c = 4
 		RRA()
 		log("RRA")
-		c = 4
 		pc = pc + 1
 	elseif memory[pc] == 0xc3 then
+		c = 12
 		log("JP " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		JP_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xc2 then
+		c = 12
 		log("JP NZ, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		JP_NZ_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xca then
+		c = 12
 		log("JP Z" .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		JP_Z_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xd2 then
+		c = 12
 		log("JP  NC" .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		JP_NC_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xda then
+		c = 12
 		log("JP  C" .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		JP_C_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xe9 then
+		c = 4
 		log("JP (HL)")
 		JP_HL(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 4
 	elseif memory[pc] == 0x18 then
+		c = 8
 		log("JR " .. toHex(memory[pc + 1]))
 		JR_n(memory[pc + 1])
-		c = 8
 	elseif memory[pc] == 0x20 then
+		c = 8
 		log("JR NZ, " .. toHex(memory[pc + 1]))
 		JR_NZ_n(memory[pc + 1])
-		c = 8
 	elseif memory[pc] == 0x28 then
+		c = 8
 		log("JR Z, " .. toHex(memory[pc + 1]))
 		JR_Z_n(memory[pc + 1])
-		c = 8
 	elseif memory[pc] == 0x30 then
+		c = 8
 		log("JR NC, " .. toHex(memory[pc + 1]))
 		JR_NC_n(memory[pc + 1])
-		c = 8
 	elseif memory[pc] == 0x38 then
+		c = 8
 		log("JR C, " .. toHex(memory[pc + 1]))
 		JR_C_n(memory[pc + 1])
-		c = 8
 	elseif memory[pc] == 0xcd then
+		c = 12
 		log("CALL " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		CALL_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xc4 then
+		c = 12
 		log("CALL NZ, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		CALL_NZ_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xcc then
+		c = 12
 		log("CALL Z, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		CALL_Z_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xd4 then
+		c = 12
 		log("CALL NC, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		CALL_NC_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xdc then
+		c = 12
 		log("CALL C, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
 		CALL_C_nn(to16b(memory[pc + 1], memory[pc + 2]))
-		c = 12
 	elseif memory[pc] == 0xc7 then
+		c = 32
 		RST_00H()
 		log("RST 00H")
-		c = 32
 	elseif memory[pc] == 0xcf then
+		c = 32
 		log("RST 08H")
 		RST_08H()
-		c = 32
 	elseif memory[pc] == 0xd7 then
+		c = 32
 		log("RST 10H")
 		RST_10H()
-		c = 32
 	elseif memory[pc] == 0xdf then
+		c = 32
 		log("RST 18H")
 		RST_18H()
-		c = 32
 	elseif memory[pc] == 0xe7 then
+		c = 32
 		log("RST 20H")
 		RST_20H()
-		c = 32
 	elseif memory[pc] == 0xef then
+		c = 32
 		log("RST 28H")
 		RST_28H()
-		c = 32
 	elseif memory[pc] == 0xf7 then
+		c = 32
 		log("RST 30H")
 		RST_30H()
-		c = 32
 	elseif memory[pc] == 0xff then
+		c = 32
 		log("RST 38H")
 		RST_38H()
-		c = 32
 	elseif memory[pc] == 0xc9 then
+		c = 8
 		log("RET")
 		RET()
-		c = 8
 	elseif memory[pc] == 0xc0 then
+		c = 8
 		log("RET NZ")
 		RET_NZ()
-		c = 8
 	elseif memory[pc] == 0xc8 then
+		c = 8
 		log("RET Z")
 		RET_Z()
-		c = 8
 	elseif memory[pc] == 0xd0 then
+		c = 8
 		log("RET NC")
 		RET_NC()
-		c = 8
 	elseif memory[pc] == 0xd8 then
+		c = 8
 		log("RET C")
 		RET_C()
-		c = 8
 	elseif memory[pc] == 0xd9 then
+		c = 8
 		log("RETI")
 		RETI()
-		c = 8
 	elseif memory[pc] == 0xfc then
 		log("0xfc in an undocumented opcode and should not be used!")
 		pc = pc + 1
 	elseif memory[pc] == 0xcb then
 		if memory[pc + 1] == 0x37 then
+			c = 8
 			SWAP_A()
 			log("SWAP A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x30 then
+			c = 8
 			SWAP_B()
 			log("SWAP B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x31 then
+			c = 8
 			SWAP_C()
 			log("SWAP C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x32 then
+			c = 8
 			SWAP_D()
 			log("SWAP D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x33 then
+			c = 8
 			SWAP_E()
 			log("SWAP E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x34 then
+			c = 8
 			SWAP_H()
 			log("SWAP H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x35 then
+			c = 8
 			SWAP_L()
 			log("SWAP L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x36 then
+			c = 16
 			SWAP_HL()
 			log("SWAP (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x07 then
+			c = 8
 			RLC_A()
 			log("RLC A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x00 then
+			c = 8
 			RLC_B()
 			log("RLC B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x01 then
+			c = 8
 			RLC_C()
 			log("RLC C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x02 then
+			c = 8
 			RLC_D()
 			log("RLC D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x03 then
+			c = 8
 			RLC_E()
 			log("RLC E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x04 then
+			c = 8
 			RLC_H()
 			log("RLC H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x05 then
+			c = 8
 			RLC_L()
 			log("RLC L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x06 then
+			c = 16
 			RLC_HL()
 			log("RLC (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x17 then
+			c = 8
 			RL_A()
 			log("RL A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x10 then
+			c = 8
 			RL_B()
 			log("RL B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x11 then
+			c = 8
 			RL_C()
 			log("RL C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x12 then
+			c = 8
 			RL_D()
 			log("RL D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x13 then
+			c = 8
 			RL_E()
 			log("RL E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x14 then
+			c = 8
 			RL_H()
 			log("RL H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x15 then
+			c = 8
 			RL_L()
 			log("RL L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x16 then
+			c = 16
 			RL_HL()
 			log("RL (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x0f then
+			c = 8
 			RRC_A()
 			log("RRC A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x08 then
+			c = 8
 			RRC_B()
 			log("RRC B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x09 then
+			c = 8
 			RRC_C()
 			log("RRC C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x0a then
+			c = 8
 			RRC_D()
 			log("RRC D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x0b then
+			c = 8
 			RRC_E()
 			log("RRC E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x0c then
+			c = 8
 			RRC_H()
 			log("RRC H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x0d then
+			c = 8
 			RRC_L()
 			log("RRC L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x0e then
+			c = 16
 			RRC_HL()
 			log("RRC (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x1f then
+			c = 8
 			RR_A()
 			log("RR A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x18 then
+			c = 8
 			RR_B()
 			log("RR B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x19 then
+			c = 8
 			RR_C()
 			log("RR C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x1a then
+			c = 8
 			RR_D()
 			log("RR D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x1b then
+			c = 8
 			RR_E()
 			log("RR E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x1c then
+			c = 8
 			RR_H()
 			log("RR H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x1d then
+			c = 8
 			RR_L()
 			log("RR L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x1e then
+			c = 16
 			RR_HL()
 			log("RR (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x27 then
+			c = 8
 			SLA_A()
 			log("SLA A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x20 then
+			c = 8
 			SLA_B()
 			log("SLA B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x21 then
+			c = 8
 			SLA_C()
 			log("SLA C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x22 then
+			c = 8
 			SLA_D()
 			log("SLA D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x23 then
+			c = 8
 			SLA_E()
 			log("SLA E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x24 then
+			c = 8
 			SLA_H()
 			log("SLA H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x25 then
+			c = 8
 			SLA_L()
 			log("SLA L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x26 then
+			c = 16
 			SLA_HL()
 			log("SLA (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x2f then
+			c = 8
 			SRA_A()
 			log("SRA A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x28 then
+			c = 8
 			SRA_B()
 			log("SRA B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x29 then
+			c = 8
 			SRA_C()
 			log("SRA C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x2a then
+			c = 8
 			SRA_D()
 			log("SRA D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x2b then
+			c = 8
 			SRA_E()
 			log("SRA E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x2c then
+			c = 8
 			SRA_H()
 			log("SRA H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x2d then
+			c = 8
 			SRA_L()
 			log("SRA L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x2e then
+			c = 16
 			SRA_HL()
 			log("SRA (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x3f then
+			c = 8
 			SRL_A()
 			log("SRL A")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x38 then
+			c = 8
 			SRL_B()
 			log("SRL B")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x39 then
+			c = 8
 			SRL_C()
 			log("SRL C")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x3a then
+			c = 8
 			SRL_D()
 			log("SRL D")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x3b then
+			c = 8
 			SRL_E()
 			log("SRL E")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x3c then
+			c = 8
 			SRL_H()
 			log("SRL H")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x3d then
+			c = 8
 			SRL_L()
 			log("SRL L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x3e then
+			c = 16
 			SRL_HL()
 			log("SRL (HL)")
-			c = 16
 			pc = pc + 1
 		elseif memory[pc + 1] == 0x47 then
+			c = 8
 			BIT_b_A(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", A")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x40 then
+			c = 8
 			BIT_b_B(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", B")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x41 then
+			c = 8
 			BIT_b_C(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", C")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x42 then
+			c = 8
 			BIT_b_D(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", D")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x43 then
+			c = 8
 			BIT_b_E(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", E")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x44 then
+			c = 8
 			BIT_b_H(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", H")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x45 then
+			c = 8
 			BIT_b_L(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", L")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x46 then
+			c = 16
 			BIT_b_HL(memory[pc + 2])
 			log("BIT " .. toHex(pc + 2) .. ", (HL)")
-			c = 16
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc7 then
+			c = 8
 			SET_b_A(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", A")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc0 then
+			c = 8
 			SET_b_B(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", B")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc1 then
+			c = 8
 			SET_b_C(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", C")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc2 then
+			c = 8
 			SET_b_D(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", D")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc3 then
+			c = 8
 			SET_b_E(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", E")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc4 then
+			c = 8
 			SET_b_H(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", H")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0xc5 then
+			c = 8
 			SET_b_L(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", L")
-			c = 8
 			pc = pc + 1
 		elseif memory[pc + 1] == 0xc6 then
+			c = 16
 			SET_b_HL(memory[pc + 2])
 			log("SET " .. toHex(pc + 2) .. ", (HL)")
-			c = 16
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x87 then
+			c = 8
 			RES_b_A(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", A")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x80 then
+			c = 8
 			RES_b_B(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", B")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x81 then
+			c = 8
 			RES_b_C(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", C")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x82 then
+			c = 8
 			RES_b_D(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", D")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x83 then
+			c = 8
 			RES_b_E(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", E")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x84 then
+			c = 8
 			RES_b_H(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", H")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x85 then
+			c = 8
 			RES_b_L(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", L")
-			c = 8
 			pc = pc + 2
 		elseif memory[pc + 1] == 0x86 then
+			c = 8
 			RES_b_HL(memory[pc + 2])
 			log("RES " .. toHex(pc + 2) .. ", (HL)")
-			c = 8
 			pc = pc + 2
 		else
 			log(toHex(memory[pc + 1]) .. " is not an opcode with the prefix CB!")
@@ -1659,6 +1657,4 @@ function dispatcher ()
 		log(toHex(memory[pc]) .. " is not handled")
 		pc = pc + 1
 	end
-
-	return c
 end
