@@ -57,9 +57,8 @@ function main ()
 			refresh = true
 		end
 
-		if dispatch == false then
+		if c <= 0 then
 			dispatcher()
-			dispatch = true
 		end
 
 		-- V-Blank Interrupt
@@ -109,6 +108,8 @@ function main ()
 			end
 			write_8b(0xff05, rTimer)
 		end
+
+		c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
 
 		wait = (timer.getMilliSecCounter() - start) * speedScaler -- Slow down speed
 	end
