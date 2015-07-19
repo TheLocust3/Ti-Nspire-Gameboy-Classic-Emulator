@@ -1,3 +1,6 @@
+local stringSub = string.sub
+local mathFloor = math.floor
+
 -- Bitwise functions
 -- Functions that start with b return a bit array
 -- Functions that do not start with b return an int
@@ -9,7 +12,7 @@ function toBits (num, bits)
 
     while i <= bits do
         binary[i] = total % 2
-        total = math.floor(total / 2)
+        total = mathFloor(total / 2)
         i = i + 1
     end
 
@@ -28,17 +31,17 @@ function toInt (bits)
 		i = i - 1
 	end
 	
-	return math.floor(number)
+	return mathFloor(number)
 end
 
 -- Shifts take only ints
 
 function shiftLeft (number, shift)
-    return math.floor(number * math.pow(2, shift))
+    return mathFloor(number * math.pow(2, shift))
 end
 
 function shiftRight (number, shift)
-	return math.floor(number / math.pow(2, shift))
+	return mathFloor(number / math.pow(2, shift))
 end
 
 function bBitwiseAnd (bits1, bits2)
@@ -151,8 +154,8 @@ function u_toHex(num)
     local s = ''
     while num > 0 do
         local mod = math.fmod(num, 16)
-        s = string.sub(hexstr, mod+1, mod+1) .. s
-        num = math.floor(num / 16)
+        s = stringSub(hexstr, mod+1, mod+1) .. s
+        num = mathFloor(num / 16)
     end
     if s == '' then s = '0' end
     return s

@@ -1209,11 +1209,11 @@ end
 -- 0x27
 -- Explanation of command provided from http://stackoverflow.com/questions/8119577/z80-daa-instruction (3rd answer)
 function DAA ()
-	if bitwiseAnd_8(registers[1], 0x0f) > 9 or fHalfCarry
+	if bitwiseAnd_8(registers[1], 0x0f) > 9 or fHalfCarry then
 		registers[1] = registers[1] + 0x06
 	end
 
-	if shiftRight(registers[1], 4) > 9 or fCarry
+	if shiftRight(registers[1], 4) > 9 or fCarry then
 		registers[1] = registers[1] + 0x60
 	end
 end

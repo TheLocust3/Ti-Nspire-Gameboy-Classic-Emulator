@@ -24,6 +24,8 @@ timerSpeed = 4 -- 4096 * 0.001 and truncate
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
 
+c = 0 -- The amount of clock cycles until the next command is run
+
 memory = {0}
 
 i = 1
