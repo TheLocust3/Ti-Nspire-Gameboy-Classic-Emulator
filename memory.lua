@@ -12,6 +12,8 @@ function write_8b (location, value)
 	else
 		memory[location + 1] = value
 	end
+
+	checkGraphicsRegisters(address, value)
 end
 
 function write_16b (location, value)
@@ -24,3 +26,7 @@ function writeCheck (location)
 		return true
 	end
 end
+
+-- Set specific memory values
+write_8b(0xff00, 0xf)
+write_8b(0xff40, 0x91)

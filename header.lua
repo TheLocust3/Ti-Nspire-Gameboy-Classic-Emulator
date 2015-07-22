@@ -21,6 +21,17 @@ keyBounce = false
 -- Memory Register Stuff
 timerSpeed = 4 -- 4096 * 0.001 and truncate
 
+-- Graphics Stuff
+lcdDisplay = false
+windowTileLocation = 0x9800
+windowDisplay = false
+tileData = 0x8800
+bgTileLocation = 0x9800
+spriteHeight = 8
+spriteDisplay = false
+bgWindowDisplay = false
+windowPosition = {0, 0} -- X, Y
+
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
 
@@ -46,6 +57,3 @@ end
 
 rom = nil
 collectgarbage() -- Deallocate rom
-
--- Set specific memory values
-write_8b(0xff00, 0xf)
