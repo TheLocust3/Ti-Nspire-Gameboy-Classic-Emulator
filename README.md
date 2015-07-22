@@ -6,7 +6,7 @@ To use these files on your calculator, you must run concat.rb and then paste the
 ###To-Do (in order of importance)
 - [x] Input (Untested)
 - [x] Timing Commands (Not so great on calculator, but fine on PC)
-- [ ] Graphics
+- [ ] Graphics (In progress)
 - [ ] Optimize so that it will run on a calculator
 - [ ] More complex ROM support
   
