@@ -30,6 +30,7 @@ bgTileLocation = 0x9800
 spriteHeight = 8
 spriteDisplay = false
 bgWindowDisplay = false
+scroll = {0, 0} -- X, Y
 windowPosition = {0, 0} -- X, Y
 bgWinPalette = 0x0
 objPalette0 = 0x0
