@@ -1,4 +1,5 @@
 function on.charIn (char)
+	stop = false
 	if bitwiseAnd_8(get_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
     	if char == '9' then -- A
     		print("9")
@@ -15,24 +16,28 @@ function on.charIn (char)
 end
 
 function on.arrowUp ()
+	stop = false
 	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
 		print("Up")
 	end
 end
 
 function on.arrowDown ()
+	stop = false
 	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
 		print("Down")
 	end
 end
 
 function on.arrowLeft ()
+	stop = false
 	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
 		print("Left")
 	end
 end
 
 function on.arrowRight ()
+	stop = false
 	if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
 		print("Right")
 	end
@@ -52,13 +57,15 @@ function main ()
 		speed = speed + 1
 		old = timer.getMilliSecCounter()
 
-		if refresh == false then
-			platform.window:invalidate()
-			refresh = true
-		end
+		if stop == false and halt == false then
+			if refresh == false then
+				platform.window:invalidate()
+				refresh = true
+			end
 
-		if c <= 0 then
-			dispatcher()
+			if c <= 0 then
+				dispatcher()
+			end
 		end
 
 		-- V-Blank Interrupt

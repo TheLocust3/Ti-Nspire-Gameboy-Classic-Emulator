@@ -11,6 +11,9 @@ ime = true
 
 speedScaler = 0.5 -- Smallest time in Lua is millisecond so everything will run half speed (this can be changed to be faster in the futer)
 
+stop = false
+halt = false
+
 -- Interrupts
 vBlank = 0
 lcdcStatus = false

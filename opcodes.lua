@@ -1244,12 +1244,13 @@ end
 
 -- 0x76
 function HALT ()
-
+	halt = true
 end
 
 -- 0x10
 function STOP ()
-
+	stop = true
+	lcdDisplay = false
 end
 
 -- 0xf3

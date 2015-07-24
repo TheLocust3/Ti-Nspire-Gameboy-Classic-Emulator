@@ -83,6 +83,7 @@ function halfCarry_sub_8 (a, b)
 end
 
 function callInterrupt (location, bit, fNum)
+	halt = false
 	if ime == true and bitwiseAnd_8(get_8b(0xffff), bit) > 0 then
 		flags = toBits(get_8b(0xff0f), 8)
 		flags[fNum] = 1
