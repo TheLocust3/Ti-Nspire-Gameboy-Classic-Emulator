@@ -12,10 +12,6 @@ function writeGraphicsRegisters (address, value)
     bgWindowDisplay = bValue[1] == 0 and false or true
   elseif address == 0xff41 then -- LCDC Status
     write_8b(0xff41, value)
-  elseif address == 0xff42 then -- Scroll Y
-    scroll[2] = value
-  elseif address == 0xff43 then -- Scroll X
-    scroll[1] = value
   elseif address == 0xff45 then -- LY Compare
     compareScanLine = value
     stat = get_8b(0xff41)
@@ -27,7 +23,7 @@ function writeGraphicsRegisters (address, value)
     end
     write_8b(0xff41, toInt(bStat))
   elseif address == 0xff46 then -- DMA Transfer and Start Address
-
+    -- This is unimplemented because this is a function of more complex roms
   elseif address == 0xff47 then -- BG & Window Palette Data
     bgWinPalette = value -- Check implementation
   elseif address == 0xff48 then -- Object Palette 0 Data
@@ -42,10 +38,18 @@ function writeGraphicsRegisters (address, value)
 end
 
 function readGraphicsRegisters (address, value)
-  if address == 0xff44 then -- LCDC Y-Coordinate
+  if address == 0xff42 then -- Scroll Y
+    return scroll[2]
+  elseif address == 0xff43 then -- Scroll X
+    return scroll[1]
+  elseif address == 0xff44 then -- LCDC Y-Coordinate
     return scanLine
   elseif address == 0xff45 then -- LY Compare
     return compareScanLine
+  elseif address == 0xff4a then -- Window Y Position
+    return windowPosition[2]
+  elseif address == 0xff4b then -- Window X Position
+    return windowPosition[1]
   end
 
   return nil
