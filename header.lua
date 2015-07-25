@@ -51,17 +51,17 @@ memory = {0}
 i = 1
 
 while i <= 65536 do
-	memory[i] = 0
+  memory[i] = 0
 
-	i = i + 1
+  i = i + 1
 end
 
 i = 1
 
 while i <= #rom do
-	memory[i] = rom[i]
+  memory[i] = rom[i]
 
-	i = i + 1
+  i = i + 1
 end
 
 rom = nil
