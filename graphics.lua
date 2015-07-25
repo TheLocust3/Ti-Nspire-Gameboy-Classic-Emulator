@@ -11,7 +11,7 @@ function writeGraphicsRegisters (address, value)
     spriteDisplay = bValue[2] == 0 and false or true
     bgWindowDisplay = bValue[1] == 0 and false or true
   elseif address == 0xff41 then -- LCDC Status
-
+    write_8b(0xff41, value)
   elseif address == 0xff42 then -- Scroll Y
     scroll[2] = value
   elseif address == 0xff43 then -- Scroll X
@@ -44,6 +44,8 @@ end
 function readGraphicsRegisters (address, value)
   if address == 0xff44 then -- LCDC Y-Coordinate
     return scanLine
+  elseif address == 0xff45 then -- LY Compare
+    return compareScanLine
   end
 
   return nil
