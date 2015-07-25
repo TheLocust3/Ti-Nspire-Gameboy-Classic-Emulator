@@ -1,4 +1,4 @@
-function checkGraphicsRegisters (address, value)
+function writeGraphicsRegisters (address, value)
   bValue = toBits(value, 8)
 
   if address == 0xff40 then -- LCD Control
@@ -16,10 +16,16 @@ function checkGraphicsRegisters (address, value)
     scroll[2] = value
   elseif address == 0xff43 then -- Scroll X
     scroll[1] = value
-  elseif address == 0xff44 then -- LCDC Y-Coordinate
-
   elseif address == 0xff45 then -- LY Compare
-
+    compareScanLine = value
+    stat = get_8b(0xff41)
+    bStat = toBits(stat, 8)
+    if compareScanLine == scanLine then
+      bStat[3] = 1
+    else
+      bStat[3] = 0
+    end
+    write_8b(0xff41, toInt(bStat))
   elseif address == 0xff46 then -- DMA Transfer and Start Address
 
   elseif address == 0xff47 then -- BG & Window Palette Data
@@ -33,4 +39,12 @@ function checkGraphicsRegisters (address, value)
   elseif address == 0xff4b then -- Window X Position
     windowPosition[1] = value
   end
+end
+
+function readGraphicsRegisters (address, value)
+  if address == 0xff44 then -- LCDC Y-Coordinate
+    return scanLine
+  end
+
+  return nil
 end

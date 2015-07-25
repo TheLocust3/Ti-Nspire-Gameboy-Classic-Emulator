@@ -38,6 +38,8 @@ windowPosition = {0, 0} -- X, Y
 bgWinPalette = 0x0
 objPalette0 = 0x0
 objPalette1 = 0x0
+scanLine = 0
+compareScanLine = 0
 
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
