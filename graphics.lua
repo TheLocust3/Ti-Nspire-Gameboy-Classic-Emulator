@@ -25,11 +25,23 @@ function writeGraphicsRegisters (address, value)
   elseif address == 0xff46 then -- DMA Transfer and Start Address
     -- This is unimplemented because this is a function of more complex roms
   elseif address == 0xff47 then -- BG & Window Palette Data
-    bgWinPalette = value -- Check implementation
+    bgWinPalette[1] = bValue[1] + (bValue[2] * 2)
+    bgWinPalette[2] = bValue[3] + (bValue[4] * 2)
+    bgWinPalette[3] = bValue[5] + (bValue[6] * 2)
+    bgWinPalette[4] = bValue[7] + (bValue[8] * 2)
+    write_8b(0xff47, value)
   elseif address == 0xff48 then -- Object Palette 0 Data
-    objPalette0 = value -- Check implementation
+    objPalette0[1] = bValue[1] + (bValue[2] * 2)
+    objPalette0[2] = bValue[3] + (bValue[4] * 2)
+    objPalette0[3] = bValue[5] + (bValue[6] * 2)
+    objPalette0[4] = bValue[7] + (bValue[8] * 2)
+    write_8b(0xff48, value)
   elseif address == 0xff49 then -- Object Palette 1 Data
-    objPalette1 = value -- Check implementation
+    objPalette1[1] = bValue[1] + (bValue[2] * 2)
+    objPalette1[2] = bValue[3] + (bValue[4] * 2)
+    objPalette1[3] = bValue[5] + (bValue[6] * 2)
+    objPalette1[4] = bValue[7] + (bValue[8] * 2)
+    write_8b(0xff48, value)
   elseif address == 0xff4a then -- Window Y Position
     windowPosition[2] = value
   elseif address == 0xff4b then -- Window X Position
