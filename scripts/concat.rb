@@ -19,12 +19,12 @@ if ARGV[0] == "-a"
     exit
   end
 elsif ARGV[0] == "-r"
-  files[files.length] = path + "main.lua"
+  files << path + "main.lua"
 elsif ARGV[0] == "-c"
-  files[files.length] = path + "calc.lua"
+  files << path + "calc.lua"
 elsif ARGV[0] == "-t"
-  files[files.length] = path + "calc.lua"
-  files[files.length] = path + "calcTest.lua"
+  files << path + "calc.lua"
+  files << path + "calcTest.lua"
 elsif ARGV[0] != nil
   puts "Unkown arguemnt " + ARGV[0]
   exit

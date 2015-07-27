@@ -89,7 +89,8 @@ function callInterrupt (location, bit, fNum)
     flags[fNum] = 1
     write_8b(0xff0f, toInt(flags))
 
-    di()
+    pc = location
+    DI()
     call(nil, pc)
   end
 end
