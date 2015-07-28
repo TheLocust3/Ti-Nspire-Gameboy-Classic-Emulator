@@ -116,6 +116,15 @@ function main ()
       vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
     end
 
+    -- LYC=LY Coincidence Interrupt 
+    if bitwiseAnd_8(0xff41, 0x40) > 0 then 
+      if scanLine == compareScanLine then
+        pc = 0x48
+        DI()
+        call(nil, pc)
+      end 
+    end
+
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
 
     wait = (timer.getMilliSecCounter() - start) * speedScaler -- Slow down speed
