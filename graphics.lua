@@ -3,10 +3,10 @@ function writeGraphicsRegisters (address, value)
 
   if address == 0xff40 then -- LCD Control
     lcdDisplay = bValue[8] == 0 and false or true
-    windowTileLocation = bValue[7] == 1 and 0x9800 or 0x9c00
+    windowTileMapAddress = bValue[7] == 1 and 0x9800 or 0x9c00
     windowDisplay = bValue[6] == 0 and true or false
-    tileData = Value[5] == 0 and 0x8800 or 0x8000
-    bgTileLocation = bValue[4] == 0 and 0x9800 or 0x9c00
+    tileDataAddress = Value[5] == 0 and 0x8800 or 0x8000
+    bgTileMapAddress = bValue[4] == 0 and 0x9800 or 0x9c00
     spriteHeight = bValue[3] == 0 and 8 or 16
     spriteDisplay = bValue[2] == 0 and false or true
     bgWindowDisplay = bValue[1] == 0 and false or true

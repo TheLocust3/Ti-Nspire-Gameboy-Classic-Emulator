@@ -26,10 +26,10 @@ timerSpeed = 4 -- 4096 * 0.001 and truncate
 
 -- Graphics Stuff
 lcdDisplay = false
-windowTileLocation = 0x9800
+windowTileMapAddress = 0x9800
 windowDisplay = false
-tileData = 0x8800
-bgTileLocation = 0x9800
+tileDataAddress = 0x8800
+bgTileMapAddress = 0x9800
 spriteHeight = 8
 spriteDisplay = false
 bgWindowDisplay = false
