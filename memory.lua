@@ -1,5 +1,5 @@
 function get_8b (location)
-  graphicsValue = readGraphicsRegisters(address, location)
+  graphicsValue = readGraphicsRegisters(location)
 
   if graphics ~= nil then
     return graphicsValue
@@ -19,7 +19,7 @@ function write_8b (location, value)
     memory[location + 1] = value
   end
 
-  writeGraphicsRegisters(address, value)
+  writeGraphicsRegisters(location, value)
 end
 
 function write_16b (location, value)

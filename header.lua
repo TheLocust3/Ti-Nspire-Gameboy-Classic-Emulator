@@ -26,10 +26,10 @@ timerSpeed = 4 -- 4096 * 0.001 and truncate
 
 -- Graphics Stuff
 lcdDisplay = false
-windowTileMapAddress = 0x9800
+windowTileMapAddress = {0x9800, 0x9bff}
 windowDisplay = false
-tileDataAddress = 0x8800
-bgTileMapAddress = 0x9800
+tileDataAddress = {0x8800, 0x97ff}
+bgTileMapAddress = {0x9800, 0xbff}
 spriteHeight = 8
 spriteDisplay = false
 bgWindowDisplay = false
@@ -40,6 +40,8 @@ objPalette0 = {0, 0, 0, 0}
 objPalette1 = {0, 0, 0, 0} 
 scanLine = 0
 compareScanLine = 0
+tileData = {{0}}
+spriteData = {{0}}
 
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
