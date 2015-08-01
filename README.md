@@ -3,13 +3,8 @@ A lua Gameboy Classic Emulator for the Ti-Nspire. Ndless is not required! THIS I
   
 To use these files on your calculator, you must run concat.rb and then paste the text of full.lua into a .tns "script."  
   
-###To-Do (in order of importance)
-- [x] Input (Untested)
-- [x] Timing Commands (Not so great on calculator, but fine on PC)
-- [ ] Graphics (In progress)
-- [ ] Interrupt Priority
-- [ ] Optimize so that it will run on a calculator
-- [ ] More complex ROM support
+###Trello
+Visit [this Trello page](https://trello.com/b/94w7gvqK/ti-nspire-gb-emulator) to stay up to date with what is happening next with this emulator.  
   
 Main source of documentation [here](http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf)  
 Other sources are often credited in code
