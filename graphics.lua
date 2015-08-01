@@ -68,8 +68,8 @@ function readGraphicsRegisters (address, value)
 end
 
 function getTileAddress (address)
-  number = mathFloor((address - tileDataAddress[0]) / 16)
-  tileAddress = (number * 16) + tileDataAddress[0]
+  number = mathFloor((address - tileDataAddress[1]) / 16)
+  tileAddress = (number * 16) + tileDataAddress[1]
 
 	return tileAddress
 end
@@ -81,12 +81,9 @@ function getTile (number)
 
 		bits = toBits(get_8b(tileAddress + 1), 8)
 		bits2 = toBits(get_8b(tileAddress + 2), 8)
-		for k = #bits, #bits + #bits2 do -- Concat arrays
-      bits[k + 1] = bits2[k - #bits + 1]
-		end
 
     for j = 1, #bits, 2 do
-      tile[i + 1][j] = (bits[j + 1] * 2) + bits[j] 
+      tile[i + 1][j] = (bits2[j] * 2) + bits[j] 
 		end
 	end
 
