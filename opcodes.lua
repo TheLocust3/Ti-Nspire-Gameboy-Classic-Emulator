@@ -1818,25 +1818,32 @@ function jp (cc, nn)
 
   if cc == nil then
     pc = location
+		return
   else
     if cc == "NZ" then
       if fZero == false then
         pc = location
+				return
       end
     elseif cc == "Z" then
       if fZero == true then
         pc = location
+				return
       end
     elseif cc == "NC" then
       if fCarry == false then
         pc = location
+				return
       end
     else
       if fCarry == true then
         pc = location
+				return
       end
     end
   end
+
+	pc = pc + 1
 end
 
 -- 0xc3
@@ -1871,26 +1878,33 @@ end
 
 function jr (cc, n)
   if cc == nil then
-    pc = pc + nn
+    pc = pc + n
+		return
   else
     if cc == "NZ" then
       if fZero == false then
-        pc = pc + nn
+        pc = pc + n
+				return
       end
     elseif cc == "Z" then
       if fZero == true then
-        pc = pc + nn
+        pc = pc + n
+				return
       end
     elseif cc == "NC" then
       if fCarry == false then
-        pc = pc + nn
+        pc = pc + n
+				return
       end
     else
       if fCarry == true then
-        pc = pc + nn
+        pc = pc + n
+				return
       end
     end
   end
+
+	pc = pc + 1 -- Avoid infinite loop
 end
 
 -- 0x18
