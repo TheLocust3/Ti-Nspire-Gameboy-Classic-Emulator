@@ -53,7 +53,7 @@ function main ()
   refresh = false
 
   speed = 0
-  while wait < 5 do
+  while wait < 10 * speedScaler do
     speed = speed + 1
     old = timer.getMilliSecCounter()
 
