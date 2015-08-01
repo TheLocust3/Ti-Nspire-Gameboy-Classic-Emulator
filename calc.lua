@@ -102,26 +102,22 @@ function main ()
     end
 
     -- V-Blank Interrupt
-    if vBlank >= 59 then
+    if vBlank >= 59 and bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 then
       callInterrupt(0x40, 0x01, 1)
 
       vBlank = 0
-    elseif vBlank >= 1 and bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 then
+    elseif bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 and ime == true then
       flags = toBits(get_8b(0xff0f), 8)
       flags[1] = 0
       write_8b(0xff0f, flags)
 
       vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
-    else
-      vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
     end
 
     -- LYC=LY Coincidence Interrupt 
-    if bitwiseAnd_8(0xff41, 0x40) > 0 then 
+    if bitwiseAnd_8(0xff41, 0x40) > 0 and ime == true then 
       if scanLine == compareScanLine then
-        pc = 0x48
-        DI()
-        call(nil, pc)
+        callInterrupt(0x48, 0x02, 2) 
       end 
     end
 

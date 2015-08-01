@@ -7,7 +7,7 @@ fSubtract = false
 fHalfCarry = false
 fCarry = false
 
-ime = true
+ime = false 
 
 speedScaler = 0.5 -- Smallest time in Lua is millisecond so everything will run half speed (this can be changed to be faster in the futer)
 
