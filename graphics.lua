@@ -76,10 +76,15 @@ end
 
 function getTile (number)
 	tile = {}
-  for i = 0, 16 do
+  for i = 0, 16, 2 do
 		tile[i + 1] = {}
 
-		bits = toBits(get_8b(tileAddress + 1), 8) 
+		bits = toBits(get_8b(tileAddress + 1), 8)
+		bits2 = toBits(get_8b(tileAddress + 2), 8)
+		for k = #bits, #bits + #bits2 do -- Concat arrays
+      bits[k + 1] = bits2[k - #bits + 1]
+		end
+
     for j = 1, #bits, 2 do
       tile[i + 1][j] = (bits[j + 1] * 2) + bits[j] 
 		end
