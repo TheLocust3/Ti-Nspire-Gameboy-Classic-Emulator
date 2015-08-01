@@ -5,14 +5,14 @@ function writeGraphicsRegisters (address, value)
 		updateTile(address, value)		
 	else
   	if address == 0xff40 then -- LCD Control
-  	  lcdDisplay = bValue[8] == 0 and false or true
+  	  lcdDisplay = bValue[8] ~= 0
   	  windowTileMapAddress = bValue[7] == 1 and {0x9800, 0x9bff} or {0x9c00, 0x9fff}
-  	  windowDisplay = bValue[6] == 0 and true or false
+  	  windowDisplay = bValue[6] == 0
   	  tileDataAddress = bValue[5] == 0 and {0x8800, 0x97ff} or {0x8000, 0x8fff}
   	  bgTileMapAddress = bValue[4] == 0 and {0x9800, 0xbff} or {0x9c00, 0x9fff}
   	  spriteHeight = bValue[3] == 0 and 8 or 16
-  	  spriteDisplay = bValue[2] == 0 and false or true
-  	  bgWindowDisplay = bValue[1] == 0 and false or true
+  	  spriteDisplay = bValue[2] ~= 0
+  	  bgWindowDisplay = bValue[1] ~= 0
   	elseif address == 0xff41 then -- LCDC Status
 
  	  elseif address == 0xff45 then -- LY Compare
