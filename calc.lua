@@ -101,25 +101,27 @@ function main ()
       end
     end
 
-    -- V-Blank Interrupt
-    if vBlank >= 59 and bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 then
-      callInterrupt(0x40, 0x01, 1)
+		if stop == false then
+    	-- V-Blank Interrupt
+    	if vBlank >= 59 and bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 then
+      	callInterrupt(0x40, 0x01, 1)
 
-      vBlank = 0
-    elseif bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 and ime == true then
-      flags = toBits(get_8b(0xff0f), 8)
-      flags[1] = 0
-      write_8b(0xff0f, flags)
+      	vBlank = 0
+    	elseif bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 and ime == true then
+     		flags = toBits(get_8b(0xff0f), 8)
+      	flags[1] = 0
+      	write_8b(0xff0f, flags)
 
-      vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
-    end
+      	vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
+    	end
 
-    -- LYC=LY Coincidence Interrupt 
-    if bitwiseAnd_8(0xff41, 0x40) > 0 and ime == true then 
-      if scanLine == compareScanLine then
-        callInterrupt(0x48, 0x02, 2) 
-      end 
-    end
+    	-- LYC=LY Coincidence Interrupt 
+    	if bitwiseAnd_8(0xff41, 0x40) > 0 and ime == true then 
+     		if scanLine == compareScanLine then
+        	callInterrupt(0x48, 0x02, 2) 
+      	end 
+    	end
+		end
 
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
 
