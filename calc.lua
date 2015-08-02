@@ -1,5 +1,5 @@
 function on.charIn (char)
-  stop = false
+  stop = mode == 2 
   if bitwiseAnd_8(get_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
     if char == '9' then -- A
       print("9")
@@ -20,28 +20,28 @@ function on.charIn (char)
 end
 
 function on.arrowUp ()
-  stop = false
+  stop = mode == 2
   if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Up")
   end
 end
 
 function on.arrowDown ()
-  stop = false
+  stop = mode == 2 
   if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Down")
   end
 end
 
 function on.arrowLeft ()
-  stop = false
+  stop = mode == 2 
   if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Left")
   end
 end
 
 function on.arrowRight ()
-  stop = false
+  stop = mode == 2 
   if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Right")
   end
@@ -138,6 +138,10 @@ function main ()
 		end
 
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
+    if stepping == true and c >= 0 then
+      stop = true 
+      stepping = false
+    end
 
     wait = (timer.getMilliSecCounter() - start) * speedScaler -- Slow down speed
   end
@@ -148,7 +152,7 @@ time = 0
 function on.timer ()
   time = timer.getMilliSecCounter()
 
-  if mode == 1 then
+  if mode == 1 or (mode == 2 and stop == false) then
     main()
   else
     platform.window:invalidate()

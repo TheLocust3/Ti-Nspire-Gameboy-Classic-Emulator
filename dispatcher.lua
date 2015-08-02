@@ -8,6 +8,7 @@ end
 
 function dispatcher ()
   log(toHex(pc) .. ": ")
+  pcHex = toHex(pc)
 
   if memory[pc] == 0x06 then
     c = 8

@@ -45,6 +45,7 @@ spriteData = {{0}}
 
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
+pcHex = 0x00
 
 c = 0 -- The amount of clock cycles until the next command is run
 
@@ -54,6 +55,7 @@ mode = 0
 commandString = ""
 commandError = "Type a command:"
 renderHelp = false
+stepping = false
 
 memory = {0}
 

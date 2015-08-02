@@ -6,6 +6,8 @@ function checkCommand (command)
     startCommand(1) 
   elseif command == "start debug" then 
     startCommand(2)
+  elseif command == "step" then
+    stepCommand()
   elseif command == "help" then
     helpCommand()
   else
@@ -13,6 +15,11 @@ function checkCommand (command)
   end
 
   commandString = ""
+end
+
+function stepCommand ()
+  stepping = true
+  stop = false
 end
 
 function clear ()
@@ -25,11 +32,18 @@ function helpCommand ()
 end
 
 function helpText (gc)
-  gc:drawString("Commands:", 2, 0)
-  gc:drawString("'start [MODE]' - Starts in specified mode", 2, 30)
-  gc:drawString("    Modes: 'normal' or 'debug'", 2, 50)
+  gc:drawString("Commands:", 2, 20)
+  gc:drawString("'start [MODE]' - Starts in specified mode", 2, 40)
+  gc:drawString("    Modes: 'normal' or 'debug'", 2, 60)
 end
 
 function startCommand (input)
   mode = input
+
+  if input == 1 then
+    stop = false
+    stepping = false
+  elseif input == 2 then
+    stop = true
+  end
 end
