@@ -53,6 +53,7 @@ mode = 0
 
 commandString = ""
 commandError = "Type a command"
+renderHelp = false
 
 memory = {0}
 

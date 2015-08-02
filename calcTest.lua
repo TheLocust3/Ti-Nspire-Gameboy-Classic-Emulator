@@ -9,6 +9,9 @@ function on.paint (gc)
     gc:drawString("DIV Register: " .. toHex(get_8b(0xff04)), 2, 130)
     gc:drawString("Timer Register: " .. toHex(get_8b(0xff05)), 2, 150)
   elseif mode == 0 or mode == 2 then
+    if renderHelp == true then
+      helpText(gc)
+    end
     gc:drawString(commandError, 2, 170)
     gc:drawString(commandString, 2, 190)
   end
