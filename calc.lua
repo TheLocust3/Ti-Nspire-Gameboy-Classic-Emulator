@@ -13,6 +13,10 @@ function on.charIn (char)
 
     end
   end
+
+  if mode == 0 or mode == 2 then
+    commandString = commandString .. char
+  end
 end
 
 function on.arrowUp ()
@@ -41,6 +45,16 @@ function on.arrowRight ()
   if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Right")
   end
+end
+
+function on.enterKey ()
+  if mode == 0 or mode == 2 then
+    checkCommand(commandString)
+  end
+end
+
+function on.backspaceKey () 
+  commandString = string.sub(commandString, 1, string.len(commandString) - 1)
 end
 
 speed = 0
@@ -134,7 +148,11 @@ time = 0
 function on.timer ()
   time = timer.getMilliSecCounter()
 
-  main()
+  if mode == 1 then
+    main()
+  else
+    platform.window:invalidate()
+  end
 
   time = timer.getMilliSecCounter() - time
 end

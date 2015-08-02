@@ -48,6 +48,12 @@ pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
 
 c = 0 -- The amount of clock cycles until the next command is run
 
+-- Mode: 0 = None, 1 = Normal, 2 = Debug
+mode = 0
+
+commandString = ""
+commandError = "Type a command"
+
 memory = {0}
 
 i = 1
