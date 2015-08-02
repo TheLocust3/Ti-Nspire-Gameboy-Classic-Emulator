@@ -33,9 +33,6 @@ function writeCheck (location)
   end
 end
 
--- Set specific memory values
-write_8b(0xff00, 0xf)
-
 -- Set BIOS values
 store16b(1, 8, 0x01)
 registers[8] = 0xb0
