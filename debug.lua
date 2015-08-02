@@ -1,4 +1,5 @@
 function checkCommand (command)
+  clear()
   command = string.lower(command)
 
   if command == "start" or command == "start normal" then
@@ -8,10 +9,15 @@ function checkCommand (command)
   elseif command == "help" then
     helpCommand()
   else
-    commandError = "Unknown command '" .. command .. "'. Type 'help' for a list of commands"
+    commandError = "Unknown command '" .. command .. "'. Try 'help'"
   end
 
   commandString = ""
+end
+
+function clear ()
+  commandError = "Type a command:"
+  renderHelp = false
 end
 
 function helpCommand ()

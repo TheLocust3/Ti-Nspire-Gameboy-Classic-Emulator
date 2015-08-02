@@ -52,7 +52,7 @@ c = 0 -- The amount of clock cycles until the next command is run
 mode = 0
 
 commandString = ""
-commandError = "Type a command"
+commandError = "Type a command:"
 renderHelp = false
 
 memory = {0}
