@@ -458,7 +458,7 @@ function dispatcher ()
   elseif memory[pc] == 0x31 then
     c = 12
     LD_SP_nn(to16b(memory[pc + 1], memory[pc + 2]))
-    log("LD SP, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
+    log("LD SP, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     pc = pc + 3
   elseif memory[pc] == 0xf9 then
     c = 8

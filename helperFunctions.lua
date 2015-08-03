@@ -53,7 +53,7 @@ function getRegister_16b (first)
   return to16b(registers[first], registers[first + 1])
 end
 
---function to16b (high, low)
+--function to16b (low, high)
 function to16b (low, high) -- This might have some negative effects
   return shiftLeft(high, 8) + low
 end

@@ -23,7 +23,7 @@ function checkCommand (command)
 end
 
 function memoryText (gc)
-  gc:drawString(toHex(inputAddress) .. ": " .. get_8b(inputAddress), 2, 30)
+  gc:drawString(toHex(inputAddress) .. ": " .. toHex(get_8b(inputAddress)), 2, 50)
 end
 
 function registersCommand ()
