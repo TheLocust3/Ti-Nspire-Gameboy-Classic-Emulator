@@ -55,6 +55,7 @@ mode = 0
 commandString = ""
 commandError = "Type a command:"
 renderHelp = false
+renderRegisters = false
 stepping = false
 
 memory = {0}

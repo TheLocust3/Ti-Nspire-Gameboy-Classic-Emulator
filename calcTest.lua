@@ -1,7 +1,7 @@
 function on.paint (gc)
   if mode == 1 then
     gc:drawString("A: " .. toHex(registers[1]) .. " B: " .. toHex(registers[2]) .. " C: " .. toHex(registers[3]) .. " D: " .. toHex(registers[4]), 2, 10)
-    gc:drawString("E: " .. toHex(registers[5]) .. " F: " .. toHex(registers[8]) .. " H: " .. toHex(registers[6]) .. " L: " .. toHex(registers[7]) .. " PC: " .. toHex(registers[9]), 2, 30)
+    gc:drawString("E: " .. toHex(registers[5]) .. " F: " .. toHex(registers[8]) .. " H: " .. toHex(registers[6]) .. " L: " .. toHex(registers[7]) .. " SP: " .. toHex(registers[9]), 2, 30)
     gc:drawString(command, 2, 50)
     gc:drawString("Timer Loop: " .. time .. " ms", 2, 70)
     gc:drawString("Timer Speed: " .. speed, 2, 90)
@@ -13,7 +13,11 @@ function on.paint (gc)
 
     if renderHelp == true then
       helpText(gc)
-    elseif mode == 2 then
+    elseif renderRegisters == true then
+      registersText(gc)
+    end
+
+    if mode == 2 and renderHelp == false then
       gc:drawString(pcHex .. ": " ..  command, 2, 30)
     end
 

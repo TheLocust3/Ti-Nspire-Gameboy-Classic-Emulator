@@ -8,6 +8,8 @@ function checkCommand (command)
     startCommand(2)
   elseif command == "step" then
     stepCommand()
+  elseif command == "registers" then
+    registersCommand()
   elseif command == "help" then
     helpCommand()
   else
@@ -17,6 +19,15 @@ function checkCommand (command)
   commandString = ""
 end
 
+function registersCommand ()
+  renderRegisters = true
+end
+
+function registersText (gc)
+    gc:drawString("A: " .. toHex(registers[1]) .. " B: " .. toHex(registers[2]) .. " C: " .. toHex(registers[3]) .. " D: " .. toHex(registers[4]), 2, 50)
+    gc:drawString("E: " .. toHex(registers[5]) .. " F: " .. toHex(registers[8]) .. " H: " .. toHex(registers[6]) .. " L: " .. toHex(registers[7]) .. " SP: " .. toHex(registers[9]), 2, 70)
+end
+
 function stepCommand ()
   stepping = true
   stop = false
@@ -24,6 +35,7 @@ end
 
 function clear ()
   commandError = "Type a command:"
+  renderRegisters = false 
   renderHelp = false
 end
 
