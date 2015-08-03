@@ -10,6 +10,9 @@ function checkCommand (command)
     stepCommand()
   elseif command == "registers" then
     registersCommand()
+  elseif command:match("%memory") then
+    inputAddress = split(command, " ")
+    inputAddress = tonumber(inputAddress[2])
   elseif command == "help" then
     helpCommand()
   else
@@ -17,6 +20,10 @@ function checkCommand (command)
   end
 
   commandString = ""
+end
+
+function memoryText (gc)
+  gc:drawString(toHex(inputAddress) .. ": " .. get_8b(inputAddress), 2, 30)
 end
 
 function registersCommand ()
@@ -37,6 +44,7 @@ function clear ()
   commandError = "Type a command:"
   renderRegisters = false 
   renderHelp = false
+  inputAddress = -1
 end
 
 function helpCommand ()

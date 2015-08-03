@@ -57,6 +57,7 @@ commandError = "Type a command:"
 renderHelp = false
 renderRegisters = false
 stepping = false
+inputAddress = -1
 
 memory = {0}
 
