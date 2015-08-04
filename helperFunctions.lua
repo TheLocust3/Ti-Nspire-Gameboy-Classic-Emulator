@@ -50,7 +50,7 @@ function store16b (rIndex1, rIndex2, num)
 end
 
 function getRegister_16b (first)
-  return to16b(registers[first], registers[first + 1])
+  return to16b(registers[first + 1], registers[first]) -- Reverse first + 1 and first to work around the reversal of to16b
 end
 
 --function to16b (low, high)

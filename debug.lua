@@ -6,7 +6,7 @@ function checkCommand (command)
     startCommand(1) 
   elseif command == "start debug" then 
     startCommand(2)
-  elseif command == "step" then
+  elseif command == "step" or command == "s" then
     stepCommand()
   elseif command == "registers" then
     registersCommand()

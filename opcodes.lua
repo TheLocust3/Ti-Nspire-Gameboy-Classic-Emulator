@@ -1090,7 +1090,7 @@ end
 
 function inc_16b (rIndex1, rIndex2)
   if rIndex2 ~= nil then
-    sum = to16b(registers[rIndex1], registers[rIndex2]) + 1
+    sum = getRegister_16b(rIndex1) + 1
 
     store16b(rIndex1, rIndex2, bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16)))
   else
@@ -1122,7 +1122,7 @@ end
 
 function dec_16b (rIndex1, rIndex2)
   if rIndex2 ~= nil then
-    sum = to16b(registers[rIndex1], registers[rIndex2]) - 1
+    sum = getRegister_16b(rIndex1) - 1
 
     store16b(rIndex1, rIndex2, bitwiseAnd(toBits(sum, 16), toBits(0xffff, 16)))
   else
@@ -1913,22 +1913,22 @@ function JR_n (n)
 end
 
 -- 0x20
-function JR_NZ_nn (n)
+function JR_NZ_n (n)
   jr("NZ", n)
 end
 
 -- 0x28
-function JR_Z_nn (n)
+function JR_Z_n (n)
   jr("Z", n)
 end
 
 -- 0x30
-function JR_NC_nn (nn)
+function JR_NC_n (n)
   jr("NC", n)
 end
 
 -- 0x38
-function JR_C_nn (n)
+function JR_C_n (n)
   jr("C", n)
 end
 
