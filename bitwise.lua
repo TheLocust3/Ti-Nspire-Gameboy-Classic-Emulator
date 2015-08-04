@@ -8,7 +8,7 @@ local mathFloor = math.floor
 function toBits (num, bits)
   binary = {}
   total = num
-  i = 0
+  i = 1 
 
   while i <= bits do
     binary[i] = total % 2
@@ -21,14 +21,14 @@ end
 
 function toInt (bits)
   number = 0
-  i = #bits
+  i = 1 
 
-  while i > 0 do
+  while i <= #bits do
     if bits[i] == 1 then
-      number = number + math.pow(2, 8 - i) -- Go bacwards through array
+      number = number + math.pow(2, i - 1) -- Go bacwards through array
     end
 
-    i = i - 1
+    i = i + 1
   end
   
   return mathFloor(number)

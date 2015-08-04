@@ -945,15 +945,15 @@ function CP_n (n)
 end
 
 function inc_8b (rIndex, n)
-  sum = n + 1
-
-  if rIndex ~= nil then
-    registers[rIndex] = bitwiseAnd_8(sum, 0xff)
-
-    setFlags((sum == 0), false, halfCarry_add_8(registers[rIndex], 1), nil)
+  if n == nil then
+    sum = bitwiseAnd_8(registers[rIndex] + 1, 0xff)
+    registers[rIndex] = sum
   else
-
+    sum = bitwiseAnd_8(n + 1, 0xff)
+    write_8b(rIndex, sum)
   end
+
+  setFlags((sum == 0), false, halfCarry_add_8(sum, 1), nil)
 end
 
 -- 0x3c
