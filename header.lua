@@ -58,6 +58,7 @@ renderHelp = false
 renderRegisters = false
 stepping = false
 inputAddress = -1
+stopOn = ""
 
 memory = {0}
 

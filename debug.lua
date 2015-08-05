@@ -13,6 +13,11 @@ function checkCommand (command)
   elseif command:match("%memory") then
     inputAddress = split(command, " ")
     inputAddress = tonumber(inputAddress[2])
+  elseif command:match("until") then
+    stopOn = split(command, " ")
+    stopOn = stopOn[2]
+    print(stopOn)
+    stop = false
   elseif command == "help" then
     helpCommand()
   else
@@ -55,6 +60,11 @@ function helpText (gc)
   gc:drawString("Commands:", 2, 20)
   gc:drawString("'start [MODE]' - Starts in specified mode", 2, 40)
   gc:drawString("    Modes: 'normal' or 'debug'", 2, 60)
+
+  gc:drawString("'registers' - Show register values", 2, 80)
+  gc:drawString("'memory [ADDRESS]' - Show the value stored", 2, 100) 
+  gc:drawString("    in specified address", 2, 120)
+  gc:drawString("'until [OPCODE]' Run until specified opcode", 2, 140)
 end
 
 function startCommand (input)

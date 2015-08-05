@@ -3,6 +3,11 @@ command = ""
 function log (str)
   command = str
 
+  lowerCommand = string.lower(command)
+  if lowerCommand:match(stopOn) then
+    stop = true
+  end
+
   --print(str)
 end
 
