@@ -16,7 +16,6 @@ function checkCommand (command)
   elseif command:match("until") then
     stopOn = split(command, " ")
     stopOn = stopOn[2]
-    print(stopOn)
     stop = false
   elseif command == "help" then
     helpCommand()

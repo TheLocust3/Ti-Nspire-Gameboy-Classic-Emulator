@@ -1092,23 +1092,23 @@ function dispatcher ()
     pc = pc + 1
   elseif memory[pc] == 0xc3 then
     c = 12
-    log("JP " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("JP " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     JP_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xc2 then
     c = 12
-    log("JP NZ, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("JP NZ, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     JP_NZ_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xca then
     c = 12
-    log("JP Z" .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("JP Z" .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     JP_Z_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xd2 then
     c = 12
-    log("JP  NC" .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("JP  NC" .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     JP_NC_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xda then
     c = 12
-    log("JP  C" .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("JP  C" .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     JP_C_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xe9 then
     c = 4
@@ -1136,23 +1136,23 @@ function dispatcher ()
     JR_C_n(memory[pc + 1])
   elseif memory[pc] == 0xcd then
     c = 12
-    log("CALL " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("CALL " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     CALL_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xc4 then
     c = 12
-    log("CALL NZ, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("CALL NZ, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     CALL_NZ_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xcc then
     c = 12
-    log("CALL Z, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("CALL Z, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     CALL_Z_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xd4 then
     c = 12
-    log("CALL NC, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("CALL NC, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     CALL_NC_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xdc then
     c = 12
-    log("CALL C, " .. toHex(memory[pc + 1]) .. " " .. toHex(memory[pc + 2]))
+    log("CALL C, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     CALL_C_nn(to16b(memory[pc + 1], memory[pc + 2]))
   elseif memory[pc] == 0xc7 then
     c = 32
