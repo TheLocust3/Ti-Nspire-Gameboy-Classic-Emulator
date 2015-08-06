@@ -58,7 +58,7 @@ renderHelp = false
 renderRegisters = false
 stepping = false
 inputAddress = -1
-stopOn = ""
+stopOn = "Completely random string"
 
 memory = {0}
 

@@ -70,6 +70,7 @@ function startCommand (input)
   mode = input
 
   if input == 1 then
+    clear()
     stop = false
     stepping = false
   elseif input == 2 then

@@ -4,11 +4,11 @@ function log (str)
   command = str
 
   lowerCommand = string.lower(command)
-  if lowerCommand:match(stopOn) then
+  if lowerCommand:find(stopOn) ~= nil then
     stop = true
   end
 
-  --print(str)
+  print(str)
 end
 
 function dispatcher ()
@@ -458,7 +458,7 @@ function dispatcher ()
   elseif memory[pc] == 0x21 then
     c = 12
     LD_HL_nn(to16b(memory[pc + 1], memory[pc + 2]))
-    log("LD HL, " .. toHex(memory[pc + 1]) .. u_toHex(pc + 2))
+    log("LD HL, " .. toHex(to16b(memory[pc + 1], memory[pc + 2])))
     pc = pc + 3
   elseif memory[pc] == 0x31 then
     c = 12
