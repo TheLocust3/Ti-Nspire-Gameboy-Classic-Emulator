@@ -8,10 +8,12 @@ function writeGraphicsRegisters (address, value)
       backgroundTileMap[address - 0x8000] = value
     else -- Signed
       signedValue = toBits(value, 7) 
+      x = (32 - ((address - 0x8000) % 32)) + 1
+      y = mathFloor((address - 0x8000) / 32) + 1
       if bitwiseAnd_8(value, 0x80) > 0 then
-        backgroundTileMap[address - 0x8000] = signedValue 
+        backgroundTileMap[x][y] = signedValue 
       else
-        backgroundTileMap[address - 0x8000] = signedValue + 128
+        backgroundTileMap[x][y] = signedValue + 128
       end
     end
 	else
