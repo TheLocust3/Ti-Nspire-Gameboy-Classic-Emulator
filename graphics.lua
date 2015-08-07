@@ -3,6 +3,17 @@ function writeGraphicsRegisters (address, value)
 
 	if address >= tileDataAddress[1] and address < tileDataAddress[2] then
 		updateTile(address, value)		
+  elseif address >= 0x8000 and address < 0xa000 then -- VRam
+    if titeDataAddress[1] == 0x8000 then -- Unsigned
+      backgroundTileMap[address - 0x8000] = value
+    else -- Signed
+      signedValue = toBits(value, 7) 
+      if bitwiseAnd_8(value, 0x80) > 0 then
+        backgroundTileMap[address - 0x8000] = signedValue 
+      else
+        backgroundTileMap[address - 0x8000] = signedValue + 128
+      end
+    end
 	else
   	if address == 0xff40 then -- LCD Control
   	  lcdDisplay = bValue[8] ~= 0

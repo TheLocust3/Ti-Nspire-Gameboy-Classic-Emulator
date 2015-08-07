@@ -41,6 +41,7 @@ objPalette1 = {0, 0, 0, 0}
 scanLine = 0
 compareScanLine = 0
 tileData = {{0}}
+backgroundTileMap = {{}}
 spriteData = {{0}}
 
 -- Program Counter
