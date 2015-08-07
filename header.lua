@@ -42,6 +42,7 @@ scanLine = 0
 compareScanLine = 0
 tileData = {{0}}
 backgroundTileMap = {{}}
+windowTileMap = {{}}
 spriteData = {{0}}
 
 -- Program Counter

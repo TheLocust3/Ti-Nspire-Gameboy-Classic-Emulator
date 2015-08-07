@@ -3,7 +3,7 @@ function writeGraphicsRegisters (address, value)
 
 	if address >= tileDataAddress[1] and address < tileDataAddress[2] then
 		updateTile(address, value)		
-  elseif address >= 0x8000 and address < 0xa000 then -- VRam
+  elseif windowDisplay == false and address >= bgTileMapAddress[1] and address < bgTileMapAddress[2] then -- VRam
     if titeDataAddress[1] == 0x8000 then -- Unsigned
       backgroundTileMap[address - 0x8000] = value
     else -- Signed
@@ -14,6 +14,19 @@ function writeGraphicsRegisters (address, value)
         backgroundTileMap[x][y] = signedValue 
       else
         backgroundTileMap[x][y] = signedValue + 128
+      end
+    end
+  elseif windowDisplay == true and address >= windowTileMapAddress[1] and address < windowTileMapAddress[2] then
+    if titeDataAddress[1] == 0x8000 then -- Unsigned
+      windowTileMap[address - 0x8000] = value
+    else -- Signed
+      signedValue = toBits(value, 7) 
+      x = (32 - ((address - 0x8000) % 32)) + 1
+      y = mathFloor((address - 0x8000) / 32) + 1
+      if bitwiseAnd_8(value, 0x80) > 0 then
+        windowTileMap[x][y] = signedValue 
+      else
+        windowTileMap[x][y] = signedValue + 128
       end
     end
 	else
