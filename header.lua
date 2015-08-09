@@ -58,6 +58,7 @@ commandString = ""
 commandError = "Type a command:"
 renderHelp = false
 renderRegisters = false
+renderFlags = false
 stepping = false
 inputAddress = -1
 stopOn = "Completely random string"

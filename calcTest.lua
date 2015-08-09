@@ -15,6 +15,8 @@ function on.paint (gc)
       helpText(gc)
     elseif renderRegisters == true then
       registersText(gc)
+    elseif renderFlags == true then
+      flagsText(gc)
     elseif inputAddress ~= -1 then
       memoryText(gc)
     end

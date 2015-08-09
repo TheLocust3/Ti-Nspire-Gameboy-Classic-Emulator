@@ -10,6 +10,8 @@ function checkCommand (command)
     stepCommand()
   elseif command == "registers" then
     registersCommand()
+  elseif command == "flags" then
+    flagsCommand()
   elseif command:match("%memory") then
     inputAddress = split(command, " ")
     inputAddress = tonumber(inputAddress[2])
@@ -28,6 +30,17 @@ end
 
 function memoryText (gc)
   gc:drawString(toHex(inputAddress) .. ": " .. toHex(get_8b(inputAddress)), 2, 50)
+end
+
+function flagsCommand ()
+  renderFlags = true
+end
+
+function flagsText (gc)
+  gc:drawString("Zero " .. tostring(fZero), 2, 50)
+  gc:drawString("Subtract " .. tostring(fSubtract), 2, 70)
+  gc:drawString("Half Carry " .. tostring(fHalfCarry), 2, 90)
+  gc:drawString("Carry " .. tostring(fCarry), 2, 110)
 end
 
 function registersCommand ()
