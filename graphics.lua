@@ -1,3 +1,38 @@
+Tile = class(function (klass, number)
+     klass.number = number 
+     klass.tile = {}
+     klass.update()
+  end)
+
+function Tile:getTile ()
+  return self.tile
+end
+
+function Tile:drawTile (x, y)
+
+end
+
+-- Pretend like this is private
+function Tile:readTileMemory ()
+  tile = {}
+  for i = 0, 16, 2 do
+    tile[i + 1] = {}
+
+    bits = toBits(get_8b(self.number + 1), 8)
+    bits2 = toBits(get_8b(self.number + 2), 8)
+
+    for j = 1, #bits, 2 do
+      tile[i + 1][j] = (bits2[j] * 2) + bits[j] 
+    end
+  end
+
+  return tile
+end
+
+function Tile:update ()
+  self.tile = self.readTileMemory() 
+end
+
 function writeGraphicsRegisters (address, value)
   bValue = toBits(value, 8)
 
@@ -93,31 +128,19 @@ function readGraphicsRegisters (address, value)
   return nil
 end
 
-function getTileAddress (address)
+function getTileNumber (address)
   number = mathFloor((address - tileDataAddress[1]) / 16)
   tileAddress = (number * 16) + tileDataAddress[1]
 
 	return tileAddress
 end
 
-function getTile (number)
-	tile = {}
-  for i = 0, 16, 2 do
-		tile[i + 1] = {}
-
-		bits = toBits(get_8b(tileAddress + 1), 8)
-		bits2 = toBits(get_8b(tileAddress + 2), 8)
-
-    for j = 1, #bits, 2 do
-      tile[i + 1][j] = (bits2[j] * 2) + bits[j] 
-		end
-	end
-
-	return tile
-end
-
 function updateTile (address, value)
-  tileAddress = getTileAddress(address)	
-	tile = getTile(tileAddress)
-  tileData[tileAddress + 1] = tile
+  tileNumber = getTileNumber(address)	
+  
+  if tileData[tileNumber] == nil then
+    tileData[tileNumber + 1] = Tile(tileNumber)
+  else
+    tileData[tileNumber]:update()
+  end
 end
