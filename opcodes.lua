@@ -1049,17 +1049,17 @@ end
 
 -- 16-Bit Arithmetic
 
-function add_16b (rIndex1, rIndex2, n)
+function add_16b (rIndex1, rIndex2, nn)
   if rIndex2 ~= nil then
-    sum = to16b(registers[rIndex1], registers[rIndex2]) + n
+    sum = to16b(registers[rIndex1], registers[rIndex2]) + nn
 
-    store16b(rIndex1, rIndex2, bitwiseAnd_8(n, 0xffff))
-    setFlags(nil, false, halfCarry_add_16(registers[rIndex1], registers[rIndex2]), (sum > 65535))
+    store16b(rIndex1, rIndex2, bitwiseAnd_8(nn, 0xffff))
+    setFlags(nil, false, halfCarry_add_16(getRegister_16b(registers[rIndex1]), nn), (sum > 65535))
   else
-    sum = registers[rIndex1] + n
+    sum = registers[rIndex1] + nn
 
     registers[rIndex1] = toInt(toBits(sum, 16))
-    setFlags(nil, false, halfCarry_add_16(shiftRight(registers[rIndex1], 8), toInt(toBits(registers[rIndex1], 8))), (sum > 65535))
+    setFlags(false, false, halfCarry_add_16(shiftRight(registers[rIndex1], 8), toInt(toBits(nn, 8))), (sum > 65535))
   end
 end
 
