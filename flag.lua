@@ -32,8 +32,17 @@ function CarryFlag:isCarryHigh_16b(number)
   return number > 0xffff
 end
 
-function CarryFlag:isCarryLow_8b(number)
+function CarryFlag:isCarryLow(number)
   return number < 0
+end
+
+-- The Rotates have their own family of carry flags
+function CarryFlag:rotateLeftCarry(number)
+  return bitwiseAnd(toBits(number, 16), toBits(0x100, 16)) > 0
+end
+
+function CarryFlag:rotateRightCarry(number)
+  return bitwiseAnd_8(shift, 0x01) > 0
 end
 
 HalfCarryFlag = class(Flag)

@@ -645,7 +645,7 @@ function sub_8b (rIndex, n)
 
   registers[rIndex] = bitwiseAnd_8(diff, 0xff)
   print(diff)
-  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow_8b(diff))
+  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
 
 -- 0x97
@@ -1873,8 +1873,7 @@ function sub_8b (rIndex, n)
   diff = registers[rIndex] - n
 
   registers[rIndex] = bitwiseAnd_8(diff, 0xff)
-  print(diff)
-  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow_8b(diff))
+  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
 
 -- 0x97
@@ -2500,7 +2499,7 @@ function RLCA ()
   shift = shiftLeft(registers[1], 1)
 
   registers[1] = bitwiseAnd_8(shift, 0xff)
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16))) > 0)
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
 end
 
 -- 0x17 (THIS COMMAND IS NOT WELL DOCUMENTED)
@@ -2530,7 +2529,7 @@ end
 function rlc (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
   registers[rIndex] = bitwiseAnd_8(shift, 0xff)
 end
 
@@ -2573,7 +2572,7 @@ end
 function RLC_HL ()
   shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
   write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
 end
 
@@ -3327,7 +3326,7 @@ function RLCA ()
   shift = shiftLeft(registers[1], 1)
 
   registers[1] = bitwiseAnd_8(shift, 0xff)
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16))) > 0)
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[1]))
 end
 
 -- 0x17 (THIS COMMAND IS NOT WELL DOCUMENTED)
@@ -3342,7 +3341,7 @@ end
 function RRCA ()
   shift = shiftRight(registers[1], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8(shift, 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[1]))
   registers[1] = bitwiseAnd_8(shift, 0xff)
 end
 
@@ -3357,7 +3356,7 @@ end
 function rlc (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[rIndex]))
   registers[rIndex] = bitwiseAnd_8(shift, 0xff)
 end
 
@@ -3400,7 +3399,7 @@ end
 function RLC_HL ()
   shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(get_8b(getRegister_16b(6))))
   write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
 end
 
@@ -3457,7 +3456,7 @@ end
 function rrc (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8(registers[rIndex], 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
   registers[rIndex] = bitwiseAnd_8(shift, 0xff)
 end
 
@@ -3498,9 +3497,9 @@ end
 
 -- 0xcb 0x0e
 function RRC_HL ()
-  shift = shiftRight(getRegister_16b(6), 1)
+  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8(getRegister_16b(6), 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
   write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
 end
 
@@ -3548,7 +3547,7 @@ end
 
 -- 0xcb 0x1e
 function RR_HL ()
-  shift = shiftRight(getRegister_16b(6), 1)
+  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
 
   write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
   setFlags(zeroFlag:isZero(shift), false, false, false)
@@ -3557,7 +3556,7 @@ end
 function sla (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[rIndex]))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
@@ -3601,9 +3600,9 @@ end
 
 -- 0xcb 0x26
 function SLA_HL ()
-  shift = shiftLeft(getRegister_16b(6), 1)
+  shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(toBits(shift, 16), toBits(0x100, 16)) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(get_8b(getRegister_16b(6))))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
@@ -3613,7 +3612,7 @@ end
 function sra (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(registers[rIndex], 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
@@ -3657,9 +3656,9 @@ end
 
 -- 0xcb 0x2e
 function SRA_HL ()
-  shift = shiftRight(getRegister_16b(6), 1)
+  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(getRegister_16b(6), 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
@@ -3669,7 +3668,7 @@ end
 function srl (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(registers[rIndex], 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
@@ -3713,9 +3712,9 @@ end
 
 -- 0xcb 0x3e
 function SRL_HL ()
-  shift = shiftRight(getRegister_16b(6), 1)
+  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd(getRegister_16b(6), 0x01) > 0))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
