@@ -37,10 +37,10 @@ function flagsCommand ()
 end
 
 function flagsText (gc)
-  gc:drawString("Zero " .. tostring(fZero), 2, 50)
-  gc:drawString("Subtract " .. tostring(fSubtract), 2, 70)
-  gc:drawString("Half Carry " .. tostring(fHalfCarry), 2, 90)
-  gc:drawString("Carry " .. tostring(fCarry), 2, 110)
+  gc:drawString("Zero " .. tostring(zeroFlag:isSet()), 2, 50)
+  gc:drawString("Subtract " .. tostring(subtractFlag:isSet()), 2, 70)
+  gc:drawString("Half Carry " .. tostring(halfCarryFlag:isSet()), 2, 90)
+  gc:drawString("Carry " .. tostring(carryFlag:isSet()), 2, 110)
 end
 
 function registersCommand ()

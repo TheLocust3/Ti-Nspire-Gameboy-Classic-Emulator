@@ -588,7 +588,7 @@ end
 
 function adc_8b (rIndex, nn)
   carry = 0
-  if fCarry == true then
+  if carryFlag.isSet() then
     carry = carry + 1
   end
 
@@ -694,7 +694,7 @@ end
 
 function sbc_8b (rIndex, n)
   carry = 0
-  if fCarry == true then
+  if carryFlag.isSet() then
     carry = 1
   end
 
@@ -1209,11 +1209,11 @@ end
 -- 0x27
 -- Explanation of command provided from http://stackoverflow.com/questions/8119577/z80-daa-instruction (3rd answer)
 function DAA ()
-  if bitwiseAnd_8(registers[1], 0x0f) > 9 or fHalfCarry then
+  if bitwiseAnd_8(registers[1], 0x0f) > 9 or halfCarryFlag.isSet() then
     registers[1] = registers[1] + 0x06
   end
 
-  if shiftRight(registers[1], 4) > 9 or fCarry then
+  if shiftRight(registers[1], 4) > 9 or carryFlag.isSet() then
     registers[1] = registers[1] + 0x60
   end
 end
@@ -1225,7 +1225,7 @@ end
 
 -- 0x3f
 function CCF ()
-  if fCarry == true then
+  if carryFlag.isSet() then
     setFlags(nil, nil, nil, false)
   else
     setFlags(nil, nil, nil, true)
@@ -1821,22 +1821,22 @@ function jp (cc, nn)
 		return
   else
     if cc == "NZ" then
-      if fZero == false then
+      if not zeroFlag:isSet() then
         pc = location
 				return
       end
     elseif cc == "Z" then
-      if fZero == true then
+      if zeroFlag:isSet() then
         pc = location
 				return
       end
     elseif cc == "NC" then
-      if fCarry == false then
+      if not carryFlag:isSet() then
         pc = location
 				return
       end
     else
-      if fCarry == true then
+      if carryFlag:isSet() then
         pc = location
 				return
       end
@@ -1882,22 +1882,22 @@ function jr (cc, n)
 		return
   else
     if cc == "NZ" then
-      if fZero == false then
+      if not zeroFlag:isSet() then
         pc = pc + n
 				return
       end
     elseif cc == "Z" then
-      if fZero == true then
+      if zeroFlag:isSet() then
         pc = pc + n
 				return
       end
     elseif cc == "NC" then
-      if fCarry == false then
+      if not carryFlag:isSet() then
         pc = pc + n
 				return
       end
     else
-      if fCarry == true then
+      if carryFlag:isSet() then
         pc = pc + n
 				return
       end

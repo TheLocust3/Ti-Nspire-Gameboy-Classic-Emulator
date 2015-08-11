@@ -2,19 +2,19 @@ function setFlags (z, s, hc, c)
   flag = {0, 0, 0, 0, 0, 0, 0, 0}
 
   if z ~= nil then
-    fZero = z
+    if z then zeroFlag:set() else zeroFlag:reset() end
   end
 
   if s ~= nil then
-    fSubtract = s
+    if z then subtractFlag:set() else subtractFlag:reset() end
   end
 
   if hc ~= nil then
-    fHalfCarry = hc
+    if z then halfCarryFlag:set() else halfCarryFlag:reset() end
   end
 
   if c ~= nil then
-    fCarry = c
+    if z then carryFlag:set() else carryFlag:reset() end
   end
 
   if z == true then

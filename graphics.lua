@@ -1,19 +1,19 @@
-Tile = class(function (klass, number)
+Tile = class(function(klass, number)
      klass.number = number 
      klass.tile = {}
      klass.update()
   end)
 
-function Tile:getTile ()
+function Tile:getTile()
   return self.tile
 end
 
-function Tile:drawTile (x, y)
+function Tile:drawTile(x, y)
 
 end
 
 -- Pretend like this is private
-function Tile:readTileMemory ()
+function Tile:readTileMemory()
   tile = {}
   for i = 0, 16, 2 do
     tile[i + 1] = {}
@@ -29,7 +29,7 @@ function Tile:readTileMemory ()
   return tile
 end
 
-function Tile:update ()
+function Tile:update()
   self.tile = self.readTileMemory() 
 end
 

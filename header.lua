@@ -2,10 +2,10 @@
 registers = {0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0xfffe}
 
 -- Flags (Must be manually placed in register F)
-fZero = false
-fSubtract = false
-fHalfCarry = false
-fCarry = false
+zeroFlag = ZeroFlag(false)
+subtractFlag = SubtractFlag(false)
+carryFlag = CarryFlag(false)
+halfCarryFlag = HalfCarryFlag(false)
 
 ime = false 
 
