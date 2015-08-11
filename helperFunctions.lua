@@ -58,30 +58,6 @@ function to16b (low, high) -- This might have some negative effects
   return shiftLeft(high, 8) + low
 end
 
-function halfCarry_add_8 (a, b)
-  if bitwiseAnd_8(bitwiseAnd_8(a, 0xf) + bitwiseAnd_8(b, 0xf), 0xf0) > 0 then
-    return true
-  else
-    return false
-  end
-end
-
-function halfCarry_add_16 (a, b)
-  if bitwiseAnd_16(bitwiseAnd_16(a, 0xfff) + bitwiseAnd_16(b, 0xfff), 0xfff0) > 0 then
-    return true
-  else
-    return false
-  end
-end
-
-function halfCarry_sub_8 (a, b)
-  if bitwiseAnd_8(bitwiseAnd_8(a, 0xf) - bitwiseAnd_8(b, 0xf), 0x08) ~= a then
-    return true
-  else
-    return false
-  end
-end
-
 function callInterrupt (location, bit, fNum)
   halt = false
   if ime == true and bitwiseAnd_8(get_8b(0xffff), bit) > 0 then

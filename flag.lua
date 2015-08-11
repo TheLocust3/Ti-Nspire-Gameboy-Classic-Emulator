@@ -24,12 +24,16 @@ SubtractFlag = class(Flag)
 
 CarryFlag = class(Flag)
 
-function CarryFlag:isCarry_8b(number)
+function CarryFlag:isCarryHigh_8b(number)
   return number > 0xff
 end
 
-function CarryFlag:isCarry_16b(number)
+function CarryFlag:isCarryHigh_16b(number)
   return number > 0xffff
+end
+
+function CarryFlag:isCarryLow_8b(number)
+  return number < 0
 end
 
 HalfCarryFlag = class(Flag)
@@ -42,7 +46,7 @@ function HalfCarryFlag:isHalfCarryAdd_8b (a, b)
   end
 end
 
-function HalfCarryFlag:isHhalfCarryAdd_16b (a, b)
+function HalfCarryFlag:isHalfCarryAdd_16b (a, b)
   if bitwiseAnd_16(bitwiseAnd_16(a, 0xfff) + bitwiseAnd_16(b, 0xfff), 0xfff0) > 0 then
     return true
   else
