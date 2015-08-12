@@ -1,8 +1,10 @@
-Tile = class(function(klass, number)
-     klass.number = number 
-     klass.tile = {}
-     klass.update()
-  end)
+Tile = class()
+
+function Tile:init(number)
+  self.number = number
+  self.tile = {}
+  self.update()
+end
 
 function Tile:getTile()
   return self.tile

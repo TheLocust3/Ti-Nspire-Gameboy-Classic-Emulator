@@ -1,6 +1,8 @@
-Flag = class(function(klass, default)
-    klass.flag = default 
-  end)
+Flag = class()
+
+function Flag:init(default)
+  self.flag = default
+end
 
 function Flag:isSet()
   return self.flag

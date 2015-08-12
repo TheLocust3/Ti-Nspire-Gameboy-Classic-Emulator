@@ -9,7 +9,7 @@ unless File.directory?(path + "release")
 end
 
 program = ""
-files = [path + "class.lua", path + "rom.lua", path + "flag.lua", path + "header.lua", path + "bitwise.lua", path + "graphics.lua", path + "dispatcher.lua", path + "helperFunctions.lua", path + "memory.lua", path + "opcodes.lua"]
+files = [path + "rom.lua", path + "flag.lua", path + "header.lua", path + "bitwise.lua", path + "graphics.lua", path + "dispatcher.lua", path + "helperFunctions.lua", path + "memory.lua", path + "opcodes.lua"]
 
 if ARGV[0] == "-a"
   if File.file?(ARGV[1])
