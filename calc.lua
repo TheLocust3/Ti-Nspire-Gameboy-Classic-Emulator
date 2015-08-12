@@ -1,6 +1,6 @@
 function on.charIn (char)
   stop = mode == 2 
-  if bitwiseAnd_8(get_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
+  if bitwiseAnd_8b(get_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
     if char == '9' then -- A
       print("9")
     else
@@ -21,28 +21,28 @@ end
 
 function on.arrowUp ()
   stop = mode == 2
-  if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+  if bitwiseAnd_8b(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Up")
   end
 end
 
 function on.arrowDown ()
   stop = mode == 2 
-  if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+  if bitwiseAnd_8b(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Down")
   end
 end
 
 function on.arrowLeft ()
   stop = mode == 2 
-  if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+  if bitwiseAnd_8b(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Left")
   end
 end
 
 function on.arrowRight ()
   stop = mode == 2 
-  if bitwiseAnd_8(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
+  if bitwiseAnd_8b(get_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Right")
   end
 end
@@ -89,10 +89,10 @@ function main ()
       end
       write_8b(0xff04, div)
 
-      if bitwiseAnd_8(get_8b(0xff07), 0x04) == 1 then -- Check if timer is enabled
+      if bitwiseAnd_8b(get_8b(0xff07), 0x04) == 1 then -- Check if timer is enabled
         -- Set timerSpeed
-        bit1 = bitwiseAnd_8(get_8b(0xff07), 0x01)
-        bit2 = bitwiseAnd_8(get_8b(0xff07), 0x02)
+        bit1 = bitwiseAnd_8b(get_8b(0xff07), 0x01)
+        bit2 = bitwiseAnd_8b(get_8b(0xff07), 0x02)
         if bit1 == 0 and bit2 == 0 then
           timerSpeed = 4
         elseif bit1 == 0 and bit2 == 1 then
@@ -117,11 +117,11 @@ function main ()
 
 		if stop == false then
     	-- V-Blank Interrupt
-    	if vBlank >= 59 and bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 then
+    	if vBlank >= 59 and bitwiseAnd_8b(get_8b(0xff0f), 0x01) == 1 then
       	callInterrupt(0x40, 0x01, 1)
 
       	vBlank = 0
-    	elseif bitwiseAnd_8(get_8b(0xff0f), 0x01) == 1 and ime == true then
+    	elseif bitwiseAnd_8b(get_8b(0xff0f), 0x01) == 1 and ime == true then
      		flags = toBits(get_8b(0xff0f), 8)
       	flags[1] = 0
       	write_8b(0xff0f, flags)
@@ -130,7 +130,7 @@ function main ()
     	end
 
     	-- LYC=LY Coincidence Interrupt 
-    	if bitwiseAnd_8(0xff41, 0x40) > 0 and ime == true then 
+    	if bitwiseAnd_8b(0xff41, 0x40) > 0 and ime == true then 
      		if scanLine == compareScanLine then
         	callInterrupt(0x48, 0x02, 2) 
       	end 

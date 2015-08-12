@@ -537,7 +537,7 @@ end
 function add_8b (rIndex, nn)
   sum = registers[rIndex] + nn
 
-  registers[rIndex] = bitwiseAnd_8(sum, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(sum, 0xff)
   setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(registers[rIndex], nn), carryFlag:isCarryHigh_8b(sum))
 end
 
@@ -643,7 +643,7 @@ end
 function sub_8b (rIndex, n)
   diff = registers[rIndex] - n
 
-  registers[rIndex] = bitwiseAnd_8(diff, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(diff, 0xff)
   print(diff)
   setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
@@ -748,7 +748,7 @@ function SBC_A_n (n)
 end
 
 function and_8b (n)
-  registers[1] = bitwiseAnd_8(registers[1], n)
+  registers[1] = bitwiseAnd_8b(registers[1], n)
 end
 
 -- 0xa7
@@ -797,7 +797,7 @@ function AND_n (n)
 end
 
 function or_8b (n)
-  registers[1] = bitwiseOr_8(registers[1], n)
+  registers[1] = bitwiseOr_8b(registers[1], n)
 end
 
 -- 0xb7
@@ -846,7 +846,7 @@ function OR_n (n)
 end
 
 function xor_8b (n)
-  registers[1] = bitwiseOr_8(registers[1], n)
+  registers[1] = bitwisexor_8b(registers[1], n)
 end
 
 -- 0xaf
@@ -947,10 +947,10 @@ end
 
 function inc_8b (rIndex, n)
   if n == nil then
-    sum = bitwiseAnd_8(registers[rIndex] + 1, 0xff)
+    sum = bitwiseAnd_8b(registers[rIndex] + 1, 0xff)
     registers[rIndex] = sum
   else
-    sum = bitwiseAnd_8(n + 1, 0xff)
+    sum = bitwiseAnd_8b(n + 1, 0xff)
     write_8b(rIndex, sum)
   end
 
@@ -1001,7 +1001,7 @@ function dec_8b (rIndex, n)
   diff = registers[rIndex] - 1
 
   if rIndex ~= nil then
-    registers[rIndex] = bitwiseAnd_8(diff, 0xff)
+    registers[rIndex] = bitwiseAnd_8b(diff, 0xff)
     setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], 1), nil)
   else
 
@@ -1054,7 +1054,7 @@ function add_16b (rIndex1, rIndex2, nn)
   if rIndex2 ~= nil then
     sum = to16b(registers[rIndex1], registers[rIndex2]) + nn
 
-    store16b(rIndex1, rIndex2, bitwiseAnd_8(nn, 0xffff))
+    store16b(rIndex1, rIndex2, bitwiseAnd_8b(nn, 0xffff))
     setFlags(nil, false, halfCarryFlag:isHalfCarryAdd_16b(getRegister_16b(registers[rIndex1]), nn), carryFlag:isCarryHigh_16b(sum))
   else
     sum = registers[rIndex1] + nn
@@ -1156,7 +1156,7 @@ end
 -- Miscellaneous
 
 function swap (rIndex)
-  byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8(registers[rIndex], 0xf), 4))
+  byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8b(registers[rIndex], 0xf), 4))
 
   registers[rIndex] = byte
   setFlags(zeroFlag:isZero(byte), false, false, false)
@@ -1201,7 +1201,7 @@ end
 function SWAP_HL ()
   num = get_8b(getRegister_16b(6))
 
-  byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8(num, 0xf), 4))
+  byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8b(num, 0xf), 4))
 
   write_8b(getRegister_16b(6), byte)
   setFlags(zeroFlag:isZero(byte), false, false, false)
@@ -1210,7 +1210,7 @@ end
 -- 0x27
 -- Explanation of command provided from http://stackoverflow.com/questions/8119577/z80-daa-instruction (3rd answer)
 function DAA ()
-  if bitwiseAnd_8(registers[1], 0x0f) > 9 or halfCarryFlag:isSet() then
+  if bitwiseAnd_8b(registers[1], 0x0f) > 9 or halfCarryFlag:isSet() then
     registers[1] = registers[1] + 0x06
   end
 
@@ -1221,7 +1221,7 @@ end
 
 -- 0x2f
 function CPL ()
-  registers[1] = bitwiseNegate_8(registers[1])
+  registers[1] = bitwiseNegate_8b(registers[1])
 end
 
 -- 0x3f
@@ -1766,7 +1766,7 @@ end
 function add_8b (rIndex, nn)
   sum = registers[rIndex] + nn
 
-  registers[rIndex] = bitwiseAnd_8(sum, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(sum, 0xff)
   setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(registers[rIndex], nn), carryFlag:isCarryHigh_8b(sum))
 end
 
@@ -1872,7 +1872,7 @@ end
 function sub_8b (rIndex, n)
   diff = registers[rIndex] - n
 
-  registers[rIndex] = bitwiseAnd_8(diff, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(diff, 0xff)
   setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
 
@@ -1976,7 +1976,7 @@ function SBC_A_n (n)
 end
 
 function and_8b (n)
-  registers[1] = bitwiseAnd_8(registers[1], n)
+  registers[1] = bitwiseAnd_8b(registers[1], n)
 end
 
 -- 0xa7
@@ -2025,7 +2025,7 @@ function AND_n (n)
 end
 
 function or_8b (n)
-  registers[1] = bitwiseOr_8(registers[1], n)
+  registers[1] = bitwiseOr_8b(registers[1], n)
 end
 
 -- 0xb7
@@ -2074,7 +2074,7 @@ function OR_n (n)
 end
 
 function xor_8b (n)
-  registers[1] = bitwiseOr_8(registers[1], n)
+  registers[1] = bitwiseXor_8b(registers[1], n)
 end
 
 -- 0xaf
@@ -2175,10 +2175,10 @@ end
 
 function inc_8b (rIndex, n)
   if n == nil then
-    sum = bitwiseAnd_8(registers[rIndex] + 1, 0xff)
+    sum = bitwiseAnd_8b(registers[rIndex] + 1, 0xff)
     registers[rIndex] = sum
   else
-    sum = bitwiseAnd_8(n + 1, 0xff)
+    sum = bitwiseAnd_8b(n + 1, 0xff)
     write_8b(rIndex, sum)
   end
 
@@ -2229,7 +2229,7 @@ function dec_8b (rIndex, n)
   diff = registers[rIndex] - 1
 
   if rIndex ~= nil then
-    registers[rIndex] = bitwiseAnd_8(diff, 0xff)
+    registers[rIndex] = bitwiseAnd_8b(diff, 0xff)
     setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], 1), nil)
   else
 
@@ -2282,7 +2282,7 @@ function add_16b (rIndex1, rIndex2, nn)
   if rIndex2 ~= nil then
     sum = to16b(registers[rIndex1], registers[rIndex2]) + nn
 
-    store16b(rIndex1, rIndex2, bitwiseAnd_8(nn, 0xffff))
+    store16b(rIndex1, rIndex2, bitwiseAnd_8b(nn, 0xffff))
     setFlags(nil, false, halfCarryFlag:isHalfCarryAdd_16b(getRegister_16b(registers[rIndex1]), nn), carryFlag:isCarryHigh_16b(sum))
   else
     sum = registers[rIndex1] + nn
@@ -2384,7 +2384,7 @@ end
 -- Miscellaneous
 
 function swap (rIndex)
-  byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8(registers[rIndex], 0xf), 4))
+  byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8b(registers[rIndex], 0xf), 4))
 
   registers[rIndex] = byte
   setFlags(zeroFlag:isZero(byte), false, false, false)
@@ -2429,7 +2429,7 @@ end
 function SWAP_HL ()
   num = get_8b(getRegister_16b(6))
 
-  byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8(num, 0xf), 4))
+  byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8b(num, 0xf), 4))
 
   write_8b(getRegister_16b(6), byte)
   setFlags(zeroFlag:isZero(byte), false, false, false)
@@ -2438,7 +2438,7 @@ end
 -- 0x27
 -- Explanation of command provided from http://stackoverflow.com/questions/8119577/z80-daa-instruction (3rd answer)
 function DAA ()
-  if bitwiseAnd_8(registers[1], 0x0f) > 9 or halfCarryFlag:isSet() then
+  if bitwiseAnd_8b(registers[1], 0x0f) > 9 or halfCarryFlag:isSet() then
     registers[1] = registers[1] + 0x06
   end
 
@@ -2449,7 +2449,7 @@ end
 
 -- 0x2f
 function CPL ()
-  registers[1] = bitwiseNegate_8(registers[1])
+  registers[1] = bitwiseNegate_8b(registers[1])
 end
 
 -- 0x3f
@@ -2498,7 +2498,7 @@ end
 function RLCA ()
   shift = shiftLeft(registers[1], 1)
 
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
 end
 
@@ -2506,7 +2506,7 @@ end
 function RLA ()
   shift = shiftLeft(registers[1], 1)
 
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -2514,15 +2514,15 @@ end
 function RRCA ()
   shift = shiftRight(registers[1], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8(shift, 0x01) > 0))
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8b(shift, 0x01) > 0))
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
 end
 
 -- 0x1f
 function RRA ()
   shift = shiftRight(registers[1], 1)
 
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -2530,7 +2530,7 @@ function rlc (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
 end
 
 -- 0xcb 0x07
@@ -2573,13 +2573,13 @@ function RLC_HL ()
   shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rl (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -2623,14 +2623,14 @@ function RL_HL ()
   shift = shiftLeft(get_8b(getRegister_16b(6), 1))
 
   setFlags(zeroFlag:isZero(shift), false, false, false)
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rrc (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8(registers[rIndex], 0x01) > 0))
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8b(registers[rIndex], 0x01) > 0))
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
 end
 
 -- 0xcb 0x0f
@@ -2672,14 +2672,14 @@ end
 function RRC_HL ()
   shift = shiftRight(getRegister_16b(6), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8(getRegister_16b(6), 0x01) > 0))
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8b(getRegister_16b(6), 0x01) > 0))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rr (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -2722,7 +2722,7 @@ end
 function RR_HL ()
   shift = shiftRight(getRegister_16b(6), 1)
 
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -2733,7 +2733,7 @@ function sla (rIndex)
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
+  registers[rIndex] = bitwiseAnd_8b(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x27
@@ -2779,7 +2779,7 @@ function SLA_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function sra (rIndex)
@@ -2789,7 +2789,7 @@ function sra (rIndex)
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
+  registers[rIndex] = bitwiseAnd_8b(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x2f
@@ -2835,7 +2835,7 @@ function SRA_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function srl (rIndex)
@@ -2845,7 +2845,7 @@ function srl (rIndex)
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
+  registers[rIndex] = bitwiseAnd_8b(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x3f
@@ -2891,7 +2891,7 @@ function SRL_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 -- Bit Operations
@@ -3325,7 +3325,7 @@ end
 function RLCA ()
   shift = shiftLeft(registers[1], 1)
 
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[1]))
 end
 
@@ -3333,7 +3333,7 @@ end
 function RLA ()
   shift = shiftLeft(registers[1], 1)
 
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -3342,14 +3342,14 @@ function RRCA ()
   shift = shiftRight(registers[1], 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[1]))
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
 end
 
 -- 0x1f
 function RRA ()
   shift = shiftRight(registers[1], 1)
 
-  registers[1] = bitwiseAnd_8(shift, 0xff)
+  registers[1] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -3357,7 +3357,7 @@ function rlc (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[rIndex]))
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
 end
 
 -- 0xcb 0x07
@@ -3400,13 +3400,13 @@ function RLC_HL ()
   shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(get_8b(getRegister_16b(6))))
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rl (rIndex)
   shift = shiftLeft(registers[rIndex], 1)
 
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -3450,14 +3450,14 @@ function RL_HL ()
   shift = shiftLeft(get_8b(getRegister_16b(6), 1))
 
   setFlags(zeroFlag:isZero(shift), false, false, false)
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rrc (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
 end
 
 -- 0xcb 0x0f
@@ -3500,13 +3500,13 @@ function RRC_HL ()
   shift = shiftRight(get_8b(getRegister_16b(6)), 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rr (rIndex)
   shift = shiftRight(registers[rIndex], 1)
 
-  registers[rIndex] = bitwiseAnd_8(shift, 0xff)
+  registers[rIndex] = bitwiseAnd_8b(shift, 0xff)
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -3549,7 +3549,7 @@ end
 function RR_HL ()
   shift = shiftRight(get_8b(getRegister_16b(6)), 1)
 
-  write_8b(getRegister_16b(6), bitwiseAnd_8(shift, 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -3560,7 +3560,7 @@ function sla (rIndex)
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
+  registers[rIndex] = bitwiseAnd_8b(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x27
@@ -3606,7 +3606,7 @@ function SLA_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function sra (rIndex)
@@ -3616,7 +3616,7 @@ function sra (rIndex)
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
+  registers[rIndex] = bitwiseAnd_8b(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x2f
@@ -3662,7 +3662,7 @@ function SRA_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function srl (rIndex)
@@ -3672,7 +3672,7 @@ function srl (rIndex)
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  registers[rIndex] = bitwiseAnd_8(toInt(bShift), 0xff)
+  registers[rIndex] = bitwiseAnd_8b(toInt(bShift), 0xff)
 end
 
 -- 0xcb 0x3f
@@ -3718,7 +3718,7 @@ function SRL_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8(toInt(bShift), 0xff))
+  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 -- Bit Operations

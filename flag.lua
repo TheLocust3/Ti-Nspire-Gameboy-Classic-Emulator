@@ -44,13 +44,13 @@ function CarryFlag:rotateLeftCarry(number)
 end
 
 function CarryFlag:rotateRightCarry(number)
-  return bitwiseAnd_8(shift, 0x01) > 0
+  return bitwiseAnd_8b(shift, 0x01) > 0
 end
 
 HalfCarryFlag = class(Flag)
 
 function HalfCarryFlag:isHalfCarryAdd_8b (a, b)
-  if bitwiseAnd_8(bitwiseAnd_8(a, 0xf) + bitwiseAnd_8(b, 0xf), 0xf0) > 0 then
+  if bitwiseAnd_8b(bitwiseAnd_8b(a, 0xf) + bitwiseAnd_8b(b, 0xf), 0xf0) > 0 then
     return true
   else
     return false
@@ -58,7 +58,7 @@ function HalfCarryFlag:isHalfCarryAdd_8b (a, b)
 end
 
 function HalfCarryFlag:isHalfCarryAdd_16b (a, b)
-  if bitwiseAnd_16(bitwiseAnd_16(a, 0xfff) + bitwiseAnd_16(b, 0xfff), 0xfff0) > 0 then
+  if bitwiseAnd_16b(bitwiseAnd_16b(a, 0xfff) + bitwiseAnd_16b(b, 0xfff), 0xfff0) > 0 then
     return true
   else
     return false
@@ -66,7 +66,7 @@ function HalfCarryFlag:isHalfCarryAdd_16b (a, b)
 end
 
 function HalfCarryFlag:isHalfCarrySub_8b (a, b)
-  if bitwiseAnd_8(bitwiseAnd_8(a, 0xf) - bitwiseAnd_8(b, 0xf), 0x08) ~= a then
+  if bitwiseAnd_8b(bitwiseAnd_8b(a, 0xf) - bitwiseAnd_8b(b, 0xf), 0x08) ~= a then
     return true
   else
     return false

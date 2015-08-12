@@ -65,11 +65,11 @@ function bitwiseAnd (bits1, bits2)
   return toInt(bBitwiseAnd(bits1, bits2))
 end
 
-function bitwiseAnd_8 (bits1, bits2)
+function bitwiseAnd_8b (bits1, bits2)
   return bitwiseAnd(toBits(bits1, 8), toBits(bits2, 8))
 end
 
-function bitwiseAnd_16 (bits1, bits2)
+function bitwiseAnd_16b (bits1, bits2)
   return bitwiseAnd(toBits(bits1, 16), toBits(bits2, 16))
 end
 
@@ -94,7 +94,7 @@ function bitwiseOr (bits1, bits2)
   return toInt(bBitwiseOr(bits1, bits2))
 end
 
-function bitwiseOr_8 (bits1, bits2)
+function bitwiseOr_8b (bits1, bits2)
   return bitwiseOr(toBits(bits1, 8), toBits(bits2, 8))
 end
 
@@ -119,7 +119,7 @@ function bitwiseXor (bits1, bits2)
   return toInt(bBitwiseXor(bits1, bits2))
 end
 
-function bitwiseXor_8 (bits1, bits2)
+function bitwiseXor_8b (bits1, bits2)
   return bitwiseXor(toBits(bits1, 8), toBits(bits2, 8))
 end
 
@@ -144,7 +144,7 @@ function bitwiseNegate (bits)
   return toInt(bBitwiseNegate(bits))
 end
 
-function bitwiseNegate_8 (bits1)
+function bitwiseNegate_8b (bits1)
   return bitwiseAnd(toBits(bits1, 8))
 end
 
