@@ -60,7 +60,7 @@ end
 
 function callInterrupt (location, bit, fNum)
   halt = false
-  if ime == true and bitwiseAnd_8(get_8b(0xffff), bit) > 0 then
+  if ime == true and bitwiseAnd_8b(get_8b(0xffff), bit) > 0 then
     flags = toBits(get_8b(0xff0f), 8)
     flags[fNum] = 1
     write_8b(0xff0f, toInt(flags))
