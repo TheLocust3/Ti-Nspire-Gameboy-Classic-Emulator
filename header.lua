@@ -15,8 +15,7 @@ stop = false
 halt = false
 
 -- Interrupts
-vBlank = 0
-vBlankInterrupt = Interrupt({check = vBlankCheck, run = vBlankRun, fail = vBlankFail}, 0x40, 0x1)
+vBlankInterrupt = Interrupt({check = vBlankCheck, run = vBlankRun, fail = vBlankFail, variable = 0}, 0x40, 0x1)
 scanLineInterrupt = Interrupt({check = scanLineCheck}, 0x48, 0x2)
 
 lcdcStatus = false

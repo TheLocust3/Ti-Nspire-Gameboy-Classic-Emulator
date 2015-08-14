@@ -1,6 +1,6 @@
 Interrupt = class()
 
--- custom = A table with a function that can be called by running custom.run(), custom.check(), and custom.fail()
+-- custom = A table with a function that can be called by running custom.run(), custom.check(), and custom.fail(). It also stores any nessecary variables
 -- location = The location that gets called when the interrupt is triggered
 -- bit = Bit of the interrupt in the ime register
 function Interrupt:init(custom, location, bit)
@@ -24,44 +24,46 @@ function Interrupt:callInterrupt()
 end
 
 function Interrupt:run()
-  if self.custom.check ~= nil and self.custom.check() then
+  if self.custom.check ~= nil and self.custom.check(self.custom.variable) then
     if self.check() then
       halt = false
       if self.custom.run ~= nil then
-        self.custom.run()
+        self.custom.variable = self.custom.run(self.custom.variable)
       end
 
       self.callInterrupt()
     end
   elseif self.custom.fail ~= nil then
-    self.custom.fail()
+    self.custom.variable = self.custom.fail(self.custom.variable)
   end
 end
 
-vBlankCheck = function ()
+vBlankCheck = function (vBlank)
   return vBlank >= 59
 end
 
-vBlankRun = function ()
+vBlankRun = function (vBlank)
   vBlank = 0
+  return vBlank
 end
 
-vBlankFail = function ()
+vBlankFail = function (vBlank)
   flags = toBits(get_8b(0xff0f), 8)
   flags[1] = 0
   write_8b(0xff0f, toInt(flags))
 
   vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
+  return vBlank
 end
 
-timerOverflowCheck = function ()
+timerOverflowCheck = function (variable)
   return get_8b(0xff05) > 0xff
 end
 
-timerOverflowRun = function ()
+timerOverflowRun = function (variable)
   write_8b(0xff05, 0)
 end
 
-scanLineCheck = function ()
+scanLineCheck = function (variable)
   return scanLine == compareScanLine and bitwiseAnd_8b(0xff41, 0x40) > 0
 end
