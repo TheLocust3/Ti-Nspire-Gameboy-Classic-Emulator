@@ -846,7 +846,7 @@ function OR_n (n)
 end
 
 function xor_8b (n)
-  registers[1] = bitwisexor_8b(registers[1], n)
+  registers[1] = bitwiseXor_8b(registers[1], n)
 end
 
 -- 0xaf

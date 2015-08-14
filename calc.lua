@@ -107,34 +107,18 @@ function main ()
         -- Increment Timer Register
         rTimer = get_8b(0xff05)
         rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
-        if rTimer > 0xff then
-          rTimer = 0
-          callInterrupt(0x50, 0x02, 2)
-        end
         write_8b(0xff05, rTimer)
+
+        timerOverflowInterrupt:run()
       end
     end
 
 		if stop == false then
     	-- V-Blank Interrupt
-    	if vBlank >= 59 and bitwiseAnd_8b(get_8b(0xff0f), 0x01) == 1 then
-      	callInterrupt(0x40, 0x01, 1)
-
-      	vBlank = 0
-    	elseif bitwiseAnd_8b(get_8b(0xff0f), 0x01) == 1 and ime == true then
-     		flags = toBits(get_8b(0xff0f), 8)
-      	flags[1] = 0
-      	write_8b(0xff0f, flags)
-
-      	vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
-    	end
+      vBlankInterrupt:run()
 
     	-- LYC=LY Coincidence Interrupt 
-    	if bitwiseAnd_8b(0xff41, 0x40) > 0 and ime == true then 
-     		if scanLine == compareScanLine then
-        	callInterrupt(0x48, 0x02, 2) 
-      	end 
-    	end
+      scanLineInterrupt:run()
 		end
 
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
