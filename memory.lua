@@ -13,7 +13,7 @@ function Memory:init(rom)
 end
 
 function Memory:readCheck(address)
-  graphicsValue = readGraphicsRegisters(address)
+  graphicsValue = graphics:readRegisters(address)
 
   if graphicsValue ~= nil then
     return graphicsValue
@@ -44,7 +44,7 @@ end
 
 function Memory:writeNoCheck_8b(address, value)
   self.ram[address + 1] = value
-  writeGraphicsRegisters(address, value)
+  graphics:writeRegisters(address, value)
 end
 
 function Memory:write_8b(address, value)

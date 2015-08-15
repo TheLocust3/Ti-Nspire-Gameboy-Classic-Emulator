@@ -23,26 +23,7 @@ keyBounce = false -- This one is a bit wierd and has yet to be implemented
 
 timerSpeed = 4 -- 4096 * 0.001 and truncate
 
--- Graphics Stuff
-lcdDisplay = false
-windowTileMapAddress = {0x9800, 0x9bff}
-windowDisplay = false
-tileDataAddress = {0x8800, 0x97ff}
-bgTileMapAddress = {0x9800, 0xbff}
-spriteHeight = 8
-spriteDisplay = false
-bgWindowDisplay = false
-scroll = {0, 0} -- X, Y
-windowPosition = {0, 0} -- X, Y
-bgWinPalette = {0, 0, 0, 0} 
-objPalette0 = {0, 0, 0, 0} 
-objPalette1 = {0, 0, 0, 0} 
-scanLine = 0
-compareScanLine = 0
-tileData = {{0}}
-backgroundTileMap = {{}}
-windowTileMap = {{}}
-spriteData = {{0}}
+graphics = Graphics()
 
 -- Program Counter
 pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
