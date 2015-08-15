@@ -40,7 +40,7 @@ end
 
 -- The Rotates have their own family of carry flags
 function CarryFlag:rotateLeftCarry(number)
-  return bitwiseAnd(toBits(number, 16), toBits(0x100, 16)) > 0
+  return bitwiseAnd_16b(number, 0x100) > 0
 end
 
 function CarryFlag:rotateRightCarry(number)

@@ -3,7 +3,7 @@ Tile = class()
 function Tile:init(number)
   self.number = number
   self.tile = {}
-  self.update()
+  self:update()
 end
 
 function Tile:getTile()
@@ -32,7 +32,7 @@ function Tile:readTileMemory()
 end
 
 function Tile:update()
-  self.tile = self.readTileMemory() 
+  self.tile = self:readTileMemory() 
 end
 
 function writeGraphicsRegisters (address, value)
