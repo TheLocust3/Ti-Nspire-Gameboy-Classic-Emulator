@@ -9,7 +9,7 @@ unless File.directory?(path + "release")
 end
 
 program = ""
-files = [path + "bitwise.lua", path + "rom.lua", path + "flag.lua", path + "interrupt.lua", path + "memory.lua", path + "graphics.lua", path + "helperFunctions.lua", path + "header.lua", path + "dispatcher.lua", path + "opcodes.lua"]
+files = [path + "bitwise.lua", path + "rom.lua", path + "flag.lua", path + "interrupt.lua", path + "memory.lua", path + "graphics.lua", path + "debug.lua", path + "helperFunctions.lua", path + "header.lua", path + "dispatcher.lua", path + "opcodes.lua"]
 
 if ARGV[0] == "-a"
   if File.file?(ARGV[1])
@@ -23,7 +23,6 @@ elsif ARGV[0] == "-r"
 elsif ARGV[0] == "-c"
   files << path + "calc.lua"
 elsif ARGV[0] == "-t"
-  files << path + "debug.lua"
   files << path + "calc.lua"
   files << path + "calcTest.lua"
 elsif ARGV[0] != nil

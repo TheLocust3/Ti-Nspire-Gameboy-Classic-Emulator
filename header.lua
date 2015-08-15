@@ -50,17 +50,7 @@ pcHex = 0x00
 
 c = 0 -- The amount of clock cycles until the next command is run
 
--- Mode: 0 = None, 1 = Normal, 2 = Debug
-mode = 0
-
-commandString = ""
-commandError = "Type a command:"
-renderHelp = false
-renderRegisters = false
-renderFlags = false
-stepping = false
-inputAddress = -1
-stopOn = "Completely random string"
+debugger = Debugger()
 
 memory = Memory(rom)
 

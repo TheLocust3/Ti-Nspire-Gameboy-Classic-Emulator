@@ -1,5 +1,5 @@
 function on.charIn (char)
-  stop = mode == 2 
+  stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
     if char == '9' then -- A
       print("9")
@@ -14,47 +14,47 @@ function on.charIn (char)
     end
   end
 
-  if mode == 0 or mode == 2 then
-    commandString = commandString .. char
+  if debugger.mode == 0 or debugger.mode == 2 then
+    debugger:setCommand(debugger.command .. char)
   end
 end
 
 function on.arrowUp ()
-  stop = mode == 2
+  stop = debugger.mode == 2
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Up")
   end
 end
 
 function on.arrowDown ()
-  stop = mode == 2 
+  stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Down")
   end
 end
 
 function on.arrowLeft ()
-  stop = mode == 2 
+  stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Left")
   end
 end
 
 function on.arrowRight ()
-  stop = mode == 2 
+  stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
     print("Right")
   end
 end
 
 function on.enterKey ()
-  if mode == 0 or mode == 2 then
-    checkCommand(commandString)
+  if debugger.mode == 0 or debugger.mode == 2 then
+    debugger:check()
   end
 end
 
 function on.backspaceKey () 
-  commandString = string.sub(commandString, 1, string.len(commandString) - 1)
+  debugger:setCommand(string.sub(debugger.command, 1, string.len(debugger.command) - 1))
 end
 
 speed = 0
@@ -118,9 +118,9 @@ function main ()
     scanLineInterrupt:run()
 
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
-    if stepping == true and c >= 0 then
+    if debugger.step == true and c >= 0 then
       stop = true 
-      stepping = false
+      debugger.step = false
     end
 
     wait = (timer.getMilliSecCounter() - start) * speedScaler -- Slow down speed
@@ -132,7 +132,7 @@ time = 0
 function on.timer ()
   time = timer.getMilliSecCounter()
 
-  if mode == 1 or (mode == 2 and stop == false) then
+  if debugger.mode == 1 or (debugger.mode == 2 and stop == false) then
     main()
   else
     platform.window:invalidate()

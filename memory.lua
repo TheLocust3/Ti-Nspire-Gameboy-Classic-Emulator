@@ -3,7 +3,7 @@ Memory = class()
 function Memory:init(rom)
   self.ram = {}
 
-  for i = 1, 0xffff do
+  for i = 1, 0xffff + 1 do -- +1 so that 0xffff actually works
     self.ram[i] = 0
   end
 

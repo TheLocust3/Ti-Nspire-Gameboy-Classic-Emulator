@@ -2,11 +2,7 @@ command = ""
 
 function log (str)
   command = str
-
-  lowerCommand = string.lower(command)
-  if lowerCommand:find(stopOn) ~= nil then
-    stop = true
-  end
+  debugger:checkStopOn(command)
 
   print(str)
 end
