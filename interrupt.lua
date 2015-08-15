@@ -10,13 +10,13 @@ function Interrupt:init(custom, location, bit)
 end
 
 function Interrupt:check()
-  return stop == false and ime == true and bitwise_8b(get_8b(0xffff), self.bit) > 0
+  return stop == false and ime == true and bitwise_8b(memory:read_8b(0xffff), self.bit) > 0
 end
 
 function Interrupt:callInterrupt()
-  flags = toBits(get_8b(0xff0f), 8)
+  flags = toBits(memory:read_8b(0xff0f), 8)
   flags[self.bit] = 1
-  write_8b(0xff0f, toInt(flags))
+  memory:write_8b(0xff0f, toInt(flags))
 
   pc = self.location
   DI()
@@ -48,20 +48,20 @@ vBlankRun = function (vBlank)
 end
 
 vBlankFail = function (vBlank)
-  flags = toBits(get_8b(0xff0f), 8)
+  flags = toBits(memory:read_8b(0xff0f), 8)
   flags[1] = 0
-  write_8b(0xff0f, toInt(flags))
+  memory:write_8b(0xff0f, toInt(flags))
 
   vBlank = vBlank + ((timer.getMilliSecCounter() - old) * speedScaler)
   return vBlank
 end
 
 timerOverflowCheck = function (variable)
-  return get_8b(0xff05) > 0xff
+  return memory:read_8b(0xff05) > 0xff
 end
 
 timerOverflowRun = function (variable)
-  write_8b(0xff05, 0)
+  memory:write_8b(0xff05, 0)
 end
 
 scanLineCheck = function (variable)

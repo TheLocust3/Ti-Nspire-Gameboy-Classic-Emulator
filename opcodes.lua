@@ -71,7 +71,7 @@ end
 
 -- 0x7e
 function LD_A_HL ()
-  ld_8b(1, get_8b(getRegister_16b(6)))
+  ld_8b(1, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x40
@@ -285,7 +285,7 @@ function LD_L_HL ()
 end
 
 function ldMemory_8b (rIndex, value)
-  write_8b(getRegister_16b(rIndex), value)
+  memory:write_8b(getRegister_16b(rIndex), value)
 end
 
 -- 0x70
@@ -325,17 +325,17 @@ end
 
 -- 0x0a
 function LD_A_BC ()
-  ld_8b(1, get_8b(getRegister_16b(2)))
+  ld_8b(1, memory:read_8b(getRegister_16b(2)))
 end
 
 -- 0x1a
 function LD_A_DE ()
-  ld_8b(1, get_8b(getRegister_16b(4)))
+  ld_8b(1, memory:read_8b(getRegister_16b(4)))
 end
 
 -- 0xfa
 function LD_A_nn (nn)
-  ld_8b(1, get_8b(nn))
+  ld_8b(1, memory:read_8b(nn))
 end
 
 -- 0x3e
@@ -375,32 +375,32 @@ end
 
 -- 0x02
 function LD_BC_A ()
-  ld_8b(registers[1], get_8b(getRegister_16b(2)))
+  ld_8b(registers[1], memory:read_8b(getRegister_16b(2)))
 end
 
 -- 0x12
 function LD_DE_A ()
-  ld_8b(registers[1], get_8b(getRegister_16b(4)))
+  ld_8b(registers[1], memory:read_8b(getRegister_16b(4)))
 end
 
 -- 0x77
 function LD_HL_A ()
-  ld_8b(registers[1], get_8b(getRegister_16b(6)))
+  ld_8b(registers[1], memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xea
 function LD_nn_A (nn)
-  ld_8b(get_8b(nn), registers[1])
+  ld_8b(memory:read_8b(nn), registers[1])
 end
 
 -- 0xf2
 function LD_A_iC ()
-  ld_8b(1, get_8b(0xff00 + registers[3]))
+  ld_8b(1, memory:read_8b(0xff00 + registers[3]))
 end
 
 -- 0xe2
 function LD_iC_A ()
-  write_8b(0xff00 + registers[3], registers[1])
+  memory:write_8b(0xff00 + registers[3], registers[1])
 end
 
 -- 0x3a
@@ -429,12 +429,12 @@ end
 
 -- 0xe0
 function LDH_in_A (n)
-  write_8b(0xff00 + n, registers[1])
+  memory:write_8b(0xff00 + n, registers[1])
 end
 
 -- 0xf0
 function LDH_A_in (n)
-  registers[1] = get_8b(0xff00 + n)
+  registers[1] = memory:read_8b(0xff00 + n)
 end
 
 -- 16-Bit Loads
@@ -482,7 +482,7 @@ end
 function push (nn)
   registers[9] = registers[9] - 2
 
-  write_16b(registers[9], nn)
+  memory:write_16b(registers[9], nn)
 end
 
 -- 0xf5
@@ -506,8 +506,8 @@ function PUSH_HL ()
 end
 
 function pop (rIndex1, rIndex2)
-  registers[rIndex1] = get_8b(registers[9])
-  registers[rIndex2] = get_8b(registers[9] + 1)
+  registers[rIndex1] = memory:read_8b(registers[9])
+  registers[rIndex2] = memory:read_8b(registers[9] + 1)
 
   registers[9] = registers[9] + 2 -- Technically it is gone
 end
@@ -578,7 +578,7 @@ end
 
 -- 0x86
 function ADD_A_HL ()
-  add_8b(1, get_8b(to16b(registers[6], registers[7])))
+  add_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xc6
@@ -632,7 +632,7 @@ end
 
 -- 0x8e
 function ADC_A_HL ()
-  adc_8b(1, get_8b(to16b(registers[6], registers[7])))
+  adc_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xce
@@ -685,7 +685,7 @@ end
 
 -- 0x96
 function SUB_HL ()
-  sub_8b(1, get_8b(to16b(registers[6], registers[7])))
+  sub_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xd6
@@ -739,7 +739,7 @@ end
 
 -- 0x9e
 function SBC_A_HL ()
-  sbc_8b(1, get_8b(to16b(registers[6], registers[7])))
+  sbc_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xde
@@ -788,7 +788,7 @@ end
 
 -- 0xa6
 function AND_HL ()
-  and_8b(get_8b(to16b(registers[6], registers[7])))
+  and_8b(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xe6
@@ -837,7 +837,7 @@ end
 
 -- 0xb6
 function OR_HL ()
-  or_8b(get_8b(to16b(registers[6], registers[7])))
+  or_8b(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xf6
@@ -886,7 +886,7 @@ end
 
 -- 0xae
 function XOR_HL ()
-  xor_8b(get_8b(to16b(registers[6], registers[7])))
+  xor_8b(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xee
@@ -937,7 +937,7 @@ end
 
 -- 0xbe
 function CP_HL ()
-  cp(get_8b(to16b(registers[6], registers[7])))
+  cp(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xfe
@@ -951,7 +951,7 @@ function inc_8b (rIndex, n)
     registers[rIndex] = sum
   else
     sum = bitwiseAnd_8b(n + 1, 0xff)
-    write_8b(rIndex, sum)
+    memory:write_8b(rIndex, sum)
   end
 
   setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(sum, 1), nil)
@@ -994,7 +994,7 @@ end
 
 -- 0x34
 function INC_HL ()
-  write_8b(getRegister_16b(6), get_8b(getRegister_16b(6)) + 1)
+  memory:write_8b(getRegister_16b(6), memory:read_8b(getRegister_16b(6)) + 1)
 end
 
 function dec_8b (rIndex, n)
@@ -1045,7 +1045,7 @@ end
 
 -- 0x35
 function DEC_HL ()
-  write_8b(getRegister_16b(6), get_8b(getRegister_16b(6)) - 1)
+  memory:write_8b(getRegister_16b(6), memory:read_8b(getRegister_16b(6)) - 1)
 end
 
 -- 16-Bit Arithmetic
@@ -1199,11 +1199,11 @@ end
 
 -- 0xCB 0x30
 function SWAP_HL ()
-  num = get_8b(getRegister_16b(6))
+  num = memory:read_8b(getRegister_16b(6))
 
   byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8b(num, 0xf), 4))
 
-  write_8b(getRegister_16b(6), byte)
+  memory:write_8b(getRegister_16b(6), byte)
   setFlags(zeroFlag:isZero(byte), false, false, false)
 end
 
@@ -1300,7 +1300,7 @@ end
 
 -- 0x7e
 function LD_A_HL ()
-  ld_8b(1, get_8b(getRegister_16b(6)))
+  ld_8b(1, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x40
@@ -1514,7 +1514,7 @@ function LD_L_HL ()
 end
 
 function ldMemory_8b (rIndex, value)
-  write_8b(getRegister_16b(rIndex), value)
+  memory:write_8b(getRegister_16b(rIndex), value)
 end
 
 -- 0x70
@@ -1554,17 +1554,17 @@ end
 
 -- 0x0a
 function LD_A_BC ()
-  ld_8b(1, get_8b(getRegister_16b(2)))
+  ld_8b(1, memory:read_8b(getRegister_16b(2)))
 end
 
 -- 0x1a
 function LD_A_DE ()
-  ld_8b(1, get_8b(getRegister_16b(4)))
+  ld_8b(1, memory:read_8b(getRegister_16b(4)))
 end
 
 -- 0xfa
 function LD_A_nn (nn)
-  ld_8b(1, get_8b(nn))
+  ld_8b(1, memory:read_8b(nn))
 end
 
 -- 0x3e
@@ -1604,32 +1604,32 @@ end
 
 -- 0x02
 function LD_BC_A ()
-  ld_8b(registers[1], get_8b(getRegister_16b(2)))
+  ld_8b(registers[1], memory:read_8b(getRegister_16b(2)))
 end
 
 -- 0x12
 function LD_DE_A ()
-  ld_8b(registers[1], get_8b(getRegister_16b(4)))
+  ld_8b(registers[1], memory:read_8b(getRegister_16b(4)))
 end
 
 -- 0x77
 function LD_HL_A ()
-  ld_8b(registers[1], get_8b(getRegister_16b(6)))
+  ld_8b(registers[1], memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xea
 function LD_nn_A (nn)
-  ld_8b(get_8b(nn), registers[1])
+  ld_8b(memory:read_8b(nn), registers[1])
 end
 
 -- 0xf2
 function LD_A_iC ()
-  ld_8b(1, get_8b(0xff00 + registers[3]))
+  ld_8b(1, memory:read_8b(0xff00 + registers[3]))
 end
 
 -- 0xe2
 function LD_iC_A ()
-  write_8b(0xff00 + registers[3], registers[1])
+  memory:write_8b(0xff00 + registers[3], registers[1])
 end
 
 -- 0x3a
@@ -1658,12 +1658,12 @@ end
 
 -- 0xe0
 function LDH_in_A (n)
-  write_8b(0xff00 + n, registers[1])
+  memory:write_8b(0xff00 + n, registers[1])
 end
 
 -- 0xf0
 function LDH_A_in (n)
-  registers[1] = get_8b(0xff00 + n)
+  registers[1] = memory:read_8b(0xff00 + n)
 end
 
 -- 16-Bit Loads
@@ -1711,7 +1711,7 @@ end
 function push (nn)
   registers[9] = registers[9] - 2
 
-  write_16b(registers[9], nn)
+  memory:write_16b(registers[9], nn)
 end
 
 -- 0xf5
@@ -1735,8 +1735,8 @@ function PUSH_HL ()
 end
 
 function pop (rIndex1, rIndex2)
-  registers[rIndex1] = get_8b(registers[9])
-  registers[rIndex2] = get_8b(registers[9] + 1)
+  registers[rIndex1] = memory:read_8b(registers[9])
+  registers[rIndex2] = memory:read_8b(registers[9] + 1)
 
   registers[9] = registers[9] + 2 -- Technically it is gone
 end
@@ -1807,7 +1807,7 @@ end
 
 -- 0x86
 function ADD_A_HL ()
-  add_8b(1, get_8b(to16b(registers[6], registers[7])))
+  add_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xc6
@@ -1861,7 +1861,7 @@ end
 
 -- 0x8e
 function ADC_A_HL ()
-  adc_8b(1, get_8b(to16b(registers[6], registers[7])))
+  adc_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xce
@@ -1913,7 +1913,7 @@ end
 
 -- 0x96
 function SUB_HL ()
-  sub_8b(1, get_8b(to16b(registers[6], registers[7])))
+  sub_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xd6
@@ -1967,7 +1967,7 @@ end
 
 -- 0x9e
 function SBC_A_HL ()
-  sbc_8b(1, get_8b(to16b(registers[6], registers[7])))
+  sbc_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xde
@@ -2016,7 +2016,7 @@ end
 
 -- 0xa6
 function AND_HL ()
-  and_8b(get_8b(to16b(registers[6], registers[7])))
+  and_8b(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xe6
@@ -2065,7 +2065,7 @@ end
 
 -- 0xb6
 function OR_HL ()
-  or_8b(get_8b(to16b(registers[6], registers[7])))
+  or_8b(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xf6
@@ -2114,7 +2114,7 @@ end
 
 -- 0xae
 function XOR_HL ()
-  xor_8b(get_8b(to16b(registers[6], registers[7])))
+  xor_8b(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xee
@@ -2165,7 +2165,7 @@ end
 
 -- 0xbe
 function CP_HL ()
-  cp(get_8b(to16b(registers[6], registers[7])))
+  cp(memory:read_8b(to16b(registers[6], registers[7])))
 end
 
 -- 0xfe
@@ -2179,7 +2179,7 @@ function inc_8b (rIndex, n)
     registers[rIndex] = sum
   else
     sum = bitwiseAnd_8b(n + 1, 0xff)
-    write_8b(rIndex, sum)
+    memory:write_8b(rIndex, sum)
   end
 
   setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(sum, 1), nil)
@@ -2222,7 +2222,7 @@ end
 
 -- 0x34
 function INC_HL ()
-  write_8b(getRegister_16b(6), get_8b(getRegister_16b(6)) + 1)
+  memory:write_8b(getRegister_16b(6), memory:read_8b(getRegister_16b(6)) + 1)
 end
 
 function dec_8b (rIndex, n)
@@ -2273,7 +2273,7 @@ end
 
 -- 0x35
 function DEC_HL ()
-  write_8b(getRegister_16b(6), get_8b(getRegister_16b(6)) - 1)
+  memory:write_8b(getRegister_16b(6), memory:read_8b(getRegister_16b(6)) - 1)
 end
 
 -- 16-Bit Arithmetic
@@ -2427,11 +2427,11 @@ end
 
 -- 0xCB 0x30
 function SWAP_HL ()
-  num = get_8b(getRegister_16b(6))
+  num = memory:read_8b(getRegister_16b(6))
 
   byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8b(num, 0xf), 4))
 
-  write_8b(getRegister_16b(6), byte)
+  memory:write_8b(getRegister_16b(6), byte)
   setFlags(zeroFlag:isZero(byte), false, false, false)
 end
 
@@ -2570,10 +2570,10 @@ end
 
 -- 0xcb 0x06
 function RLC_HL ()
-  shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
+  shift = shiftLeft(memory:read_8b(getRegister_16b(6)), 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(shift))
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rl (rIndex)
@@ -2620,10 +2620,10 @@ end
 
 -- 0xcb 0x16
 function RL_HL ()
-  shift = shiftLeft(get_8b(getRegister_16b(6), 1))
+  shift = shiftLeft(memory:read_8b(getRegister_16b(6), 1))
 
   setFlags(zeroFlag:isZero(shift), false, false, false)
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rrc (rIndex)
@@ -2673,7 +2673,7 @@ function RRC_HL ()
   shift = shiftRight(getRegister_16b(6), 1)
 
   setFlags(zeroFlag:isZero(shift), false, false, (bitwiseAnd_8b(getRegister_16b(6), 0x01) > 0))
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rr (rIndex)
@@ -2722,7 +2722,7 @@ end
 function RR_HL ()
   shift = shiftRight(getRegister_16b(6), 1)
 
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -2779,7 +2779,7 @@ function SLA_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function sra (rIndex)
@@ -2835,7 +2835,7 @@ function SRA_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function srl (rIndex)
@@ -2891,7 +2891,7 @@ function SRL_HL ()
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 -- Bit Operations
@@ -2937,7 +2937,7 @@ end
 
 -- 0xcb 0x46
 function BIT_b_HL (b)
-  setFlags(zeroFlag:isZero(toBits(get_8b(getRegister_16b(6)), 8)[b + 1]), false, true, nil)
+  setFlags(zeroFlag:isZero(toBits(memory:read_8b(getRegister_16b(6)), 8)[b + 1]), false, true, nil)
 end
 
 function set (b, rIndex)
@@ -2984,10 +2984,10 @@ end
 
 -- 0xcb 0xc6
 function SET_b_HL (b)
-  bits = toBits(get_8b(getRegister_16b(6)), 8)
+  bits = toBits(memory:read_8b(getRegister_16b(6)), 8)
   bits[b + 1] = 1
 
-  write_8b(getRegister_16b(6), toInt(bits))
+  memory:write_8b(getRegister_16b(6), toInt(bits))
 end
 
 function res (b, r)
@@ -3034,10 +3034,10 @@ end
 
 -- 0xcb 0x86
 function RES_b_HL (b)
-  bits = toBits(get_8b(getRegister_16b(6)), 8)
+  bits = toBits(memory:read_8b(getRegister_16b(6)), 8)
   bits[b + 1] = 0
 
-  write_8b(getRegister_16b(6), toInt(bits))
+  memory:write_8b(getRegister_16b(6), toInt(bits))
 end
 
 -- Jumps
@@ -3245,7 +3245,7 @@ end
 -- Returns
 
 function ret (cc)
-  address = get_16b(registers[9])
+  address = memory:read_16b(registers[9])
 
   registers[9] = registers[9] + 2
 
@@ -3397,10 +3397,10 @@ end
 
 -- 0xcb 0x06
 function RLC_HL ()
-  shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
+  shift = shiftLeft(memory:read_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(get_8b(getRegister_16b(6))))
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(memory:read_8b(getRegister_16b(6))))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rl (rIndex)
@@ -3447,10 +3447,10 @@ end
 
 -- 0xcb 0x16
 function RL_HL ()
-  shift = shiftLeft(get_8b(getRegister_16b(6), 1))
+  shift = shiftLeft(memory:read_8b(getRegister_16b(6), 1))
 
   setFlags(zeroFlag:isZero(shift), false, false, false)
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rrc (rIndex)
@@ -3497,10 +3497,10 @@ end
 
 -- 0xcb 0x0e
 function RRC_HL ()
-  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
+  shift = shiftRight(memory:read_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(memory:read_8b(getRegister_16b(6))))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
 end
 
 function rr (rIndex)
@@ -3547,9 +3547,9 @@ end
 
 -- 0xcb 0x1e
 function RR_HL ()
-  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
+  shift = shiftRight(memory:read_8b(getRegister_16b(6)), 1)
 
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(shift, 0xff))
   setFlags(zeroFlag:isZero(shift), false, false, false)
 end
 
@@ -3600,13 +3600,13 @@ end
 
 -- 0xcb 0x26
 function SLA_HL ()
-  shift = shiftLeft(get_8b(getRegister_16b(6)), 1)
+  shift = shiftLeft(memory:read_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(get_8b(getRegister_16b(6))))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(memory:read_8b(getRegister_16b(6))))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function sra (rIndex)
@@ -3656,13 +3656,13 @@ end
 
 -- 0xcb 0x2e
 function SRA_HL ()
-  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
+  shift = shiftRight(memory:read_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(memory:read_8b(getRegister_16b(6))))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 function srl (rIndex)
@@ -3712,13 +3712,13 @@ end
 
 -- 0xcb 0x3e
 function SRL_HL ()
-  shift = shiftRight(get_8b(getRegister_16b(6)), 1)
+  shift = shiftRight(memory:read_8b(getRegister_16b(6)), 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(get_8b(getRegister_16b(6))))
+  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(memory:read_8b(getRegister_16b(6))))
 
   bShift = toBits(shift, 8)
   bShift[8] = 0
-  write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
+  memory:write_8b(getRegister_16b(6), bitwiseAnd_8b(toInt(bShift), 0xff))
 end
 
 -- Bit Operations
@@ -3764,7 +3764,7 @@ end
 
 -- 0xcb 0x46
 function BIT_b_HL (b)
-  setFlags(zeroFlag:isZero(toBits(get_8b(getRegister_16b(6)), 8)[b + 1]), false, true, nil)
+  setFlags(zeroFlag:isZero(toBits(memory:read_8b(getRegister_16b(6)), 8)[b + 1]), false, true, nil)
 end
 
 function set (b, rIndex)
@@ -3811,10 +3811,10 @@ end
 
 -- 0xcb 0xc6
 function SET_b_HL (b)
-  bits = toBits(get_8b(getRegister_16b(6)), 8)
+  bits = toBits(memory:read_8b(getRegister_16b(6)), 8)
   bits[b + 1] = 1
 
-  write_8b(getRegister_16b(6), toInt(bits))
+  memory:write_8b(getRegister_16b(6), toInt(bits))
 end
 
 function res (b, r)
@@ -3861,10 +3861,10 @@ end
 
 -- 0xcb 0x86
 function RES_b_HL (b)
-  bits = toBits(get_8b(getRegister_16b(6)), 8)
+  bits = toBits(memory:read_8b(getRegister_16b(6)), 8)
   bits[b + 1] = 0
 
-  write_8b(getRegister_16b(6), toInt(bits))
+  memory:write_8b(getRegister_16b(6), toInt(bits))
 end
 
 -- Jumps
@@ -4072,7 +4072,7 @@ end
 -- Returns
 
 function ret (cc)
-  address = get_16b(registers[9])
+  address = memory:read_16b(registers[9])
 
   registers[9] = registers[9] + 2
 

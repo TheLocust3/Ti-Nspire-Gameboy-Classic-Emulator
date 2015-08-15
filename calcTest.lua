@@ -6,8 +6,8 @@ function on.paint (gc)
     gc:drawString("Timer Loop: " .. time .. " ms", 2, 70)
     gc:drawString("Timer Speed: " .. speed, 2, 90)
     gc:drawString("Time Until Next Command: " .. c, 2, 110)
-    gc:drawString("DIV Register: " .. toHex(get_8b(0xff04)), 2, 130)
-    gc:drawString("Timer Register: " .. toHex(get_8b(0xff05)), 2, 150)
+    gc:drawString("DIV Register: " .. toHex(memory:read_8b(0xff04)), 2, 130)
+    gc:drawString("Timer Register: " .. toHex(memory:read_8b(0xff05)), 2, 150)
   elseif mode == 0 or mode == 2 then
     gc:drawString("Mode " .. mode, 2, 0)
 

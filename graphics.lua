@@ -20,8 +20,8 @@ function Tile:readTileMemory()
   for i = 0, 16, 2 do
     tile[i + 1] = {}
 
-    bits = toBits(get_8b(self.number + 1), 8)
-    bits2 = toBits(get_8b(self.number + 2), 8)
+    bits = toBits(memory:read_8b(self.number + 1), 8)
+    bits2 = toBits(memory:read_8b(self.number + 2), 8)
 
     for j = 1, #bits, 2 do
       tile[i + 1][j] = (bits2[j] * 2) + bits[j] 
@@ -80,7 +80,7 @@ function writeGraphicsRegisters (address, value)
 
  	  elseif address == 0xff45 then -- LY Compare
    		compareScanLine = value
-    	stat = get_8b(0xff41)
+    	stat = memory:read_8b(0xff41)
     	bStat = toBits(stat, 8)
     	if compareScanLine == scanLine then
       	bStat[3] = 1

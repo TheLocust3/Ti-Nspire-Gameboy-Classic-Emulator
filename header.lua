@@ -17,13 +17,10 @@ halt = false
 -- Interrupts
 vBlankInterrupt = Interrupt({check = vBlankCheck, run = vBlankRun, fail = vBlankFail, variable = 0}, 0x40, 0x1)
 scanLineInterrupt = Interrupt({check = scanLineCheck}, 0x48, 0x2)
-
-lcdcStatus = false
 timerOverflowInterrupt = Interrupt({check = timerOverflowCheck, run = timerOverflowRun}, 0x50, 0x2)
 -- No Serial Transfer Completion because this will never be implemented
-keyBounce = false
+keyBounce = false -- This one is a bit wierd and has yet to be implemented
 
--- Memory Register Stuff
 timerSpeed = 4 -- 4096 * 0.001 and truncate
 
 -- Graphics Stuff
@@ -65,23 +62,34 @@ stepping = false
 inputAddress = -1
 stopOn = "Completely random string"
 
-memory = {0}
+memory = Memory(rom)
 
-i = 1
-
-while i <= 65536 do
-  memory[i] = 0
-
-  i = i + 1
-end
-
-i = 1
-
-while i <= #rom do
-  memory[i] = rom[i]
-
-  i = i + 1
-end
+-- Set BIOS values
+store16b(1, 8, 0x01)
+registers[8] = 0xb0
+store16b(2, 3, 0x0013)
+store16b(4, 5, 0x00d8)
+store16b(6, 7, 0x014d)
+registers[9] = 0xfffe
+memory:write_8b(0xff10, 0x80)
+memory:write_8b(0xff11, 0xbf)
+memory:write_8b(0xff12, 0xf3)
+memory:write_8b(0xff14, 0xbf)
+memory:write_8b(0xff16, 0x3f)
+memory:write_8b(0xff19, 0xbf)
+memory:write_8b(0xff1a, 0x7f)
+memory:write_8b(0xff1b, 0xff)
+memory:write_8b(0xff1c, 0x9f)
+memory:write_8b(0xff1e, 0xbf)
+memory:write_8b(0xff20, 0xff)
+memory:write_8b(0xff23, 0xbf)
+memory:write_8b(0xff24, 0x77)
+memory:write_8b(0xff25, 0xf3)
+memory:write_8b(0xff26, 0xf1)
+memory:write_8b(0xff40, 0x91)
+memory:write_8b(0xff47, 0xfc)
+memory:write_8b(0xff48, 0xff)
+memory:write_8b(0xff49, 0xff)
 
 rom = nil
 collectgarbage() -- Deallocate rom
