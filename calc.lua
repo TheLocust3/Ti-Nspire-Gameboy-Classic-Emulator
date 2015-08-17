@@ -108,14 +108,14 @@ function main ()
         rTimer = memory:read_8b(0xff05)
         rTimer = rTimer + (timerSpeed * (timer.getMilliSecCounter() - old))
         memory:write_8b(0xff05, rTimer)
-
-        timerOverflowInterrupt:run()
       end
     end
 
-    vBlankInterrupt:run()
-
-    scanLineInterrupt:run()
+    for i = 1, #interruptArray do
+      if interruptArray[i]:run() then
+        break -- High priority interrupt ran so no others should run
+      end
+    end
 
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
     if debugger.step == true and c >= 0 then

@@ -24,17 +24,21 @@ function Interrupt:callInterrupt()
 end
 
 function Interrupt:run()
-  if self.custom.check ~= nil and self.custom.check(self.custom.variable) then
-    if self.check() then
+  if self:check() then
+    if self.custom.check ~= nil and self.custom.check(self.custom.variable) then
       halt = false
       if self.custom.run ~= nil then
         self.custom.variable = self.custom.run(self.custom.variable)
       end
 
-      self.callInterrupt()
+      self:callInterrupt()
+
+      return true
+    elseif self.custom.fail ~= nil then
+      self.custom.variable = self.custom.fail(self.custom.variable)
     end
-  elseif self.custom.fail ~= nil then
-    self.custom.variable = self.custom.fail(self.custom.variable)
+
+    return false
   end
 end
 
