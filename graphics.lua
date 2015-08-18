@@ -10,7 +10,7 @@ function Tile:getTile()
   return self.tile
 end
 
-function Tile:drawTile(x, y)
+function Tile:draw(x, y)
 
 end
 
@@ -35,6 +35,43 @@ function Tile:update()
   self.tile = self:readTileMemory() 
 end
 
+Sprite = class()
+
+function Sprite:init(number)
+  self.number = number
+  self.sprite = {}
+  self:update()
+end
+
+function Sprite:getSprite()
+  return self.sprite
+end
+
+function Sprite:draw(x, y)
+
+end
+
+-- I don't understand how a sprite can be 8x16 yet
+function Sprite:readSpriteMemory()
+  sprite = {}
+  for i = 0, 16, 2 do
+    sprite[i + 1] = {}
+
+    bits = toBits(memory:read_8b(self.number + 1), 8)
+    bits2 = toBits(memory:read_8b(self.number + 2), 8)
+
+    for j = 1, #bits, 2 do
+      sprite[i + 1][j] = (bits2[j] * 2) + bits[j] 
+    end
+  end
+
+  return sprite
+end
+
+function Sprite:update()
+  self.sprite = self:readSpriteMemory() 
+end
+
 Graphics = class()
 
 function Graphics:init()
@@ -53,17 +90,19 @@ function Graphics:init()
   self.objPalette1 = {0, 0, 0, 0} 
   self.scanLine = 0
   self.compareScanLine = 0
-  self.tileData = {{0}}
+  self.tileData = {{}}
   self.backgroundTileMap = {{}}
   self.windowTileMap = {{}}
-  self.spriteData = {{0}}
+  self.spriteData = {{}}
 end
 
 function Graphics:writeRegisters(address, value)
   bValue = toBits(value, 8)
 
+  if address >= 0x8000 and address < 0x8fff then
+    self:updateSprite(address, value)
 	if address >= self.tileDataAddress[1] and address < self.tileDataAddress[2] then
-		self.updateTile(address, value)
+		self:updateTile(address, value)
   elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address < self.bgTileMapAddress[2] then -- VRam
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
       self.backgroundTileMap[address - 0x8000] = value
@@ -168,5 +207,22 @@ function Graphics:updateTile(address, value)
     self.tileData[tileNumber + 1] = Tile(tileNumber)
   else
     self.tileData[tileNumber]:update()
+  end
+end
+
+function Graphics:getSpriteNumber(address)
+  number = mathFloor((address - 0x8000) / 16)
+  tileAddress = (number * 16) + 0x8000 
+
+	return tileAddress
+end
+
+function Graphics:updateSprite(address, value)
+  spriteNumber = self:getSpriteNumber(address)
+  
+  if self.spriteData[spriteNumber] == nil then
+    self.spriteData[spriteNumber + 1] = Sprite(spriteNumber)
+  else
+    self.spriteData[spriteNumber]:update()
   end
 end
