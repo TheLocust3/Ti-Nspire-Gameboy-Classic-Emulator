@@ -72,6 +72,32 @@ function Sprite:update()
   self.sprite = self:readSpriteMemory() 
 end
 
+SpriteAttribute = class()
+
+function SpriteAttribute:init(sprite, address)
+  self.sprite = sprite
+  self.address = address
+  self:update()
+end
+
+function SpriteAttribute:drawSprite()
+  self.sprite.draw(self.x, self.y)
+end
+
+function SpriteAttribute:update()
+  self.x = memory:read_8b(self.address) 
+  self.y = memory:read_8b(self.addres + 1)
+
+  spriteNumber = self:getSpriteNumber(self.address + 2)
+  self.sprite = graphics.spriteData[spriteNumber + 1]
+
+  flagBits = toBits(memory:read_8b(self.address + 3))
+  self.priority = flagBits[1]
+  self.yFlip = flagBits[2] == 1
+  self.xFlip = flagBits[3] == 1
+  self.palette = flagBits[4]
+end
+
 Graphics = class()
 
 function Graphics:init()
@@ -101,7 +127,7 @@ function Graphics:writeRegisters(address, value)
 
   if address >= 0x8000 and address < 0x8fff then
     self:updateSprite(address, value)
-	if address >= self.tileDataAddress[1] and address < self.tileDataAddress[2] then
+  elseif address >= self.tileDataAddress[1] and address < self.tileDataAddress[2] then
 		self:updateTile(address, value)
   elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address < self.bgTileMapAddress[2] then -- VRam
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
@@ -223,6 +249,6 @@ function Graphics:updateSprite(address, value)
   if self.spriteData[spriteNumber] == nil then
     self.spriteData[spriteNumber + 1] = Sprite(spriteNumber)
   else
-    self.spriteData[spriteNumber]:update()
+    self.spriteData[spriteNumber + 1]:update()
   end
 end
