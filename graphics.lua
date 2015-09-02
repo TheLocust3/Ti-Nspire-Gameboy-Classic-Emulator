@@ -47,7 +47,7 @@ function Sprite:getSprite()
   return self.sprite
 end
 
-function Sprite:draw(x, y)
+function Sprite:draw(x, y, xFlip, yFlip, palette)
 
 end
 
@@ -74,14 +74,13 @@ end
 
 SpriteAttribute = class()
 
-function SpriteAttribute:init(sprite, address)
-  self.sprite = sprite
+function SpriteAttribute:init(address)
   self.address = address
   self:update()
 end
 
 function SpriteAttribute:drawSprite()
-  self.sprite.draw(self.x, self.y)
+  self.sprite.draw(self.x, self.y, self.xFlip, self.yFlip, self.palette)
 end
 
 function SpriteAttribute:update()
@@ -118,18 +117,21 @@ function Graphics:init()
   self.compareScanLine = 0
   self.tileData = {{}}
   self.backgroundTileMap = {{}}
-  self.windowTileMap = {{}}
-  self.spriteData = {{}}
+  self.windowTileMap = {}
+  self.spriteData = {}
+  self.spriteAttributeData = {}
 end
 
 function Graphics:writeRegisters(address, value)
   bValue = toBits(value, 8)
 
-  if address >= 0x8000 and address < 0x8fff then
+  if address >= 0x8000 and address <= 0x8fff then
     self:updateSprite(address, value)
-  elseif address >= self.tileDataAddress[1] and address < self.tileDataAddress[2] then
+	elseif address >= 0xfe00 and address <= 0xfe9f then
+		self:updateAttributes(address, value)
+  elseif address >= self.tileDataAddress[1] and address <= self.tileDataAddress[2] then
 		self:updateTile(address, value)
-  elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address < self.bgTileMapAddress[2] then -- VRam
+  elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address <= self.bgTileMapAddress[2] then -- VRam
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
       self.backgroundTileMap[address - 0x8000] = value
     else -- Signed
@@ -142,7 +144,7 @@ function Graphics:writeRegisters(address, value)
         self.backgroundTileMap[x][y] = signedValue + 128
       end
     end
-  elseif self.bgWindowDisplay == true and self.windowDisplay == true and address >= self.windowTileMapAddress[1] and address < self.windowTileMapAddress[2] then
+  elseif self.bgWindowDisplay == true and self.windowDisplay == true and address >= self.windowTileMapAddress[1] and address <= self.windowTileMapAddress[2] then
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
       self.windowTileMap[address - 0x8000] = value
     else -- Signed
@@ -238,9 +240,9 @@ end
 
 function Graphics:getSpriteNumber(address)
   number = mathFloor((address - 0x8000) / 16)
-  tileAddress = (number * 16) + 0x8000 
+  spriteAddress = (number * 16) + 0x8000 
 
-	return tileAddress
+  return spriteAddress
 end
 
 function Graphics:updateSprite(address, value)
@@ -250,5 +252,22 @@ function Graphics:updateSprite(address, value)
     self.spriteData[spriteNumber + 1] = Sprite(spriteNumber)
   else
     self.spriteData[spriteNumber + 1]:update()
+  end
+end
+
+function Graphics:getAttributeNumber(address)
+  number = mathFloor((address - 0xfe00) / 16)
+  attributeAddress = (number * 16) + 0xfe00
+
+  return attributeAddress
+end
+
+function Graphics:updateAttributes(address, value)
+  attributeNumber = self:getAttributeNumber(address)
+
+  if self.spriteAttributeData[attributeNumber] == nil then
+    self.spriteAtrributeData[attributeNumber] = SpriteAttribute(address)
+  else
+    self.spriteAtrributeData[attributeNumber].update()
   end
 end
