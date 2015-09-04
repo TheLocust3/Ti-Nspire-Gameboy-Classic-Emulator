@@ -115,8 +115,8 @@ function Graphics:init()
   self.objPalette1 = {0, 0, 0, 0} 
   self.scanLine = 0
   self.compareScanLine = 0
-  self.tileData = {{}}
-  self.backgroundTileMap = {{}}
+  self.tileData = {}
+  self.backgroundTileMap = {}
   self.windowTileMap = {}
   self.spriteData = {}
   self.spriteAttributeData = {}

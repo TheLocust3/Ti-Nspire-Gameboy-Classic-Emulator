@@ -10,5 +10,9 @@ function on.paint (gc)
     gc:drawString("Timer Register: " .. toHex(memory:read_8b(0xff05)), 2, 150)
   end
 
+	if debugger.mode == 0 then
+		testDraw(gc)
+	end
+
   debugger:renderText(gc, command)
 end
