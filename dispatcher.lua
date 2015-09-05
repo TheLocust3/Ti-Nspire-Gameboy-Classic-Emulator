@@ -3,13 +3,10 @@ command = ""
 function log (str)
   command = str
   debugger:checkStopOn(command)
-
-  print(str)
 end
 
 -- The pc - 1 gets a + 1 when going through the read method
 function dispatcher ()
-  log(toHex(pc - 1) .. ": ")
   pcHex = toHex(pc - 1)
 
   if memory:read_8b(pc - 1) == 0x06 then

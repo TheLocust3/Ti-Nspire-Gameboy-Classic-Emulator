@@ -644,7 +644,6 @@ function sub_8b (rIndex, n)
   diff = registers[rIndex] - n
 
   registers[rIndex] = bitwiseAnd_8b(diff, 0xff)
-  print(diff)
   setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
 
