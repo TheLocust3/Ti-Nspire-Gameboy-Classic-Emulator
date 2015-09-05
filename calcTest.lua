@@ -12,6 +12,7 @@ function on.paint (gc)
 
 	if debugger.mode == 0 then
 		testDraw(gc)
+	  gc:setColorRGB(0, 0, 0) -- Reset color to black
 	end
 
   debugger:renderText(gc, command)
