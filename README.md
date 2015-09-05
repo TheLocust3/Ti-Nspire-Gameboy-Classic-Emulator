@@ -6,7 +6,7 @@ A lua Gameboy Classic Emulator for the Ti-Nspire. Ndless is not required! THIS I
 
 ###Running the Emulator
 - Run the build.sh file (`./build.sh` or `source build.sh`)
-- Copy the generated tns file (`release/full.lua`) onto your calculator
+- Copy the generated tns file (`release/full.tns`) onto your calculator
   
 ###Trello
 Visit [this Trello page](https://trello.com/b/94w7gvqK/ti-nspire-gb-emulator) to stay up to date with what is happening next with this emulator.  
