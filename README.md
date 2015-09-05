@@ -1,7 +1,12 @@
 # Ti-Nspire-Gameboy-Classic-Emulator  
 A lua Gameboy Classic Emulator for the Ti-Nspire. Ndless is not required! THIS IS NOT FINISHED!  
   
-To use these files on your calculator, you must run concat.rb and then paste the text of full.lua into a .tns "script."  
+###Requirements
+- [Luna](http://www.unsads.com/projects/nsptools/downloader/download/release/3/file/38) (for building)
+
+###Running the Emulator
+- Run the build.sh file (`./build.sh` or `source build.sh`)
+- Copy the generated tns file (`release/full.lua`) onto your calculator
   
 ###Trello
 Visit [this Trello page](https://trello.com/b/94w7gvqK/ti-nspire-gb-emulator) to stay up to date with what is happening next with this emulator.  
