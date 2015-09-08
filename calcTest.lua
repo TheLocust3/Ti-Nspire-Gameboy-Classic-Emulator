@@ -16,4 +16,5 @@ function on.paint (gc)
 	end
 
   debugger:renderText(gc, command)
+  drawMessage(gc)
 end

@@ -15,3 +15,19 @@ function testDraw(gc)
 		end
 	end
 end
+
+function sendMessage(message)
+  displayedMessage = message
+  timesMessageDisplayed = 0
+end
+
+function drawMessage(gc)
+  timesMessageDisplayed = timesMessageDisplayed + 1
+
+  if timesMessageDisplayed < 25 then
+    gc:drawString(displayedMessage, 2, 170)
+  else
+    displayedMessage = ""
+    timesMessageDisplayed = 0
+  end
+end

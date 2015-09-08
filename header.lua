@@ -34,6 +34,9 @@ c = 0 -- The amount of clock cycles until the next command is run
 
 debugger = Debugger()
 
+displayedMessage = ""
+timesMessageDisplayed = 0
+
 memory = Memory(rom)
 
 -- Set BIOS values
