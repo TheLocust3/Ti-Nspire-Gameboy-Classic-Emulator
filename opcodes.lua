@@ -1877,34 +1877,8 @@ function JP_HL ()
 end
 
 function jr (cc, n)
-  if cc == nil then
-    pc = pc + n
-		return
-  else
-    if cc == "NZ" then
-      if not zeroFlag:isSet() then
-        pc = pc + n
-				return
-      end
-    elseif cc == "Z" then
-      if zeroFlag:isSet() then
-        pc = pc + n
-				return
-      end
-    elseif cc == "NC" then
-      if not carryFlag:isSet() then
-        pc = pc + n
-				return
-      end
-    else
-      if carryFlag:isSet() then
-        pc = pc + n
-				return
-      end
-    end
-  end
-
-	pc = pc + 1 -- Avoid infinite loop
+  jumpTo = pc + n
+  jp(cc, jumpTo)
 end
 
 -- 0x18
