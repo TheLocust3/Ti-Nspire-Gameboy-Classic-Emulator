@@ -58,19 +58,6 @@ function to16b (low, high) -- This might have some negative effects
   return shiftLeft(high, 8) + low
 end
 
-function callInterrupt (location, bit, fNum)
-  halt = false
-  if ime == true and bitwiseAnd_8b(memory:read_8b(0xffff), bit) > 0 then
-    flags = toBits(memory:read_8b(0xff0f), 8)
-    flags[fNum] = 1
-    memory:write_8b(0xff0f, toInt(flags))
-
-    pc = location
-    DI()
-    call(nil, pc)
-  end
-end
-
 -- From http://stackoverflow.com/questions/1426954/split-string-in-lua by user973713 (second answer)
 function split (inputstr, sep)
   if sep == nil then
