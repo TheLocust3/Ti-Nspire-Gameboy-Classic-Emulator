@@ -44,17 +44,16 @@ function setFlags(z, s, hc, c)
   registers[8] = toInt(flag)
 end
 
-function store16b(rIndex1, rIndex2, num)
+function writeRegister_16b(rIndex1, rIndex2, num)
   registers[rIndex1] = shiftRight(num, 8)
   registers[rIndex2] = toInt(toBits(num, 8))
 end
 
 function getRegister_16b(first)
-  return to16b(registers[first + 1], registers[first]) -- Reverse first + 1 and first to work around the reversal of to16b
+  return bitsTo_16b(registers[first + 1], registers[first]) -- Reverse first + 1 and first to work around the reversal of bitsTo_16b
 end
 
---function to16b (low, high)
-function to16b(low, high) -- This might have some negative effects
+function bitsTo_16b(low, high) -- This might have some negative effects
   return shiftLeft(high, 8) + low
 end
 

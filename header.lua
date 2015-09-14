@@ -40,11 +40,11 @@ timesMessageDisplayed = 0
 memory = Memory(rom)
 
 -- Set BIOS values
-store16b(1, 8, 0x01)
+writeRegister_16b(1, 8, 0x01)
 registers[8] = 0xb0
-store16b(2, 3, 0x0013)
-store16b(4, 5, 0x00d8)
-store16b(6, 7, 0x014d)
+writeRegister_16b(2, 3, 0x0013)
+writeRegister_16b(4, 5, 0x00d8)
+writeRegister_16b(6, 7, 0x014d)
 registers[9] = 0xfffe
 memory:write_8b(0xff10, 0x80)
 memory:write_8b(0xff11, 0xbf)

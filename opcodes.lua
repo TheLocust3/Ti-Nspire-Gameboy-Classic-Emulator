@@ -440,7 +440,7 @@ end
 -- 16-Bit Loads
 
 function ld_16b (rIndex, nn)
-  store16b(rIndex, rIndex + 1, nn)
+  writeRegister_16b(rIndex, rIndex + 1, nn)
 end
 
 -- 0x01
@@ -470,7 +470,7 @@ end
 
 -- 0xf8
 function LDHL_SP_n (n)
-  store16b(6, 7, registers[9] + n)
+  writeRegister_16b(6, 7, registers[9] + n)
   setFlags(false, false, false, false) -- The documentation on this command's flags is a bit weird
 end
 
@@ -487,22 +487,22 @@ end
 
 -- 0xf5
 function PUSH_AF ()
-  push(to16b(registers[1], registers[8]))
+  push(bitsTo_16b(registers[1], registers[8]))
 end
 
 -- 0xc5
 function PUSH_BC ()
-  push(to16b(registers[2], registers[3]))
+  push(bitsTo_16b(registers[2], registers[3]))
 end
 
 -- 0xd5
 function PUSH_DE ()
-  push(to16b(registers[4], registers[5]))
+  push(bitsTo_16b(registers[4], registers[5]))
 end
 
 -- 0xe5
 function PUSH_HL ()
-  push(to16b(registers[6], registers[7]))
+  push(bitsTo_16b(registers[6], registers[7]))
 end
 
 function pop (rIndex1, rIndex2)
@@ -578,7 +578,7 @@ end
 
 -- 0x86
 function ADD_A_HL ()
-  add_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
+  add_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xc6
@@ -632,7 +632,7 @@ end
 
 -- 0x8e
 function ADC_A_HL ()
-  adc_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
+  adc_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xce
@@ -688,7 +688,7 @@ end
 
 -- 0x96
 function SUB_HL ()
-  sub_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
+  sub_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xd6
@@ -742,7 +742,7 @@ end
 
 -- 0x9e
 function SBC_A_HL ()
-  sbc_8b(1, memory:read_8b(to16b(registers[6], registers[7])))
+  sbc_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xde
@@ -791,7 +791,7 @@ end
 
 -- 0xa6
 function AND_HL ()
-  and_8b(memory:read_8b(to16b(registers[6], registers[7])))
+  and_8b(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xe6
@@ -840,7 +840,7 @@ end
 
 -- 0xb6
 function OR_HL ()
-  or_8b(memory:read_8b(to16b(registers[6], registers[7])))
+  or_8b(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xf6
@@ -889,7 +889,7 @@ end
 
 -- 0xae
 function XOR_HL ()
-  xor_8b(memory:read_8b(to16b(registers[6], registers[7])))
+  xor_8b(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xee
@@ -940,7 +940,7 @@ end
 
 -- 0xbe
 function CP_HL ()
-  cp(memory:read_8b(to16b(registers[6], registers[7])))
+  cp(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
 end
 
 -- 0xfe
@@ -1057,7 +1057,7 @@ function add_16b (rIndex1, rIndex2, nn)
   if rIndex2 ~= nil then
     sum = getRegister_16b(rIndex1) + nn
 
-    store16b(rIndex1, rIndex2, mask_16b(sum))
+    writeRegister_16b(rIndex1, rIndex2, mask_16b(sum))
     setFlags(nil, false, halfCarryFlag:isHalfCarryAdd_16b(getRegister_16b(rIndex1), nn), carryFlag:isCarryHigh_16b(sum))
   else
     sum = registers[rIndex1] + nn
@@ -1069,17 +1069,17 @@ end
 
 -- 0x09
 function ADD_HL_BC ()
-  add_16b(6, 7, to16b(registers[2], registers[3]))
+  add_16b(6, 7, bitsTo_16b(registers[2], registers[3]))
 end
 
 -- 0x19
 function ADD_HL_DE ()
-  add_16b(6, 7, to16b(registers[4], registers[5]))
+  add_16b(6, 7, bitsTo_16b(registers[4], registers[5]))
 end
 
 -- 0x29
 function ADD_HL_HL ()
-  add_16b(6, 7, to16b(registers[6], registers[7]))
+  add_16b(6, 7, bitsTo_16b(registers[6], registers[7]))
 end
 
 -- 0x39
@@ -1096,7 +1096,7 @@ function inc_16b (rIndex1, rIndex2)
   if rIndex2 ~= nil then
     sum = getRegister_16b(rIndex1) + 1
 
-    store16b(rIndex1, rIndex2, mask_16b(sum))
+    writeRegister_16b(rIndex1, rIndex2, mask_16b(sum))
   else
     sum = registers[rIndex1] + 1
 
@@ -1128,7 +1128,7 @@ function dec_16b (rIndex1, rIndex2)
   if rIndex2 ~= nil then
     sum = getRegister_16b(rIndex1) - 1
 
-    store16b(rIndex1, rIndex2, mask_16b(sum))
+    writeRegister_16b(rIndex1, rIndex2, mask_16b(sum))
   else
     sum = registers[rIndex1] - 1
 

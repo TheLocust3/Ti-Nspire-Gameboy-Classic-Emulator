@@ -396,7 +396,7 @@ function dispatcher ()
     pc = pc + 1
   elseif memory:read_8b(pc - 1) == 0xea then
     c = 16
-    LD_nn_A(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    LD_nn_A(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
     log("LD (" .. toHex(memory:read_8b(pc)) .. "" .. u_toHex(pc + 1) .. "), A")
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0xf2 then
@@ -441,23 +441,23 @@ function dispatcher ()
     pc = pc + 2
   elseif memory:read_8b(pc - 1) == 0x01 then
     c = 12
-    LD_BC_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    LD_BC_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
     log("LD BC, " .. toHex(memory:read_8b(pc)) .. u_toHex(pc + 1))
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0x11 then
     c = 12
-    LD_DE_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    LD_DE_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
     log("LD DE, " .. toHex(memory:read_8b(pc)) .. u_toHex(pc + 1))
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0x21 then
     c = 12
-    LD_HL_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
-    log("LD HL, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    LD_HL_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("LD HL, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0x31 then
     c = 12
-    LD_SP_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
-    log("LD SP, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    LD_SP_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("LD SP, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0xf9 then
     c = 8
@@ -471,7 +471,7 @@ function dispatcher ()
     pc = pc + 2
   elseif memory:read_8b(pc - 1) == 0x08 then
     c = 20
-    LD_nn_SP(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    LD_nn_SP(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
     log("LD " .. toHex(memory:read_8b(pc)) .. u_toHex(pc + 1) .. ", SP")
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0xf5 then
@@ -1086,28 +1086,28 @@ function dispatcher ()
     pc = pc + 1
   elseif memory:read_8b(pc - 1) == 0xc3 then
     c = 12
-    log("JP " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    JP_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("JP " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    JP_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xc2 then
     c = 12
-    log("JP NZ, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    JP_NZ_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("JP NZ, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    JP_NZ_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xca then
     c = 12
-    log("JP Z" .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    JP_Z_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("JP Z" .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    JP_Z_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xd2 then
     c = 12
-    log("JP  NC" .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    JP_NC_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("JP  NC" .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    JP_NC_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xda then
     c = 12
-    log("JP  C" .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    JP_C_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("JP  C" .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    JP_C_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xe9 then
     c = 4
     log("JP (HL)")
-    JP_HL(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    JP_HL(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0x18 then
     c = 8
     log("JR " .. toHex(memory:read_8b(pc)))
@@ -1130,24 +1130,24 @@ function dispatcher ()
     JR_C_n(memory:read_8b(pc))
   elseif memory:read_8b(pc - 1) == 0xcd then
     c = 12
-    log("CALL " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    CALL_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("CALL " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    CALL_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xc4 then
     c = 12
-    log("CALL NZ, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    CALL_NZ_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("CALL NZ, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    CALL_NZ_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xcc then
     c = 12
-    log("CALL Z, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    CALL_Z_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("CALL Z, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    CALL_Z_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xd4 then
     c = 12
-    log("CALL NC, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    CALL_NC_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("CALL NC, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    CALL_NC_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xdc then
     c = 12
-    log("CALL C, " .. toHex(to16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
-    CALL_C_nn(to16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    log("CALL C, " .. toHex(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1))))
+    CALL_C_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
   elseif memory:read_8b(pc - 1) == 0xc7 then
     c = 32
     RST_00H()
