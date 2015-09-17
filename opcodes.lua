@@ -506,10 +506,11 @@ function PUSH_HL ()
 end
 
 function pop (rIndex1, rIndex2)
-  registers[rIndex1] = memory:read_8b(registers[9])
-  registers[rIndex2] = memory:read_8b(registers[9] + 1)
+  registers[rIndex1] = memory:read_8b(registers[9] + 1)
+  registers[rIndex2] = memory:read_8b(registers[9])
 
-  registers[9] = registers[9] + 2 -- Technically it is gone
+  memory:write_16b(registers[9], 0) -- Clear popped memory
+  registers[9] = registers[9] + 2
 end
 
 -- 0xf1

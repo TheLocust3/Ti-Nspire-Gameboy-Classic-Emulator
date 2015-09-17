@@ -85,7 +85,7 @@ end
 
 function Debugger:untilCommand(command)
   self.stopOn = split(command, " ")
-  self.stopOn = stopOn[2]
+  self.stopOn = self.stopOn[2]
   stop = false
 end
 

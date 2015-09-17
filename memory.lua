@@ -39,7 +39,7 @@ function Memory:read_8b(address)
 end
 
 function Memory:read_16b(address)
-  return bitsTo_16b(self:read_8b(address + 1), self:read_8b(address))
+  return bitsTo_16b(self:read_8b(address + 1), self:read_8b(address)) -- bitsTo_16b switches the high and low
 end
 
 function Memory:writeNoCheck_8b(address, value)
