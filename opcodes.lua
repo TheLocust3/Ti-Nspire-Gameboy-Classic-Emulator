@@ -1821,7 +1821,9 @@ end
 
 -- Jumps
 
-function jp (cc, nn)
+function jp (cc, nn, tByte)
+  tByte = tByte or false -- JP and CALL have two byte args
+  
   location = nn + 1
 
   if cc == nil then
@@ -1851,37 +1853,42 @@ function jp (cc, nn)
     end
   end
 
-	pc = pc + 1
+  if tByte then
+    pc = pc + 2
+  else
+    pc = pc + 1
+  end
+
 end
 
 -- 0xc3
 function JP_nn (nn)
-  jp(nil, nn)
+  jp(nil, nn, true)
 end
 
 -- 0xc2
 function JP_NZ_nn (nn)
-  jp("NZ", nn)
+  jp("NZ", nn, true)
 end
 
 -- 0xca
 function JP_Z_nn (nn)
-  jp("Z", nn)
+  jp("Z", nn, true)
 end
 
 -- 0xd2
 function JP_NC_nn (nn)
-  jp("NC", nn)
+  jp("NC", nn, true)
 end
 
 -- 0xda
 function JP_C_nn (nn)
-  jp("C", nn)
+  jp("C", nn, true)
 end
 
 -- 0xe9
 function JP_HL ()
-  jp(nil, getRegister_16b[6])
+  jp(nil, getRegister_16b[6], true)
 end
 
 function jr (cc, n)
@@ -1919,7 +1926,7 @@ end
 function call (cc, nn)
   push(pc)
 
-  jp(cc, nn)
+  jp(cc, nn, true)
 end
 
 -- 0xcd
