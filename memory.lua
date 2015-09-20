@@ -18,6 +18,12 @@ function Memory:readCheck(address)
   if graphicsValue ~= nil then
     return graphicsValue
   end
+
+  if runBios then
+    if address < 0xff then
+      return bios[address]
+    end
+  end
 end
 
 function Memory:writeCheck(address)

@@ -7,6 +7,11 @@ end
 
 -- The pc - 1 gets a + 1 when going through the read method
 function dispatcher ()
+  if runBios and pc > 0xff then
+    runBios = false 
+    pc = 0x101
+  end
+
   pcHex = toHex(pc - 1)
 
   if memory:read_8b(pc - 1) == 0x06 then

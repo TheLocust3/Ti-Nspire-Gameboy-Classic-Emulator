@@ -27,7 +27,7 @@ timerSpeed = 4 -- 4096 * 0.001 and truncate
 graphics = Graphics()
 
 -- Program Counter
-pc = 0x101 -- Start of rom is be 0x101 but the start of the bios is 0x105
+pc = 0x1 -- Start of rom is be 0x101 but the start of the bios is 0x105
 pcHex = 0x00
 
 c = 0 -- The amount of clock cycles until the next command is run
@@ -38,33 +38,7 @@ displayedMessage = ""
 timesMessageDisplayed = 0
 
 memory = Memory(rom)
-
--- Set BIOS values
-writeRegister_16b(1, 8, 0x01)
-registers[8] = 0xb0
-writeRegister_16b(2, 3, 0x0013)
-writeRegister_16b(4, 5, 0x00d8)
-writeRegister_16b(6, 7, 0x014d)
-registers[9] = 0xfffe
-memory:write_8b(0xff10, 0x80)
-memory:write_8b(0xff11, 0xbf)
-memory:write_8b(0xff12, 0xf3)
-memory:write_8b(0xff14, 0xbf)
-memory:write_8b(0xff16, 0x3f)
-memory:write_8b(0xff19, 0xbf)
-memory:write_8b(0xff1a, 0x7f)
-memory:write_8b(0xff1b, 0xff)
-memory:write_8b(0xff1c, 0x9f)
-memory:write_8b(0xff1e, 0xbf)
-memory:write_8b(0xff20, 0xff)
-memory:write_8b(0xff23, 0xbf)
-memory:write_8b(0xff24, 0x77)
-memory:write_8b(0xff25, 0xf3)
-memory:write_8b(0xff26, 0xf1)
-memory:write_8b(0xff40, 0x91)
-memory:write_8b(0xff47, 0xfc)
-memory:write_8b(0xff48, 0xff)
-memory:write_8b(0xff49, 0xff)
+runBios = true -- Start bios on startup
 
 rom = nil
 collectgarbage() -- Deallocate rom
