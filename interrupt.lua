@@ -10,7 +10,7 @@ function Interrupt:init(custom, location, bit)
 end
 
 function Interrupt:check()
-  return stop == false and ime == true and bitwise_8b(memory:read_8b(0xffff), self.bit) > 0
+  return stop == false and ime == true and bitwiseAnd_8b(memory:read_8b(0xffff), self.bit) > 0
 end
 
 function Interrupt:callInterrupt()

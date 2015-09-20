@@ -1858,7 +1858,6 @@ function jp (cc, nn, tByte)
   else
     pc = pc + 1
   end
-
 end
 
 -- 0xc3
