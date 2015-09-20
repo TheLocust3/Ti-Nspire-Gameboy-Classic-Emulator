@@ -753,6 +753,7 @@ end
 
 function and_8b (n)
   registers[1] = bitwiseAnd_8b(registers[1], n)
+  setFlags(zeroFlag:isZero(registers[1]), false, true, false)
 end
 
 -- 0xa7
@@ -802,6 +803,7 @@ end
 
 function or_8b (n)
   registers[1] = bitwiseOr_8b(registers[1], n)
+  setFlags(zeroFlag:isZero(registers[1]), false, false, false)
 end
 
 -- 0xb7
@@ -851,6 +853,7 @@ end
 
 function xor_8b (n)
   registers[1] = bitwiseXor_8b(registers[1], n)
+  setFlags(zeroFlag:isZero(registers[1]), false, false, false)
 end
 
 -- 0xaf
