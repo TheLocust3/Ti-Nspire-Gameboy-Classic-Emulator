@@ -80,7 +80,7 @@ end
 
 function Debugger:memoryCommand(command)
   self.address = split(command, " ")
-  self.address = tonumber(self.address[2])
+  self.address = tonumber(self.address[2], 16)
 end
 
 function Debugger:untilCommand(command)
