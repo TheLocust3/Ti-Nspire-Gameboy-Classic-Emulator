@@ -375,17 +375,17 @@ end
 
 -- 0x02
 function LD_BC_A ()
-  ld_8b(registers[1], memory:read_8b(getRegister_16b(2)))
+  ldMemory_8b(2, registers[1])
 end
 
 -- 0x12
 function LD_DE_A ()
-  ld_8b(registers[1], memory:read_8b(getRegister_16b(4)))
+  ldMemory_8b(4, registers[1])
 end
 
 -- 0x77
 function LD_HL_A ()
-  ld_8b(registers[1], memory:read_8b(getRegister_16b(6)))
+  ldMemory_8b(6, registers[1])
 end
 
 -- 0xea
