@@ -11,24 +11,42 @@ end
 program = ""
 files = [path + "bitwise.lua", path + "rom.lua", path + "flag.lua", path + "interrupt.lua", path + "memory.lua", path + "graphics.lua", path + "draw.lua", path + "debug.lua", path + "helperFunctions.lua", path + "header.lua", path + "opcodes.lua", path + "dispatcher.lua"]
 
-if ARGV[0] == "-a"
-  if File.file?(ARGV[1])
-    files[files.length] = ARGV[1]
-  else
-    puts ARGV[1] + " is not a file"
-    exit
+require 'optparse'
+
+options = {}
+OptionParser.new do |opts|
+  opts.banner = "Usage: example.rb [options]"
+  options[:copy] = true
+
+  opts.on("-c", "--calculator", "Append code to run on a calculator") do
+    files << path + "calc.lua"
   end
-elsif ARGV[0] == "-r"
-  files << path + "main.lua"
-elsif ARGV[0] == "-c"
-  files << path + "calc.lua"
-elsif ARGV[0] == "-t"
-  files << path + "calc.lua"
-  files << path + "calcTest.lua"
-elsif ARGV[0] != nil
-  puts "Unkown arguemnt " + ARGV[0]
-  exit
-end
+  
+  opts.on("-t", "--test", "Append testing code (only for use on a calculator)") do
+    if !files.include?(path + "calc.lua")
+      files << path + "calc.lua"
+    end
+
+    files << path + "calcTest.lua"
+  end
+
+  opts.on("-a FILENAME", "--addfile FILENAME") do |file|
+    if File.file?(file)
+      files[files.length] = file 
+    else
+      puts file + " is not a file"
+      exit
+    end
+  end
+
+  opts.on("-r", "--r", "Append testing code for terminal (not implemented)") do
+    files << path + "main.lua"
+  end
+
+  opts.on("-n", "--nocopy", "Don't copy output to clipboard") do
+    options[:copy] = false
+  end
+end.parse!
 
 for i in files
   f = File.open(i, "r")
@@ -46,7 +64,7 @@ out = File.open(path + "release/full.lua", 'w')
 out.puts(program)
 out.close
 
-if RbConfig::CONFIG['host_os'].include?("darwin") # OS must be Mac OS X
+if options[:copy] && RbConfig::CONFIG['host_os'].include?("darwin") # OS must be Mac OS X
   release = path + "/release/full.lua"
   `cat #{release} |pbcopy`
 
