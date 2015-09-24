@@ -476,7 +476,7 @@ end
 
 -- 0x08
 function LD_nn_SP (nn)
-  registers[9] = nn
+  registers[9] = memory:read_16b(nn) 
 end
 
 function push (nn)
