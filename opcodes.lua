@@ -904,6 +904,10 @@ end
 function cp (n)
   compare = registers[1] - n
 
+  if compare < 0 then
+    compare = 0
+  end
+
   setFlags(zeroFlag:isZero(compare), true, halfCarryFlag:isHalfCarrySub_8b(registers[1], n), (registers[1] < n))
 end
 
