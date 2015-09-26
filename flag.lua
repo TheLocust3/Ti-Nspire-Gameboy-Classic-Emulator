@@ -19,7 +19,12 @@ end
 ZeroFlag = class(Flag) 
 
 function ZeroFlag:isZero(number)
-  return number == 0
+  n = number
+  if n < 0 then
+    n = 0
+  end
+  
+  return n == 0
 end
 
 SubtractFlag = class(Flag)

@@ -644,10 +644,6 @@ end
 function sub_8b (rIndex, n)
   diff = registers[rIndex] - n
 
-  if diff < 0 then
-    diff = 0
-  end
-
   registers[rIndex] = diff
   setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
@@ -903,10 +899,6 @@ end
 
 function cp (n)
   compare = registers[1] - n
-
-  if compare < 0 then
-    compare = 0
-  end
 
   setFlags(zeroFlag:isZero(compare), true, halfCarryFlag:isHalfCarrySub_8b(registers[1], n), (registers[1] < n))
 end
