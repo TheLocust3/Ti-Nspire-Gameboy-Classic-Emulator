@@ -1,17 +1,8 @@
 function on.charIn (char)
   stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x20) > 0 then -- Must have selected button keys
-    if char == '9' then -- A
-      print("9")
-    else
-
-    end
-
-    if char == '6' then -- B
-      print("6")
-    else
-
-    end
+    buttons.aButton:check()
+    buttons.bButton:check()
   end
 
   if debugger.mode == 0 or debugger.mode == 2 then
@@ -22,28 +13,28 @@ end
 function on.arrowUp ()
   stop = debugger.mode == 2
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
-    print("Up")
+    buttons.upButton:press()
   end
 end
 
 function on.arrowDown ()
   stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
-    print("Down")
+    buttons.downButton:press()
   end
 end
 
 function on.arrowLeft ()
   stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
-    print("Left")
+    buttons.leftButton:press()
   end
 end
 
 function on.arrowRight ()
   stop = debugger.mode == 2 
   if bitwiseAnd_8b(memory:read_8b(0xff00), 0x10) > 0 then -- Must have selected directional keys
-    print("Right")
+    buttons.rightButton:press()
   end
 end
 

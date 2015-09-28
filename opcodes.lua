@@ -1237,7 +1237,7 @@ end
 
 -- 0x00
 function NOP ()
-
+-- NOP does nothing  
 end
 
 -- 0x76

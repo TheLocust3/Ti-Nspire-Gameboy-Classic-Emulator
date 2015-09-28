@@ -9,7 +9,7 @@ unless File.directory?(path + "release")
 end
 
 program = ""
-files = [path + "bitwise.lua", path + "rom.lua", path + "flag.lua", path + "interrupt.lua", path + "memory.lua", path + "graphics.lua", path + "draw.lua", path + "debug.lua", path + "helperFunctions.lua", path + "header.lua", path + "opcodes.lua", path + "dispatcher.lua"]
+files = [path + "bitwise.lua", path + "rom.lua", path + "flag.lua", path + "interrupt.lua", path + "memory.lua", path + "graphics.lua", path + "draw.lua", path + "button.lua", path + "debug.lua", path + "helperFunctions.lua", path + "header.lua", path + "opcodes.lua", path + "dispatcher.lua"]
 
 require 'optparse'
 

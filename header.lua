@@ -24,6 +24,8 @@ interruptArray = {vBlankInterrupt, scanLineInterrupt, timerOverflowInterrupt}
 
 timerSpeed = 4 -- 4096 * 0.001 and truncate
 
+buttons = {aButton = Button("9"), bButton = Button("6"), upButton = Button("Up"), downButton = Button("Down"), rightButton = Button("Right"), leftButton = Button("Left")}
+
 graphics = Graphics()
 
 -- Program Counter
@@ -33,7 +35,6 @@ pcHex = 0x00
 c = 0 -- The amount of clock cycles until the next command is run
 
 debugger = Debugger()
-
 displayedMessage = ""
 timesMessageDisplayed = 0
 
