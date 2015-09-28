@@ -588,10 +588,7 @@ function ADD_A_n (n)
 end
 
 function adc_8b (rIndex, nn)
-  carry = 0
-  if carryFlag:isSet() then
-    carry = carry + 1
-  end
+  carry = carryFlag:isSet() and 1 or 0
 
   add_8b(rIndex, nn + carry)
 end
@@ -694,10 +691,7 @@ function SUB_n (n)
 end
 
 function sbc_8b (rIndex, n)
-  carry = 0
-  if carryFlag:isSet() then
-    carry = 1
-  end
+  carry = carryFlag:isSet() and 1 or 0
 
   sub_8b(rIndex, n + carry)
 end
