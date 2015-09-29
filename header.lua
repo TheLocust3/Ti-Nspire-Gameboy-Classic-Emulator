@@ -19,6 +19,7 @@ vBlankInterrupt = Interrupt({check = vBlankCheck, run = vBlankRun, fail = vBlank
 scanLineInterrupt = Interrupt({check = scanLineCheck}, 0x48, 0x2)
 timerOverflowInterrupt = Interrupt({check = timerOverflowCheck, run = timerOverflowRun}, 0x50, 0x2)
 -- No Serial Transfer Completion because this will never be implemented
+keyBounceInterrupt = Interrupt({}, 0x60, 0x3)
 keyBounce = false -- This one is a bit wierd and has yet to be implemented
 interruptArray = {vBlankInterrupt, scanLineInterrupt, timerOverflowInterrupt}
 

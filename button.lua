@@ -15,12 +15,14 @@ end
 
 function Button:press()
   self.pressed = true
+  keyBounceInterrupt:run()
   sendMessage("Press: " .. self.character)
 end
 
 function Button:release()
   if self.pressed then
     self.pressed = false
+    keyBounceInterrupt:run()
     sendMessage("Release: " .. self.character)
   end
 end
