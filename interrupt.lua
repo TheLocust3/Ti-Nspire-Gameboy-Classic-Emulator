@@ -71,3 +71,14 @@ end
 scanLineCheck = function (variable)
   return scanLine == compareScanLine and bitwiseAnd_8b(0xff41, 0x40) > 0
 end
+
+keyBounceCheck = function (variable)
+  shouldRun = false
+  for i = 1, #buttons do
+    if buttons[i]:checkInterrupt() then
+      shouldRun = true
+    end
+  end
+  
+  return shouldRun
+end
