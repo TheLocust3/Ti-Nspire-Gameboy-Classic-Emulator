@@ -487,22 +487,22 @@ end
 
 -- 0xf5
 function PUSH_AF ()
-  push(bitsTo_16b(registers[1], registers[8]))
+  push(getRegister_16(registers[1], registers[8]))
 end
 
 -- 0xc5
 function PUSH_BC ()
-  push(bitsTo_16b(registers[2], registers[3]))
+  push(getRegister_16(registers[2], registers[3]))
 end
 
 -- 0xd5
 function PUSH_DE ()
-  push(bitsTo_16b(registers[4], registers[5]))
+  push(getRegister_16(registers[4], registers[5]))
 end
 
 -- 0xe5
 function PUSH_HL ()
-  push(bitsTo_16b(registers[6], registers[7]))
+  push(getRegister_16(registers[6], registers[7]))
 end
 
 function pop (rIndex1, rIndex2)
@@ -579,7 +579,7 @@ end
 
 -- 0x86
 function ADD_A_HL ()
-  add_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  add_8b(1, memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xc6
@@ -630,7 +630,7 @@ end
 
 -- 0x8e
 function ADC_A_HL ()
-  adc_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  adc_8b(1, memory:read_8b((registers[6], registers[7])))
 end
 
 -- 0xce
@@ -682,7 +682,7 @@ end
 
 -- 0x96
 function SUB_HL ()
-  sub_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  sub_8b(1, memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xd6
@@ -733,7 +733,7 @@ end
 
 -- 0x9e
 function SBC_A_HL ()
-  sbc_8b(1, memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  sbc_8b(1, memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xde
@@ -783,7 +783,7 @@ end
 
 -- 0xa6
 function AND_HL ()
-  and_8b(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  and_8b(memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xe6
@@ -833,7 +833,7 @@ end
 
 -- 0xb6
 function OR_HL ()
-  or_8b(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  or_8b(memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xf6
@@ -883,7 +883,7 @@ end
 
 -- 0xae
 function XOR_HL ()
-  xor_8b(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  xor_8b(memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xee
@@ -934,7 +934,7 @@ end
 
 -- 0xbe
 function CP_HL ()
-  cp(memory:read_8b(bitsTo_16b(registers[6], registers[7])))
+  cp(memory:read_8b(getRegister_16(registers[6], registers[7])))
 end
 
 -- 0xfe
@@ -1063,17 +1063,17 @@ end
 
 -- 0x09
 function ADD_HL_BC ()
-  add_16b(6, 7, bitsTo_16b(registers[2], registers[3]))
+  add_16b(6, 7, getRegister_16(registers[2], registers[3]))
 end
 
 -- 0x19
 function ADD_HL_DE ()
-  add_16b(6, 7, bitsTo_16b(registers[4], registers[5]))
+  add_16b(6, 7, getRegister_16(registers[4], registers[5]))
 end
 
 -- 0x29
 function ADD_HL_HL ()
-  add_16b(6, 7, bitsTo_16b(registers[6], registers[7]))
+  add_16b(6, 7, getRegister_16(registers[6], registers[7]))
 end
 
 -- 0x39
@@ -1153,7 +1153,7 @@ end
 -- Miscellaneous
 
 function swap (rIndex)
-  byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8b(registers[rIndex], 0xf), 4))
+  byte = shiftRight(registers[rIndex], 4) + (shiftLeft(bitwiseAnd_8b(registers[rIndex], 0xf0), 4))
 
   registers[rIndex] = byte
   setFlags(zeroFlag:isZero(byte), false, false, false)
@@ -1198,7 +1198,7 @@ end
 function SWAP_HL ()
   num = memory:read_8b(getRegister_16b(6))
 
-  byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8b(num, 0xf), 4))
+  byte = shiftRight(num, 4) + (shiftLeft(bitwiseAnd_8b(num, 0xf0), 4))
 
   memory:write_8b(getRegister_16b(6), byte)
   setFlags(zeroFlag:isZero(byte), false, false, false)
@@ -1877,7 +1877,7 @@ end
 
 -- 0xe9
 function JP_HL ()
-  jp(nil, getRegister_16b[6], true)
+  jp(nil, memory:read_8b(getRegister_16b[6]), true)
 end
 
 function jr (cc, n)
