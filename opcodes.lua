@@ -487,22 +487,22 @@ end
 
 -- 0xf5
 function PUSH_AF ()
-  push(getRegister_16(registers[1], registers[8]))
+  push(bitsTo_16b(registers[1], registers[8]))
 end
 
 -- 0xc5
 function PUSH_BC ()
-  push(getRegister_16(registers[2], registers[3]))
+  push(getRegister_16b(2))
 end
 
 -- 0xd5
 function PUSH_DE ()
-  push(getRegister_16(registers[4], registers[5]))
+  push(getRegister_16b(4))
 end
 
 -- 0xe5
 function PUSH_HL ()
-  push(getRegister_16(registers[6], registers[7]))
+  push(getRegister_16b(6))
 end
 
 function pop (rIndex1, rIndex2)
@@ -579,7 +579,7 @@ end
 
 -- 0x86
 function ADD_A_HL ()
-  add_8b(1, memory:read_8b(getRegister_16(registers[6], registers[7])))
+  add_8b(1, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xc6
@@ -630,7 +630,7 @@ end
 
 -- 0x8e
 function ADC_A_HL ()
-  adc_8b(1, memory:read_8b((registers[6], registers[7])))
+  adc_8b(1, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xce
@@ -682,7 +682,7 @@ end
 
 -- 0x96
 function SUB_HL ()
-  sub_8b(1, memory:read_8b(getRegister_16(registers[6], registers[7])))
+  sub_8b(1, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xd6
@@ -733,7 +733,7 @@ end
 
 -- 0x9e
 function SBC_A_HL ()
-  sbc_8b(1, memory:read_8b(getRegister_16(registers[6], registers[7])))
+  sbc_8b(1, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xde
@@ -783,7 +783,7 @@ end
 
 -- 0xa6
 function AND_HL ()
-  and_8b(memory:read_8b(getRegister_16(registers[6], registers[7])))
+  and_8b(memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xe6
@@ -833,7 +833,7 @@ end
 
 -- 0xb6
 function OR_HL ()
-  or_8b(memory:read_8b(getRegister_16(registers[6], registers[7])))
+  or_8b(memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xf6
@@ -883,7 +883,7 @@ end
 
 -- 0xae
 function XOR_HL ()
-  xor_8b(memory:read_8b(getRegister_16(registers[6], registers[7])))
+  xor_8b(memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xee
@@ -934,7 +934,7 @@ end
 
 -- 0xbe
 function CP_HL ()
-  cp(memory:read_8b(getRegister_16(registers[6], registers[7])))
+  cp(memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0xfe
@@ -943,12 +943,13 @@ function CP_n (n)
 end
 
 function inc_8b (rIndex, n)
+  sum = 0
   if n == nil then
     sum = mask_8b(registers[rIndex] + 1)
     registers[rIndex] = sum
   else
     sum = mask_8b(n + 1)
-    memory:write_8b(rIndex, sum)
+    memory:write_8b(getRegister_16b(rIndex), sum)
   end
 
   setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(sum, 1), nil)
@@ -991,18 +992,29 @@ end
 
 -- 0x34
 function INC_HL ()
-  memory:write_8b(getRegister_16b(6), memory:read_8b(getRegister_16b(6)) + 1)
+  inc_8b(6, memory:read_8b(getRegister_16b(6)))
+
+  memory:write_8b(getRegister_16b(6), mask_8b(diff))
+  setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(sum, 1), nil)
 end
 
 function dec_8b (rIndex, n)
-  diff = registers[rIndex] - 1
+  value = 0
+  diff = 0
 
-  if rIndex ~= nil then
+  if n == nil then
+    value = registers[rIndex]
+
+    diff = value - 1
     registers[rIndex] = mask_8b(diff)
-    setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], 1), nil)
   else
+    value = n 
 
+    diff = mask_8b(n - 1) 
+    memory:write_8b(getRegister_16b(rIndex), diff)
   end
+  
+  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(value, 1), nil)
 end
 
 -- 0x3d
@@ -1042,7 +1054,7 @@ end
 
 -- 0x35
 function DEC_HL ()
-  memory:write_8b(getRegister_16b(6), memory:read_8b(getRegister_16b(6)) - 1)
+  dec_8b(6, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 16-Bit Arithmetic
@@ -1063,17 +1075,17 @@ end
 
 -- 0x09
 function ADD_HL_BC ()
-  add_16b(6, 7, getRegister_16(registers[2], registers[3]))
+  add_16b(6, 7, getRegister_16b(2))
 end
 
 -- 0x19
 function ADD_HL_DE ()
-  add_16b(6, 7, getRegister_16(registers[4], registers[5]))
+  add_16b(6, 7, getRegister_16b(4))
 end
 
 -- 0x29
 function ADD_HL_HL ()
-  add_16b(6, 7, getRegister_16(registers[6], registers[7]))
+  add_16b(6, 7, getRegister_16b(6))
 end
 
 -- 0x39
@@ -1877,7 +1889,7 @@ end
 
 -- 0xe9
 function JP_HL ()
-  jp(nil, memory:read_8b(getRegister_16b[6]), true)
+  jp(nil, memory:read_8b(getRegister_16b(6)), true)
 end
 
 function jr (cc, n)
