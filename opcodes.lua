@@ -106,7 +106,7 @@ end
 
 -- 0x46
 function LD_B_HL ()
-  ld_8b(2, getRegister_16b(6))
+  ld_8b(2, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x48
@@ -141,7 +141,7 @@ end
 
 -- 0x4e
 function LD_C_HL ()
-  ld_8b(3, getRegister_16b(6))
+  ld_8b(3, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x50
@@ -176,7 +176,7 @@ end
 
 -- 0x56
 function LD_D_HL ()
-  ld_8b(4, getRegister_16b(6))
+  ld_8b(4, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x58
@@ -211,7 +211,7 @@ end
 
 -- 0x5e
 function LD_E_HL ()
-  ld_8b(5, getRegister_16b(6))
+  ld_8b(5, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x60
@@ -246,7 +246,7 @@ end
 
 -- 0x66
 function LD_H_HL ()
-  ld_8b(6, getRegister_16b(6))
+  ld_8b(6, memory:read_8b(getRegister_16b(6)))
 end
 
 -- 0x68
@@ -281,7 +281,7 @@ end
 
 -- 0x6e
 function LD_L_HL ()
-  ld_8b(7, getRegister_16b(6))
+  ld_8b(7, memory:read_8b(getRegister_16b(6)))
 end
 
 function ldMemory_8b (rIndex, value)

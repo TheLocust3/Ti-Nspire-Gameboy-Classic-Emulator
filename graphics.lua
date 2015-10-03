@@ -127,10 +127,13 @@ function Graphics:writeRegisters(address, value)
 
   if address >= 0x8000 and address <= 0x8fff then
     self:updateSprite(address, value)
+    sendMessage("Sprite call!");
 	elseif address >= 0xfe00 and address <= 0xfe9f then
 		self:updateAttributes(address, value)
+    sendMessage("Attribute call!");
   elseif address >= self.tileDataAddress[1] and address <= self.tileDataAddress[2] then
 		self:updateTile(address, value)
+    sendMessage("Tile call!");
   elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address <= self.bgTileMapAddress[2] then -- VRam
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
       self.backgroundTileMap[address - 0x8000] = value
