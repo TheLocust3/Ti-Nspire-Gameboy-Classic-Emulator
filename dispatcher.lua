@@ -346,7 +346,7 @@ function dispatcher ()
     pc = pc + 1
   elseif memory:read_8b(pc - 1) == 0xfa then
     c = 16
-    LD_A_nn(to16n(memory:read_8b(pc), memory:read_8b(pc + 1)))
+    LD_A_nn(bitsTo_16b(memory:read_8b(pc), memory:read_8b(pc + 1)))
     log("LD A, " .. toHex(memory:read_8b(pc)) .. u_toHex(pc + 1))
     pc = pc + 3
   elseif memory:read_8b(pc - 1) == 0x3e then
