@@ -1,44 +1,24 @@
 function setFlags(z, s, hc, c)
-  flag = {0, 0, 0, 0, 0, 0, 0, 0}
+  flag = toBits(registers[8], 8)
 
   if z ~= nil then
     if z then zeroFlag:set() else zeroFlag:reset() end
+    flag[8] = zeroFlag:toBit()
   end
 
   if s ~= nil then
     if z then subtractFlag:set() else subtractFlag:reset() end
+    flag[7] = subtractFlag:toBit()
   end
 
   if hc ~= nil then
     if z then halfCarryFlag:set() else halfCarryFlag:reset() end
+    flag[6] = halfCarryFlag:toBit()
   end
 
   if c ~= nil then
     if z then carryFlag:set() else carryFlag:reset() end
-  end
-
-  if z == true then
-    flag[8] = 1
-  else
-    flag[8] = 0
-  end
-
-  if s == true then
-    flag[7] = 1
-  else
-    flag[7] = 0
-  end
-
-  if hc == true then
-    flag[6] = 1
-  else
-    flag[6] = 0
-  end
-
-  if c == true then
-    flag[5] = 1
-  else
-    flag[5] = 0
+    flag[5] = carryFlag:toBit()
   end
 
   registers[8] = toInt(flag)

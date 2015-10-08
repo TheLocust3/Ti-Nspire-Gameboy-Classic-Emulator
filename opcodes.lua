@@ -1718,7 +1718,8 @@ end
 
 -- 0xcb 0x46
 function BIT_b_HL (b)
-  setFlags(zeroFlag:isZero(toBits(memory:read_8b(getRegister_16b(6)), 8)[b + 1]), false, true, nil)
+  bits = toBits(memory:read_8b(getRegister_16b(6)), 8)
+  setFlags(zeroFlag:isZero(bits[b + 1]), false, true, nil)
 end
 
 function set (b, rIndex)

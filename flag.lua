@@ -8,6 +8,14 @@ function Flag:isSet()
   return self.flag
 end
 
+function Flag:toBit()
+  if self.flag then
+    return 1
+  else
+    return 0
+  end
+end
+
 function Flag:set()
   self.flag = true
 end
