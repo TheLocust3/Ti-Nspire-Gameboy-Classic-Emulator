@@ -993,9 +993,6 @@ end
 -- 0x34
 function INC_HL ()
   inc_8b(6, memory:read_8b(getRegister_16b(6)))
-
-  memory:write_8b(getRegister_16b(6), mask_8b(diff))
-  setFlags(zeroFlag:isZero(sum), false, halfCarryFlag:isHalfCarryAdd_8b(sum, 1), nil)
 end
 
 function dec_8b (rIndex, n)
