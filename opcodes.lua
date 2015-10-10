@@ -1517,172 +1517,184 @@ function RR_HL ()
   rr(6, memory:read_8b(getRegister_16b(6)))
 end
 
-function sla (rIndex)
-  shift = shiftLeft(registers[rIndex], 1)
+function sla (rIndex, value)
+  if value == nil then
+    shift = shiftLeft(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[rIndex]))
+    setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(registers[rIndex]))
 
-  bShift = toBits(shift, 8)
-  bShift[8] = 0
-  registers[rIndex] = mask_8b(toInt(bShift))
+    bShift = toBits(shift, 8)
+    bShift[8] = 0
+    registers[rIndex] = mask_8b(toInt(bShift))
+  else
+    shift = shiftLeft(value, 1)
+
+    setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(value))
+
+    bShift = toBits(shift, 8)
+    bShift[8] = 0
+    memory:write_8b(getRegister_16b(rIndex), mask_8b(toInt(bShift)))
+  end
 end
 
 -- 0xcb 0x27
 function SLA_A ()
-  sla(1)
+  sla(1, nil)
 end
 
 -- 0xcb 0x20
 function SLA_B ()
-  sla(2)
+  sla(2, nil)
 end
 
 -- 0xcb 0x21
 function SLA_C ()
-  sla(3)
+  sla(3, nil)
 end
 
 -- 0xcb 0x22
 function SLA_D ()
-  sla(4)
+  sla(4, nil)
 end
 
 -- 0xcb 0x23
 function SLA_E ()
-  sla(5)
+  sla(5, nil)
 end
 
 -- 0xcb 0x24
 function SLA_H ()
-  sla(6)
+  sla(6, nil)
 end
 
 -- 0xcb 0x25
 function SLA_L ()
-  sla(7)
+  sla(7, nil)
 end
 
 -- 0xcb 0x26
 function SLA_HL ()
-  shift = shiftLeft(memory:read_8b(getRegister_16b(6)), 1)
-
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(memory:read_8b(getRegister_16b(6))))
-
-  bShift = toBits(shift, 8)
-  bShift[8] = 0
-  memory:write_8b(getRegister_16b(6), mask_8b(toInt(bShift)))
+  sla(6, memory:read_8b(getRegister_16b(6)))
 end
 
-function sra (rIndex)
-  shift = shiftRight(registers[rIndex], 1)
+function sra (rIndex, value)
+  if value == nil then
+    shift = shiftRight(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
+    setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
 
-  bShift = toBits(shift, 8)
-  bShift[8] = 0
-  registers[rIndex] = mask_8b(toInt(bShift))
+    bShift = toBits(shift, 8)
+    bShift[8] = 0
+    registers[rIndex] = mask_8b(toInt(bShift))
+  else
+    shift = shiftRight(value, 1)
+
+    setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(value))
+
+    bShift = toBits(shift, 8)
+    bShift[8] = 0
+    memory:write_8b(getRegister_16b(rIndex), mask_8b(toInt(bShift)))
+  end
 end
 
 -- 0xcb 0x2f
 function SRA_A ()
-  sra(1)
+  sra(1, nil)
 end
 
 -- 0xcb 0x28
 function SRA_B ()
-  sra(2)
+  sra(2, nil)
 end
 
 -- 0xcb 0x29
 function SRA_C ()
-  sra(3)
+  sra(3, nil)
 end
 
 -- 0xcb 0x2a
 function SRA_D ()
-  sra(4)
+  sra(4, nil)
 end
 
 -- 0xcb 0x2b
 function SRA_E ()
-  sra(5)
+  sra(5, nil)
 end
 
 -- 0xcb 0x2c
 function SRA_H ()
-  sra(6)
+  sra(6, nil)
 end
 
 -- 0xcb 0x2d
 function SRA_L ()
-  sra(7)
+  sra(7, nil)
 end
 
 -- 0xcb 0x2e
 function SRA_HL ()
-  shift = shiftRight(memory:read_8b(getRegister_16b(6)), 1)
-
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(memory:read_8b(getRegister_16b(6))))
-
-  bShift = toBits(shift, 8)
-  bShift[8] = 0
-  memory:write_8b(getRegister_16b(6), mask_8b(toInt(bShift)))
+  sra(6, memory:read_8b(getRegister_16b(6)))
 end
 
-function srl (rIndex)
-  shift = shiftRight(registers[rIndex], 1)
+function srl (rIndex, value)
+  if value == nil then
+    shift = shiftRight(registers[rIndex], 1)
 
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
+    setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(registers[rIndex]))
 
-  bShift = toBits(shift, 8)
-  bShift[8] = 0
-  registers[rIndex] = mask_8b(toInt(bShift))
+    bShift = toBits(shift, 8)
+    bShift[8] = 0
+    registers[rIndex] = mask_8b(toInt(bShift))
+  else
+    shift = shiftRight(value, 1)
+
+    setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(value))
+
+    bShift = toBits(shift, 8)
+    bShift[8] = 0
+    memory:write_8b(getRegister_16b(rIndex), mask_8b(toInt(bShift)))
+  end
 end
 
 -- 0xcb 0x3f
 function SRL_A ()
-  srl(1)
+  srl(1, nil)
 end
 
 -- 0xcb 0x38
 function SRL_B ()
-  srl(2)
+  srl(2, nil)
 end
 
 -- 0xcb 0x39
 function SRL_C ()
-  srl(3)
+  srl(3, nil)
 end
 
 -- 0xcb 0x3a
 function SRL_D ()
-  srl(4)
+  srl(4, nil)
 end
 
 -- 0xcb 0x3b
 function SRL_E ()
-  srl(5)
+  srl(5, nil)
 end
 
 -- 0xcb 0x3c
 function SRL_H ()
-  srl(6)
+  srl(6, nil)
 end
 
 -- 0xcb 0x3d
 function SRL_L ()
-  srl(7)
+  srl(7, nil)
 end
 
 -- 0xcb 0x3e
 function SRL_HL ()
-  shift = shiftRight(memory:read_8b(getRegister_16b(6)), 1)
-
-  setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(memory:read_8b(getRegister_16b(6))))
-
-  bShift = toBits(shift, 8)
-  bShift[8] = 0
-  memory:write_8b(getRegister_16b(6), mask_8b(toInt(bShift)))
+  srl(6, memory:read_8b(getRegister_16b(6)))
 end
 
 -- Bit Operations
