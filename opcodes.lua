@@ -1684,157 +1684,153 @@ end
 
 -- Bit Operations
 
-function bit (b, rIndex, value)
-  if value == nil then
-    setFlags(zeroFlag:isZero(toBits(registers[rIndex], 8)[b + 1]), false, true, nil)
-  else
-    bits = toBits(value, 8)
-    setFlags(zeroFlag:isZero(bits[b + 1]), false, true, nil)
-  end
+function bit (b, rIndex, store)
+  startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
+  bits = toBits(startValue, 8)
+  setFlags(zeroFlag:isZero(bits[b + 1]), false, true, nil)
 end
 
 -- 0xcb 0x47
 function BIT_b_A (b)
-  bit(b, 1, nil)
+  bit(b, 1, false)
 end
 
 -- 0xcb 0x40
 function BIT_b_B (b)
-  bit(b, 2, nil)
+  bit(b, 2, false)
 end
 
 -- 0xcb 0x41
 function BIT_b_C (b)
-  bit(b, 3, nil)
+  bit(b, 3, false)
 end
 
 -- 0xcb 0x42
 function BIT_b_D (b)
-  bit(b, 4, nil)
+  bit(b, 4, false)
 end
 -- 0xcb 0x43
 function BIT_b_E (b)
-  bit(b, 5, nil)
+  bit(b, 5, false)
 end
 
 -- 0xcb 0x44
 function BIT_b_H (b)
-  bit(b, 6, nil)
+  bit(b, 6, false)
 end
 
 -- 0xcb 0x45
 function BIT_b_L (b)
-  bit(b, 7, nil)
+  bit(b, 7, false)
 end
 
 -- 0xcb 0x46
 function BIT_b_HL (b)
-  bit(b, 6, memory:read_8b(getRegister_16b(6)))
+  bit(b, 6, true)
 end
 
-function set (b, rIndex, value)
-  if value == nil then
-    bits = toBits(registers[rIndex], 8) bits[b + 1] = 1 
+function set (b, rIndex, store)
+  startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
+  bits = toBits(startValue, 8)
+  bits[b + 1] = 1 
+
+  if not store then
     registers[rIndex] = toInt(bits)
   else
-    bits = toBits(value, 8)
-    bits[b + 1] = 1
     memory:write_8b(getRegister_16b(rIndex), toInt(bits))
   end
 end
 
 -- 0xcb 0xc7
 function SET_b_A (b)
-  set(b, 1, nil)
+  set(b, 1, false)
 end
 
 -- 0xcb 0xc0
 function SET_b_B (b)
-  set(b, 2, nil)
+  set(b, 2, false)
 end
 
 -- 0xcb 0xc1
 function SET_b_C (b)
-  set(b, 3, nil)
+  set(b, 3, false)
 end
 
 -- 0xcb 0xc2
 function SET_b_D (b)
-  set(b, 4, nil)
+  set(b, 4, false)
 end
 
 -- 0xcb 0xc3
 function SET_b_E (b)
-  set(b, 5, nil)
+  set(b, 5, false)
 end
 
 -- 0xcb 0xc4
 function SET_b_H (b)
-  set(b, 6, nil)
+  set(b, 6, false)
 end
 
 -- 0xcb 0xc5
 function SET_b_L (b)
-  set(b, 7, nil)
+  set(b, 7, false)
 end
 
 -- 0xcb 0xc6
 function SET_b_HL (b)
-  set(b, 6, memory:read_8b(getRegister_16b(6)))
+  set(b, 6, true)
 end
 
-function res (b, rIndex, value)
-  if value == nil then
-    bits = toBits(registers[rIndex], 8)
-    bits[b + 1] = 0
+function res (b, rIndex, store)
+  startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
+  bits = toBits(startValue, 8)
+  bits[b + 1] = 0
 
+  if not store then
     registers[rIndex] = toInt(bits)
   else
-    bits = toBits(value, 8)
-    bits[b + 1] = 0
-
     memory:write_8b(getRegister_16b(rIndex), toInt(bits))
   end
 end
 
 -- 0xcb 0x87
 function RES_b_A (b)
-  res(b, 1, nil)
+  res(b, 1, false)
 end
 
 -- 0xcb 0x80
 function RES_b_B (b)
-  res(b, 2, nil)
+  res(b, 2, false)
 end
 
 -- 0xcb 0x81
 function RES_b_C (b)
-  res(b, 3, nil)
+  res(b, 3, false)
 end
 
 -- 0xcb 0x82
 function RES_b_D (b)
-  res(b, 4, nil)
+  res(b, 4, false)
 end
 
 -- 0xcb 0x83
 function RES_b_E (b)
-  res(b, 5, nil)
+  res(b, 5, false)
 end
 
 -- 0xcb 0x84
 function RES_b_H (b)
-  res(b, 6, nil)
+  res(b, 6, false)
 end
 
 -- 0xcb 0x85
 function RES_b_L (b)
-  res(b, 7, nil)
+  res(b, 7, false)
 end
 
 -- 0xcb 0x86
 function RES_b_HL (b)
-  res(b, 6, memory:read_8b(getRegister_16b(6)))
+  res(b, 6, true)
 end
 
 -- Jumps
