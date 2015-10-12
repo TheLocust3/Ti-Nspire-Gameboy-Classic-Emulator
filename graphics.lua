@@ -224,18 +224,18 @@ function Graphics:readRegisters(address, value)
   return nil
 end
 
-function Graphics:getTileNumber(address)
-  number = mathFloor((address - self.tileDataAddress[1]) / 16)
-  tileAddress = (number * 16) + self.tileDataAddress[1]
+function Graphics:getGraphicsNumber(address, startAddress)
+  number = mathFloor((address - startAddress) / 16)
+  tileAddress = (number * 16) + startAddress 
 
 	return tileAddress
 end
 
 function Graphics:updateTile(address, value)
-  tileNumber = self:getTileNumber(address)	
+  tileNumber = self:getGraphicsNumber(address, self.tileDataAddress[1])	
   
   if self.tileData[tileNumber] == nil then
-    self.tileData[tileNumber + 1] = Tile(tileNumber)
+    self.tileData[tileNumber] = Tile(tileNumber)
   else
     self.tileData[tileNumber]:update()
   end
@@ -249,24 +249,17 @@ function Graphics:getSpriteNumber(address)
 end
 
 function Graphics:updateSprite(address, value)
-  spriteNumber = self:getSpriteNumber(address)
+  spriteNumber = self:getGraphicsNumber(address, 0x8000)
   
   if self.spriteData[spriteNumber] == nil then
-    self.spriteData[spriteNumber + 1] = Sprite(spriteNumber)
+    self.spriteData[spriteNumber] = Sprite(spriteNumber)
   else
-    self.spriteData[spriteNumber + 1]:update()
+    self.spriteData[spriteNumber]:update()
   end
 end
 
-function Graphics:getAttributeNumber(address)
-  number = mathFloor((address - 0xfe00) / 16)
-  attributeAddress = (number * 16) + 0xfe00
-
-  return attributeAddress
-end
-
 function Graphics:updateAttributes(address, value)
-  attributeNumber = self:getAttributeNumber(address)
+  attributeNumber = self:getGraphicsNumber(address, 0xfe00)
 
   if self.spriteAttributeData[attributeNumber] == nil then
     self.spriteAtrributeData[attributeNumber] = SpriteAttribute(address)
