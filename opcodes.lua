@@ -1,3 +1,10 @@
+-- Opcodes
+-- Each command has a corresponding "base" command to reduce reptition 
+-- Each Base command takes many different arugments. A few of these include:
+--   rIndex (rIndex1, rIndex2) - These correspond with register numbers (register numbers avaible in header.lua)
+--   n, nn, b - These parameters correspond with the letters given in their command documentation (found in http://marc.rawer.de/Gameboy/Docs/GBCPUman.pdf). These will vary.
+--   store - This parameter indicates if the result should be stored in memory. rIndex is interperated as the start to a 16 bit register (6 = HL or 6 + 7). This is only used in commands that involve HL
+
 -- 8-Bit Loads
 
 function ld_8b (rIndex, n)
