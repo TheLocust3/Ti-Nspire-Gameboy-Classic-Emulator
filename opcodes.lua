@@ -942,13 +942,13 @@ function CP_n (n)
   cp(n)
 end
 
-function inc_8b (rIndex, n)
-  sum = 0
-  if n == nil then
-    sum = mask_8b(registers[rIndex] + 1)
+function inc_8b (rIndex, store)
+  startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
+  sum = mask_8b(startValue + 1)
+
+  if store then
     registers[rIndex] = sum
   else
-    sum = mask_8b(n + 1)
     memory:write_8b(getRegister_16b(rIndex), sum)
   end
 
@@ -957,101 +957,95 @@ end
 
 -- 0x3c
 function INC_A ()
-  inc_8b(1, nil)
+  inc_8b(1, false)
 end
 
 -- 0x04
 function INC_B ()
-  inc_8b(2, nil)
+  inc_8b(2, false)
 end
 
 -- 0x0c
 function INC_C ()
-  inc_8b(3, nil)
+  inc_8b(3, false)
 end
 
 -- 0x14
 function INC_D ()
-  inc_8b(4, nil)
+  inc_8b(4, false)
 end
 
 -- 0x1c
 function INC_E ()
-  inc_8b(5, nil)
+  inc_8b(5, false)
 end
 
 -- 0x24
 function INC_H ()
-  inc_8b(6, nil)
+  inc_8b(6, false)
 end
 
 -- 0x2c
 function INC_L ()
-  inc_8b(7, nil)
+  inc_8b(7, false)
 end
 
 -- 0x34
 function INC_HL ()
-  inc_8b(6, memory:read_8b(getRegister_16b(6)))
+  inc_8b(6, true)
 end
 
-function dec_8b (rIndex, n)
-  value = 0
-  diff = 0
+function dec_8b (rIndex, store)
+  startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
+  diff = mask_8b(startValue - 1)
 
   if n == nil then
-    value = registers[rIndex]
-
-    diff = value - 1
-    registers[rIndex] = mask_8b(diff)
+    registers[rIndex] = diff
   else
-    value = n 
-
-    diff = mask_8b(n - 1) 
     memory:write_8b(getRegister_16b(rIndex), diff)
   end
   
-  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(value, 1), nil)
+  setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(startValue, 1), nil)
 end
 
 -- 0x3d
 function DEC_A ()
-  dec_8b(1, nil)
+  dec_8b(1, false)
 end
 
 -- 0x05
 function DEC_B ()
-  dec_8b(2, nil)
+  dec_8b(2, false)
 end
 
 -- 0x0d
 function DEC_C ()
-  dec_8b(3, nil)
+  dec_8b(3, false)
 end
 
 -- 0x15
 function DEC_D ()
-  dec_8b(4, nil)
+  dec_8b(4, false)
 end
 
 -- 0x1d
 function DEC_E ()
-  dec_8b(5, nil)
+  dec_8b(5, false)
 end
 
 -- 0x25
 function DEC_H ()
-  dec_8b(6, nil)
+  dec_8b(6, false)
 end
 
 -- 0x2d
 function DEC_L ()
-  dec_8b(7, nil)
+  dec_8b(7, false)
 end
 
 -- 0x35
 function DEC_HL ()
-  dec_8b(6, memory:read_8b(getRegister_16b(6)))
+  dec_8b(6, true)
 end
 
 -- 16-Bit Arithmetic
