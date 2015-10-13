@@ -135,12 +135,14 @@ function Graphics:writeRegisters(address, value)
 		self:updateTile(address, value)
     sendMessage("Tile call!");
   elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address <= self.bgTileMapAddress[2] then -- VRam
+    sendMessage("Tile map call!")
+    x = (32 - ((address - 0x8000) % 32)) + 1
+    y = mathFloor((address - 0x8000) / 32) + 1
+
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
-      self.backgroundTileMap[address - 0x8000] = value
+      self.backgroundTileMap[x][y] = value
     else -- Signed
-      signedValue = toBits(value, 7) 
-      x = (32 - ((address - 0x8000) % 32)) + 1
-      y = mathFloor((address - 0x8000) / 32) + 1
+      signedValue = toBits(value, 8) 
       if bitwiseAnd_8(value, 0x80) > 0 then
         self.backgroundTileMap[x][y] = signedValue 
       else
@@ -148,12 +150,14 @@ function Graphics:writeRegisters(address, value)
       end
     end
   elseif self.bgWindowDisplay == true and self.windowDisplay == true and address >= self.windowTileMapAddress[1] and address <= self.windowTileMapAddress[2] then
+    sendMessage("Window map call!")
+    x = (32 - ((address - 0x8000) % 32)) + 1
+    y = mathFloor((address - 0x8000) / 32) + 1
+
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
-      self.windowTileMap[address - 0x8000] = value
+      self.windowTileMap[x][y] = value
     else -- Signed
-      signedValue = toBits(value, 7) 
-      x = (32 - ((address - 0x8000) % 32)) + 1
-      y = mathFloor((address - 0x8000) / 32) + 1
+      signedValue = toBits(value, 8) 
       if bitwiseAnd_8(value, 0x80) > 0 then
         self.windowTileMap[x][y] = signedValue 
       else
@@ -239,13 +243,6 @@ function Graphics:updateTile(address, value)
   else
     self.tileData[tileNumber]:update()
   end
-end
-
-function Graphics:getSpriteNumber(address)
-  number = mathFloor((address - 0x8000) / 16)
-  spriteAddress = (number * 16) + 0x8000 
-
-  return spriteAddress
 end
 
 function Graphics:updateSprite(address, value)
