@@ -122,6 +122,14 @@ function Graphics:init()
   self.spriteAttributeData = {}
 end
 
+function Graphics:getMapX(address)
+  return (32 - ((address - 0x8000) % 32)) + 1
+end
+
+function Graphics:getMapY(address)
+  return mathFloor((address - 0x8000) / 32) + 1
+end
+
 function Graphics:writeRegisters(address, value)
   bValue = toBits(value, 8)
 
@@ -136,8 +144,8 @@ function Graphics:writeRegisters(address, value)
     sendMessage("Tile call!");
   elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address <= self.bgTileMapAddress[2] then -- VRam
     sendMessage("Tile map call!")
-    x = (32 - ((address - 0x8000) % 32)) + 1
-    y = mathFloor((address - 0x8000) / 32) + 1
+    x = self:getMapX(address)
+    y = self:getMapY(address)
 
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
       self.backgroundTileMap[x][y] = value
@@ -151,8 +159,8 @@ function Graphics:writeRegisters(address, value)
     end
   elseif self.bgWindowDisplay == true and self.windowDisplay == true and address >= self.windowTileMapAddress[1] and address <= self.windowTileMapAddress[2] then
     sendMessage("Window map call!")
-    x = (32 - ((address - 0x8000) % 32)) + 1
-    y = mathFloor((address - 0x8000) / 32) + 1
+    x = self:getMapX(address)
+    y = self:getMapY(address)
 
     if self.titeDataAddress[1] == 0x8000 then -- Unsigned
       self.windowTileMap[x][y] = value
