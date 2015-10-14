@@ -134,14 +134,14 @@ function Graphics:writeRegisters(address, value)
   bValue = toBits(value, 8)
 
   if address >= 0x8000 and address <= 0x8fff then
-    self:updateSprite(address, value)
     sendMessage("Sprite call!");
+    self:updateSprite(address, value)
 	elseif address >= 0xfe00 and address <= 0xfe9f then
-		self:updateAttributes(address, value)
     sendMessage("Attribute call!");
+		self:updateAttributes(address, value)
   elseif address >= self.tileDataAddress[1] and address <= self.tileDataAddress[2] then
-		self:updateTile(address, value)
     sendMessage("Tile call!");
+		self:updateTile(address, value)
   elseif self.bgWindowDisplay == true and address >= self.bgTileMapAddress[1] and address <= self.bgTileMapAddress[2] then -- VRam
     sendMessage("Tile map call!")
     x = self:getMapX(address)
@@ -151,7 +151,7 @@ function Graphics:writeRegisters(address, value)
       self.backgroundTileMap[x][y] = value
     else -- Signed
       signedValue = toBits(value, 8) 
-      if bitwiseAnd_8(value, 0x80) > 0 then
+      if bitwiseAnd_8b(value, 0x80) > 0 then
         self.backgroundTileMap[x][y] = signedValue 
       else
         self.backgroundTileMap[x][y] = signedValue + 128
@@ -166,7 +166,7 @@ function Graphics:writeRegisters(address, value)
       self.windowTileMap[x][y] = value
     else -- Signed
       signedValue = toBits(value, 8) 
-      if bitwiseAnd_8(value, 0x80) > 0 then
+      if bitwiseAnd_8b(value, 0x80) > 0 then
         self.windowTileMap[x][y] = signedValue 
       else
         self.windowTileMap[x][y] = signedValue + 128
