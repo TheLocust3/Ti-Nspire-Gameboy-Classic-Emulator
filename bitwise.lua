@@ -1,5 +1,8 @@
 local stringSub = string.sub
 local mathFloor = math.floor
+local mathCeil = math.ceil
+local mathPow = math.pow
+local mathFmod = math.fmod
 
 -- Bitwise functions
 -- Functions that start with b return a bit array
@@ -25,7 +28,7 @@ function toInt (bits)
 
   while i <= #bits do
     if bits[i] == 1 then
-      number = number + math.pow(2, i - 1) -- Go bacwards through array
+      number = number + mathPow(2, i - 1) -- Go bacwards through array
     end
 
     i = i + 1
@@ -37,11 +40,11 @@ end
 -- Shifts take only ints
 
 function shiftLeft (number, shift)
-  return mathFloor(number * math.pow(2, shift))
+  return mathFloor(number * mathPow(2, shift))
 end
 
 function shiftRight (number, shift)
-  return mathFloor(number / math.pow(2, shift))
+  return mathFloor(number / mathPow(2, shift))
 end
 
 function bBitwiseAnd (bits1, bits2)
@@ -153,7 +156,7 @@ function u_toHex(num)
   local hexstr = '0123456789abcdef'
   local s = ''
   while num > 0 do
-    local mod = math.fmod(num, 16)
+    local mod = mathFmod(num, 16)
     s = stringSub(hexstr, mod+1, mod+1) .. s
     num = mathFloor(num / 16)
   end

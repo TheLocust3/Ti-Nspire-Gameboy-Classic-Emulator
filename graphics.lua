@@ -237,10 +237,9 @@ function Graphics:readRegisters(address, value)
 end
 
 function Graphics:getGraphicsNumber(address, startAddress)
-  number = mathFloor((address - startAddress) / 16)
-  tileAddress = (number * 16) + startAddress 
+  number = mathCeil((address - startAddress) / 16)
 
-	return tileAddress
+	return number 
 end
 
 function Graphics:updateTile(address, value)

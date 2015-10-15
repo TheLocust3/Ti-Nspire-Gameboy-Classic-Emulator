@@ -19,6 +19,7 @@ end
 function sendMessage(message)
   displayedMessage = message
   timesMessageDisplayed = 0
+  print(message)
 end
 
 function drawMessage(gc)
