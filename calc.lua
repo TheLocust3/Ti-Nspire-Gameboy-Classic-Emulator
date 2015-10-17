@@ -108,6 +108,10 @@ function main ()
       end
     end
 
+    for i = 1, #buttons do
+      buttons[i]:release()
+    end
+
     c = c - (timerSpeed * (timer.getMilliSecCounter() - old))
     if debugger.step == true and c >= 0 then
       stop = true 
