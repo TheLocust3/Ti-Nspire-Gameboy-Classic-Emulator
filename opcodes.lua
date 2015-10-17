@@ -8,6 +8,8 @@
 -- 8-Bit Loads
 
 function ld_8b (rIndex, n)
+  assert(rIndex ~= nil, "rIndex cannot be equal to nil")
+  assert(n ~= nil, "n cannot be equal to nil")
   registers[rIndex] = n
 end
 
@@ -292,6 +294,8 @@ function LD_L_HL ()
 end
 
 function ldMemory_8b (rIndex, value)
+  assert(rIndex ~= nil, "rIndex cannot be equal to nil")
+  assert(value ~= nil, "value cannot be equal to nil")
   memory:write_8b(getRegister_16b(rIndex), value)
 end
 
@@ -447,6 +451,8 @@ end
 -- 16-Bit Loads
 
 function ld_16b (rIndex, nn)
+  assert(rIndex ~= nil, "rIndex cannot be equal to nil")
+  assert(nn ~= nil, "nn cannot be equal to nil")
   writeRegister_16b(rIndex, rIndex + 1, nn)
 end
 
@@ -477,12 +483,14 @@ end
 
 -- 0xf8
 function LDHL_SP_n (n)
+  assert(n ~= nil, "n cannot be equal to nil")
   writeRegister_16b(6, 7, registers[9] + n)
   setFlags(false, false, false, false) -- The documentation on this command's flags is a bit weird
 end
 
 -- 0x08
 function LD_nn_SP (nn)
+  assert(nn ~= nil, "nn cannot be equal to nil")
   memory:write_16b(nn, registers[9])
 end
 

@@ -25,28 +25,40 @@ function setFlags(z, s, hc, c)
 end
 
 function writeRegister_16b(rIndex1, rIndex2, num)
+  assert(rIndex1 ~= nil, "rIndex1 cannot be equal to nil")
+  assert(rIndex2 ~= nil, "rIndex2 cannot be equal to nil")
+  assert(num ~= nil, "num cannot be equal to nil")
+
   registers[rIndex1] = toInt(toBits(num, 8))
   registers[rIndex2] = shiftRight(num, 8)
 end
 
 function getRegister_16b(first)
+  assert(first ~= nil, "first cannot be equal to nil")
   return bitsTo_16b(registers[first], registers[first + 1])
 end
 
 function bitsTo_16b(low, high)
+  assert(low ~= nil, "low cannot be equal to nil")
+  assert(high ~= nil, "high cannot be equal to nil")
   return shiftLeft(high, 8) + low
 end
 
 function mask_8b(number)
+  assert(number ~= nil, "number cannot be equal to nil")
   return toInt(toBits(number, 8)) 
 end
 
 function mask_16b(number)
+  assert(number ~= nil, "number cannot be equal to nil")
   return toInt(toBits(number, 16))
 end
 
--- From http://stackoverflow.com/questions/1426954/split-string-in-lua by user973713 (second answer)
+-- From http://stackoverflow.com/questions/1426954/split-string-in-lua by user973713 (second answer) but slightly modified
 function split(inputstr, sep)
+  assert(inputstr ~= nil, "inputstr cannot be equal to nil")
+  assert(sep ~= nil, "sep cannot be equal to nil")
+
   if sep == nil then
     sep = "%s"
   end
