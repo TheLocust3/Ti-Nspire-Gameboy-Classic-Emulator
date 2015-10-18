@@ -9,6 +9,9 @@ local mathFmod = math.fmod
 -- Functions that do not start with b return an int
 
 function toBits (num, bits)
+  assert(num ~= nil, "num cannot be equal to nil")
+  assert(bits ~= nil, "bits cannot be equal to nil")
+
   binary = {}
   total = num
   i = 1 
@@ -23,6 +26,8 @@ function toBits (num, bits)
 end
 
 function toInt (bits)
+  assert(bits ~= nil, "bits cannot be equal to nil")
+
   number = 0
   i = 1 
 
@@ -40,14 +45,23 @@ end
 -- Shifts take only ints
 
 function shiftLeft (number, shift)
+  assert(number ~= nil, "number cannot be equal to nil")
+  assert(shift ~= nil, "shift cannot be equal to nil")
+
   return mathFloor(number * mathPow(2, shift))
 end
 
 function shiftRight (number, shift)
+  assert(number ~= nil, "number cannot be equal to nil")
+  assert(shift ~= nil, "shift cannot be equal to nil")
+
   return mathFloor(number / mathPow(2, shift))
 end
 
 function bBitwiseAnd (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   newBits = {}
   i = 0
   
@@ -65,18 +79,30 @@ function bBitwiseAnd (bits1, bits2)
 end
 
 function bitwiseAnd (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return toInt(bBitwiseAnd(bits1, bits2))
 end
 
 function bitwiseAnd_8b (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return bitwiseAnd(toBits(bits1, 8), toBits(bits2, 8))
 end
 
 function bitwiseAnd_16b (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return bitwiseAnd(toBits(bits1, 16), toBits(bits2, 16))
 end
 
 function bBitwiseOr (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   newBits = {}
   i = 0
   
@@ -94,14 +120,23 @@ function bBitwiseOr (bits1, bits2)
 end
 
 function bitwiseOr (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return toInt(bBitwiseOr(bits1, bits2))
 end
 
 function bitwiseOr_8b (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return bitwiseOr(toBits(bits1, 8), toBits(bits2, 8))
 end
 
 function bBitwiseXor (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   newBits = {}
   i = 0
   
@@ -119,14 +154,22 @@ function bBitwiseXor (bits1, bits2)
 end
 
 function bitwiseXor (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return toInt(bBitwiseXor(bits1, bits2))
 end
 
 function bitwiseXor_8b (bits1, bits2)
+  assert(bits1 ~= nil, "bits1 cannot be equal to nil")
+  assert(bits2 ~= nil, "bits2 cannot be equal to nil")
+
   return bitwiseXor(toBits(bits1, 8), toBits(bits2, 8))
 end
 
 function bBitwiseNegate (bits)
+  assert(bits ~= nil, "bits cannot be equal to nil")
+
   newBits = {}
   i = 0
   
@@ -144,15 +187,21 @@ function bBitwiseNegate (bits)
 end
 
 function bitwiseNegate (bits)
+  assert(bits ~= nil, "bits cannot be equal to nil")
+
   return toInt(bBitwiseNegate(bits))
 end
 
-function bitwiseNegate_8b (bits1)
-  return bitwiseAnd(toBits(bits1, 8))
+function bitwiseNegate_8b (bits)
+  assert(bits ~= nil, "bits cannot be equal to nil")
+
+  return bitwiseAnd(toBits(bits, 8))
 end
 
 
 function u_toHex(num)
+  assert(num ~= nil, "num cannot be equal to nil")
+  
   local hexstr = '0123456789abcdef'
   local s = ''
   while num > 0 do
@@ -165,5 +214,7 @@ function u_toHex(num)
 end
 
 function toHex (num)
+  assert(num ~= nil, "num cannot be equal to nil")
+
   return "0x" .. u_toHex(num)
 end
