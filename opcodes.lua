@@ -8,8 +8,9 @@
 -- 8-Bit Loads
 
 function ld_8b (rIndex, n)
-  assert(rIndex ~= nil, "rIndex cannot be equal to nil")
-  assert(n ~= nil, "n cannot be equal to nil")
+  eAssert("ld_8b", rIndex, "rIndex", "number")
+  eAssert("ld_8b", n, "n", "number")
+
   registers[rIndex] = n
 end
 
@@ -294,8 +295,9 @@ function LD_L_HL ()
 end
 
 function ldMemory_8b (rIndex, value)
-  assert(rIndex ~= nil, "rIndex cannot be equal to nil")
-  assert(value ~= nil, "value cannot be equal to nil")
+  eAssert("ldMemory_8b", rIndex, "rIndex", "number")
+  eAssert("ldMemory_8b", value, "value", "number")
+
   memory:write_8b(getRegister_16b(rIndex), value)
 end
 
@@ -440,19 +442,24 @@ end
 
 -- 0xe0
 function LDH_in_A (n)
+  eAssert("LDH_in_A", n, "n", "number")
+  
   memory:write_8b(0xff00 + n, registers[1])
 end
 
 -- 0xf0
 function LDH_A_in (n)
+  eAssert("LDH_A_in", n, "n", "number")
+
   registers[1] = memory:read_8b(0xff00 + n)
 end
 
 -- 16-Bit Loads
 
 function ld_16b (rIndex, nn)
-  assert(rIndex ~= nil, "rIndex cannot be equal to nil")
-  assert(nn ~= nil, "nn cannot be equal to nil")
+  eAssert("ld_16b", rIndex, "rIndex", "number")
+  eAssert("ld_16b", nn, "nn", "number")
+
   writeRegister_16b(rIndex, rIndex + 1, nn)
 end
 
@@ -473,6 +480,8 @@ end
 
 -- 0x31
 function LD_SP_nn (nn)
+  eAssert("LD_SP_nn", nn, "nn", "number")
+
   registers[9] = nn
 end
 
@@ -483,20 +492,23 @@ end
 
 -- 0xf8
 function LDHL_SP_n (n)
-  assert(n ~= nil, "n cannot be equal to nil")
+  eAssert("LDHL_SP_n", n, "n", "number")
+
   writeRegister_16b(6, 7, registers[9] + n)
   setFlags(false, false, false, false) -- The documentation on this command's flags is a bit weird
 end
 
 -- 0x08
 function LD_nn_SP (nn)
-  assert(nn ~= nil, "nn cannot be equal to nil")
+  eAssert("LD_nn_SP", nn, "nn", "number")
+
   memory:write_16b(nn, registers[9])
 end
 
 function push (nn)
-  registers[9] = registers[9] - 2
+  eAssert("push", nn, "nn", "number")
 
+  registers[9] = registers[9] - 2
   memory:write_16b(registers[9], nn)
 end
 
@@ -521,9 +533,11 @@ function PUSH_HL ()
 end
 
 function pop (rIndex1, rIndex2)
+  eAssert("pop", rIndex1, "rIndex1", "number")
+  eAssert("pop", rIndex2, "rIndex2", "number")
+
   registers[rIndex1] = memory:read_8b(registers[9] + 1)
   registers[rIndex2] = memory:read_8b(registers[9])
-
   memory:write_16b(registers[9], 0) -- Clear popped memory
   registers[9] = registers[9] + 2
 end
