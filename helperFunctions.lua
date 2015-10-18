@@ -1,3 +1,15 @@
+function eAssert(functionName, variable, variableName, expectedType)
+  message = functionName .. " expects " .. variableName .. " to be both a " .. expectedType .. " and non-nil"
+
+  if type(variable) ~= expectedType then
+    message = message .. ", but " .. variableName .. " is a " .. type(variable)
+  elseif variable == nil then
+    message = message .. ", but " .. variableName .. " is nil"
+  end
+
+  assert(type(variable) == expectedType and variable ~= nil, message)
+end
+
 function setFlags(z, s, hc, c)
   flag = toBits(registers[8], 8)
 
