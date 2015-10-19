@@ -37,39 +37,43 @@ function setFlags(z, s, hc, c)
 end
 
 function writeRegister_16b(rIndex1, rIndex2, num)
-  assert(rIndex1 ~= nil, "rIndex1 cannot be equal to nil")
-  assert(rIndex2 ~= nil, "rIndex2 cannot be equal to nil")
-  assert(num ~= nil, "num cannot be equal to nil")
+  eAssert("writeRegister_16b", rIndex1, "rIndex1", "number")
+  eAssert("writeRegister_16b", rIndex2, "rIndex2", "number")
+  eAssert("writeRegister_16b", num, "num", "number")
 
   registers[rIndex1] = toInt(toBits(num, 8))
   registers[rIndex2] = shiftRight(num, 8)
 end
 
 function getRegister_16b(first)
-  assert(first ~= nil, "first cannot be equal to nil")
+  eAssert("getRegister_16b", first, "first", "number")
+
   return bitsTo_16b(registers[first], registers[first + 1])
 end
 
 function bitsTo_16b(low, high)
-  assert(low ~= nil, "low cannot be equal to nil")
-  assert(high ~= nil, "high cannot be equal to nil")
+  eAssert("bitsTo_16b", low, "low", "number")
+  eAssert("bitsTo_16b", high, "high", "number")
+
   return shiftLeft(high, 8) + low
 end
 
 function mask_8b(number)
-  assert(number ~= nil, "number cannot be equal to nil")
+  eAssert("mask_8b", number, "number", "number")
+
   return toInt(toBits(number, 8)) 
 end
 
 function mask_16b(number)
-  assert(number ~= nil, "number cannot be equal to nil")
+  eAssert("mask_16b", number, "number", "number")
+
   return toInt(toBits(number, 16))
 end
 
 -- From http://stackoverflow.com/questions/1426954/split-string-in-lua by user973713 (second answer) but slightly modified
 function split(inputstr, sep)
-  assert(inputstr ~= nil, "inputstr cannot be equal to nil")
-  assert(sep ~= nil, "sep cannot be equal to nil")
+  eAssert("split", inputstr, "inputstr", "number")
+  eAssert("split", sep, "sep", "number")
 
   if sep == nil then
     sep = "%s"
