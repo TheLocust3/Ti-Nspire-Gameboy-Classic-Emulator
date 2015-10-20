@@ -565,6 +565,9 @@ end
 -- 8-Bit ALU
 
 function add_8b (rIndex, nn)
+  eAssert("add_8b", rIndex, "rIndex", "number")
+  eAssert("add_8b", nn, "nn", "number")
+
   sum = registers[rIndex] + nn
 
   registers[rIndex] = mask_8(sum)
@@ -617,8 +620,10 @@ function ADD_A_n (n)
 end
 
 function adc_8b (rIndex, nn)
-  carry = carryFlag:isSet() and 1 or 0
+  eAssert("adc_8b", rIndex, "rIndex", "number")
+  eAssert("adc_8b", nn, "nn", "number")
 
+  carry = carryFlag:isSet() and 1 or 0
   add_8b(rIndex, nn + carry)
 end
 
@@ -668,8 +673,10 @@ function ADC_A_n (n)
 end
 
 function sub_8b (rIndex, n)
-  diff = registers[rIndex] - n
+  eAssert("sub_8b", rIndex, "rIndex", "number")
+  eAssert("sub_8b", n, "n", "number")
 
+  diff = registers[rIndex] - n
   registers[rIndex] = diff
   setFlags(zeroFlag:isZero(diff), true, halfCarryFlag:isHalfCarrySub_8b(registers[rIndex], n), carryFlag:isCarryLow(diff))
 end
@@ -720,8 +727,10 @@ function SUB_n (n)
 end
 
 function sbc_8b (rIndex, n)
-  carry = carryFlag:isSet() and 1 or 0
+  eAssert("sbc_8b", rIndex, "rIndex", "number")
+  eAssert("sbc_8b", n, "n", "number")
 
+  carry = carryFlag:isSet() and 1 or 0
   sub_8b(rIndex, n + carry)
 end
 
