@@ -936,6 +936,8 @@ function XOR_n (n)
 end
 
 function cp (n)
+  eAssert("cp", n, "n", "number")
+
   compare = registers[1] - n
 
   setFlags(zeroFlag:isZero(compare), true, halfCarryFlag:isHalfCarrySub_8b(registers[1], n), (registers[1] < n))
