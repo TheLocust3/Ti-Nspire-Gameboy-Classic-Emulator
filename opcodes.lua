@@ -780,6 +780,8 @@ function SBC_A_n (n)
 end
 
 function and_8b (n)
+  eAssert("and_8b", n, "n", "number")
+
   registers[1] = bitwiseAnd_8b(registers[1], n)
   setFlags(zeroFlag:isZero(registers[1]), false, true, false)
 end
@@ -830,6 +832,8 @@ function AND_n (n)
 end
 
 function or_8b (n)
+  eAssert("or_8b", n, "n", "number")
+
   registers[1] = bitwiseOr_8b(registers[1], n)
   setFlags(zeroFlag:isZero(registers[1]), false, false, false)
 end
@@ -880,6 +884,8 @@ function OR_n (n)
 end
 
 function xor_8b (n)
+  eAssert("xor_8b", n, "n", "number")
+
   registers[1] = bitwiseXor_8b(registers[1], n)
   setFlags(zeroFlag:isZero(registers[1]), false, false, false)
 end
