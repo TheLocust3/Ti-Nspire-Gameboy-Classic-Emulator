@@ -989,6 +989,9 @@ function CP_n (n)
 end
 
 function inc_8b (rIndex, store)
+  eAssert("inc_8b", rIndex, "rIndex", "number")
+  eAssert("inc_8b", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   sum = mask_8b(startValue + 1)
 
@@ -1042,6 +1045,9 @@ function INC_HL ()
 end
 
 function dec_8b (rIndex, store)
+  eAssert("dec_8b", rIndex, "rIndex", "number")
+  eAssert("dec_8b", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   diff = mask_8b(startValue - 1)
 
@@ -1097,6 +1103,10 @@ end
 -- 16-Bit Arithmetic
 
 function add_16b (rIndex1, rIndex2, nn)
+  eAssert("add_16b", rIndex1, "rIndex1", "number")
+  --eAssert("add_16b", rIndex2, "rIndex2", "number") No assertion because this can be nil. This is temporary
+  eAssert("add_16b", nn, "nn", "number")
+
   if rIndex2 ~= nil then
     sum = getRegister_16b(rIndex1) + nn
 
@@ -1136,6 +1146,10 @@ function ADD_SP_n (n)
 end
 
 function inc_16b (rIndex1, rIndex2)
+  eAssert("inc_16b", rIndex1, "rIndex1", "number")
+  --eAssert("inc_16b", rIndex2, "rIndex2", "number") No assertion because this can be nil. This is temporary
+  --eAssert("inc_16b", nn, "nn", "number") No assertion because this can be nil. This is temporary
+
   if rIndex2 ~= nil then
     sum = getRegister_16b(rIndex1) + 1
 
@@ -1168,6 +1182,10 @@ function INC_SP ()
 end
 
 function dec_16b (rIndex1, rIndex2)
+  eAssert("dec_16b", rIndex1, "rIndex1", "number")
+  --eAssert("dec_16b", rIndex2, "rIndex2", "number") No assertion because this can be nil. This is temporary
+  --eAssert("dec_16b", nn, "nn", "number") No assertion because this can be nil. This is temporary
+
   if rIndex2 ~= nil then
     sum = getRegister_16b(rIndex1) - 1
 

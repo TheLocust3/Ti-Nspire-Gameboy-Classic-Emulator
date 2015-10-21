@@ -1,13 +1,16 @@
 function eAssert(functionName, variable, variableName, expectedType)
   message = functionName .. " expects " .. variableName .. " to be both a " .. expectedType .. " and non-nil"
 
-  if type(variable) ~= expectedType then
-    message = message .. ", but " .. variableName .. " is a " .. type(variable)
-  elseif variable == nil then
-    message = message .. ", but " .. variableName .. " is nil"
-  end
+  isNil = variable == nil
+  isType = type(variable) ~= expectedType
 
-  assert(type(variable) == expectedType and variable ~= nil, message)
+  if isType then
+    message = message .. ", but " .. variableName .. " is a " .. type(variable)
+    assert(false, message)
+  elseif isNil then
+    message = message .. ", but " .. variableName .. " is nil"
+    assert(false, message)
+  end
 end
 
 function setFlags(z, s, hc, c)
