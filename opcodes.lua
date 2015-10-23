@@ -1220,6 +1220,9 @@ end
 -- Miscellaneous
 
 function swap (rIndex, store)
+  eAssert("swap", rIndex, "rIndex", "number")
+  eAssert("swap", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   byte = shiftRight(startValue, 4) + (shiftLeft(bitwiseAnd_8b(startValue, 0xf0), 4))
 
@@ -1364,6 +1367,9 @@ function RRA ()
 end
 
 function rlc (rIndex, store)
+  eAssert("rlc", rIndex, "rIndex", "number")
+  eAssert("rlc", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = mask_8(shiftLeft(startValue, 1))
 
@@ -1417,6 +1423,9 @@ function RLC_HL ()
 end
 
 function rl (rIndex, store)
+  eAssert("rl", rIndex, "rIndex", "number")
+  eAssert("rl", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = mask_8b(shiftLeft(startValue, 1))
 
@@ -1470,6 +1479,9 @@ function RL_HL ()
 end
 
 function rrc (rIndex, store)
+  eAssert("rrc", rIndex, "rIndex", "number")
+  eAssert("rrc", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = shiftRight(registers[rIndex], 1)
 
@@ -1523,6 +1535,9 @@ function RRC_HL ()
 end
 
 function rr (rIndex, store)
+  eAssert("rr", rIndex, "rIndex", "number")
+  eAssert("rr", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = mask_8b(shiftRight(startValue, 1))
 
@@ -1576,6 +1591,9 @@ function RR_HL ()
 end
 
 function sla (rIndex, store)
+  eAssert("sla", rIndex, "rIndex", "number")
+  eAssert("sla", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = mask_8b(shiftLeft(startValue, 1))
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateLeftCarry(startValue))
@@ -1631,6 +1649,9 @@ function SLA_HL ()
 end
 
 function sra (rIndex, store)
+  eAssert("sra", rIndex, "rIndex", "number")
+  eAssert("sra", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = mask_8b(shiftRight(startValue, 1))
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(startValue))
@@ -1686,6 +1707,9 @@ function SRA_HL ()
 end
 
 function srl (rIndex, store)
+  eAssert("srl", rIndex, "rIndex", "number")
+  eAssert("srl", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   shift = mask_8b(shiftRight(startValue, 1))
   setFlags(zeroFlag:isZero(shift), false, false, carryFlag:rotateRightCarry(startValue))
