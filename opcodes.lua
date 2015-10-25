@@ -1767,6 +1767,10 @@ end
 -- Bit Operations
 
 function bit (b, rIndex, store)
+  eAssert("bit", b, "b", "number")
+  eAssert("bit", rIndex, "rIndex", "number")
+  eAssert("bit", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   bits = toBits(startValue, 8)
   setFlags(zeroFlag:isZero(bits[b + 1]), false, true, nil)
@@ -1812,6 +1816,10 @@ function BIT_b_HL (b)
 end
 
 function set (b, rIndex, store)
+  eAssert("set", b, "b", "number")
+  eAssert("set", rIndex, "rIndex", "number")
+  eAssert("set", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   bits = toBits(startValue, 8)
   bits[b + 1] = 1 
@@ -1864,6 +1872,10 @@ function SET_b_HL (b)
 end
 
 function res (b, rIndex, store)
+  eAssert("res", b, "b", "number")
+  eAssert("res", rIndex, "rIndex", "number")
+  eAssert("res", store, "store", "boolean")
+
   startValue = store and registers[rIndex] or memory:read_8b(getRegister_16b(rIndex))
   bits = toBits(startValue, 8)
   bits[b + 1] = 0
