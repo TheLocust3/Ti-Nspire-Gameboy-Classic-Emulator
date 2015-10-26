@@ -1930,6 +1930,10 @@ end
 -- Jumps
 
 function jp (cc, nn, tByte)
+  eAssert("jp", cc, "cc", "string")
+  eAssert("jp", nn, "nn", "number")
+  eAssert("jp", tByte, "tByte", "boolean")
+
   tByte = tByte or false -- JP and CALL have two byte args
   
   location = nn + 1
