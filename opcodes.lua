@@ -1930,11 +1930,11 @@ end
 -- Jumps
 
 function jp (cc, nn, tByte)
-  eAssert("jp", cc, "cc", "string")
+  --eAssert("jp", cc, "cc", "string") cc can be nil
   eAssert("jp", nn, "nn", "number")
-  eAssert("jp", tByte, "tByte", "boolean")
 
   tByte = tByte or false -- JP and CALL have two byte args
+  eAssert("jp", tByte, "tByte", "boolean")
   
   location = nn + 1
 
