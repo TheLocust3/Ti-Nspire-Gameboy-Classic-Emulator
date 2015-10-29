@@ -2003,6 +2003,7 @@ function JP_HL ()
 end
 
 function jr (cc, n)
+  eAssert("jr", n, "n", "number")
   jumpTo = pc + n
   jp(cc, jumpTo)
 end
@@ -2035,6 +2036,7 @@ end
 -- Calls
 
 function call (cc, nn)
+  eAssert("call", nn, "nn", "number")
   push(pc)
 
   jp(cc, nn, true)
