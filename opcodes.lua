@@ -2070,6 +2070,7 @@ end
 -- Restarts
 
 function rst (n)
+  eAssert("rst", n, "n", "number")
   push(pc)
 
   jp(nil, n)
