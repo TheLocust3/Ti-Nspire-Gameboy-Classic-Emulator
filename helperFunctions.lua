@@ -75,8 +75,8 @@ end
 
 -- From http://stackoverflow.com/questions/1426954/split-string-in-lua by user973713 (second answer) but slightly modified
 function split(inputstr, sep)
-  eAssert("split", inputstr, "inputstr", "number")
-  eAssert("split", sep, "sep", "number")
+  eAssert("split", inputstr, "inputstr", "string")
+  eAssert("split", sep, "sep", "string")
 
   if sep == nil then
     sep = "%s"

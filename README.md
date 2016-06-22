@@ -2,7 +2,7 @@
 A lua Gameboy Classic Emulator for the Ti-Nspire. Ndless is not required! THIS IS NOT FINISHED!  
   
 ###Requirements
-- [Luna](http://www.unsads.com/projects/nsptools/downloader/download/release/3/file/38) (for building)
+- [Luna](https://github.com/ndless-nspire/luna/tree/dbf75190c49f82092a874afe47bb3f10f309734b) (for building)
 
 ###Running the Emulator
 - Run the build.sh file (`./build.sh` or `source build.sh`)
